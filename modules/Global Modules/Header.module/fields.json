@@ -1,0 +1,3822 @@
+[ {
+  "id" : "3a191ea9-6435-e90b-415d-a288204afa06",
+  "name" : "navigation_field_group",
+  "label" : "Navigation",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "bfcc01cf-a896-1c96-a4af-d3ccb007c2ed",
+    "name" : "navbar_type",
+    "label" : "Navigation Type",
+    "help_text" : "Simple Navigation / Advance Navigation to more customizable",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "Choose The Type Of The Navigation ",
+    "choices" : [ [ "simple", "Simple Navbar" ], [ "advance", "Advance Navbar" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "advance"
+  }, {
+    "id" : "98024b23-20ca-ac4a-b297-f9cd0384fb46",
+    "name" : "menu_items",
+    "label" : "Menu Items",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : 5,
+      "sorting_label_field" : null,
+      "default" : 1
+    },
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "navigation_field_group.navbar_type",
+      "controlling_value_regex" : "advance",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "11287b3b-e442-5fe8-2c81-9ec99bf59f74",
+      "name" : "menu_item_label",
+      "label" : "Menu Item Label",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Main Pages"
+    }, {
+      "id" : "53cfc320-a093-daec-c2db-563efee263cc",
+      "name" : "menu_item_type",
+      "label" : "Menu Item Type",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "link", "Link" ], [ "mega_menu", "Mega Menu" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "mega_menu"
+    }, {
+      "id": "4451fe82-57d9-2866-f6b8-7057b98njhg5",
+      "name": "menu_item_link",
+      "label": "Menu Item Link",
+      "required": false,
+      "locked": false,
+      "visibility": {
+        "controlling_field_path": "navigation_field_group.menu_items.menu_item_type",
+        "controlling_value_regex": "link",
+        "operator": "EQUAL"
+      },
+      "supported_types": [
+        "EXTERNAL",
+        "FILE",
+        "CONTENT",
+        "BLOG",
+        "PAYMENT",
+        "EMAIL_ADDRESS",
+        "PHONE_NUMBER"
+      ],
+      "show_advanced_rel_options": false,
+      "type": "link",
+      "display_width": null,
+      "default": {
+        "url": {
+          "content_id": null,
+          "href": "https://hubspot.com",
+          "type": "EXTERNAL"
+        },
+        "open_in_new_tab": false,
+        "no_follow": false
+      }
+    }, {
+      "id" : "22b37cdf-9b5e-95c4-ca71-c11811874744",
+      "name" : "mega_menu_type",
+      "label" : "Mega Menu Category",
+      "help_text" : "Mega Menu Links: Add navigation links only\nMega Menu Featured: Add navigation links and a featured image card",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "navigation_field_group.menu_items.menu_item_type",
+        "controlling_value_regex" : "mega_menu",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "links", "Only Links Mega Menu" ], [ "featured", "Featured And Links Mega Menu" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : ""
+    }, {
+      "id" : "c9b4dc72-d538-f200-fb06-0b147711298e",
+      "name" : "mega_menu_columns",
+      "label" : "Mega Menu - Link Columns",
+      "required" : false,
+      "locked" : false,
+      "occurrence" : {
+        "min" : null,
+        "max" : null,
+        "sorting_label_field" : null,
+        "default" : 1
+      },
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "navigation_field_group.menu_items.mega_menu_type",
+        "controlling_value_regex" : "links",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "4179357d-bdef-7fa3-fae4-4fe059a60cf0",
+        "name" : "hide_column_label",
+        "label" : "Hide Mega Menu Column Label",
+        "required" : false,
+        "locked" : false,
+        "display" : "toggle",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "b8bfceaa-079b-15a2-1da5-d0d55ee4281d",
+        "name" : "mega_menu_column_label",
+        "label" : "Mega Menu Column Label",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "navigation_field_group.menu_items.mega_menu_columns.hide_column_label",
+          "controlling_value_regex" : "false",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "children" : [ {
+          "id" : "21243227-6316-c29a-50be-1294d17dad5b",
+          "name" : "label_name",
+          "label" : "Label Name",
+          "required" : false,
+          "locked" : false,
+          "allow_new_line" : false,
+          "type" : "text",
+          "display_width" : null,
+          "default" : "Home Pages"
+        }, {
+          "id" : "2a5d0df3-4f54-5cbb-eed3-f926bb6dd428",
+          "name" : "label_type",
+          "label" : "Label Type",
+          "required" : false,
+          "locked" : false,
+          "display" : "select",
+          "choices" : [ [ "text", "Text" ], [ "link", "Link" ] ],
+          "multiple" : false,
+          "reordering_enabled" : true,
+          "preset" : null,
+          "type" : "choice",
+          "display_width" : null,
+          "default" : "text"
+        }, {
+          "id" : "af42112d-7b29-9046-6fbf-5d3e0733863d",
+          "name" : "label_link",
+          "label" : "Label Link",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : "navigation_field_group.menu_items.mega_menu_columns.mega_menu_column_label.label_type",
+            "controlling_value_regex" : "link",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "supported_types" : [ "EXTERNAL", "FILE", "CONTENT", "BLOG", "PAYMENT", "EMAIL_ADDRESS", "PHONE_NUMBER" ],
+          "show_advanced_rel_options" : false,
+          "type" : "link",
+          "display_width" : null,
+          "default" : {
+            "url" : {
+              "content_id" : null,
+              "href" : "https://hubsopot.com",
+              "type" : "EXTERNAL"
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }, {
+          "id" : "3ee2d907-9cef-157e-7333-8064625f12fa",
+          "name" : "hide_label_icon",
+          "label" : "Hide Label Icon",
+          "required" : false,
+          "locked" : false,
+          "display" : "toggle",
+          "type" : "boolean",
+          "display_width" : null,
+          "default" : false
+        }, {
+          "id" : "45d2a1b4-84a4-c35e-b916-68343ff543e6",
+          "name" : "label_icon_type",
+          "label" : "Label Icon Type",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : "navigation_field_group.menu_items.mega_menu_columns.mega_menu_column_label.hide_label_icon",
+            "controlling_value_regex" : "false",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "display" : "select",
+          "choices" : [ [ "image", "Image File" ], [ "svg", "SVG Code" ] ],
+          "multiple" : false,
+          "reordering_enabled" : true,
+          "preset" : null,
+          "type" : "choice",
+          "display_width" : null,
+          "default" : "image"
+        }, {
+          "id" : "8388e558-fe90-14ab-9a59-4175fa15c49c",
+          "name" : "label_icon_image",
+          "label" : "Label Icon Image",
+          "required" : false,
+          "locked" : false,
+          "visibility_rules": "ADVANCED",
+          "advanced_visibility": {
+            "boolean_operator": "AND",
+            "criteria": [
+              {
+                "controlling_field": null,
+                "controlling_field_path": "navigation_field_group.menu_items.mega_menu_columns.mega_menu_column_label.hide_label_icon",
+                "controlling_value_regex": "false",
+                "property": null,
+                "operator": "EQUAL",
+                "access": null
+              },
+              {
+                "controlling_field": null,
+                "controlling_field_path": "navigation_field_group.menu_items.mega_menu_columns.mega_menu_column_label.label_icon_type",
+                "controlling_value_regex": "image",
+                "property": null,
+                "operator": "EQUAL",
+                "access": null
+              }
+            ],
+            "children": []
+          },
+          "responsive" : true,
+          "resizable" : false,
+          "show_loading" : false,
+          "type" : "image",
+          "display_width" : null,
+          "default" : {
+            "size_type" : "auto",
+            "src" : "https://243686958.fs1.hubspotusercontent-na2.net/hubfs/243686958/application%20(3)%201.png",
+            "alt" : "application (3) 1",
+            "loading" : "lazy",
+            "width" : 16,
+            "height" : 16,
+            "max_width" : 16,
+            "max_height" : 16
+          }
+        }, {
+          "id" : "d2b9ad08-2edb-a3ce-1b14-a956b9eec2d8",
+          "name" : "label_icon_svg",
+          "label" : "Label Icon SVG",
+          "required" : false,
+          "locked" : false,
+          "visibility_rules": "ADVANCED",
+          "advanced_visibility": {
+            "boolean_operator": "AND",
+            "criteria": [
+              {
+                "controlling_field": null,
+                "controlling_field_path": "navigation_field_group.menu_items.mega_menu_columns.mega_menu_column_label.hide_label_icon",
+                "controlling_value_regex": "false",
+                "property": null,
+                "operator": "EQUAL",
+                "access": null
+              },
+              {
+                "controlling_field": null,
+                "controlling_field_path": "navigation_field_group.menu_items.mega_menu_columns.mega_menu_column_label.label_icon_type",
+                "controlling_value_regex": "svg",
+                "property": null,
+                "operator": "EQUAL",
+                "access": null
+              }
+            ],
+            "children": []
+          },
+          "allow_new_line" : false,
+          "type" : "text",
+          "display_width" : null,
+          "default" : "<svg width=\"18\" height=\"17\" viewBox=\"0 0 18 17\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M17.4794 7.48103L14.7851 4.78672V1.67434C14.7851 1.11158 14.329 0.655505 13.7654 0.655505C13.2031 0.655505 12.7471 1.11158 12.7471 1.67434V2.7488L10.741 0.7426C9.74913 -0.248711 8.02464 -0.246953 7.03505 0.744395L0.298265 7.48103C-0.0994218 7.87951 -0.0994218 8.52427 0.298265 8.92214C0.696132 9.32051 1.34215 9.32051 1.73987 8.92214L8.47601 2.18532C8.69545 1.96703 9.08223 1.96703 9.30052 2.18467L16.0378 8.92214C16.2376 9.12134 16.498 9.22042 16.7584 9.22042C17.0194 9.22042 17.2803 9.12123 17.4794 8.92214C17.8772 8.52431 17.8772 7.87955 17.4794 7.48103Z\" fill=\"#2B2B2B\"/><path d=\"M9.24246 4.11924C9.04674 3.92363 8.72983 3.92363 8.53469 4.11924L2.609 10.0432C2.51544 10.1367 2.4624 10.2644 2.4624 10.3976V14.7183C2.4624 15.7322 3.28448 16.5542 4.29832 16.5542H7.23214V12.0107H10.5444V16.5542H13.4782C14.492 16.5542 15.3141 15.7322 15.3141 14.7184V10.3976C15.3141 10.2644 15.2615 10.1367 15.1675 10.0432L9.24246 4.11924Z\" fill=\"#2B2B2B\"/></svg>"
+        } ],
+        "tab" : "CONTENT",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "label_name" : "Home Pages",
+          "label_type" : "text",
+          "label_link" : {
+            "url" : {
+              "content_id" : null,
+              "href" : "https://hubsopot.com",
+              "type" : "EXTERNAL"
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          },
+          "hide_label_icon" : false,
+          "label_icon_type" : "image",
+          "label_icon_image" : {
+            "size_type" : "auto",
+            "src" : "https://243686958.fs1.hubspotusercontent-na2.net/hubfs/243686958/application%20(3)%201.png",
+            "alt" : "application (3) 1",
+            "loading" : "lazy",
+            "width" : 16,
+            "height" : 16,
+            "max_width" : 16,
+            "max_height" : 16
+          },
+          "label_icon_svg" : "<svg width=\"18\" height=\"17\" viewBox=\"0 0 18 17\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M17.4794 7.48103L14.7851 4.78672V1.67434C14.7851 1.11158 14.329 0.655505 13.7654 0.655505C13.2031 0.655505 12.7471 1.11158 12.7471 1.67434V2.7488L10.741 0.7426C9.74913 -0.248711 8.02464 -0.246953 7.03505 0.744395L0.298265 7.48103C-0.0994218 7.87951 -0.0994218 8.52427 0.298265 8.92214C0.696132 9.32051 1.34215 9.32051 1.73987 8.92214L8.47601 2.18532C8.69545 1.96703 9.08223 1.96703 9.30052 2.18467L16.0378 8.92214C16.2376 9.12134 16.498 9.22042 16.7584 9.22042C17.0194 9.22042 17.2803 9.12123 17.4794 8.92214C17.8772 8.52431 17.8772 7.87955 17.4794 7.48103Z\" fill=\"#2B2B2B\"/><path d=\"M9.24246 4.11924C9.04674 3.92363 8.72983 3.92363 8.53469 4.11924L2.609 10.0432C2.51544 10.1367 2.4624 10.2644 2.4624 10.3976V14.7183C2.4624 15.7322 3.28448 16.5542 4.29832 16.5542H7.23214V12.0107H10.5444V16.5542H13.4782C14.492 16.5542 15.3141 15.7322 15.3141 14.7184V10.3976C15.3141 10.2644 15.2615 10.1367 15.1675 10.0432L9.24246 4.11924Z\" fill=\"#2B2B2B\"/></svg>"
+        }
+      }, {
+        "id" : "99fd3828-adec-658b-faa4-be98e80cac27",
+        "name" : "mega_menu_column_items",
+        "label" : "Mega Menu Column Items",
+        "required" : false,
+        "locked" : false,
+        "occurrence" : {
+          "min" : null,
+          "max" : null,
+          "sorting_label_field" : null,
+          "default" : 1
+        },
+        "children" : [{
+            "id": "7a8f3d4b-7f47-967d-7e03-ea49c61ad08d",
+            "name": "mega_menu_item_label",
+            "label": "Mega Menu Item Label",
+            "required": false,
+            "locked": false,
+            "visibility": {
+              "controlling_field": null,
+              "controlling_field_path": "navigation_field_group.menu_items.mega_menu_columns.mega_menu_column_items.mega_menu_item_type",
+              "controlling_value_regex": "image",
+              "property": null,
+              "operator": "NOT_EQUAL",
+              "access": null
+            },
+            "allow_new_line": false,
+            "type": "text",
+            "display_width": null,
+            "default": "Home 1"
+          }, {
+          "id" : "bdd443a6-2469-8a81-dd1e-18edfbe4ee9d",
+          "name" : "mega_menu_item_type",
+          "label" : "Mega Menu Item Type",
+          "required" : false,
+          "locked" : false,
+          "display" : "select",
+          "choices" : [ [ "link", "Link" ], [ "image", "Image" ], [ "button", "Button" ] ],
+          "multiple" : false,
+          "reordering_enabled" : true,
+          "preset" : null,
+          "type" : "choice",
+          "display_width" : null,
+          "default" : "link"
+        }, {
+          "id" : "4451fe82-57d9-2866-f6b8-7057b9863c27",
+          "name" : "mega_menu_item_link",
+          "label" : "Mega Menu Item Link",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : "navigation_field_group.menu_items.mega_menu_columns.mega_menu_column_items.mega_menu_item_type",
+            "controlling_value_regex" : "link",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "supported_types" : [ "EXTERNAL", "FILE", "CONTENT", "BLOG", "PAYMENT", "EMAIL_ADDRESS", "PHONE_NUMBER" ],
+          "show_advanced_rel_options" : false,
+          "type" : "link",
+          "display_width" : null,
+          "default" : {
+            "url" : {
+              "content_id" : null,
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }, {
+          "id" : "fd02df67-aa7e-1f38-901b-a5fdf7e58fcc",
+          "name" : "mega_menu_item_image",
+          "label" : "Mega Menu Item Image",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : "navigation_field_group.menu_items.mega_menu_columns.mega_menu_column_items.mega_menu_item_type",
+            "controlling_value_regex" : "image",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "responsive" : true,
+          "resizable" : false,
+          "show_loading" : false,
+          "type" : "image",
+          "display_width" : null,
+          "default" : {
+            "size_type" : "auto_custom_max",
+            "src" : "https://243686958.fs1.hubspotusercontent-na2.net/hubfs/243686958/ce9e37a60a1a1558259279acdc5e9118d5951210.jpg",
+            "alt" : "ce9e37a60a1a1558259279acdc5e9118d5951210",
+            "loading" : "lazy",
+            "width" : 4096,
+            "height" : 4096,
+            "max_width" : 500,
+            "max_height" : 500
+          }
+        } ],
+        "tab" : "CONTENT",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : [ {
+          "mega_menu_item_type" : "link",
+          "mega_menu_item_label" : "Home 1",
+          "mega_menu_item_link" : {
+            "url" : {
+              "content_id" : null,
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          },
+          "mega_menu_item_image" : {
+            "size_type" : "auto_custom_max",
+            "src" : "https://243686958.fs1.hubspotusercontent-na2.net/hubfs/243686958/ce9e37a60a1a1558259279acdc5e9118d5951210.jpg",
+            "alt" : "ce9e37a60a1a1558259279acdc5e9118d5951210",
+            "loading" : "lazy",
+            "width" : 4096,
+            "height" : 4096,
+            "max_width" : 500,
+            "max_height" : 500
+          }
+        } ]
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : [ {
+        "hide_column_label" : false,
+        "mega_menu_column_label" : {
+          "label_name" : "Home Pages",
+          "label_type" : "text",
+          "label_link" : {
+            "url" : {
+              "content_id" : null,
+              "href" : "https://hubsopot.com",
+              "type" : "EXTERNAL"
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          },
+          "hide_label_icon" : false,
+          "label_icon_type" : "image",
+          "label_icon_image" : {
+            "size_type" : "auto",
+            "src" : "https://243686958.fs1.hubspotusercontent-na2.net/hubfs/243686958/application%20(3)%201.png",
+            "alt" : "application (3) 1",
+            "loading" : "lazy",
+            "width" : 16,
+            "height" : 16,
+            "max_width" : 16,
+            "max_height" : 16
+          },
+          "label_icon_svg" : "<svg width=\"18\" height=\"17\" viewBox=\"0 0 18 17\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M17.4794 7.48103L14.7851 4.78672V1.67434C14.7851 1.11158 14.329 0.655505 13.7654 0.655505C13.2031 0.655505 12.7471 1.11158 12.7471 1.67434V2.7488L10.741 0.7426C9.74913 -0.248711 8.02464 -0.246953 7.03505 0.744395L0.298265 7.48103C-0.0994218 7.87951 -0.0994218 8.52427 0.298265 8.92214C0.696132 9.32051 1.34215 9.32051 1.73987 8.92214L8.47601 2.18532C8.69545 1.96703 9.08223 1.96703 9.30052 2.18467L16.0378 8.92214C16.2376 9.12134 16.498 9.22042 16.7584 9.22042C17.0194 9.22042 17.2803 9.12123 17.4794 8.92214C17.8772 8.52431 17.8772 7.87955 17.4794 7.48103Z\" fill=\"#2B2B2B\"/><path d=\"M9.24246 4.11924C9.04674 3.92363 8.72983 3.92363 8.53469 4.11924L2.609 10.0432C2.51544 10.1367 2.4624 10.2644 2.4624 10.3976V14.7183C2.4624 15.7322 3.28448 16.5542 4.29832 16.5542H7.23214V12.0107H10.5444V16.5542H13.4782C14.492 16.5542 15.3141 15.7322 15.3141 14.7184V10.3976C15.3141 10.2644 15.2615 10.1367 15.1675 10.0432L9.24246 4.11924Z\" fill=\"#2B2B2B\"/></svg>"
+        },
+        "mega_menu_column_items" : [ {
+          "mega_menu_item_type" : "link",
+          "mega_menu_item_label" : "Home 1",
+          "mega_menu_item_link" : {
+            "url" : {
+              "content_id" : null,
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          },
+          "mega_menu_item_image" : {
+            "size_type" : "auto_custom_max",
+            "src" : "https://243686958.fs1.hubspotusercontent-na2.net/hubfs/243686958/ce9e37a60a1a1558259279acdc5e9118d5951210.jpg",
+            "alt" : "ce9e37a60a1a1558259279acdc5e9118d5951210",
+            "loading" : "lazy",
+            "width" : 4096,
+            "height" : 4096,
+            "max_width" : 500,
+            "max_height" : 500
+          }
+        } ]
+      } ]
+    }, {
+      "id" : "fad6a4c2-e614-3854-c086-71a6aa1cda8d",
+      "name" : "number_of_columns_per_row",
+      "label" : "Number of columns per row",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "navigation_field_group.menu_items.mega_menu_type",
+        "controlling_value_regex" : "links",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "slider",
+      "max" : 6,
+      "step" : 1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 4
+    }, {
+      "id" : "564a4f0d-563c-208d-aad1-0e3dcfc233bd",
+      "name" : "links",
+      "label" : "Mega Menu Featured - Links",
+      "required" : false,
+      "locked" : false,
+      "occurrence" : {
+        "min" : null,
+        "max" : null,
+        "sorting_label_field" : null,
+        "default" : 1
+      },
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "navigation_field_group.menu_items.mega_menu_type",
+        "controlling_value_regex" : "featured",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "49a84c94-8545-bf68-9eed-57fccb404546",
+        "name" : "mega_menu_item_label",
+        "label" : "Mega Menu Item Label",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "navigation_field_group.menu_items.mega_menu_columns.mega_menu_column_items.mega_menu_item_type",
+          "controlling_value_regex" : "image",
+          "property" : null,
+          "operator" : "NOT_EQUAL",
+          "access" : null
+        },
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null,
+        "default" : "Home 1"
+      }, {
+        "id" : "c190a0e6-8e5a-5667-1bd2-3d4a69ecdaef",
+        "name" : "mega_menu_item_link",
+        "label" : "Mega Menu Item Link",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "21de2be9-4c1c-2b8f-624a-48139907f8c1",
+          "name" : "link",
+          "label" : "link",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : "navigation_field_group.menu_items.mega_menu_columns.mega_menu_column_items.mega_menu_item_type",
+            "controlling_value_regex" : "link",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "supported_types" : [ "EXTERNAL", "FILE", "CONTENT", "BLOG", "PAYMENT", "EMAIL_ADDRESS", "PHONE_NUMBER" ],
+          "show_advanced_rel_options" : false,
+          "type" : "link",
+          "display_width" : null,
+          "default" : {
+            "url" : {
+              "content_id" : null,
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        } ],
+        "tab" : "CONTENT",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }
+      }, {
+        "id" : "5931aeec-cb37-5b26-dac2-03d871e82e2d",
+        "name" : "mega_menu_subtitle",
+        "label" : "Mega Menu Item SubTitle",
+        "required" : false,
+        "locked" : false,
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null,
+        "default" : "See Details"
+      }, {
+        "id" : "cd5c6003-7156-d90f-2527-fd19e5aa4ea8",
+        "name" : "mega_menu_item_icon_type",
+        "label" : "Mega Menu Item Icon Type",
+        "required" : false,
+        "locked" : false,
+        "display" : "select",
+        "choices" : [ [ "image", "Image File" ], [ "svg", "SVG Code" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "image"
+      }, {
+        "id" : "7843cbcc-b41f-da08-6955-57841c0f583c",
+        "name" : "mega_menu_item_icon_image",
+        "label" : "Mega Menu Item Icon Image",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "34ebc14c-2983-ae14-ecc8-6770ec45b52e",
+          "name" : "image_file",
+          "label" : "Image File",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : "navigation_field_group.menu_items.links.mega_menu_item_icon_type",
+            "controlling_value_regex" : "image",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "responsive" : true,
+          "resizable" : false,
+          "show_loading" : false,
+          "type" : "image",
+          "display_width" : null,
+          "default" : {
+            "size_type" : "auto",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/application%20(3)%201.png",
+            "alt" : "application (3) 1",
+            "loading" : "lazy",
+            "width" : 16,
+            "height" : 16,
+            "max_width" : 16,
+            "max_height" : 16
+          }
+        } ],
+        "tab" : "CONTENT",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "image_file" : {
+            "size_type" : "auto",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/application%20(3)%201.png",
+            "alt" : "application (3) 1",
+            "loading" : "lazy",
+            "width" : 16,
+            "height" : 16,
+            "max_width" : 16,
+            "max_height" : 16
+          }
+        }
+      }, {
+        "id" : "42dc1ce4-da59-62db-293c-713461099fa7",
+        "name" : "mega_menu_item_icon_svg",
+        "label" : "Mega Menu Item Icon SVG",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "navigation_field_group.menu_items.links.mega_menu_item_icon_type",
+          "controlling_value_regex" : "svg",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null,
+        "default" : "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M17.7631 7.4517L16.8833 3.93031C16.7754 3.49767 16.3865 3.19434 15.9402 3.19434H4.06064C3.61439 3.19434 3.2255 3.49767 3.11661 3.93031L2.23675 7.4517C2.22703 7.48961 2.22217 7.52947 2.22217 7.56934C2.22217 8.90906 3.25758 9.99989 4.5312 9.99989C5.27106 9.99989 5.9312 9.63142 6.35411 9.05975C6.77703 9.63142 7.43717 9.99989 8.17703 9.99989C8.91689 9.99989 9.57703 9.63142 9.99995 9.05975C10.4229 9.63142 11.082 9.99989 11.8229 9.99989C12.5637 9.99989 13.2229 9.63142 13.6458 9.05975C14.0687 9.63142 14.7279 9.99989 15.4687 9.99989C16.7423 9.99989 17.7777 8.90906 17.7777 7.56934C17.7777 7.52947 17.7729 7.48961 17.7631 7.4517Z\" fill=\"black\"/><path d=\"M15.4686 10.9723C14.8066 10.9723 14.1775 10.7701 13.6457 10.4006C12.5821 11.1405 11.0635 11.1405 9.99989 10.4006C8.93628 11.1405 7.41767 11.1405 6.35406 10.4006C5.82225 10.7701 5.19322 10.9723 4.53114 10.9723C4.05378 10.9723 3.60364 10.8605 3.19434 10.6699V15.8334C3.19434 16.3701 3.62989 16.8056 4.16656 16.8056H8.05545V12.9167H11.9443V16.8056H15.8332C16.3699 16.8056 16.8054 16.3701 16.8054 15.8334V10.6699C16.3961 10.8605 15.946 10.9723 15.4686 10.9723Z\" fill=\"black\"/></svg>"
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : [ {
+        "mega_menu_item_label" : "Home 1",
+        "mega_menu_item_link" : {
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        },
+        "mega_menu_subtitle" : "See Details",
+        "mega_menu_item_icon_type" : "image",
+        "mega_menu_item_icon_image" : {
+          "image_file" : {
+            "size_type" : "auto",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/application%20(3)%201.png",
+            "alt" : "application (3) 1",
+            "loading" : "lazy",
+            "width" : 16,
+            "height" : 16,
+            "max_width" : 16,
+            "max_height" : 16
+          }
+        },
+        "mega_menu_item_icon_svg" : "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M17.7631 7.4517L16.8833 3.93031C16.7754 3.49767 16.3865 3.19434 15.9402 3.19434H4.06064C3.61439 3.19434 3.2255 3.49767 3.11661 3.93031L2.23675 7.4517C2.22703 7.48961 2.22217 7.52947 2.22217 7.56934C2.22217 8.90906 3.25758 9.99989 4.5312 9.99989C5.27106 9.99989 5.9312 9.63142 6.35411 9.05975C6.77703 9.63142 7.43717 9.99989 8.17703 9.99989C8.91689 9.99989 9.57703 9.63142 9.99995 9.05975C10.4229 9.63142 11.082 9.99989 11.8229 9.99989C12.5637 9.99989 13.2229 9.63142 13.6458 9.05975C14.0687 9.63142 14.7279 9.99989 15.4687 9.99989C16.7423 9.99989 17.7777 8.90906 17.7777 7.56934C17.7777 7.52947 17.7729 7.48961 17.7631 7.4517Z\" fill=\"black\"/><path d=\"M15.4686 10.9723C14.8066 10.9723 14.1775 10.7701 13.6457 10.4006C12.5821 11.1405 11.0635 11.1405 9.99989 10.4006C8.93628 11.1405 7.41767 11.1405 6.35406 10.4006C5.82225 10.7701 5.19322 10.9723 4.53114 10.9723C4.05378 10.9723 3.60364 10.8605 3.19434 10.6699V15.8334C3.19434 16.3701 3.62989 16.8056 4.16656 16.8056H8.05545V12.9167H11.9443V16.8056H15.8332C16.3699 16.8056 16.8054 16.3701 16.8054 15.8334V10.6699C16.3961 10.8605 15.946 10.9723 15.4686 10.9723Z\" fill=\"black\"/></svg>"
+      } ]
+    }, {
+      "id" : "c146c4f7-c23d-3350-790f-a696538af541",
+      "name" : "mega_menu_featured_cards_header",
+      "label" : "Mega Menu Featured - Cards - Header",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "navigation_field_group.menu_items.mega_menu_type",
+        "controlling_value_regex" : "featured",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "339692ff-e7ad-f79f-3389-20b5502c41ae",
+        "name" : "header_title",
+        "label" : "Header Title",
+        "required" : false,
+        "locked" : false,
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null,
+        "default" : "Classes"
+      }, {
+        "id" : "89539dc0-ec70-fe21-1ca5-924a1504fac6",
+        "name" : "header_cta_label",
+        "label" : "Header CTA LabeL",
+        "required" : false,
+        "locked" : false,
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null,
+        "default" : "All classes here"
+      }, {
+        "id" : "c07b578d-245f-8c8b-9b37-e0142b2361eb",
+        "name" : "header_cta_link",
+        "label" : "Header CTA Link",
+        "required" : false,
+        "locked" : false,
+        "supported_types" : [ "EXTERNAL", "CONTENT", "BLOG", "CALL_TO_ACTION" ],
+        "show_advanced_rel_options" : false,
+        "type" : "link",
+        "display_width" : null,
+        "default" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://hubspot.com",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "header_title" : "Classes",
+        "header_cta_label" : "All classes here",
+        "header_cta_link" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://hubspot.com",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }
+    }, {
+      "id" : "0b03daaf-f9d2-0410-4998-f8bbdcc60fae",
+      "name" : "featured_cards",
+      "label" : "Mega Menu Featured - Cards",
+      "required" : false,
+      "locked" : false,
+      "occurrence" : {
+        "min" : null,
+        "max" : null,
+        "sorting_label_field" : null,
+        "default" : 1
+      },
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "navigation_field_group.menu_items.mega_menu_type",
+        "controlling_value_regex" : "featured",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "fd47adfa-edd6-de16-0677-9eda59177ac6",
+        "name" : "card_title",
+        "label" : "Card Title",
+        "required" : false,
+        "locked" : false,
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null,
+        "default" : "How to get started"
+      }, {
+        "id" : "4307fba3-3e85-4407-d289-ddd0df112db0",
+        "name" : "card_subtitle",
+        "label" : "Card SubTitle",
+        "required" : false,
+        "locked" : false,
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null,
+        "default" : "Jump right in - get an overview of basics and get started."
+      }, {
+        "id" : "b5882eb8-9ff0-ab13-d077-6b1fa2d6006d",
+        "name" : "card_featured_image",
+        "label" : "Card Featured Image",
+        "required" : false,
+        "locked" : false,
+        "responsive" : true,
+        "resizable" : false,
+        "show_loading" : false,
+        "type" : "image",
+        "display_width" : null,
+        "default" : {
+          "size_type" : "auto",
+          "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Frame%201618872346-1.png",
+          "alt" : "Frame 1618872346-1",
+          "loading" : "lazy",
+          "width" : 181,
+          "height" : 115,
+          "max_width" : 181,
+          "max_height" : 115
+        }
+      }, {
+        "id" : "3262e672-45fe-1030-36ff-be915540db19",
+        "name" : "card_video_label",
+        "label" : "Card Video Label",
+        "required" : false,
+        "locked" : false,
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null,
+        "default" : "Watch Video"
+      }, {
+        "id" : "5fdb34c6-a30b-f08a-a200-d35b0018658d",
+        "name" : "card_video_link",
+        "label" : "Card Video Link",
+        "required" : false,
+        "locked" : false,
+        "supported_types" : [ "EXTERNAL", "FILE", "CONTENT", "CALL_TO_ACTION" ],
+        "show_advanced_rel_options" : false,
+        "type" : "link",
+        "display_width" : null,
+        "default" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://hubspot.com",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : [ {
+        "card_title" : "How to get started",
+        "card_subtitle" : "Jump right in - get an overview of basics and get started.",
+        "card_video_label" : "Watch Video",
+        "card_video_link" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://hubspot.com",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        },
+        "card_featured_image" : {
+          "size_type" : "auto",
+          "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Frame%201618872346-1.png",
+          "alt" : "Frame 1618872346-1",
+          "loading" : "lazy",
+          "width" : 181,
+          "height" : 115,
+          "max_width" : 181,
+          "max_height" : 115
+        }
+      } ]
+    }, {
+      "id" : "b4c41d89-0016-fa8f-b593-56aeee35cc83",
+      "name" : "mega_menu_column_reverse",
+      "label" : "Mega Menu Column Reverse? ",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "navigation_field_group.menu_items.mega_menu_type",
+        "controlling_value_regex" : "featured",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "toggle",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    },{
+      "id": "b4c41d89-0016-fa8f-b593-56aeee35mka23",
+      "name": "hide_mega_menu_bottom_bar",
+      "label": "Hide Mega Menu Bottom Bar",
+      "required": false,
+      "locked": false,
+      "display": "toggle",
+      "type": "boolean",
+      "default": false
+    }, {
+      "id" : "6b242413-7eb7-0372-63f7-56da728540b1",
+      "name" : "mega_menu_bottom_bar",
+      "label" : "Mega Menu Bottom Bar",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules": "ADVANCED",
+      "advanced_visibility": {
+        "boolean_operator": "AND",
+        "criteria": [
+          {
+            "controlling_field_path": "navigation_field_group.menu_items.menu_item_type",
+            "controlling_value_regex": "mega_menu",
+            "operator": "EQUAL"
+          },
+          {
+            "controlling_field_path": "navigation_field_group.menu_items.hide_mega_menu_bottom_bar",
+            "controlling_value_regex": "false",
+            "operator": "EQUAL"
+          }
+        ]
+      },
+      "children" : [ {
+        "id" : "531c25b2-35c1-b12f-bee3-cf16df2e1d15",
+        "name" : "join_text",
+        "label" : "Join Text",
+        "required" : false,
+        "locked" : false,
+        "type" : "richtext",
+        "display_width" : null,
+        "default" : "<span>Ready to get started? <span style=\"color: #000000;\"><a href=\"https://hubspot.com\" rel=\"noopener\" style=\"color: #000000; text-decoration: underline;\"><strong>Join Now</strong></a></span></span>"
+      }, {
+        "id" : "905cb162-9a53-88a4-c150-bb1c061fc74d",
+        "name" : "action_links",
+        "label" : "Action Links",
+        "required" : false,
+        "locked" : false,
+        "occurrence" : {
+          "min" : null,
+          "max" : null,
+          "sorting_label_field" : null,
+          "default" : 1
+        },
+        "children" : [ {
+          "id" : "d824c648-bf4e-8e91-7d3d-95d63585c0d0",
+          "name" : "link_label",
+          "label" : "Label",
+          "required" : false,
+          "locked" : false,
+          "allow_new_line" : false,
+          "type" : "text",
+          "display_width" : null,
+          "default" : "Schedule Meeting"
+        }, {
+          "id" : "195b4a91-5585-a902-10bf-65fa22c72d70",
+          "name" : "link",
+          "label" : "Link",
+          "required" : false,
+          "locked" : false,
+          "supported_types" : [ "EXTERNAL", "FILE", "CONTENT", "BLOG", "CALL_TO_ACTION", "PAYMENT", "EMAIL_ADDRESS", "PHONE_NUMBER", "WHATSAPP_NUMBER" ],
+          "show_advanced_rel_options" : false,
+          "type" : "link",
+          "display_width" : null,
+          "default" : {
+            "url" : {
+              "content_id" : null,
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        }, {
+          "id" : "e78bee59-a726-525c-3220-f5031b98e0a7",
+          "name" : "icon_type",
+          "label" : "Icon Type",
+          "required" : false,
+          "locked" : false,
+          "display" : "select",
+          "choices" : [ [ "image", "Image" ], [ "svg", "SVG Code" ] ],
+          "multiple" : false,
+          "reordering_enabled" : true,
+          "preset" : null,
+          "type" : "choice",
+          "display_width" : null
+        }, {
+          "id" : "54c5158a-e488-0d8a-28e7-f68455e99947",
+          "name" : "icon_image_file",
+          "label" : "Icon Image File",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : "navigation_field_group.menu_items.mega_menu_bottom_bar.action_links.icon_type",
+            "controlling_value_regex" : "image",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "responsive" : true,
+          "resizable" : false,
+          "show_loading" : false,
+          "type" : "image",
+          "display_width" : null,
+          "default" : {
+            "size_type" : "auto",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/application%20(3)%201-1.png",
+            "alt" : "application (3) 1-1",
+            "loading" : "lazy",
+            "width" : 16,
+            "height" : 16,
+            "max_width" : 16,
+            "max_height" : 16
+          }
+        }, {
+          "id" : "27d34ff2-ef3a-58cd-40ab-c1a958d4816c",
+          "name" : "icon_svg_code",
+          "label" : "Icon SVG Code",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : "navigation_field_group.menu_items.mega_menu_bottom_bar.action_links.icon_type",
+            "controlling_value_regex" : "svg",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "allow_new_line" : false,
+          "type" : "text",
+          "display_width" : null,
+          "default" : "<svg width=\"20\" height=\"19\" viewBox=\"0 0 20 19\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M2.44639 4.6875H17.9339H18.6464C18.9089 4.6875 19.1714 4.7625 19.4339 4.875V3.15C19.4339 1.4625 18.0839 0.075 16.3964 0V1.5V1.725C16.3964 2.1375 16.0589 2.475 15.6464 2.475C15.2339 2.475 14.8964 2.1 14.8964 1.725C14.8964 1.65 14.8964 1.575 14.8964 1.5C14.8964 1.0125 14.8964 0.525 14.8964 0H5.63389V1.5V1.65C5.63389 2.0625 5.29639 2.4 4.88389 2.4C4.47139 2.4 4.13389 2.025 4.13389 1.65C4.13389 1.6125 4.13389 1.5375 4.13389 1.5C4.13389 1.4625 4.13389 1.4625 4.13389 1.425C4.13389 0.9375 4.13389 0.4875 4.13389 0C2.40889 0 0.983887 1.425 0.983887 3.15V5.6625C1.20889 5.0625 1.77139 4.6875 2.44639 4.6875Z\" fill=\"black\"/><path d=\"M17.9339 14.6625C17.4089 15.7125 16.3589 16.35 15.2339 16.35H2.85889H1.17139C1.62139 17.5875 2.78389 18.45 4.13389 18.45H16.2839C18.0089 18.45 19.4339 17.025 19.4339 15.3V10.7625C19.3214 11.175 19.1714 11.625 19.0214 12.0375C18.7214 12.9 18.3464 13.8 17.9339 14.6625Z\" fill=\"black\"/><path d=\"M18.6466 6.1875H2.44663C2.37163 6.1875 2.33413 6.225 2.33413 6.3C2.10913 8.1375 1.65913 9.9375 1.05913 11.6625C0.759125 12.45 0.421625 13.275 0.0466253 14.0625C-0.103375 14.4 0.121625 14.85 0.534125 14.85H15.2716C15.8341 14.85 16.3591 14.5125 16.6216 14.025C16.9966 13.2375 17.3341 12.375 17.6341 11.55C18.2341 9.8625 18.6091 8.1 18.7966 6.3375C18.7966 6.3 18.7966 6.2625 18.7591 6.225C18.7216 6.1875 18.6841 6.1875 18.6466 6.1875ZM12.9466 9.225C11.9341 10.2375 10.9216 11.25 9.87163 12.3C9.57163 12.6 9.08413 12.6 8.82163 12.3C8.10913 11.5875 7.39663 10.875 6.68413 10.1625C6.00913 9.4875 7.05913 8.4 7.73413 9.1125C8.25913 9.6375 8.82163 10.2 9.34663 10.725C10.2091 9.8625 11.0341 9.0375 11.8966 8.175C12.5716 7.5 13.6216 8.55 12.9466 9.225Z\" fill=\"black\"/></svg>"
+        } ],
+        "tab" : "CONTENT",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : [ {
+          "link_label" : "Schedule Meeting",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          },
+          "icon_image_file" : {
+            "size_type" : "auto",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/application%20(3)%201-1.png",
+            "alt" : "application (3) 1-1",
+            "loading" : "lazy",
+            "width" : 16,
+            "height" : 16,
+            "max_width" : 16,
+            "max_height" : 16
+          },
+          "icon_svg_code" : "<svg width=\"20\" height=\"19\" viewBox=\"0 0 20 19\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M2.44639 4.6875H17.9339H18.6464C18.9089 4.6875 19.1714 4.7625 19.4339 4.875V3.15C19.4339 1.4625 18.0839 0.075 16.3964 0V1.5V1.725C16.3964 2.1375 16.0589 2.475 15.6464 2.475C15.2339 2.475 14.8964 2.1 14.8964 1.725C14.8964 1.65 14.8964 1.575 14.8964 1.5C14.8964 1.0125 14.8964 0.525 14.8964 0H5.63389V1.5V1.65C5.63389 2.0625 5.29639 2.4 4.88389 2.4C4.47139 2.4 4.13389 2.025 4.13389 1.65C4.13389 1.6125 4.13389 1.5375 4.13389 1.5C4.13389 1.4625 4.13389 1.4625 4.13389 1.425C4.13389 0.9375 4.13389 0.4875 4.13389 0C2.40889 0 0.983887 1.425 0.983887 3.15V5.6625C1.20889 5.0625 1.77139 4.6875 2.44639 4.6875Z\" fill=\"black\"/><path d=\"M17.9339 14.6625C17.4089 15.7125 16.3589 16.35 15.2339 16.35H2.85889H1.17139C1.62139 17.5875 2.78389 18.45 4.13389 18.45H16.2839C18.0089 18.45 19.4339 17.025 19.4339 15.3V10.7625C19.3214 11.175 19.1714 11.625 19.0214 12.0375C18.7214 12.9 18.3464 13.8 17.9339 14.6625Z\" fill=\"black\"/><path d=\"M18.6466 6.1875H2.44663C2.37163 6.1875 2.33413 6.225 2.33413 6.3C2.10913 8.1375 1.65913 9.9375 1.05913 11.6625C0.759125 12.45 0.421625 13.275 0.0466253 14.0625C-0.103375 14.4 0.121625 14.85 0.534125 14.85H15.2716C15.8341 14.85 16.3591 14.5125 16.6216 14.025C16.9966 13.2375 17.3341 12.375 17.6341 11.55C18.2341 9.8625 18.6091 8.1 18.7966 6.3375C18.7966 6.3 18.7966 6.2625 18.7591 6.225C18.7216 6.1875 18.6841 6.1875 18.6466 6.1875ZM12.9466 9.225C11.9341 10.2375 10.9216 11.25 9.87163 12.3C9.57163 12.6 9.08413 12.6 8.82163 12.3C8.10913 11.5875 7.39663 10.875 6.68413 10.1625C6.00913 9.4875 7.05913 8.4 7.73413 9.1125C8.25913 9.6375 8.82163 10.2 9.34663 10.725C10.2091 9.8625 11.0341 9.0375 11.8966 8.175C12.5716 7.5 13.6216 8.55 12.9466 9.225Z\" fill=\"black\"/></svg>"
+        } ]
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "join_text" : "<span>Ready to get started? <span style=\"color: #000000;\"><a href=\"https://hubspot.com\" rel=\"noopener\" style=\"color: #000000; text-decoration: underline;\"><strong>Join Now</strong></a></span></span>",
+        "action_links" : [ {
+          "link_label" : "Schedule Meeting",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          },
+          "icon_image_file" : {
+            "size_type" : "auto",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/application%20(3)%201-1.png",
+            "alt" : "application (3) 1-1",
+            "loading" : "lazy",
+            "width" : 16,
+            "height" : 16,
+            "max_width" : 16,
+            "max_height" : 16
+          },
+          "icon_svg_code" : "<svg width=\"20\" height=\"19\" viewBox=\"0 0 20 19\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M2.44639 4.6875H17.9339H18.6464C18.9089 4.6875 19.1714 4.7625 19.4339 4.875V3.15C19.4339 1.4625 18.0839 0.075 16.3964 0V1.5V1.725C16.3964 2.1375 16.0589 2.475 15.6464 2.475C15.2339 2.475 14.8964 2.1 14.8964 1.725C14.8964 1.65 14.8964 1.575 14.8964 1.5C14.8964 1.0125 14.8964 0.525 14.8964 0H5.63389V1.5V1.65C5.63389 2.0625 5.29639 2.4 4.88389 2.4C4.47139 2.4 4.13389 2.025 4.13389 1.65C4.13389 1.6125 4.13389 1.5375 4.13389 1.5C4.13389 1.4625 4.13389 1.4625 4.13389 1.425C4.13389 0.9375 4.13389 0.4875 4.13389 0C2.40889 0 0.983887 1.425 0.983887 3.15V5.6625C1.20889 5.0625 1.77139 4.6875 2.44639 4.6875Z\" fill=\"black\"/><path d=\"M17.9339 14.6625C17.4089 15.7125 16.3589 16.35 15.2339 16.35H2.85889H1.17139C1.62139 17.5875 2.78389 18.45 4.13389 18.45H16.2839C18.0089 18.45 19.4339 17.025 19.4339 15.3V10.7625C19.3214 11.175 19.1714 11.625 19.0214 12.0375C18.7214 12.9 18.3464 13.8 17.9339 14.6625Z\" fill=\"black\"/><path d=\"M18.6466 6.1875H2.44663C2.37163 6.1875 2.33413 6.225 2.33413 6.3C2.10913 8.1375 1.65913 9.9375 1.05913 11.6625C0.759125 12.45 0.421625 13.275 0.0466253 14.0625C-0.103375 14.4 0.121625 14.85 0.534125 14.85H15.2716C15.8341 14.85 16.3591 14.5125 16.6216 14.025C16.9966 13.2375 17.3341 12.375 17.6341 11.55C18.2341 9.8625 18.6091 8.1 18.7966 6.3375C18.7966 6.3 18.7966 6.2625 18.7591 6.225C18.7216 6.1875 18.6841 6.1875 18.6466 6.1875ZM12.9466 9.225C11.9341 10.2375 10.9216 11.25 9.87163 12.3C9.57163 12.6 9.08413 12.6 8.82163 12.3C8.10913 11.5875 7.39663 10.875 6.68413 10.1625C6.00913 9.4875 7.05913 8.4 7.73413 9.1125C8.25913 9.6375 8.82163 10.2 9.34663 10.725C10.2091 9.8625 11.0341 9.0375 11.8966 8.175C12.5716 7.5 13.6216 8.55 12.9466 9.225Z\" fill=\"black\"/></svg>"
+        } ]
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ {
+      "menu_item_label" : "Main Pages",
+      "menu_item_type" : "mega_menu",
+      "mega_menu_type" : "",
+      "mega_menu_columns" : [ {
+        "hide_column_label" : false,
+        "mega_menu_column_label" : {
+          "label_name" : "Home Pages",
+          "label_type" : "text",
+          "label_link" : {
+            "url" : {
+              "content_id" : null,
+              "href" : "https://hubsopot.com",
+              "type" : "EXTERNAL"
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          },
+          "hide_label_icon" : false,
+          "label_icon_type" : "image",
+          "label_icon_image" : {
+            "size_type" : "auto",
+            "src" : "https://243686958.fs1.hubspotusercontent-na2.net/hubfs/243686958/application%20(3)%201.png",
+            "alt" : "application (3) 1",
+            "loading" : "lazy",
+            "width" : 16,
+            "height" : 16,
+            "max_width" : 16,
+            "max_height" : 16
+          },
+          "label_icon_svg" : "<svg width=\"18\" height=\"17\" viewBox=\"0 0 18 17\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M17.4794 7.48103L14.7851 4.78672V1.67434C14.7851 1.11158 14.329 0.655505 13.7654 0.655505C13.2031 0.655505 12.7471 1.11158 12.7471 1.67434V2.7488L10.741 0.7426C9.74913 -0.248711 8.02464 -0.246953 7.03505 0.744395L0.298265 7.48103C-0.0994218 7.87951 -0.0994218 8.52427 0.298265 8.92214C0.696132 9.32051 1.34215 9.32051 1.73987 8.92214L8.47601 2.18532C8.69545 1.96703 9.08223 1.96703 9.30052 2.18467L16.0378 8.92214C16.2376 9.12134 16.498 9.22042 16.7584 9.22042C17.0194 9.22042 17.2803 9.12123 17.4794 8.92214C17.8772 8.52431 17.8772 7.87955 17.4794 7.48103Z\" fill=\"#2B2B2B\"/><path d=\"M9.24246 4.11924C9.04674 3.92363 8.72983 3.92363 8.53469 4.11924L2.609 10.0432C2.51544 10.1367 2.4624 10.2644 2.4624 10.3976V14.7183C2.4624 15.7322 3.28448 16.5542 4.29832 16.5542H7.23214V12.0107H10.5444V16.5542H13.4782C14.492 16.5542 15.3141 15.7322 15.3141 14.7184V10.3976C15.3141 10.2644 15.2615 10.1367 15.1675 10.0432L9.24246 4.11924Z\" fill=\"#2B2B2B\"/></svg>"
+        },
+        "number_of_columns_per_row" : 4,
+        "mega_menu_column_items" : [ {
+          "mega_menu_item_type" : "link",
+          "mega_menu_item_label" : "Home 1",
+          "mega_menu_item_link" : {
+            "url" : {
+              "content_id" : null,
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          },
+          "mega_menu_item_image" : {
+            "size_type" : "auto_custom_max",
+            "src" : "https://243686958.fs1.hubspotusercontent-na2.net/hubfs/243686958/ce9e37a60a1a1558259279acdc5e9118d5951210.jpg",
+            "alt" : "ce9e37a60a1a1558259279acdc5e9118d5951210",
+            "loading" : "lazy",
+            "width" : 4096,
+            "height" : 4096,
+            "max_width" : 500,
+            "max_height" : 500
+          }
+        } ]
+      } ],
+      "number_of_columns_per_row" : 4,
+      "links" : [ {
+        "mega_menu_item_label" : "Home 1",
+        "mega_menu_item_link" : {
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        },
+        "mega_menu_subtitle" : "See Details",
+        "mega_menu_item_icon_type" : "image",
+        "mega_menu_item_icon_image" : {
+          "image_file" : {
+            "size_type" : "auto",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/application%20(3)%201.png",
+            "alt" : "application (3) 1",
+            "loading" : "lazy",
+            "width" : 16,
+            "height" : 16,
+            "max_width" : 16,
+            "max_height" : 16
+          }
+        },
+        "mega_menu_item_icon_svg" : "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M17.7631 7.4517L16.8833 3.93031C16.7754 3.49767 16.3865 3.19434 15.9402 3.19434H4.06064C3.61439 3.19434 3.2255 3.49767 3.11661 3.93031L2.23675 7.4517C2.22703 7.48961 2.22217 7.52947 2.22217 7.56934C2.22217 8.90906 3.25758 9.99989 4.5312 9.99989C5.27106 9.99989 5.9312 9.63142 6.35411 9.05975C6.77703 9.63142 7.43717 9.99989 8.17703 9.99989C8.91689 9.99989 9.57703 9.63142 9.99995 9.05975C10.4229 9.63142 11.082 9.99989 11.8229 9.99989C12.5637 9.99989 13.2229 9.63142 13.6458 9.05975C14.0687 9.63142 14.7279 9.99989 15.4687 9.99989C16.7423 9.99989 17.7777 8.90906 17.7777 7.56934C17.7777 7.52947 17.7729 7.48961 17.7631 7.4517Z\" fill=\"black\"/><path d=\"M15.4686 10.9723C14.8066 10.9723 14.1775 10.7701 13.6457 10.4006C12.5821 11.1405 11.0635 11.1405 9.99989 10.4006C8.93628 11.1405 7.41767 11.1405 6.35406 10.4006C5.82225 10.7701 5.19322 10.9723 4.53114 10.9723C4.05378 10.9723 3.60364 10.8605 3.19434 10.6699V15.8334C3.19434 16.3701 3.62989 16.8056 4.16656 16.8056H8.05545V12.9167H11.9443V16.8056H15.8332C16.3699 16.8056 16.8054 16.3701 16.8054 15.8334V10.6699C16.3961 10.8605 15.946 10.9723 15.4686 10.9723Z\" fill=\"black\"/></svg>"
+      } ],
+      "mega_menu_featured_cards_header" : {
+        "header_title" : "Classes",
+        "header_cta_label" : "All classes here",
+        "header_cta_link" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://hubspot.com",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      },
+      "featured_cards" : [ {
+        "card_title" : "How to get started",
+        "card_subtitle" : "Jump right in - get an overview of basics and get started.",
+        "card_video_label" : "Watch Video",
+        "card_video_link" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://hubspot.com",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        },
+        "card_featured_image" : {
+          "size_type" : "auto",
+          "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Frame%201618872346-1.png",
+          "alt" : "Frame 1618872346-1",
+          "loading" : "lazy",
+          "width" : 181,
+          "height" : 115,
+          "max_width" : 181,
+          "max_height" : 115
+        },
+        "mega_menu_feature_cards_header" : "Classes"
+      } ],
+      "mega_menu_column_reverse" : false,
+      "mega_menu_bottom_bar" : {
+        "join_text" : "<span>Ready to get started? <span style=\"color: #000000;\"><a href=\"https://hubspot.com\" rel=\"noopener\" style=\"color: #000000; text-decoration: underline;\"><strong>Join Now</strong></a></span></span>",
+        "action_links" : [ {
+          "link_label" : "Schedule Meeting",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          },
+          "icon_image_file" : {
+            "size_type" : "auto",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/application%20(3)%201-1.png",
+            "alt" : "application (3) 1-1",
+            "loading" : "lazy",
+            "width" : 16,
+            "height" : 16,
+            "max_width" : 16,
+            "max_height" : 16
+          },
+          "icon_svg_code" : "<svg width=\"20\" height=\"19\" viewBox=\"0 0 20 19\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M2.44639 4.6875H17.9339H18.6464C18.9089 4.6875 19.1714 4.7625 19.4339 4.875V3.15C19.4339 1.4625 18.0839 0.075 16.3964 0V1.5V1.725C16.3964 2.1375 16.0589 2.475 15.6464 2.475C15.2339 2.475 14.8964 2.1 14.8964 1.725C14.8964 1.65 14.8964 1.575 14.8964 1.5C14.8964 1.0125 14.8964 0.525 14.8964 0H5.63389V1.5V1.65C5.63389 2.0625 5.29639 2.4 4.88389 2.4C4.47139 2.4 4.13389 2.025 4.13389 1.65C4.13389 1.6125 4.13389 1.5375 4.13389 1.5C4.13389 1.4625 4.13389 1.4625 4.13389 1.425C4.13389 0.9375 4.13389 0.4875 4.13389 0C2.40889 0 0.983887 1.425 0.983887 3.15V5.6625C1.20889 5.0625 1.77139 4.6875 2.44639 4.6875Z\" fill=\"black\"/><path d=\"M17.9339 14.6625C17.4089 15.7125 16.3589 16.35 15.2339 16.35H2.85889H1.17139C1.62139 17.5875 2.78389 18.45 4.13389 18.45H16.2839C18.0089 18.45 19.4339 17.025 19.4339 15.3V10.7625C19.3214 11.175 19.1714 11.625 19.0214 12.0375C18.7214 12.9 18.3464 13.8 17.9339 14.6625Z\" fill=\"black\"/><path d=\"M18.6466 6.1875H2.44663C2.37163 6.1875 2.33413 6.225 2.33413 6.3C2.10913 8.1375 1.65913 9.9375 1.05913 11.6625C0.759125 12.45 0.421625 13.275 0.0466253 14.0625C-0.103375 14.4 0.121625 14.85 0.534125 14.85H15.2716C15.8341 14.85 16.3591 14.5125 16.6216 14.025C16.9966 13.2375 17.3341 12.375 17.6341 11.55C18.2341 9.8625 18.6091 8.1 18.7966 6.3375C18.7966 6.3 18.7966 6.2625 18.7591 6.225C18.7216 6.1875 18.6841 6.1875 18.6466 6.1875ZM12.9466 9.225C11.9341 10.2375 10.9216 11.25 9.87163 12.3C9.57163 12.6 9.08413 12.6 8.82163 12.3C8.10913 11.5875 7.39663 10.875 6.68413 10.1625C6.00913 9.4875 7.05913 8.4 7.73413 9.1125C8.25913 9.6375 8.82163 10.2 9.34663 10.725C10.2091 9.8625 11.0341 9.0375 11.8966 8.175C12.5716 7.5 13.6216 8.55 12.9466 9.225Z\" fill=\"black\"/></svg>"
+        } ]
+      }
+    } ]
+  }, {
+    "id" : "0c9bf10b-632a-a694-d674-c60861684142",
+    "name" : "menu_selector",
+    "label" : "Menu",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "navigation_field_group.navbar_type",
+      "controlling_value_regex" : "simple",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "type" : "menu",
+    "display_width" : null,
+    "default" : 222300642548
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "navbar_type" : "advance",
+    "menu_items" : [ {
+      "menu_item_label" : "Main Pages",
+      "menu_item_type" : "mega_menu",
+      "mega_menu_type" : "",
+      "mega_menu_columns" : [ {
+        "hide_column_label" : false,
+        "mega_menu_column_label" : {
+          "label_name" : "Home Pages",
+          "label_type" : "text",
+          "label_link" : {
+            "url" : {
+              "content_id" : null,
+              "href" : "https://hubsopot.com",
+              "type" : "EXTERNAL"
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          },
+          "hide_label_icon" : false,
+          "label_icon_type" : "image",
+          "label_icon_image" : {
+            "size_type" : "auto",
+            "src" : "https://243686958.fs1.hubspotusercontent-na2.net/hubfs/243686958/application%20(3)%201.png",
+            "alt" : "application (3) 1",
+            "loading" : "lazy",
+            "width" : 16,
+            "height" : 16,
+            "max_width" : 16,
+            "max_height" : 16
+          },
+          "label_icon_svg" : "<svg width=\"18\" height=\"17\" viewBox=\"0 0 18 17\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M17.4794 7.48103L14.7851 4.78672V1.67434C14.7851 1.11158 14.329 0.655505 13.7654 0.655505C13.2031 0.655505 12.7471 1.11158 12.7471 1.67434V2.7488L10.741 0.7426C9.74913 -0.248711 8.02464 -0.246953 7.03505 0.744395L0.298265 7.48103C-0.0994218 7.87951 -0.0994218 8.52427 0.298265 8.92214C0.696132 9.32051 1.34215 9.32051 1.73987 8.92214L8.47601 2.18532C8.69545 1.96703 9.08223 1.96703 9.30052 2.18467L16.0378 8.92214C16.2376 9.12134 16.498 9.22042 16.7584 9.22042C17.0194 9.22042 17.2803 9.12123 17.4794 8.92214C17.8772 8.52431 17.8772 7.87955 17.4794 7.48103Z\" fill=\"#2B2B2B\"/><path d=\"M9.24246 4.11924C9.04674 3.92363 8.72983 3.92363 8.53469 4.11924L2.609 10.0432C2.51544 10.1367 2.4624 10.2644 2.4624 10.3976V14.7183C2.4624 15.7322 3.28448 16.5542 4.29832 16.5542H7.23214V12.0107H10.5444V16.5542H13.4782C14.492 16.5542 15.3141 15.7322 15.3141 14.7184V10.3976C15.3141 10.2644 15.2615 10.1367 15.1675 10.0432L9.24246 4.11924Z\" fill=\"#2B2B2B\"/></svg>"
+        },
+        "number_of_columns_per_row" : 4,
+        "mega_menu_column_items" : [ {
+          "mega_menu_item_type" : "link",
+          "mega_menu_item_label" : "Home 1",
+          "mega_menu_item_link" : {
+            "url" : {
+              "content_id" : null,
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          },
+          "mega_menu_item_image" : {
+            "size_type" : "auto_custom_max",
+            "src" : "https://243686958.fs1.hubspotusercontent-na2.net/hubfs/243686958/ce9e37a60a1a1558259279acdc5e9118d5951210.jpg",
+            "alt" : "ce9e37a60a1a1558259279acdc5e9118d5951210",
+            "loading" : "lazy",
+            "width" : 4096,
+            "height" : 4096,
+            "max_width" : 500,
+            "max_height" : 500
+          }
+        } ]
+      } ],
+      "number_of_columns_per_row" : 4,
+      "links" : [ {
+        "mega_menu_item_label" : "Home 1",
+        "mega_menu_item_link" : {
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          }
+        },
+        "mega_menu_subtitle" : "See Details",
+        "mega_menu_item_icon_type" : "image",
+        "mega_menu_item_icon_image" : {
+          "image_file" : {
+            "size_type" : "auto",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/application%20(3)%201.png",
+            "alt" : "application (3) 1",
+            "loading" : "lazy",
+            "width" : 16,
+            "height" : 16,
+            "max_width" : 16,
+            "max_height" : 16
+          }
+        },
+        "mega_menu_item_icon_svg" : "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M17.7631 7.4517L16.8833 3.93031C16.7754 3.49767 16.3865 3.19434 15.9402 3.19434H4.06064C3.61439 3.19434 3.2255 3.49767 3.11661 3.93031L2.23675 7.4517C2.22703 7.48961 2.22217 7.52947 2.22217 7.56934C2.22217 8.90906 3.25758 9.99989 4.5312 9.99989C5.27106 9.99989 5.9312 9.63142 6.35411 9.05975C6.77703 9.63142 7.43717 9.99989 8.17703 9.99989C8.91689 9.99989 9.57703 9.63142 9.99995 9.05975C10.4229 9.63142 11.082 9.99989 11.8229 9.99989C12.5637 9.99989 13.2229 9.63142 13.6458 9.05975C14.0687 9.63142 14.7279 9.99989 15.4687 9.99989C16.7423 9.99989 17.7777 8.90906 17.7777 7.56934C17.7777 7.52947 17.7729 7.48961 17.7631 7.4517Z\" fill=\"black\"/><path d=\"M15.4686 10.9723C14.8066 10.9723 14.1775 10.7701 13.6457 10.4006C12.5821 11.1405 11.0635 11.1405 9.99989 10.4006C8.93628 11.1405 7.41767 11.1405 6.35406 10.4006C5.82225 10.7701 5.19322 10.9723 4.53114 10.9723C4.05378 10.9723 3.60364 10.8605 3.19434 10.6699V15.8334C3.19434 16.3701 3.62989 16.8056 4.16656 16.8056H8.05545V12.9167H11.9443V16.8056H15.8332C16.3699 16.8056 16.8054 16.3701 16.8054 15.8334V10.6699C16.3961 10.8605 15.946 10.9723 15.4686 10.9723Z\" fill=\"black\"/></svg>"
+      } ],
+      "mega_menu_featured_cards_header" : {
+        "header_title" : "Classes",
+        "header_cta_label" : "All classes here",
+        "header_cta_link" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://hubspot.com",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      },
+      "featured_cards" : [ {
+        "card_title" : "How to get started",
+        "card_subtitle" : "Jump right in - get an overview of basics and get started.",
+        "card_video_label" : "Watch Video",
+        "card_video_link" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://hubspot.com",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        },
+        "card_featured_image" : {
+          "size_type" : "auto",
+          "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Frame%201618872346-1.png",
+          "alt" : "Frame 1618872346-1",
+          "loading" : "lazy",
+          "width" : 181,
+          "height" : 115,
+          "max_width" : 181,
+          "max_height" : 115
+        },
+        "mega_menu_feature_cards_header" : "Classes"
+      } ],
+      "mega_menu_column_reverse" : false,
+      "mega_menu_bottom_bar" : {
+        "join_text" : "<span>Ready to get started? <span style=\"color: #000000;\"><a href=\"https://hubspot.com\" rel=\"noopener\" style=\"color: #000000; text-decoration: underline;\"><strong>Join Now</strong></a></span></span>",
+        "action_links" : [ {
+          "link_label" : "Schedule Meeting",
+          "link" : {
+            "url" : {
+              "content_id" : null,
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            },
+            "open_in_new_tab" : false,
+            "no_follow" : false
+          },
+          "icon_image_file" : {
+            "size_type" : "auto",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/application%20(3)%201-1.png",
+            "alt" : "application (3) 1-1",
+            "loading" : "lazy",
+            "width" : 16,
+            "height" : 16,
+            "max_width" : 16,
+            "max_height" : 16
+          },
+          "icon_svg_code" : "<svg width=\"20\" height=\"19\" viewBox=\"0 0 20 19\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M2.44639 4.6875H17.9339H18.6464C18.9089 4.6875 19.1714 4.7625 19.4339 4.875V3.15C19.4339 1.4625 18.0839 0.075 16.3964 0V1.5V1.725C16.3964 2.1375 16.0589 2.475 15.6464 2.475C15.2339 2.475 14.8964 2.1 14.8964 1.725C14.8964 1.65 14.8964 1.575 14.8964 1.5C14.8964 1.0125 14.8964 0.525 14.8964 0H5.63389V1.5V1.65C5.63389 2.0625 5.29639 2.4 4.88389 2.4C4.47139 2.4 4.13389 2.025 4.13389 1.65C4.13389 1.6125 4.13389 1.5375 4.13389 1.5C4.13389 1.4625 4.13389 1.4625 4.13389 1.425C4.13389 0.9375 4.13389 0.4875 4.13389 0C2.40889 0 0.983887 1.425 0.983887 3.15V5.6625C1.20889 5.0625 1.77139 4.6875 2.44639 4.6875Z\" fill=\"black\"/><path d=\"M17.9339 14.6625C17.4089 15.7125 16.3589 16.35 15.2339 16.35H2.85889H1.17139C1.62139 17.5875 2.78389 18.45 4.13389 18.45H16.2839C18.0089 18.45 19.4339 17.025 19.4339 15.3V10.7625C19.3214 11.175 19.1714 11.625 19.0214 12.0375C18.7214 12.9 18.3464 13.8 17.9339 14.6625Z\" fill=\"black\"/><path d=\"M18.6466 6.1875H2.44663C2.37163 6.1875 2.33413 6.225 2.33413 6.3C2.10913 8.1375 1.65913 9.9375 1.05913 11.6625C0.759125 12.45 0.421625 13.275 0.0466253 14.0625C-0.103375 14.4 0.121625 14.85 0.534125 14.85H15.2716C15.8341 14.85 16.3591 14.5125 16.6216 14.025C16.9966 13.2375 17.3341 12.375 17.6341 11.55C18.2341 9.8625 18.6091 8.1 18.7966 6.3375C18.7966 6.3 18.7966 6.2625 18.7591 6.225C18.7216 6.1875 18.6841 6.1875 18.6466 6.1875ZM12.9466 9.225C11.9341 10.2375 10.9216 11.25 9.87163 12.3C9.57163 12.6 9.08413 12.6 8.82163 12.3C8.10913 11.5875 7.39663 10.875 6.68413 10.1625C6.00913 9.4875 7.05913 8.4 7.73413 9.1125C8.25913 9.6375 8.82163 10.2 9.34663 10.725C10.2091 9.8625 11.0341 9.0375 11.8966 8.175C12.5716 7.5 13.6216 8.55 12.9466 9.225Z\" fill=\"black\"/></svg>"
+        } ]
+      }
+    } ],
+    "menu_selector" : 222300642548
+  }
+}, {
+  "id" : "711eaf3e-cce2-a7bd-6621-61c2cea586b7",
+  "name" : "logo_field_group",
+  "label" : "Logo",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "47f77e46-96af-1b12-18d5-a5b185a424ed",
+    "name" : "logo_type",
+    "label" : "Logo Type",
+    "help_text" : "Select the type of logo",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "placeholder" : "",
+    "choices" : [ [ "image", "Image File" ], [ "svg", "SVG Code" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "image"
+  }, {
+    "id" : "f985b474-f629-c297-1b03-aa1263102bae",
+    "name" : "logo_file",
+    "label" : "Logo File",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "logo_field_group.logo_type",
+      "controlling_value_regex" : "image",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "ae9a8906-ac6b-13f5-c696-02c665f1d8f8",
+      "name" : "logo_image",
+      "label" : "Logo Image",
+      "required" : false,
+      "locked" : false,
+      "responsive" : true,
+      "resizable" : false,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "size_type" : "auto",
+        "src" : "https://243686958.fs1.hubspotusercontent-na2.net/hubfs/243686958/Logo-1.png",
+        "alt" : "Logo-1",
+        "loading" : "lazy",
+        "width" : 161,
+        "height" : 60,
+        "max_width" : 161,
+        "max_height" : 60
+      }
+    }, {
+      "id" : "339e145d-7eb0-054f-37d7-2fb7aebf2aa0",
+      "name" : "logo_image_mobile",
+      "label" : "Logo Image Mobile",
+      "required" : false,
+      "locked" : false,
+      "responsive" : true,
+      "resizable" : false,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/physical-education%201%20(1).png",
+        "alt" : "physical-education 1 (1)",
+        "loading" : "lazy",
+        "width" : 36,
+        "height" : 36,
+        "max_width" : 36,
+        "max_height" : 36
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "logo_image" : {
+        "size_type" : "auto",
+        "src" : "https://243686958.fs1.hubspotusercontent-na2.net/hubfs/243686958/Logo-1.png",
+        "alt" : "Logo-1",
+        "loading" : "lazy",
+        "width" : 161,
+        "height" : 60,
+        "max_width" : 161,
+        "max_height" : 60
+      },
+      "logo_image_mobile" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/physical-education%201%20(1).png",
+        "alt" : "physical-education 1 (1)",
+        "loading" : "lazy",
+        "width" : 36,
+        "height" : 36,
+        "max_width" : 36,
+        "max_height" : 36
+      }
+    }
+  }, {
+    "id" : "51c98e0b-6ed0-338a-61cb-a44497e044d8",
+    "name" : "logo_svg",
+    "label" : "Logo SVG",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "logo_field_group.logo_type",
+      "controlling_value_regex" : "svg",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "170aedd1-f4b3-dbd6-782b-226c08a1f1cc",
+      "name" : "logo_svg_code",
+      "label" : "Logo SVG Code ( Desktop )",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "<svg width=\"161\" height=\"60\" viewBox=\"0 0 161 60\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.9074 40.5867C20.4061 43.5712 17.1941 40.7035 17.5874 36.81C17.9436 33.2843 21.2979 29.0051 27.0388 25.7793C27.0674 25.7632 27.1031 25.7711 27.1224 25.7976C27.142 25.8243 27.1381 25.861 27.1136 25.8832C25.7884 27.0803 24.0678 28.477 22.7187 30.3102C18.9199 35.4716 16.9528 41.847 26.8715 40.4645C26.9038 40.4598 26.9343 40.4797 26.9429 40.5111C26.9512 40.5418 26.9364 40.5735 26.9074 40.5867Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M34.5394 22.6672C35.6993 22.6672 36.6396 23.6076 36.6396 24.7675C36.6396 25.9274 35.6992 26.8676 34.5394 26.8676C33.3795 26.8676 32.4391 25.9273 32.4391 24.7675C32.4392 23.6076 33.3795 22.6672 34.5394 22.6672Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M33.813 14.7441C31.6639 16.8654 30.309 19.8916 29.6376 22.772C29.3498 24.0063 29.2074 25.2751 29.2186 26.5472C29.2447 29.5267 30.1372 34.0797 31.9553 36.4678C32.9606 37.7883 33.5293 37.9018 35.0341 38.5204C37.518 39.5414 41.8577 39.3424 44.8337 39.7824C44.8391 39.7832 44.8436 39.7844 44.8486 39.7865L46.4887 40.4575C46.8342 40.6014 47.6814 41.0524 47.9862 40.6636C48.1465 40.4592 47.7344 40.0547 47.5917 39.8906C47.4216 39.6952 45.5496 38.0546 45.5087 38.0271C45.2503 37.8527 44.9622 37.9151 44.6704 38.0248L44.2721 38.1744C44.2572 38.1801 44.2425 38.1801 44.2275 38.1747C41.7814 37.2827 38.9836 37.1382 37.2791 36.0103C36.6434 35.5896 36.3382 34.7957 35.7183 34.0732C35.2657 33.5456 34.5164 33.0713 33.942 32.9747C33.9174 32.9705 33.8984 32.9539 33.8911 32.93C33.6899 32.2683 33.4899 31.2951 33.6587 30.3486C33.663 30.3244 33.6794 30.3058 33.703 30.2984C35.2594 29.8152 37.4923 29.8682 38.935 29.0564C40.1754 28.3583 41.3689 27.466 42.5292 26.5188C43.0056 26.1299 43.1823 24.6782 42.9022 24.8367C42.0723 25.3065 40.0587 26.5935 39.1825 26.9322C37.8031 27.4652 36.1731 28.071 34.7307 27.8093C34.2129 27.7154 33.4394 27.4446 33.0183 27.1492C30.1285 25.122 33.0092 18.9901 34.0232 16.72L34.0255 16.7142C34.1345 16.3881 34.3702 15.8637 34.3499 15.6003C34.3315 15.3614 34.0689 14.9724 33.9103 14.7522C33.8989 14.7364 33.8829 14.7273 33.8635 14.7257C33.8442 14.7241 33.8268 14.7304 33.813 14.7441Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M34.2467 45.2646C33.6267 45.535 28.5759 40.147 27.8502 38.8625C27.4371 38.1311 27.3219 37.3662 27.5012 36.5457C27.7778 35.2807 28.4743 34.2531 29.2369 33.2506C29.2518 33.231 29.2747 33.222 29.2989 33.2261C29.3232 33.2303 29.3419 33.2465 29.3493 33.2699C29.7736 34.5954 30.3236 35.8288 31.0033 36.7999C31.0141 36.8154 31.0176 36.8328 31.0133 36.8512C31.0091 36.8696 30.9984 36.8838 30.9819 36.893L29.9616 37.4614C29.9456 37.4702 29.9352 37.4838 29.9306 37.5014C29.926 37.519 29.9286 37.5359 29.9382 37.5514L32.3749 41.4968C32.606 41.881 33.2943 41.4879 33.7997 42.8391C33.9905 43.3492 34.1476 43.8682 34.2666 44.397C34.3144 44.6092 34.4849 45.1608 34.2467 45.2646Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M34.7952 21.5155C34.7664 21.5306 34.7535 21.5642 34.7648 21.5948C34.7762 21.6257 34.8088 21.6428 34.8408 21.6347C46.3569 18.8092 47.5356 23.4383 45.6391 27.2314C43.6649 31.1798 42.2889 31.8254 39.785 34.4368C39.7624 34.4604 39.7609 34.4967 39.7817 34.522C39.802 34.5469 39.8367 34.5533 39.8643 34.5369C49.77 28.7449 50.7434 21.0552 44.6128 19.7054C42.3501 19.2073 38.5133 19.5572 34.7952 21.5155Z\" fill=\"#DAFC00\"/><path d=\"M63.9929 22.18V19H73.3829V22.18H63.9929ZM63.9929 30.52V27.43H73.0829V30.52H63.9929ZM61.8029 19H65.2829V40H61.8029V19ZM77.0574 20.71C77.0574 20.15 77.2574 19.68 77.6574 19.3C78.0774 18.92 78.5574 18.73 79.0974 18.73C79.6774 18.73 80.1574 18.92 80.5374 19.3C80.9374 19.68 81.1374 20.15 81.1374 20.71C81.1374 21.25 80.9374 21.72 80.5374 22.12C80.1574 22.5 79.6774 22.69 79.0974 22.69C78.5574 22.69 78.0774 22.5 77.6574 22.12C77.2574 21.72 77.0574 21.25 77.0574 20.71ZM77.5074 26.2H80.6874V40H77.5074V26.2ZM83.2262 26.2H91.0562V29.05H83.2262V26.2ZM85.5362 21.4H88.7462V40H85.5362V21.4ZM97.4607 27.22L96.0207 40H92.3607L95.2407 17.95L103.851 32.2L112.491 17.95L115.371 40H111.711L110.241 27.22L103.851 38.05L97.4607 27.22ZM120.585 35.71C120.585 36.17 120.695 36.57 120.915 36.91C121.135 37.23 121.435 37.47 121.815 37.63C122.215 37.79 122.665 37.87 123.165 37.87C123.805 37.87 124.385 37.74 124.905 37.48C125.445 37.22 125.875 36.84 126.195 36.34C126.535 35.82 126.705 35.22 126.705 34.54L127.185 36.34C127.185 37.22 126.925 37.96 126.405 38.56C125.905 39.14 125.265 39.58 124.485 39.88C123.725 40.16 122.945 40.3 122.145 40.3C121.285 40.3 120.485 40.13 119.745 39.79C119.005 39.45 118.415 38.95 117.975 38.29C117.535 37.63 117.315 36.83 117.315 35.89C117.315 34.55 117.785 33.49 118.725 32.71C119.665 31.91 120.995 31.51 122.715 31.51C123.635 31.51 124.425 31.61 125.085 31.81C125.765 32.01 126.325 32.25 126.765 32.53C127.205 32.79 127.515 33.03 127.695 33.25V34.9C127.075 34.46 126.415 34.14 125.715 33.94C125.015 33.74 124.275 33.64 123.495 33.64C122.815 33.64 122.265 33.73 121.845 33.91C121.425 34.07 121.105 34.3 120.885 34.6C120.685 34.9 120.585 35.27 120.585 35.71ZM119.565 29.8L118.245 27.52C118.865 27.14 119.665 26.77 120.645 26.41C121.645 26.05 122.785 25.87 124.065 25.87C125.205 25.87 126.205 26.04 127.065 26.38C127.945 26.72 128.635 27.21 129.135 27.85C129.635 28.47 129.885 29.24 129.885 30.16V40H126.705V30.79C126.705 30.35 126.625 29.99 126.465 29.71C126.325 29.43 126.125 29.2 125.865 29.02C125.605 28.84 125.295 28.71 124.935 28.63C124.575 28.55 124.185 28.51 123.765 28.51C123.125 28.51 122.515 28.59 121.935 28.75C121.375 28.89 120.885 29.07 120.465 29.29C120.065 29.49 119.765 29.66 119.565 29.8ZM141.612 26.2H145.242L140.292 32.89L145.542 40H141.912L138.582 35.26L135.312 40H131.592L136.872 32.89L131.892 26.2H135.612L138.582 30.52L141.612 26.2Z\" fill=\"white\"/></svg>"
+    }, {
+      "id" : "5632fce5-b763-6e28-8b97-ba5742c07621",
+      "name" : "logo_svg_mobile",
+      "label" : "Logo SVG Code ( Mobile )",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M17.9074 34.5867C11.4061 37.5712 8.19407 34.7035 8.58741 30.81C8.94359 27.2843 12.2979 23.0051 18.0388 19.7793C18.0674 19.7632 18.1031 19.7711 18.1224 19.7976C18.142 19.8243 18.1381 19.861 18.1136 19.8832C16.7884 21.0803 15.0678 22.477 13.7187 24.3102C9.91991 29.4716 7.9528 35.847 17.8715 34.4645C17.9038 34.4598 17.9343 34.4797 17.9429 34.5111C17.9512 34.5418 17.9364 34.5735 17.9074 34.5867Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M25.5394 16.6674C26.6993 16.6674 27.6396 17.6077 27.6396 18.7676C27.6396 19.9275 26.6992 20.8678 25.5394 20.8678C24.3795 20.8678 23.4391 19.9274 23.4391 18.7676C23.4392 17.6077 24.3795 16.6674 25.5394 16.6674Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M24.813 8.74419C22.6639 10.8655 21.309 13.8917 20.6376 16.7721C20.3498 18.0064 20.2074 19.2752 20.2186 20.5474C20.2447 23.5269 21.1372 28.0799 22.9553 30.468C23.9606 31.7884 24.5293 31.9019 26.0341 32.5205C28.518 33.5416 32.8577 33.3426 35.8337 33.7825C35.8391 33.7833 35.8436 33.7846 35.8486 33.7867L37.4887 34.4576C37.8342 34.6015 38.6814 35.0525 38.9862 34.6638C39.1465 34.4593 38.7344 34.0548 38.5917 33.8908C38.4216 33.6954 36.5496 32.0548 36.5087 32.0272C36.2503 31.8528 35.9622 31.9152 35.6704 32.0249L35.2721 32.1746C35.2572 32.1802 35.2425 32.1803 35.2275 32.1748C32.7814 31.2828 29.9836 31.1383 28.2791 30.0104C27.6434 29.5898 27.3382 28.7958 26.7183 28.0733C26.2657 27.5457 25.5164 27.0714 24.942 26.9748C24.9174 26.9706 24.8984 26.954 24.8911 26.9301C24.6899 26.2684 24.4899 25.2953 24.6587 24.3487C24.663 24.3245 24.6794 24.3059 24.703 24.2986C26.2594 23.8153 28.4923 23.8684 29.935 23.0565C31.1754 22.3584 32.3689 21.4662 33.5292 20.5189C34.0056 20.13 34.1823 18.6783 33.9022 18.8369C33.0723 19.3066 31.0587 20.5937 30.1825 20.9323C28.8031 21.4654 27.1731 22.0711 25.7307 21.8094C25.2129 21.7156 24.4394 21.4447 24.0183 21.1493C21.1285 19.1221 24.0092 12.9902 25.0232 10.7202L25.0255 10.7143C25.1345 10.3882 25.3702 9.86386 25.3499 9.60041C25.3315 9.36151 25.0689 8.97257 24.9103 8.75232C24.8989 8.73655 24.8829 8.72741 24.8635 8.72583C24.8442 8.72424 24.8268 8.73051 24.813 8.74419Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M25.2467 39.2648C24.6267 39.5351 19.5759 34.1472 18.8502 32.8626C18.4371 32.1312 18.3219 31.3664 18.5012 30.5458C18.7778 29.2808 19.4743 28.2532 20.2369 27.2507C20.2518 27.2311 20.2747 27.2221 20.2989 27.2262C20.3232 27.2304 20.3419 27.2466 20.3493 27.27C20.7736 28.5955 21.3236 29.829 22.0033 30.8C22.0141 30.8155 22.0176 30.8329 22.0133 30.8514C22.0091 30.8697 21.9984 30.884 21.9819 30.8931L20.9616 31.4615C20.9456 31.4703 20.9352 31.4839 20.9306 31.5015C20.926 31.5192 20.9286 31.536 20.9382 31.5515L23.3749 35.4969C23.606 35.8811 24.2943 35.488 24.7997 36.8392C24.9905 37.3493 25.1476 37.8683 25.2666 38.3972C25.3144 38.6093 25.4849 39.1609 25.2467 39.2648Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M25.7952 15.5157C25.7664 15.5309 25.7535 15.5645 25.7648 15.595C25.7762 15.6259 25.8088 15.643 25.8408 15.635C37.3569 12.8095 38.5356 17.4386 36.6391 21.2316C34.6649 25.18 33.2889 25.8256 30.785 28.437C30.7624 28.4606 30.7609 28.497 30.7817 28.5223C30.802 28.5472 30.8367 28.5535 30.8643 28.5372C40.77 22.7451 41.7434 15.0555 35.6128 13.7057C33.3501 13.2075 29.5133 13.5575 25.7952 15.5157Z\" fill=\"#DAFC00\"/></svg>"
+    }, {
+      "id" : "2dd9d292-80af-fcab-02b7-9820ce66eae3",
+      "name" : "override_svg_color",
+      "label" : "Override SVG Color",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "8bb26297-3f68-6e82-1e12-891931693c12",
+      "name" : "svg_color",
+      "label" : "SVG Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "logo_field_group.logo_svg.override_svg_color",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "408b4e90-138e-8f1d-8af8-19e0dff1d9ff",
+        "name" : "override_options",
+        "label" : "Override Options",
+        "help_text" : "This will be overwrite the SVG fill color with the selected option.",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "logo_field_group.logo_svg.override_svg_color",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display" : "select",
+        "choices" : [ [ "inherit", "Inherit From Nav Color  " ], [ "choose", "Choose From Color Picker" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "choose"
+      }, {
+        "id" : "afd38bc1-46c3-1d4f-fdd6-79f86676a0c5",
+        "name" : "svg_icon_fill_color",
+        "label" : "Logo Icon Color Picker",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "logo_field_group.logo_svg.svg_color.override_options",
+          "controlling_value_regex" : "choose",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : "#ddd",
+          "opacity" : 100
+        }
+      }, {
+        "id" : "327b9f44-5251-7287-f7ec-4fa84fa9beec",
+        "name" : "svg_text_fill_color",
+        "label" : "Logo Text Color Picker",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "logo_field_group.logo_svg.svg_color.override_options",
+          "controlling_value_regex" : "choose",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : "#ddd",
+          "opacity" : 100
+        }
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "override_options" : "choose",
+        "svg_icon_fill_color" : {
+          "color" : "#ddd",
+          "opacity" : 100
+        },
+        "svg_text_fill_color" : {
+          "color" : "#ddd",
+          "opacity" : 100
+        }
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "logo_svg_code" : "<svg width=\"161\" height=\"60\" viewBox=\"0 0 161 60\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.9074 40.5867C20.4061 43.5712 17.1941 40.7035 17.5874 36.81C17.9436 33.2843 21.2979 29.0051 27.0388 25.7793C27.0674 25.7632 27.1031 25.7711 27.1224 25.7976C27.142 25.8243 27.1381 25.861 27.1136 25.8832C25.7884 27.0803 24.0678 28.477 22.7187 30.3102C18.9199 35.4716 16.9528 41.847 26.8715 40.4645C26.9038 40.4598 26.9343 40.4797 26.9429 40.5111C26.9512 40.5418 26.9364 40.5735 26.9074 40.5867Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M34.5394 22.6672C35.6993 22.6672 36.6396 23.6076 36.6396 24.7675C36.6396 25.9274 35.6992 26.8676 34.5394 26.8676C33.3795 26.8676 32.4391 25.9273 32.4391 24.7675C32.4392 23.6076 33.3795 22.6672 34.5394 22.6672Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M33.813 14.7441C31.6639 16.8654 30.309 19.8916 29.6376 22.772C29.3498 24.0063 29.2074 25.2751 29.2186 26.5472C29.2447 29.5267 30.1372 34.0797 31.9553 36.4678C32.9606 37.7883 33.5293 37.9018 35.0341 38.5204C37.518 39.5414 41.8577 39.3424 44.8337 39.7824C44.8391 39.7832 44.8436 39.7844 44.8486 39.7865L46.4887 40.4575C46.8342 40.6014 47.6814 41.0524 47.9862 40.6636C48.1465 40.4592 47.7344 40.0547 47.5917 39.8906C47.4216 39.6952 45.5496 38.0546 45.5087 38.0271C45.2503 37.8527 44.9622 37.9151 44.6704 38.0248L44.2721 38.1744C44.2572 38.1801 44.2425 38.1801 44.2275 38.1747C41.7814 37.2827 38.9836 37.1382 37.2791 36.0103C36.6434 35.5896 36.3382 34.7957 35.7183 34.0732C35.2657 33.5456 34.5164 33.0713 33.942 32.9747C33.9174 32.9705 33.8984 32.9539 33.8911 32.93C33.6899 32.2683 33.4899 31.2951 33.6587 30.3486C33.663 30.3244 33.6794 30.3058 33.703 30.2984C35.2594 29.8152 37.4923 29.8682 38.935 29.0564C40.1754 28.3583 41.3689 27.466 42.5292 26.5188C43.0056 26.1299 43.1823 24.6782 42.9022 24.8367C42.0723 25.3065 40.0587 26.5935 39.1825 26.9322C37.8031 27.4652 36.1731 28.071 34.7307 27.8093C34.2129 27.7154 33.4394 27.4446 33.0183 27.1492C30.1285 25.122 33.0092 18.9901 34.0232 16.72L34.0255 16.7142C34.1345 16.3881 34.3702 15.8637 34.3499 15.6003C34.3315 15.3614 34.0689 14.9724 33.9103 14.7522C33.8989 14.7364 33.8829 14.7273 33.8635 14.7257C33.8442 14.7241 33.8268 14.7304 33.813 14.7441Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M34.2467 45.2646C33.6267 45.535 28.5759 40.147 27.8502 38.8625C27.4371 38.1311 27.3219 37.3662 27.5012 36.5457C27.7778 35.2807 28.4743 34.2531 29.2369 33.2506C29.2518 33.231 29.2747 33.222 29.2989 33.2261C29.3232 33.2303 29.3419 33.2465 29.3493 33.2699C29.7736 34.5954 30.3236 35.8288 31.0033 36.7999C31.0141 36.8154 31.0176 36.8328 31.0133 36.8512C31.0091 36.8696 30.9984 36.8838 30.9819 36.893L29.9616 37.4614C29.9456 37.4702 29.9352 37.4838 29.9306 37.5014C29.926 37.519 29.9286 37.5359 29.9382 37.5514L32.3749 41.4968C32.606 41.881 33.2943 41.4879 33.7997 42.8391C33.9905 43.3492 34.1476 43.8682 34.2666 44.397C34.3144 44.6092 34.4849 45.1608 34.2467 45.2646Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M34.7952 21.5155C34.7664 21.5306 34.7535 21.5642 34.7648 21.5948C34.7762 21.6257 34.8088 21.6428 34.8408 21.6347C46.3569 18.8092 47.5356 23.4383 45.6391 27.2314C43.6649 31.1798 42.2889 31.8254 39.785 34.4368C39.7624 34.4604 39.7609 34.4967 39.7817 34.522C39.802 34.5469 39.8367 34.5533 39.8643 34.5369C49.77 28.7449 50.7434 21.0552 44.6128 19.7054C42.3501 19.2073 38.5133 19.5572 34.7952 21.5155Z\" fill=\"#DAFC00\"/><path d=\"M63.9929 22.18V19H73.3829V22.18H63.9929ZM63.9929 30.52V27.43H73.0829V30.52H63.9929ZM61.8029 19H65.2829V40H61.8029V19ZM77.0574 20.71C77.0574 20.15 77.2574 19.68 77.6574 19.3C78.0774 18.92 78.5574 18.73 79.0974 18.73C79.6774 18.73 80.1574 18.92 80.5374 19.3C80.9374 19.68 81.1374 20.15 81.1374 20.71C81.1374 21.25 80.9374 21.72 80.5374 22.12C80.1574 22.5 79.6774 22.69 79.0974 22.69C78.5574 22.69 78.0774 22.5 77.6574 22.12C77.2574 21.72 77.0574 21.25 77.0574 20.71ZM77.5074 26.2H80.6874V40H77.5074V26.2ZM83.2262 26.2H91.0562V29.05H83.2262V26.2ZM85.5362 21.4H88.7462V40H85.5362V21.4ZM97.4607 27.22L96.0207 40H92.3607L95.2407 17.95L103.851 32.2L112.491 17.95L115.371 40H111.711L110.241 27.22L103.851 38.05L97.4607 27.22ZM120.585 35.71C120.585 36.17 120.695 36.57 120.915 36.91C121.135 37.23 121.435 37.47 121.815 37.63C122.215 37.79 122.665 37.87 123.165 37.87C123.805 37.87 124.385 37.74 124.905 37.48C125.445 37.22 125.875 36.84 126.195 36.34C126.535 35.82 126.705 35.22 126.705 34.54L127.185 36.34C127.185 37.22 126.925 37.96 126.405 38.56C125.905 39.14 125.265 39.58 124.485 39.88C123.725 40.16 122.945 40.3 122.145 40.3C121.285 40.3 120.485 40.13 119.745 39.79C119.005 39.45 118.415 38.95 117.975 38.29C117.535 37.63 117.315 36.83 117.315 35.89C117.315 34.55 117.785 33.49 118.725 32.71C119.665 31.91 120.995 31.51 122.715 31.51C123.635 31.51 124.425 31.61 125.085 31.81C125.765 32.01 126.325 32.25 126.765 32.53C127.205 32.79 127.515 33.03 127.695 33.25V34.9C127.075 34.46 126.415 34.14 125.715 33.94C125.015 33.74 124.275 33.64 123.495 33.64C122.815 33.64 122.265 33.73 121.845 33.91C121.425 34.07 121.105 34.3 120.885 34.6C120.685 34.9 120.585 35.27 120.585 35.71ZM119.565 29.8L118.245 27.52C118.865 27.14 119.665 26.77 120.645 26.41C121.645 26.05 122.785 25.87 124.065 25.87C125.205 25.87 126.205 26.04 127.065 26.38C127.945 26.72 128.635 27.21 129.135 27.85C129.635 28.47 129.885 29.24 129.885 30.16V40H126.705V30.79C126.705 30.35 126.625 29.99 126.465 29.71C126.325 29.43 126.125 29.2 125.865 29.02C125.605 28.84 125.295 28.71 124.935 28.63C124.575 28.55 124.185 28.51 123.765 28.51C123.125 28.51 122.515 28.59 121.935 28.75C121.375 28.89 120.885 29.07 120.465 29.29C120.065 29.49 119.765 29.66 119.565 29.8ZM141.612 26.2H145.242L140.292 32.89L145.542 40H141.912L138.582 35.26L135.312 40H131.592L136.872 32.89L131.892 26.2H135.612L138.582 30.52L141.612 26.2Z\" fill=\"white\"/></svg>",
+      "logo_svg_mobile" : "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M17.9074 34.5867C11.4061 37.5712 8.19407 34.7035 8.58741 30.81C8.94359 27.2843 12.2979 23.0051 18.0388 19.7793C18.0674 19.7632 18.1031 19.7711 18.1224 19.7976C18.142 19.8243 18.1381 19.861 18.1136 19.8832C16.7884 21.0803 15.0678 22.477 13.7187 24.3102C9.91991 29.4716 7.9528 35.847 17.8715 34.4645C17.9038 34.4598 17.9343 34.4797 17.9429 34.5111C17.9512 34.5418 17.9364 34.5735 17.9074 34.5867Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M25.5394 16.6674C26.6993 16.6674 27.6396 17.6077 27.6396 18.7676C27.6396 19.9275 26.6992 20.8678 25.5394 20.8678C24.3795 20.8678 23.4391 19.9274 23.4391 18.7676C23.4392 17.6077 24.3795 16.6674 25.5394 16.6674Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M24.813 8.74419C22.6639 10.8655 21.309 13.8917 20.6376 16.7721C20.3498 18.0064 20.2074 19.2752 20.2186 20.5474C20.2447 23.5269 21.1372 28.0799 22.9553 30.468C23.9606 31.7884 24.5293 31.9019 26.0341 32.5205C28.518 33.5416 32.8577 33.3426 35.8337 33.7825C35.8391 33.7833 35.8436 33.7846 35.8486 33.7867L37.4887 34.4576C37.8342 34.6015 38.6814 35.0525 38.9862 34.6638C39.1465 34.4593 38.7344 34.0548 38.5917 33.8908C38.4216 33.6954 36.5496 32.0548 36.5087 32.0272C36.2503 31.8528 35.9622 31.9152 35.6704 32.0249L35.2721 32.1746C35.2572 32.1802 35.2425 32.1803 35.2275 32.1748C32.7814 31.2828 29.9836 31.1383 28.2791 30.0104C27.6434 29.5898 27.3382 28.7958 26.7183 28.0733C26.2657 27.5457 25.5164 27.0714 24.942 26.9748C24.9174 26.9706 24.8984 26.954 24.8911 26.9301C24.6899 26.2684 24.4899 25.2953 24.6587 24.3487C24.663 24.3245 24.6794 24.3059 24.703 24.2986C26.2594 23.8153 28.4923 23.8684 29.935 23.0565C31.1754 22.3584 32.3689 21.4662 33.5292 20.5189C34.0056 20.13 34.1823 18.6783 33.9022 18.8369C33.0723 19.3066 31.0587 20.5937 30.1825 20.9323C28.8031 21.4654 27.1731 22.0711 25.7307 21.8094C25.2129 21.7156 24.4394 21.4447 24.0183 21.1493C21.1285 19.1221 24.0092 12.9902 25.0232 10.7202L25.0255 10.7143C25.1345 10.3882 25.3702 9.86386 25.3499 9.60041C25.3315 9.36151 25.0689 8.97257 24.9103 8.75232C24.8989 8.73655 24.8829 8.72741 24.8635 8.72583C24.8442 8.72424 24.8268 8.73051 24.813 8.74419Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M25.2467 39.2648C24.6267 39.5351 19.5759 34.1472 18.8502 32.8626C18.4371 32.1312 18.3219 31.3664 18.5012 30.5458C18.7778 29.2808 19.4743 28.2532 20.2369 27.2507C20.2518 27.2311 20.2747 27.2221 20.2989 27.2262C20.3232 27.2304 20.3419 27.2466 20.3493 27.27C20.7736 28.5955 21.3236 29.829 22.0033 30.8C22.0141 30.8155 22.0176 30.8329 22.0133 30.8514C22.0091 30.8697 21.9984 30.884 21.9819 30.8931L20.9616 31.4615C20.9456 31.4703 20.9352 31.4839 20.9306 31.5015C20.926 31.5192 20.9286 31.536 20.9382 31.5515L23.3749 35.4969C23.606 35.8811 24.2943 35.488 24.7997 36.8392C24.9905 37.3493 25.1476 37.8683 25.2666 38.3972C25.3144 38.6093 25.4849 39.1609 25.2467 39.2648Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M25.7952 15.5157C25.7664 15.5309 25.7535 15.5645 25.7648 15.595C25.7762 15.6259 25.8088 15.643 25.8408 15.635C37.3569 12.8095 38.5356 17.4386 36.6391 21.2316C34.6649 25.18 33.2889 25.8256 30.785 28.437C30.7624 28.4606 30.7609 28.497 30.7817 28.5223C30.802 28.5472 30.8367 28.5535 30.8643 28.5372C40.77 22.7451 41.7434 15.0555 35.6128 13.7057C33.3501 13.2075 29.5133 13.5575 25.7952 15.5157Z\" fill=\"#DAFC00\"/></svg>",
+      "override_svg_color" : false,
+      "svg_color" : {
+        "override_options" : "choose",
+        "svg_icon_fill_color" : {
+          "color" : "#ddd",
+          "opacity" : 100
+        },
+        "svg_text_fill_color" : {
+          "color" : "#ddd",
+          "opacity" : 100
+        }
+      }
+    }
+  }, {
+    "id" : "1647f43a-d710-72ef-6c6c-7127b913bf2f",
+    "name" : "logo_link",
+    "label" : "Logo Link",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "e6e1bd7e-10f1-aa23-04e0-1484a1bdbd04",
+      "name" : "redirect_link",
+      "label" : "Redirect Link",
+      "help_text" : "Clicking the logo will redirect to this link",
+      "required" : false,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "FILE", "CONTENT", "BLOG", "PAYMENT", "EMAIL_ADDRESS", "PHONE_NUMBER" ],
+      "show_advanced_rel_options" : false,
+      "type" : "link",
+      "display_width" : null,
+      "default" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://hubspot.com",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "redirect_link" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://hubspot.com",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "logo_type" : "image",
+    "logo_file" : {
+      "logo_image" : {
+        "size_type" : "auto",
+        "src" : "https://243686958.fs1.hubspotusercontent-na2.net/hubfs/243686958/Logo-1.png",
+        "alt" : "Logo-1",
+        "loading" : "lazy",
+        "width" : 161,
+        "height" : 60,
+        "max_width" : 161,
+        "max_height" : 60
+      },
+      "logo_image_mobile" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/physical-education%201%20(1).png",
+        "alt" : "physical-education 1 (1)",
+        "loading" : "lazy",
+        "width" : 36,
+        "height" : 36,
+        "max_width" : 36,
+        "max_height" : 36
+      }
+    },
+    "logo_svg" : {
+      "logo_svg_code" : "<svg width=\"161\" height=\"60\" viewBox=\"0 0 161 60\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.9074 40.5867C20.4061 43.5712 17.1941 40.7035 17.5874 36.81C17.9436 33.2843 21.2979 29.0051 27.0388 25.7793C27.0674 25.7632 27.1031 25.7711 27.1224 25.7976C27.142 25.8243 27.1381 25.861 27.1136 25.8832C25.7884 27.0803 24.0678 28.477 22.7187 30.3102C18.9199 35.4716 16.9528 41.847 26.8715 40.4645C26.9038 40.4598 26.9343 40.4797 26.9429 40.5111C26.9512 40.5418 26.9364 40.5735 26.9074 40.5867Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M34.5394 22.6672C35.6993 22.6672 36.6396 23.6076 36.6396 24.7675C36.6396 25.9274 35.6992 26.8676 34.5394 26.8676C33.3795 26.8676 32.4391 25.9273 32.4391 24.7675C32.4392 23.6076 33.3795 22.6672 34.5394 22.6672Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M33.813 14.7441C31.6639 16.8654 30.309 19.8916 29.6376 22.772C29.3498 24.0063 29.2074 25.2751 29.2186 26.5472C29.2447 29.5267 30.1372 34.0797 31.9553 36.4678C32.9606 37.7883 33.5293 37.9018 35.0341 38.5204C37.518 39.5414 41.8577 39.3424 44.8337 39.7824C44.8391 39.7832 44.8436 39.7844 44.8486 39.7865L46.4887 40.4575C46.8342 40.6014 47.6814 41.0524 47.9862 40.6636C48.1465 40.4592 47.7344 40.0547 47.5917 39.8906C47.4216 39.6952 45.5496 38.0546 45.5087 38.0271C45.2503 37.8527 44.9622 37.9151 44.6704 38.0248L44.2721 38.1744C44.2572 38.1801 44.2425 38.1801 44.2275 38.1747C41.7814 37.2827 38.9836 37.1382 37.2791 36.0103C36.6434 35.5896 36.3382 34.7957 35.7183 34.0732C35.2657 33.5456 34.5164 33.0713 33.942 32.9747C33.9174 32.9705 33.8984 32.9539 33.8911 32.93C33.6899 32.2683 33.4899 31.2951 33.6587 30.3486C33.663 30.3244 33.6794 30.3058 33.703 30.2984C35.2594 29.8152 37.4923 29.8682 38.935 29.0564C40.1754 28.3583 41.3689 27.466 42.5292 26.5188C43.0056 26.1299 43.1823 24.6782 42.9022 24.8367C42.0723 25.3065 40.0587 26.5935 39.1825 26.9322C37.8031 27.4652 36.1731 28.071 34.7307 27.8093C34.2129 27.7154 33.4394 27.4446 33.0183 27.1492C30.1285 25.122 33.0092 18.9901 34.0232 16.72L34.0255 16.7142C34.1345 16.3881 34.3702 15.8637 34.3499 15.6003C34.3315 15.3614 34.0689 14.9724 33.9103 14.7522C33.8989 14.7364 33.8829 14.7273 33.8635 14.7257C33.8442 14.7241 33.8268 14.7304 33.813 14.7441Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M34.2467 45.2646C33.6267 45.535 28.5759 40.147 27.8502 38.8625C27.4371 38.1311 27.3219 37.3662 27.5012 36.5457C27.7778 35.2807 28.4743 34.2531 29.2369 33.2506C29.2518 33.231 29.2747 33.222 29.2989 33.2261C29.3232 33.2303 29.3419 33.2465 29.3493 33.2699C29.7736 34.5954 30.3236 35.8288 31.0033 36.7999C31.0141 36.8154 31.0176 36.8328 31.0133 36.8512C31.0091 36.8696 30.9984 36.8838 30.9819 36.893L29.9616 37.4614C29.9456 37.4702 29.9352 37.4838 29.9306 37.5014C29.926 37.519 29.9286 37.5359 29.9382 37.5514L32.3749 41.4968C32.606 41.881 33.2943 41.4879 33.7997 42.8391C33.9905 43.3492 34.1476 43.8682 34.2666 44.397C34.3144 44.6092 34.4849 45.1608 34.2467 45.2646Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M34.7952 21.5155C34.7664 21.5306 34.7535 21.5642 34.7648 21.5948C34.7762 21.6257 34.8088 21.6428 34.8408 21.6347C46.3569 18.8092 47.5356 23.4383 45.6391 27.2314C43.6649 31.1798 42.2889 31.8254 39.785 34.4368C39.7624 34.4604 39.7609 34.4967 39.7817 34.522C39.802 34.5469 39.8367 34.5533 39.8643 34.5369C49.77 28.7449 50.7434 21.0552 44.6128 19.7054C42.3501 19.2073 38.5133 19.5572 34.7952 21.5155Z\" fill=\"#DAFC00\"/><path d=\"M63.9929 22.18V19H73.3829V22.18H63.9929ZM63.9929 30.52V27.43H73.0829V30.52H63.9929ZM61.8029 19H65.2829V40H61.8029V19ZM77.0574 20.71C77.0574 20.15 77.2574 19.68 77.6574 19.3C78.0774 18.92 78.5574 18.73 79.0974 18.73C79.6774 18.73 80.1574 18.92 80.5374 19.3C80.9374 19.68 81.1374 20.15 81.1374 20.71C81.1374 21.25 80.9374 21.72 80.5374 22.12C80.1574 22.5 79.6774 22.69 79.0974 22.69C78.5574 22.69 78.0774 22.5 77.6574 22.12C77.2574 21.72 77.0574 21.25 77.0574 20.71ZM77.5074 26.2H80.6874V40H77.5074V26.2ZM83.2262 26.2H91.0562V29.05H83.2262V26.2ZM85.5362 21.4H88.7462V40H85.5362V21.4ZM97.4607 27.22L96.0207 40H92.3607L95.2407 17.95L103.851 32.2L112.491 17.95L115.371 40H111.711L110.241 27.22L103.851 38.05L97.4607 27.22ZM120.585 35.71C120.585 36.17 120.695 36.57 120.915 36.91C121.135 37.23 121.435 37.47 121.815 37.63C122.215 37.79 122.665 37.87 123.165 37.87C123.805 37.87 124.385 37.74 124.905 37.48C125.445 37.22 125.875 36.84 126.195 36.34C126.535 35.82 126.705 35.22 126.705 34.54L127.185 36.34C127.185 37.22 126.925 37.96 126.405 38.56C125.905 39.14 125.265 39.58 124.485 39.88C123.725 40.16 122.945 40.3 122.145 40.3C121.285 40.3 120.485 40.13 119.745 39.79C119.005 39.45 118.415 38.95 117.975 38.29C117.535 37.63 117.315 36.83 117.315 35.89C117.315 34.55 117.785 33.49 118.725 32.71C119.665 31.91 120.995 31.51 122.715 31.51C123.635 31.51 124.425 31.61 125.085 31.81C125.765 32.01 126.325 32.25 126.765 32.53C127.205 32.79 127.515 33.03 127.695 33.25V34.9C127.075 34.46 126.415 34.14 125.715 33.94C125.015 33.74 124.275 33.64 123.495 33.64C122.815 33.64 122.265 33.73 121.845 33.91C121.425 34.07 121.105 34.3 120.885 34.6C120.685 34.9 120.585 35.27 120.585 35.71ZM119.565 29.8L118.245 27.52C118.865 27.14 119.665 26.77 120.645 26.41C121.645 26.05 122.785 25.87 124.065 25.87C125.205 25.87 126.205 26.04 127.065 26.38C127.945 26.72 128.635 27.21 129.135 27.85C129.635 28.47 129.885 29.24 129.885 30.16V40H126.705V30.79C126.705 30.35 126.625 29.99 126.465 29.71C126.325 29.43 126.125 29.2 125.865 29.02C125.605 28.84 125.295 28.71 124.935 28.63C124.575 28.55 124.185 28.51 123.765 28.51C123.125 28.51 122.515 28.59 121.935 28.75C121.375 28.89 120.885 29.07 120.465 29.29C120.065 29.49 119.765 29.66 119.565 29.8ZM141.612 26.2H145.242L140.292 32.89L145.542 40H141.912L138.582 35.26L135.312 40H131.592L136.872 32.89L131.892 26.2H135.612L138.582 30.52L141.612 26.2Z\" fill=\"white\"/></svg>",
+      "logo_svg_mobile" : "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M17.9074 34.5867C11.4061 37.5712 8.19407 34.7035 8.58741 30.81C8.94359 27.2843 12.2979 23.0051 18.0388 19.7793C18.0674 19.7632 18.1031 19.7711 18.1224 19.7976C18.142 19.8243 18.1381 19.861 18.1136 19.8832C16.7884 21.0803 15.0678 22.477 13.7187 24.3102C9.91991 29.4716 7.9528 35.847 17.8715 34.4645C17.9038 34.4598 17.9343 34.4797 17.9429 34.5111C17.9512 34.5418 17.9364 34.5735 17.9074 34.5867Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M25.5394 16.6674C26.6993 16.6674 27.6396 17.6077 27.6396 18.7676C27.6396 19.9275 26.6992 20.8678 25.5394 20.8678C24.3795 20.8678 23.4391 19.9274 23.4391 18.7676C23.4392 17.6077 24.3795 16.6674 25.5394 16.6674Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M24.813 8.74419C22.6639 10.8655 21.309 13.8917 20.6376 16.7721C20.3498 18.0064 20.2074 19.2752 20.2186 20.5474C20.2447 23.5269 21.1372 28.0799 22.9553 30.468C23.9606 31.7884 24.5293 31.9019 26.0341 32.5205C28.518 33.5416 32.8577 33.3426 35.8337 33.7825C35.8391 33.7833 35.8436 33.7846 35.8486 33.7867L37.4887 34.4576C37.8342 34.6015 38.6814 35.0525 38.9862 34.6638C39.1465 34.4593 38.7344 34.0548 38.5917 33.8908C38.4216 33.6954 36.5496 32.0548 36.5087 32.0272C36.2503 31.8528 35.9622 31.9152 35.6704 32.0249L35.2721 32.1746C35.2572 32.1802 35.2425 32.1803 35.2275 32.1748C32.7814 31.2828 29.9836 31.1383 28.2791 30.0104C27.6434 29.5898 27.3382 28.7958 26.7183 28.0733C26.2657 27.5457 25.5164 27.0714 24.942 26.9748C24.9174 26.9706 24.8984 26.954 24.8911 26.9301C24.6899 26.2684 24.4899 25.2953 24.6587 24.3487C24.663 24.3245 24.6794 24.3059 24.703 24.2986C26.2594 23.8153 28.4923 23.8684 29.935 23.0565C31.1754 22.3584 32.3689 21.4662 33.5292 20.5189C34.0056 20.13 34.1823 18.6783 33.9022 18.8369C33.0723 19.3066 31.0587 20.5937 30.1825 20.9323C28.8031 21.4654 27.1731 22.0711 25.7307 21.8094C25.2129 21.7156 24.4394 21.4447 24.0183 21.1493C21.1285 19.1221 24.0092 12.9902 25.0232 10.7202L25.0255 10.7143C25.1345 10.3882 25.3702 9.86386 25.3499 9.60041C25.3315 9.36151 25.0689 8.97257 24.9103 8.75232C24.8989 8.73655 24.8829 8.72741 24.8635 8.72583C24.8442 8.72424 24.8268 8.73051 24.813 8.74419Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M25.2467 39.2648C24.6267 39.5351 19.5759 34.1472 18.8502 32.8626C18.4371 32.1312 18.3219 31.3664 18.5012 30.5458C18.7778 29.2808 19.4743 28.2532 20.2369 27.2507C20.2518 27.2311 20.2747 27.2221 20.2989 27.2262C20.3232 27.2304 20.3419 27.2466 20.3493 27.27C20.7736 28.5955 21.3236 29.829 22.0033 30.8C22.0141 30.8155 22.0176 30.8329 22.0133 30.8514C22.0091 30.8697 21.9984 30.884 21.9819 30.8931L20.9616 31.4615C20.9456 31.4703 20.9352 31.4839 20.9306 31.5015C20.926 31.5192 20.9286 31.536 20.9382 31.5515L23.3749 35.4969C23.606 35.8811 24.2943 35.488 24.7997 36.8392C24.9905 37.3493 25.1476 37.8683 25.2666 38.3972C25.3144 38.6093 25.4849 39.1609 25.2467 39.2648Z\" fill=\"#DAFC00\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M25.7952 15.5157C25.7664 15.5309 25.7535 15.5645 25.7648 15.595C25.7762 15.6259 25.8088 15.643 25.8408 15.635C37.3569 12.8095 38.5356 17.4386 36.6391 21.2316C34.6649 25.18 33.2889 25.8256 30.785 28.437C30.7624 28.4606 30.7609 28.497 30.7817 28.5223C30.802 28.5472 30.8367 28.5535 30.8643 28.5372C40.77 22.7451 41.7434 15.0555 35.6128 13.7057C33.3501 13.2075 29.5133 13.5575 25.7952 15.5157Z\" fill=\"#DAFC00\"/></svg>",
+      "override_svg_color" : false,
+      "svg_color" : {
+        "override_options" : "choose",
+        "svg_icon_fill_color" : {
+          "color" : "#ddd",
+          "opacity" : 100
+        },
+        "svg_text_fill_color" : {
+          "color" : "#ddd",
+          "opacity" : 100
+        }
+      }
+    },
+    "logo_link" : {
+      "redirect_link" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://hubspot.com",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  }
+}, {
+  "id" : "5a70d754-a0ab-0e58-93d9-6dd5c5543f3b",
+  "name" : "style",
+  "label" : "Style",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "a87490aa-0609-45fe-2de8-2ecbccf9daa8",
+    "name" : "navbar_style_and_alignment",
+    "label" : "Navbar Style And Alignment",
+    "required" : false,
+    "locked" : false,
+    "children" : [{
+        "name": "logo_alignment",
+        "label": "Logo Alignment",
+        "type": "choice",
+        "choices": [
+          [
+            "left",
+            "Left"
+          ],
+          [
+            "center",
+            "Center"
+          ],
+          [
+            "right",
+            "Right"
+          ]
+        ],
+        "default": "center"
+      },
+      {
+        "name": "menu_alignment",
+        "label": "Menu Alignment",
+        "type": "choice",
+        "choices": [
+          [
+            "left",
+            "Left"
+          ],
+          [
+            "center",
+            "Center"
+          ],
+          [
+            "right",
+            "Right"
+          ]
+        ],
+        "default": "left",
+        "visibility": {
+          "controlling_field_path": "style.navbar_style_and_alignment.logo_alignment",
+          "operator": "NOT_EQUAL",
+          "controlling_value_regex": "center"
+        }
+      },
+      {
+        "name": "menu_alignment_restricted",
+        "label": "Menu Alignment",
+        "type": "choice",
+        "choices": [
+          [
+            "left",
+            "Left"
+          ],
+          [
+            "right",
+            "Right"
+          ]
+        ],
+        "default": "left",
+        "visibility": {
+          "controlling_field_path": "style.navbar_style_and_alignment.logo_alignment",
+          "operator": "EQUAL",
+          "controlling_value_regex": "center"
+        }
+      },
+      {
+        "id": "navbar_behavior_group_id",
+        "name": "navbar_behavior",
+        "label": "Navbar Behavior",
+        "required": false,
+        "locked": false,
+        "type": "group",
+        "children": [
+          {
+            "id": "sticky_navbar_toggle_id",
+            "name": "sticky_navbar",
+            "label": "Enable Sticky Navbar",
+            "inline_help_text": "Enable to make the navbar stick to the top on scroll.",
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "id": "floating_navbar_toggle_id",
+            "name": "floating_navbar",
+            "label": "Enable Floating Style",
+            "inline_help_text": "Enable this to detach the navbar from the top of the window. This allows your Hero/Banner section to start at the absolute top (0px) of the page, appearing behind the transparent floating navbar.",
+            "type": "boolean",
+            "default": false
+          }
+        ]
+      },
+      {
+      "id" : "6ef39424-5746-6c27-de7b-111d4f1f1dba",
+      "name" : "navbar_background",
+      "label" : "Navbar Background",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "f17093c2-e7c8-d881-2f81-c6ae118ce225",
+        "name" : "overwrite_navbar_background",
+        "label" : "Overwrite Navbar Background",
+        "required" : false,
+        "locked" : false,
+        "display" : "toggle",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "a08deb3c-2d2d-2684-e436-01121f8bf28d",
+        "name" : "background_type",
+        "label" : "Background Type",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.navbar_style_and_alignment.navbar_background.overwrite_navbar_background",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display" : "select",
+        "choices" : [ [ "transparent", "Transparent" ], [ "color", "Solid Color" ], [ "gradient", "Gradient" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : ""
+      }, {
+        "id" : "5729a721-3edb-f0c4-15ec-f903a9122b3f",
+        "name" : "background_color",
+        "label" : "Background Color",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.navbar_style_and_alignment.navbar_background.background_type",
+          "controlling_value_regex" : "color",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : "#101000",
+          "opacity" : 100
+        }
+      }, {
+        "id" : "7394e565-1853-dd4e-ab57-a801b7860e49",
+        "name" : "background_gradient",
+        "label" : "Background Gradient",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.navbar_style_and_alignment.navbar_background.background_type",
+          "controlling_value_regex" : "gradient",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "type" : "gradient",
+        "display_width" : null,
+        "default" : {
+          "side_or_corner" : {
+            "horizontalSide" : "LEFT",
+            "verticalSide" : null
+          }
+        }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "overwrite_navbar_background" : false,
+        "background_type" : "",
+        "background_color" : {
+          "color" : "#101000",
+          "opacity" : 100
+        },
+        "background_gradient" : {
+          "side_or_corner" : {
+            "horizontalSide" : "LEFT",
+            "verticalSide" : null
+          }
+        }
+      }
+      }, 
+      {
+      "id" : "6aa53ba3-fa05-26b9-4e98-c7ac00bde9c5",
+      "name" : "navbar_text",
+      "label" : "Navbar Text",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "9ae132d9-be87-059f-1fcd-7c0c03ea1a9a",
+        "name" : "overwrite_text_color",
+        "label" : "Overwrite Text Color",
+        "required" : false,
+        "locked" : false,
+        "display" : "toggle",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "69a28f5a-6b8f-efdc-c567-5a62d8476345",
+        "name" : "menu_item_text_color",
+        "label" : "Menu Item Text Color",
+        "required" : false,
+        "locked" : false,
+        "visibility": {
+          "controlling_field": null,
+          "controlling_field_path": "style.navbar_style_and_alignment.navbar_text.overwrite_text_color",
+          "controlling_value_regex": "true",
+          "property": null,
+          "operator": "EQUAL",
+          "access": null
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : "#fff",
+          "opacity" : 100
+        }
+      }, {
+        "id" : "0eab5295-9d2a-9c21-3a1c-3dead50cfe5f",
+        "name" : "menu_item_hover_text_color",
+        "label" : "Menu Item Hover Text Color",
+        "required" : false,
+        "locked" : false,
+        "visibility": {
+          "controlling_field": null,
+          "controlling_field_path": "style.navbar_style_and_alignment.navbar_text.overwrite_text_color",
+          "controlling_value_regex": "true",
+          "property": null,
+          "operator": "EQUAL",
+          "access": null
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : "#DAFC00",
+          "opacity" : 100
+        }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "overwrite_text_color" : false,
+        "menu_item_text_color" : {
+          "color" : "#fff",
+          "opacity" : 100
+        },
+        "menu_item_hover_text_color" : {
+          "color" : "#DAFC00",
+          "opacity" : 100
+        }
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "navbar_background" : {
+        "overwrite_navbar_background" : false,
+        "background_type" : "",
+        "background_color" : {
+          "color" : "#101000",
+          "opacity" : 100
+        },
+        "background_gradient" : {
+          "side_or_corner" : {
+            "horizontalSide" : "LEFT",
+            "verticalSide" : null
+          }
+        }
+      },
+      "navbar_text" : {
+        "overwrite_text_color" : false,
+        "menu_item_text_color" : {
+          "color" : "#fff",
+          "opacity" : 100
+        },
+        "menu_item_hover_text_color" : {
+          "color" : "#DAFC00",
+          "opacity" : 100
+        }
+      }
+    }
+  }, {
+    "id" : "51f645e7-e52a-03a5-5be0-524b18d8c795",
+    "name" : "mega_menu_styles",
+    "label" : "Mega Menu Styles",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "7a134643-fd20-0656-9c9d-f82a6e5ce034",
+      "name" : "overwrite_link_styles",
+      "label" : "Overwrite Link Styles",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "28890f10-5c1d-81af-d338-b3a6b87e07d3",
+      "name" : "link_text_color",
+      "label" : "Link Text Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.mega_menu_styles.overwrite_link_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#4C4C40",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "c9addbd3-488e-0cef-67a3-cf7155c2c461",
+      "name" : "link_background_color",
+      "label" : "Link Background Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.mega_menu_styles.overwrite_link_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#E7E8E3",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "ceab405b-ee90-2caa-8738-94902cbfd640",
+      "name" : "overwrite_active_link_styles",
+      "label" : "Overwrite Active Link Styles",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "71163f2c-827a-6025-8cce-8e73101a617f",
+      "name" : "active_link_text_color",
+      "label" : "Active Link Text Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.mega_menu_styles.overwrite_active_link_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#E7E8E3",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "c8faba06-e672-33e0-6d44-7425675eed30",
+      "name" : "active_link_background_color",
+      "label" : "Active Link Background Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.mega_menu_styles.overwrite_active_link_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#2B2B2B",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "3e083d62-4235-89a7-4845-ae86afbc9ada",
+      "name" : "mega_menu_background",
+      "label" : "Mega Menu Background",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "06a54aeb-8928-6c79-5492-df097d3fd938",
+        "name" : "overwrite_background_style",
+        "label" : "Overwrite Background Style",
+        "required" : false,
+        "locked" : false,
+        "display" : "toggle",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "89d21348-ade6-4e40-dc81-00ff35635b80",
+        "name" : "background_color",
+        "label" : "Background Color",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.mega_menu_styles.mega_menu_background.overwrite_background_style",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : "#FFFFFF",
+          "opacity" : 100
+        }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "overwrite_background_style" : false,
+        "background_color" : {
+          "color" : "#FFFFFF",
+          "opacity" : 100
+        }
+      }
+    }, {
+      "id" : "d9e9dfaa-4c36-6f82-4ee3-60f2fc36afdc",
+      "name" : "featured_mega_menu",
+      "label" : "Featured Mega Menu",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "724fcd8e-33a8-119e-fa8f-eb1488e58265",
+        "name" : "overwrite_link_hover_background_color",
+        "label" : "Overwrite Link Hover Background Color",
+        "required" : false,
+        "locked" : false,
+        "display" : "toggle",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "2dcb86ef-2ca3-748e-4dfa-6c9d2cc5f024",
+        "name" : "link_hover_background_color",
+        "label" : "Link Hover Background Color",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.mega_menu_styles.featured_mega_menu.overwrite_link_hover_background_color",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : null,
+          "opacity" : null
+        }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "background_color_on_mega_menu_column" : false,
+        "overwrite_link_hover_background_color" : false,
+        "link_hover_background_color" : {
+          "color" : null,
+          "opacity" : null
+        }
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "overwrite_link_styles" : false,
+      "link_text_color" : {
+        "color" : "#4C4C40",
+        "opacity" : 100
+      },
+      "link_background_color" : {
+        "color" : "#E7E8E3",
+        "opacity" : 100
+      },
+      "overwrite_active_link_styles" : false,
+      "active_link_text_color" : {
+        "color" : "#E7E8E3",
+        "opacity" : 100
+      },
+      "active_link_background_color" : {
+        "color" : "#2B2B2B",
+        "opacity" : 100
+      },
+      "mega_menu_background" : {
+        "overwrite_background_style" : false,
+        "background_color" : {
+          "color" : "#FFFFFF",
+          "opacity" : 100
+        }
+      },
+      "featured_mega_menu" : {
+        "background_color_on_mega_menu_column" : false,
+        "overwrite_link_hover_background_color" : false,
+        "link_hover_background_color" : {
+          "color" : null,
+          "opacity" : null
+        }
+      }
+    }
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "navbar_style_and_alignment" : {
+      "navbar_background" : {
+        "overwrite_navbar_background" : false,
+        "background_type" : "",
+        "background_color" : {
+          "color" : "#101000",
+          "opacity" : 100
+        },
+        "background_gradient" : {
+          "side_or_corner" : {
+            "horizontalSide" : "LEFT",
+            "verticalSide" : null
+          }
+        }
+      },
+      "navbar_text" : {
+        "overwrite_text_color" : false,
+        "menu_item_text_color" : {
+          "color" : "#fff",
+          "opacity" : 100
+        },
+        "menu_item_hover_text_color" : {
+          "color" : "#DAFC00",
+          "opacity" : 100
+        }
+      }
+    },
+    "mega_menu_styles" : {
+      "overwrite_link_styles" : false,
+      "link_text_color" : {
+        "color" : "#4C4C40",
+        "opacity" : 100
+      },
+      "link_background_color" : {
+        "color" : "#E7E8E3",
+        "opacity" : 100
+      },
+      "overwrite_active_link_styles" : false,
+      "active_link_text_color" : {
+        "color" : "#E7E8E3",
+        "opacity" : 100
+      },
+      "active_link_background_color" : {
+        "color" : "#2B2B2B",
+        "opacity" : 100
+      },
+      "mega_menu_background" : {
+        "overwrite_background_style" : false,
+        "background_color" : {
+          "color" : "#FFFFFF",
+          "opacity" : 100
+        }
+      },
+      "featured_mega_menu" : {
+        "background_color_on_mega_menu_column" : false,
+        "overwrite_link_hover_background_color" : false,
+        "link_hover_background_color" : {
+          "color" : null,
+          "opacity" : null
+        }
+      }
+    }
+  }
+}, {
+  "id" : "b3c028c2-fe6f-3814-07d6-fe730bb6cd95",
+  "name" : "search_option",
+  "label" : "Search Option",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "a2a38d54-b3a3-096d-1f85-e1b492a1a838",
+    "name" : "show_search_button",
+    "label" : "Show Search Button",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "29023bae-be2e-da52-9121-456417b32ffc",
+    "name" : "search_icon",
+    "label" : "Search Icon",
+    "required" : false,
+    "locked" : false,
+    "visibility": {
+      "controlling_field": null,
+      "controlling_field_path": "search_option.show_search_button",
+      "controlling_value_regex": "true",
+      "property": null,
+      "operator": "EQUAL",
+      "access": null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M17 17L21 21\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19C15.4183 19 19 15.4183 19 11Z\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"
+  },
+  {
+    "label": "Use custom search results page",
+    "name": "use_custom_search_results_template",
+    "id": "results.user_custom_search_results_template",
+    "type": "boolean",
+    "display": "toggle",
+    "visibility": {
+      "controlling_field": null,
+      "controlling_field_path": "search_option.show_search_button",
+      "controlling_value_regex": "true",
+      "property": null,
+      "operator": "EQUAL",
+      "access": null
+    },
+    "inline_help_text": "Turn this setting on to use a custom search results page instead of the default global search results page.",
+    "default": false
+  },
+  {
+    "label": "Search results page",
+    "name": "path_id",
+    "type": "page",
+    "visibility_rules": "ADVANCED",
+    "advanced_visibility": {
+      "boolean_operator": "AND",
+      "criteria": [
+        {
+          "operator": "EQUAL",
+          "controlling_field": "results.user_custom_search_results_template",
+          "controlling_value_regex": "true"
+        },
+        {
+          "controlling_field": null,
+          "controlling_field_path": "search_option.show_search_button",
+          "controlling_value_regex": "true",
+          "property": null,
+          "operator": "EQUAL",
+          "access": null
+        }
+      ]
+    },
+    "inline_help_text": "This is where people will go when they click to search their search term. Make sure to choose a page that contains the search results module."
+  },{
+    "label": "Search results include",
+    "name": "content_types",
+    "id": "346180f5-0d36-e8df-aca9-a74bfa2d7mjg6",
+    "type": "group",
+    "visibility": {
+      "controlling_field": null,
+      "controlling_field_path": "search_option.show_search_button",
+      "controlling_value_regex": "true",
+      "property": null,
+      "operator": "EQUAL",
+      "access": null
+    },
+    "children": [
+      {
+        "label": "Website pages",
+        "name": "website_pages",
+        "id": "71d525ff-37c4-6c64-1f96-d99dbb5245c",
+        "type": "boolean",
+        "visibility": {
+          "controlling_field": null,
+          "controlling_value_regex": null,
+          "operator": "NOT_EMPTY",
+          "access": {
+            "operator": "HAS_ALL",
+            "scopes": [
+              "sitepages-access"
+            ]
+          },
+          "hidden_subfields": null
+        },
+        "default": true
+      },
+      {
+        "label": "Landing pages",
+        "name": "landing_pages",
+        "id": "d6212113-19b5-c9b9-2f92-12dfc122d768c",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "label": "Blog posts",
+        "name": "blog_posts",
+        "id": "7535615c-ed26-2e34-87ef-21c5c87cchhgf6",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "label": "Knowledge articles",
+        "name": "knowledge_articles",
+        "id": "307d0eed-0cf9-7465-5715-a75c378ecvjgj45",
+        "type": "boolean",
+        "visibility": {
+          "controlling_field": null,
+          "controlling_value_regex": null,
+          "operator": null,
+          "access": {
+            "operator": "HAS_ALL",
+            "scopes": [
+              "service-knowledge-access"
+            ]
+          },
+          "hidden_subfields": null
+        },
+        "default": false
+      },
+      {
+        "label": "Case studies",
+        "name": "case_studies",
+        "type": "boolean",
+        "visibility": {
+          "access": {
+            "operator": "HAS_ALL",
+            "scopes": [
+              "case-study-access"
+            ]
+          }
+        },
+        "display": "checkbox",
+        "default": false
+      }
+    ],
+    "default": {
+      "website_pages": true,
+      "landing_pages": false,
+      "blog_posts": true,
+      "knowledge_articles": false,
+      "case_studies": false
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "show_search_button" : true,
+    "search_icon" : "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M17 17L21 21\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19C15.4183 19 19 15.4183 19 11Z\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"
+  }
+}, {
+  "id" : "460a992d-d5dd-ade0-f404-fa65803dbe3a",
+  "name" : "language_switcher",
+  "label" : "Language Switcher",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "271e6747-402f-c7a2-efe4-37efba3ab657",
+    "name" : "show_language_switcher",
+    "label" : "Show Language Switcher",
+    "help_text" : "Language Switcher will be show or not on",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "d49dd83b-e9be-c173-e863-41e0aeee2174",
+    "name" : "switcher_content_type",
+    "label" : "Switcher Content Type",
+    "required" : false,
+    "locked" : false,
+    "visibility": {
+      "controlling_field": null,
+      "controlling_field_path": "language_switcher.show_language_switcher",
+      "controlling_value_regex": "true",
+      "property": null,
+      "operator": "EQUAL",
+      "access": null
+    },
+    "display" : "select",
+    "choices" : [ [ "icon", "Icon" ], [ "language", "Language" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "icon"
+  }, {
+    "id" : "c242ae84-4775-03c1-5451-3cc3e942eb4a",
+    "name" : "icon_type",
+    "label" : "Icon Type",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules": "ADVANCED",
+    "advanced_visibility": {
+      "boolean_operator": "AND",
+      "criteria": [
+        {
+          "controlling_field_path": "language_switcher.show_language_switcher",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        {
+          "controlling_field_path": "language_switcher.switcher_content_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "icon"
+        }
+      ]
+    },
+    "display" : "select",
+    "choices" : [ [ "image", "Image File" ], [ "svg", "SVG Code" ], [ "default", "Default Globe" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "image"
+  }, {
+    "id" : "10a76571-1d4f-264f-bb53-ddddc6c7fb08",
+    "name" : "icon_svg_code",
+    "label" : "Icon SVG Code ",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules": "ADVANCED",
+    "advanced_visibility": {
+      "boolean_operator": "AND",
+      "criteria": [
+        {
+          "controlling_field_path": "language_switcher.show_language_switcher",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        {
+          "controlling_field_path": "language_switcher.switcher_content_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "icon"
+        },
+        {
+          "controlling_field_path": "language_switcher.icon_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "svg"
+        }
+      ]
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M29.3332 16.0001C29.3332 8.63628 23.3636 2.66675 15.9998 2.66675C8.63604 2.66675 2.6665 8.63628 2.6665 16.0001C2.6665 23.3638 8.63604 29.3334 15.9998 29.3334C23.3636 29.3334 29.3332 23.3638 29.3332 16.0001Z\" stroke=\"white\" stroke-width=\"1.5\"/><path d=\"M26.6668 7.59873C25.4206 7.68856 23.8243 8.17107 22.7174 9.60377C20.7182 12.1916 18.7188 12.4075 17.386 11.5449C15.3867 10.251 17.0668 8.15523 14.7203 7.01628C13.191 6.27397 12.9778 4.25401 13.829 2.66675\" stroke=\"white\" stroke-width=\"1.5\" stroke-linejoin=\"round\"/><path d=\"M2.6665 14.6667C3.68317 15.5495 5.10712 16.3577 6.78482 16.3577C10.2511 16.3577 10.9443 17.0199 10.9443 19.6691C10.9443 22.3183 10.9443 22.3183 11.6376 24.3051C12.0885 25.5975 12.2461 26.8899 11.3473 28.0001\" stroke=\"white\" stroke-width=\"1.5\" stroke-linejoin=\"round\"/><path d=\"M29.3332 17.9363C28.1504 17.2547 26.6665 16.9743 25.1644 18.0539C22.2901 20.1196 20.3084 18.4079 19.4157 20.1184C18.1018 22.6366 22.7941 23.428 18.6665 29.3332\" stroke=\"white\" stroke-width=\"1.5\" stroke-linejoin=\"round\"/></svg>"
+  }, {
+    "id" : "90f95bec-3029-5f71-539a-0d7467daaa7a",
+    "name" : "icon_image_file",
+    "label" : "Icon Image File",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules": "ADVANCED",
+    "advanced_visibility": {
+      "boolean_operator": "AND",
+      "criteria": [
+        {
+          "controlling_field_path": "language_switcher.show_language_switcher",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        {
+          "controlling_field_path": "language_switcher.switcher_content_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "icon"
+        },
+        {
+          "controlling_field_path": "language_switcher.icon_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "image"
+        }
+      ]
+    },
+    "responsive" : true,
+    "resizable" : false,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "size_type" : "auto",
+      "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/global.png",
+      "alt" : "global",
+      "loading" : "lazy",
+      "width" : 32,
+      "height" : 32,
+      "max_width" : 32,
+      "max_height" : 32
+    }
+  }, {
+    "id" : "33c1eeda-0753-b20c-3c08-786131e95782",
+    "name" : "icon",
+    "label" : "Default Globe",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules": "ADVANCED",
+    "advanced_visibility": {
+      "boolean_operator": "AND",
+      "criteria": [
+        {
+          "controlling_field_path": "language_switcher.show_language_switcher",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        {
+          "controlling_field_path": "language_switcher.switcher_content_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "icon"
+        },
+        {
+          "controlling_field_path": "language_switcher.icon_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "default"
+        }
+      ]
+    },
+    "responsive" : true,
+    "resizable" : false,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "size_type" : "auto",
+      "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/icons8-globe-48.png",
+      "alt" : "icons8-globe-48",
+      "loading" : "lazy",
+      "width" : 48,
+      "height" : 48,
+      "max_width" : 48,
+      "max_height" : 48
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "show_language_switcher" : true,
+    "switcher_content_type" : "icon",
+    "icon_type" : "image",
+    "icon_svg_code" : "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M29.3332 16.0001C29.3332 8.63628 23.3636 2.66675 15.9998 2.66675C8.63604 2.66675 2.6665 8.63628 2.6665 16.0001C2.6665 23.3638 8.63604 29.3334 15.9998 29.3334C23.3636 29.3334 29.3332 23.3638 29.3332 16.0001Z\" stroke=\"white\" stroke-width=\"1.5\"/><path d=\"M26.6668 7.59873C25.4206 7.68856 23.8243 8.17107 22.7174 9.60377C20.7182 12.1916 18.7188 12.4075 17.386 11.5449C15.3867 10.251 17.0668 8.15523 14.7203 7.01628C13.191 6.27397 12.9778 4.25401 13.829 2.66675\" stroke=\"white\" stroke-width=\"1.5\" stroke-linejoin=\"round\"/><path d=\"M2.6665 14.6667C3.68317 15.5495 5.10712 16.3577 6.78482 16.3577C10.2511 16.3577 10.9443 17.0199 10.9443 19.6691C10.9443 22.3183 10.9443 22.3183 11.6376 24.3051C12.0885 25.5975 12.2461 26.8899 11.3473 28.0001\" stroke=\"white\" stroke-width=\"1.5\" stroke-linejoin=\"round\"/><path d=\"M29.3332 17.9363C28.1504 17.2547 26.6665 16.9743 25.1644 18.0539C22.2901 20.1196 20.3084 18.4079 19.4157 20.1184C18.1018 22.6366 22.7941 23.428 18.6665 29.3332\" stroke=\"white\" stroke-width=\"1.5\" stroke-linejoin=\"round\"/></svg>",
+    "icon_image_file" : {
+      "size_type" : "auto",
+      "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/global.png",
+      "alt" : "global",
+      "loading" : "lazy",
+      "width" : 32,
+      "height" : 32,
+      "max_width" : 32,
+      "max_height" : 32
+    },
+    "icon" : {
+      "size_type" : "auto",
+      "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/icons8-globe-48.png",
+      "alt" : "icons8-globe-48",
+      "loading" : "lazy",
+      "width" : 48,
+      "height" : 48,
+      "max_width" : 48,
+      "max_height" : 48
+    }
+  }
+},{
+  "id": "add_to_cart_group_id",
+  "name": "add_to_cart",
+  "label": "Add to Cart",
+  "required": false,
+  "locked": false,
+  "type": "group",
+  "children": [
+    {
+      "id": "show_cart_button_id",
+      "name": "show_add_to_cart",
+      "label": "Show Add to Cart Button",
+      "required": false,
+      "locked": false,
+      "display": "toggle",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "id": "cart_icon_id",
+      "name": "cart_icon",
+      "label": "Cart Icon",
+      "required": false,
+      "locked": false,
+      "visibility": {
+        "controlling_field_path": "add_to_cart.show_add_to_cart",
+        "controlling_value_regex": "true",
+        "operator": "EQUAL"
+      },
+      "allow_new_line": false,
+      "type": "text",
+      "default": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M8 7H16C17.8856 7 18.8284 7 19.4142 7.58579C20 8.17157 20 9.11438 20 11V15C20 18.2998 20 19.9497 18.9749 20.9749C17.9497 22 16.2998 22 13 22H11C7.70017 22 6.05025 22 5.02513 20.9749C4 19.9497 4 18.2998 4 15V11C4 9.11438 4 8.17157 4.58579 7.58579C5.17157 7 6.11438 7 8 7Z\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M16 9.5C16 5.63401 14.2091 2 12 2C9.79086 2 8 5.63401 8 9.5\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"
+    },
+    {
+      "id": "cart_link_id",
+      "name": "cart_link",
+      "label": "Cart Link",
+      "required": false,
+      "locked": false,
+      "visibility": {
+        "controlling_field_path": "add_to_cart.show_add_to_cart",
+        "controlling_value_regex": "true",
+        "operator": "EQUAL"
+      },
+      "type": "link",
+      "default": {
+        "url": {
+          "type": "EXTERNAL",
+          "content_id": null,
+          "href": "https://www.hubspot.com"
+        },
+        "open_in_new_tab": false,
+        "no_follow": false
+      }
+    }
+  ],
+  "tab": "CONTENT",
+  "expanded": false,
+  "default": {
+    "show_add_to_cart": true,
+    "cart_icon": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M8 7H16C17.8856 7 18.8284 7 19.4142 7.58579C20 8.17157 20 9.11438 20 11V15C20 18.2998 20 19.9497 18.9749 20.9749C17.9497 22 16.2998 22 13 22H11C7.70017 22 6.05025 22 5.02513 20.9749C4 19.9497 4 18.2998 4 15V11C4 9.11438 4 8.17157 4.58579 7.58579C5.17157 7 6.11438 7 8 7Z\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M16 9.5C16 5.63401 14.2091 2 12 2C9.79086 2 8 5.63401 8 9.5\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"
+  }
+}, {
+  "id" : "1ea67351-e90b-362c-a64e-7438c7df9765",
+  "name" : "call_to_action_buttons",
+  "label" : "Call To Action Buttons",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "726472b6-9c63-4c2f-9352-ad5e580004c6",
+    "name" : "hide_cta_buttons",
+    "label" : "Hide CTA Buttons",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  },
+  {
+    "id": "7a2f8b1c-3e4d-5a6b-7c8d-9e0f1a2b3c4d",
+    "name": "button_repeater",
+    "label": "Button List",
+    "required": false,
+    "locked": false,
+    "occurrence": {
+      "max": 1,
+      "sorting_label_field": null,
+      "default": 1
+    },
+    "visibility": {
+      "controlling_field": null,
+      "controlling_field_path": "call_to_action_buttons.hide_cta_buttons",
+      "controlling_value_regex": "true",
+      "property": null,
+      "operator": "NOT_EQUAL",
+      "access": null
+    },
+    "children": [
+      {
+        "id": "b1a2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d",
+        "name": "button_text",
+        "label": "Button Label",
+        "required": false,
+        "locked": false,
+        "visibility": {
+          "controlling_field": null,
+          "controlling_field_path": "call_to_action_buttons.button_repeater.keep_only_icon",
+          "controlling_value_regex": "false",
+          "property": null,
+          "operator": "EQUAL",
+          "access": null
+        },
+        "allow_new_line": false,
+        "type": "text",
+        "display_width": null,
+        "default": "See All Trainers"
+      },
+      {
+        "id": "c2d3e4f5-a6b7-4c8d-9e0f-1a2b3c4d5e6f",
+        "name": "link",
+        "label": "Button Link",
+        "required": false,
+        "locked": false,
+        "supported_types": [
+          "EXTERNAL",
+          "CONTENT",
+          "FILE",
+          "EMAIL_ADDRESS",
+          "BLOG"
+        ],
+        "show_advanced_rel_options": false,
+        "type": "link",
+        "display_width": null,
+        "default": {
+          "url": {
+            "type": "EXTERNAL",
+            "href": "https://www.google.com"
+          }
+        }
+      },
+      {
+        "id": "d3e4f5a6-b7c8-4d9e-0f1a-2b3c4d5e6f7a",
+        "name": "button_type",
+        "label": "Button Variant",
+        "required": false,
+        "locked": false,
+        "visibility": {
+          "controlling_field": null,
+          "controlling_field_path": "call_to_action_buttons.button_repeater.keep_only_icon",
+          "controlling_value_regex": "false",
+          "property": null,
+          "operator": "EQUAL",
+          "access": null
+        },
+        "display": "select",
+        "choices": [
+          [
+            "primary",
+            "Primary Button"
+          ],
+          [
+            "secondary",
+            "Secondary Button"
+          ]
+        ],
+        "multiple": false,
+        "reordering_enabled": true,
+        "preset": null,
+        "type": "choice",
+        "display_width": null,
+        "default": "primary"
+      },
+      {
+        "id": "71b7f52a-0193-af03-6d77-bb3bcac0d9a7",
+        "name": "turn_on_button_icon",
+        "label": "Turn on Button Icon",
+        "required": false,
+        "locked": false,
+        "display": "toggle",
+        "type": "boolean",
+        "display_width": null,
+        "default": false
+      },
+      {
+        "id": "ca40b4a8-7f25-5095-e485-c98cda4b9cb2",
+        "name": "button_icon_type",
+        "label": "Button Icon Type",
+        "required": false,
+        "locked": false,
+        "visibility": {
+          "controlling_field": null,
+          "controlling_field_path": "call_to_action_buttons.button_repeater.turn_on_button_icon",
+          "controlling_value_regex": "true",
+          "property": null,
+          "operator": "EQUAL",
+          "access": null
+        },
+        "display": "select",
+        "choices": [
+          [
+            "svg",
+            "SVG Icon"
+          ],
+          [
+            "custom",
+            "Custom Icon"
+          ]
+        ],
+        "multiple": false,
+        "reordering_enabled": true,
+        "preset": null,
+        "type": "choice",
+        "display_width": null,
+        "default": "svg"
+      },
+      {
+        "id": "60fd7eea-4ea0-789b-9824-eaa1e20b3ec8",
+        "name": "svg_icon",
+        "label": "SVG Icon",
+        "required": false,
+        "locked": false,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.turn_on_button_icon",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            },
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.button_icon_type",
+              "controlling_value_regex": "svg",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            }
+          ],
+          "children": []
+        },
+        "allow_new_line": false,
+        "type": "text",
+        "display_width": null,
+        "default": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\">  <path d=\"M13.4804 19.9083C13.4956 19.9235 13.9597 20.0399 14.5117 20.1668C15.0639 20.2937 15.5216 20.3781 15.5289 20.3545C15.5362 20.3309 15.5933 19.9477 15.6558 19.5029C15.7813 18.6098 16.0851 17.567 16.4097 16.9148C17.4217 14.8823 19.2372 13.5364 21.4393 13.1866L22 13.0975L22 12.1997L22 11.3017L21.4918 11.2164C18.162 10.6578 15.9912 8.16812 15.5851 4.44229C15.5586 4.199 15.5269 4 15.5147 4C15.4024 4 13.5416 4.44845 13.5064 4.48397C13.481 4.50966 13.4999 4.73774 13.5486 4.99073C14.087 7.79214 15.6287 10.0717 17.6294 11.0249L18.1094 11.2535L8.24046 11.2714L2 11.2828L2 13.1L8.25651 13.1113L18.1021 13.1293L17.4963 13.4363C15.9244 14.2326 14.68 15.7947 13.9472 17.8914C13.7383 18.4888 13.4232 19.8506 13.4804 19.9083Z\" fill=\"#101000\"/></svg>"
+      },
+      {
+        "id": "140837f5-543f-208e-07f0-d68cc17a8d14",
+        "name": "custom_icon",
+        "label": "Custom Icon",
+        "required": false,
+        "locked": false,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.turn_on_button_icon",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            },
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.button_icon_type",
+              "controlling_value_regex": "custom",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            }
+          ],
+          "children": []
+        },
+        "icon_set": "fontawesome-5.14.0",
+        "type": "icon",
+        "display_width": null,
+        "default": {
+          "name": "Alternate Long Arrow Right",
+          "unicode": "f30b",
+          "type": "SOLID"
+        }
+      },
+      {
+        "id": "75e93451-e4c0-0d39-893d-1f68d311ef15",
+        "name": "keep_only_icon",
+        "label": "Keep Only Icon",
+        "required": false,
+        "locked": false,
+        "visibility": {
+          "controlling_field": null,
+          "controlling_field_path": "call_to_action_buttons.button_repeater.turn_on_button_icon",
+          "controlling_value_regex": "true",
+          "property": null,
+          "operator": "EQUAL",
+          "access": null
+        },
+        "display": "checkbox",
+        "type": "boolean",
+        "display_width": null,
+        "default": false
+      },
+      {
+        "id": "125086c4-306e-7faf-5b0a-621986ad91e6",
+        "name": "override_styles",
+        "label": "Override Styles",
+        "required": false,
+        "locked": false,
+        "display": "toggle",
+        "type": "boolean",
+        "display_width": null,
+        "default": false
+      },
+      {
+        "id": "22068aae-1f25-8c79-c798-985e1ba57dd8",
+        "name": "hide_show_color_settings",
+        "label": "Show/Hide Color Settings",
+        "required": false,
+        "locked": false,
+        "visibility": {
+          "controlling_field": null,
+          "controlling_field_path": "call_to_action_buttons.button_repeater.override_styles",
+          "controlling_value_regex": "true",
+          "property": null,
+          "operator": "EQUAL",
+          "access": null
+        },
+        "display": "checkbox",
+        "type": "boolean",
+        "display_width": null,
+        "default": false
+      },
+      {
+        "id": "e4f5a6b7-c8d9-4e0f-1a2b-3c4d5e6f7a8b",
+        "name": "custom_text_color",
+        "label": "Text Color",
+        "help_text": "Leave empty to use theme default",
+        "required": false,
+        "locked": false,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.override_styles",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            },
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.hide_show_color_settings",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            }
+          ],
+          "children": []
+        },
+        "type": "color",
+        "display_width": null,
+        "default": {
+          "color": null,
+          "opacity": null,
+          "rgb": null,
+          "rgba": null,
+          "hex": null
+        }
+      },
+      {
+        "id": "f5a6b7c8-d9e0-4f1a-2b3c-4d5e6f7a8b9c",
+        "name": "custom_bg_color",
+        "label": "Background Color",
+        "help_text": "Leave empty to use theme default",
+        "required": false,
+        "locked": false,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.override_styles",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            },
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.hide_show_color_settings",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            }
+          ],
+          "children": []
+        },
+        "type": "color",
+        "display_width": null,
+        "default": {
+          "color": null,
+          "opacity": null,
+          "rgb": null,
+          "rgba": null,
+          "hex": null
+        }
+      },
+      {
+        "id": "5baa9224-fedd-a75f-14dc-1107dcd5422c",
+        "name": "hide_show_hover_settings",
+        "label": "Show/Hide Hover Settings",
+        "required": false,
+        "locked": false,
+        "visibility": {
+          "controlling_field": null,
+          "controlling_field_path": "call_to_action_buttons.button_repeater.override_styles",
+          "controlling_value_regex": "true",
+          "property": null,
+          "operator": "EQUAL",
+          "access": null
+        },
+        "display": "checkbox",
+        "type": "boolean",
+        "display_width": null,
+        "default": false
+      },
+      {
+        "id": "h7i8j9k0-l1m2-4n3o-4p5q-6r7s8t9u0v1w",
+        "name": "hover_bg_color",
+        "label": "Hover Background Color",
+        "help_text": "Leave empty to use theme default",
+        "required": false,
+        "locked": false,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.override_styles",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            },
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.hide_show_hover_settings",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            }
+          ],
+          "children": []
+        },
+        "type": "color",
+        "display_width": null,
+        "default": {
+          "color": null,
+          "opacity": null,
+          "rgb": null,
+          "rgba": null,
+          "hex": null
+        }
+      },
+      {
+        "id": "g6h7i8j9-k0l1-4m2n-3o4p-5q6r7s8t9u0v",
+        "name": "hover_text_color",
+        "label": "Hover Text Color",
+        "help_text": "Leave empty to use theme default",
+        "required": false,
+        "locked": false,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.override_styles",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            },
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.hide_show_hover_settings",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            }
+          ],
+          "children": []
+        },
+        "type": "color",
+        "display_width": null,
+        "default": {
+          "color": null,
+          "opacity": null,
+          "rgb": null,
+          "rgba": null,
+          "hex": null
+        }
+      },
+      {
+        "id": "f2f8f533-5a53-43ba-aeb9-e5d6b2c1a78f",
+        "name": "hide_show_border_settings",
+        "label": "Show/Hide Border Settings",
+        "required": false,
+        "locked": false,
+        "visibility": {
+          "controlling_field": null,
+          "controlling_field_path": "call_to_action_buttons.button_repeater.override_styles",
+          "controlling_value_regex": "true",
+          "property": null,
+          "operator": "EQUAL",
+          "access": null
+        },
+        "display": "checkbox",
+        "type": "boolean",
+        "display_width": null,
+        "default": false
+      },
+      {
+        "id": "k0l1m2n3-o4p5-4q6r-7s8t-9u0v1w2x3y4z",
+        "name": "custom_border_radius",
+        "label": "Border Radius",
+        "help_text": "In pixels - Leave empty to use theme default",
+        "required": false,
+        "locked": false,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.override_styles",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            },
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.hide_show_border_settings",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            }
+          ],
+          "children": []
+        },
+        "display": "slider",
+        "step": 1,
+        "suffix": "px",
+        "type": "number",
+        "display_width": null
+      },
+      {
+        "id": "i8j9k0l1-m2n3-4o4p-5q6r-7s8t9u0v1w2x",
+        "name": "hover_border_color",
+        "label": "Hover Border Color",
+        "help_text": "Leave empty to use theme default",
+        "required": false,
+        "locked": false,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.override_styles",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            },
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.hide_show_border_settings",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            }
+          ],
+          "children": []
+        },
+        "type": "color",
+        "display_width": null,
+        "default": {
+          "color": null,
+          "opacity": null,
+          "rgb": null,
+          "rgba": null,
+          "hex": null
+        }
+      },
+      {
+        "id": "l1m2n3o4-p5q6-4r7s-8t9u-0v1w2x3y4z5a",
+        "name": "hover_border_width",
+        "label": "Hover Border Width",
+        "help_text": "In pixels - Leave empty to use theme default (2px)",
+        "required": false,
+        "locked": false,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.override_styles",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            },
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.hide_show_border_settings",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            }
+          ],
+          "children": []
+        },
+        "display": "text",
+        "step": 1,
+        "suffix": "px",
+        "type": "number",
+        "display_width": null
+      },
+      {
+        "id": "04868614-368f-a77b-7a6a-e978ab1a74af",
+        "name": "hide_show_font_settings",
+        "label": "Show/Hide Font Settings",
+        "required": false,
+        "locked": false,
+        "visibility": {
+          "controlling_field": null,
+          "controlling_field_path": "call_to_action_buttons.button_repeater.override_styles",
+          "controlling_value_regex": "true",
+          "property": null,
+          "operator": "EQUAL",
+          "access": null
+        },
+        "display": "checkbox",
+        "type": "boolean",
+        "display_width": null,
+        "default": false
+      },
+      {
+        "id": "a6b7c8d9-e0f1-4a2b-3c4d-5e6f7a8b9c0d",
+        "name": "button_font",
+        "label": "Font Settings",
+        "help_text": "Leave empty to use theme default",
+        "required": false,
+        "locked": false,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.override_styles",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            },
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.hide_show_font_settings",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            }
+          ],
+          "children": []
+        },
+        "load_external_fonts": true,
+        "type": "font",
+        "display_width": null,
+        "default": {
+          "font": null,
+          "font_set": "DEFAULT",
+          "styles": null,
+          "size": null,
+          "size_unit": null,
+          "color": null,
+          "variant": null,
+          "fallback": null,
+          "style": null
+        }
+      },
+      {
+        "id": "25bc4e21-7c5e-ad0d-5603-f80a53629c91",
+        "name": "hide_show_padding_settings",
+        "label": "Show/Hide Padding Settings",
+        "required": false,
+        "locked": false,
+        "visibility": {
+          "controlling_field": null,
+          "controlling_field_path": "call_to_action_buttons.button_repeater.override_styles",
+          "controlling_value_regex": "true",
+          "property": null,
+          "operator": "EQUAL",
+          "access": null
+        },
+        "display": "checkbox",
+        "type": "boolean",
+        "display_width": null,
+        "default": false
+      },
+      {
+        "id": "n3o4p5q6-r7s8-4t9u-0v1w-2x3y4z5a6b7c",
+        "name": "padding_vertical",
+        "label": "Vertical Padding",
+        "help_text": "In pixels - Leave empty to use theme default",
+        "required": false,
+        "locked": false,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.override_styles",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            },
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.hide_show_padding_settings",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            }
+          ],
+          "children": []
+        },
+        "display": "text",
+        "step": 1,
+        "suffix": "px",
+        "type": "number",
+        "display_width": null
+      },
+      {
+        "id": "o4p5q6r7-s8t9-4u0v-1w2x-3y4z5a6b7c8d",
+        "name": "padding_horizontal",
+        "label": "Horizontal Padding",
+        "help_text": "In pixels - Leave empty to use theme default",
+        "required": false,
+        "locked": false,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.override_styles",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            },
+            {
+              "controlling_field": null,
+              "controlling_field_path": "call_to_action_buttons.button_repeater.hide_show_padding_settings",
+              "controlling_value_regex": "true",
+              "property": null,
+              "operator": "EQUAL",
+              "access": null
+            }
+          ],
+          "children": []
+        },
+        "display": "text",
+        "step": 1,
+        "suffix": "px",
+        "type": "number",
+        "display_width": null
+      }
+    ],
+    "tab": "CONTENT",
+    "expanded": false,
+    "group_occurrence_meta": null,
+    "type": "group",
+    "display_width": null,
+    "default": [
+      {
+        "button_text": "See All Trainers",
+        "link": {
+          "url": {
+            "type": "EXTERNAL",
+            "href": "https://www.google.com"
+          }
+        },
+        "button_type": "primary",
+        "turn_on_button_icon": false,
+        "button_icon_type": "svg",
+        "svg_icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\">  <path d=\"M13.4804 19.9083C13.4956 19.9235 13.9597 20.0399 14.5117 20.1668C15.0639 20.2937 15.5216 20.3781 15.5289 20.3545C15.5362 20.3309 15.5933 19.9477 15.6558 19.5029C15.7813 18.6098 16.0851 17.567 16.4097 16.9148C17.4217 14.8823 19.2372 13.5364 21.4393 13.1866L22 13.0975L22 12.1997L22 11.3017L21.4918 11.2164C18.162 10.6578 15.9912 8.16812 15.5851 4.44229C15.5586 4.199 15.5269 4 15.5147 4C15.4024 4 13.5416 4.44845 13.5064 4.48397C13.481 4.50966 13.4999 4.73774 13.5486 4.99073C14.087 7.79214 15.6287 10.0717 17.6294 11.0249L18.1094 11.2535L8.24046 11.2714L2 11.2828L2 13.1L8.25651 13.1113L18.1021 13.1293L17.4963 13.4363C15.9244 14.2326 14.68 15.7947 13.9472 17.8914C13.7383 18.4888 13.4232 19.8506 13.4804 19.9083Z\" fill=\"#101000\"/></svg>",
+        "custom_icon": {
+          "name": "Alternate Long Arrow Right",
+          "unicode": "f30b",
+          "type": "SOLID"
+        },
+        "keep_only_icon": false,
+        "override_styles": false,
+        "hide_show_color_settings": false,
+        "custom_text_color": {
+          "color": null,
+          "opacity": null,
+          "rgb": null,
+          "rgba": null,
+          "hex": null
+        },
+        "custom_bg_color": {
+          "color": null,
+          "opacity": null,
+          "rgb": null,
+          "rgba": null,
+          "hex": null
+        },
+        "hide_show_hover_settings": false,
+        "hover_bg_color": {
+          "color": null,
+          "opacity": null,
+          "rgb": null,
+          "rgba": null,
+          "hex": null
+        },
+        "hover_text_color": {
+          "color": null,
+          "opacity": null,
+          "rgb": null,
+          "rgba": null,
+          "hex": null
+        },
+        "hide_show_border_settings": false,
+        "hover_border_color": {
+          "color": null,
+          "opacity": null,
+          "rgb": null,
+          "rgba": null,
+          "hex": null
+        },
+        "hide_show_font_settings": false,
+        "button_font": {
+          "font": null,
+          "font_set": "DEFAULT",
+          "styles": null,
+          "size": null,
+          "size_unit": null,
+          "color": null,
+          "variant": null,
+          "fallback": null,
+          "style": null
+        },
+        "hide_show_padding_settings": false
+      }
+    ]
+  }
+ ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "hide_cta_buttons" : false,
+    "cta_buttons_group" : [ {
+      "cta_label" : "Join Now",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ]
+  }
+} ]

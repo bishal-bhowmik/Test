@@ -1,0 +1,360 @@
+<!--
+templateType: "blog_post"
+label: "Blog post"
+isAvailableForNewContent: true
+screenshotPath: ../Images/Page-template/blog-details.png
+-->
+
+{# --- Connect to base.html #}
+{% extends "../layouts/base.html" %}
+
+{# --- Add the global Macro functions #}
+{# {% include "../../macros/main.html" %} #}
+
+{# --- Add the global js #}
+{% include "../../js/main.js" %}
+
+
+{% block body %}
+  {# Hero #}
+<section class="section blog-hero reveal-card" id="{{ name }}">
+
+<div class="hero-bg"
+      style="background-image:url('{{ content.featured_image }}');">
+</div>
+
+<div class="hero-overlay"></div>
+<div class="container">
+
+<div class=" hero-content">
+
+  <h3 class="hero-label">BLOG</h3>
+
+  <h2 class="hero-title">
+    {{ content.name }}
+  </h2>
+
+  <div class="hero-meta">
+
+    <div class="meta-item">
+      <p class="meta-label">AUTHOR</p>
+      <h6 class="meta-value">
+        {{ content.blog_author.display_name }}
+      </h6>
+    </div>
+
+    <div class="meta-item">
+      <p class="meta-label">PUBLISH DATE</p>
+      <h6 class="meta-value">
+        {{ content.publish_date|datetimeformat('%b %d, %Y') }}
+      </h6>
+    </div>
+
+    <div class="meta-item">
+      <p class="meta-label">LAST UPDATE</p>
+      <h6 class="meta-value">
+        {{ content.updated|datetimeformat('%b %d, %Y') }}
+      </h6>
+    </div>
+
+    
+
+  </div>
+
+</div>
+
+</div>
+</section>
+
+
+<main class="section reveal-card">
+<div class="body-container body-container--fitmax-blog-post container container-inner">
+
+  <div>
+    {% module "narration" path="@hubspot/blog_audio",
+    overrideable=False, styles={ groupColors: { override: 'custom', background: { color: '#0091ae' }, text: { color: '#ffbcac' }, hover: { color: '#01012A' }, }, } %}
+  </div>
+
+  <div class="content-wrapper fitmax-blog-post__body-wrapper-2-menu ">
+    <article class="fitmax-blog-post">
+      <div class="fitmax-blog-post__body-contents-wrapper gap-40">
+
+        {# Side Menu (TOC) #}
+        <div class="fitmax-blog-post__menu">
+          {% module "module_17715048432103" path="../../modules/Blog Menu", label="Blog Menu" %}
+        </div>
+
+        {# Blog Content Body #}
+        <div class="fitmax-blog-post__body">
+          {% if content.tag_list %}
+          <div class="fitmax-blog-post__tags">
+            {% for tag in content.tag_list | sort(False, False, "name")%}
+              <span class="tag-bullet">•</span>
+              <a class="fitmax-blog-post__tag-link" href="{{ blog_tag_url(group.id, tag.slug) }}">{{ tag.name }}</a>
+              
+            {% endfor %}
+          </div>
+          {% endif %}
+          
+          {{ content.post_body }}
+
+          <div class="social-link">
+          {% module "module_17715701043052" path="../../modules/Blog Social Link", label="Blog Social Link" %}
+          </div>
+
+          <div class="author-footer">
+          <section class="author-section" id="{{name}}">
+<div class="author-container gap-40">
+
+  <div class="top-section">
+    {% if content.blog_author.avatar %}
+      <img src="{{ content.blog_author.avatar }}"
+            alt="{{ content.blog_author.display_name }}"
+            class="author-img rounded">
+    {% endif %}
+
+    <div class="author-details">
+      <div class="social-text">
+        <h6>{{ content.blog_author.display_name }}</h6>
+      </div>      
+        
+    </div>
+  </div>
+
+  <div class="author-content">
+    {% if content.blog_author.bio %}
+      <div class="author-bio">
+        <p> {{ content.blog_author.bio }}</p>
+      </div>
+    {% endif %}
+
+    <div class="author-button mt-20">
+    {% module "module_17715809860472" path="../../modules/Button", label="Button" %}
+    </div>
+  </div>
+
+</div>
+</section>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    
+  </div>
+
+  <style>
+.container{
+width:100%;
+}
+.blog-hero{
+position:relative;
+min-height:420px;
+display:flex;
+align-items:flex-end;
+color:white;
+overflow:hidden;
+}
+
+.hero-bg{
+position:absolute;
+inset:0;
+background-size:cover;
+background-position:top;
+z-index:1;
+}
+
+.hero-overlay{
+position:absolute;
+inset:0;
+z-index:2;
+background:linear-gradient(
+  to bottom,
+  rgba(0,0,0,0.2) 0%,
+  rgba(0,0,0,0.65) 70%,
+  rgba(0,0,0,0.9) 100%
+);
+}
+
+.hero-content{
+position:relative;
+z-index:3;
+
+}
+
+.hero-label{
+color:var(--color-brand-primary);
+margin-bottom:10px;
+}
+
+.hero-title {
+margin:0 0 30px;
+color:var(--color-text-tertiary);
+text-transform:uppercase;
+}
+
+.hero-meta{
+display:flex;
+gap:40px;
+flex-wrap:wrap;
+  color:var(--color-text-tertiary);
+}
+.meta-label,.meta-value{
+color:var(--color-text-tertiary);
+}
+.meta-item{
+display:flex;
+flex-direction:column;
+
+}
+
+
+
+
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+
+.hero-meta{
+flex-direction:column;
+gap:24px;
+}
+.hero-content{
+text-align:center;
+padding: 0;
+}
+
+.blog-hero{
+min-height:732px;
+}
+
+}
+
+    .fitmax-blog-post__body-contents-wrapper {
+      display: grid;
+      grid-template-columns: 350px 1fr !important;
+      
+      align-items: start;
+    }
+
+    .fitmax-blog-post__menu {
+      position: sticky;
+      top: 100px;
+      z-index: 10;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+    }
+
+    .fitmax-blog-post__menu::-webkit-scrollbar { width: 0; background: transparent; }
+
+    .fitmax-blog-post__body {
+      grid-column: span 1;
+    }
+
+    /* --- UPDATED TAG STYLING --- */
+    .fitmax-blog-post__tags {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+  margin-bottom:10px;
+    }
+
+    .tag-bullet {
+      color: var(--color-text-primary);
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    .fitmax-blog-post__tag-link {
+        color: var(--color-text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s ease;
+    }
+
+    .fitmax-blog-post__tag-link:hover {
+      text-decoration: underline;
+      opacity: 0.7;
+    }
+    /* -------Author------------------- */
+.author-section {
+padding: 30px 0;
+}
+
+.author-container {
+display: flex;
+align-items: flex-start;
+flex-direction: column;
+justify-content: flex-start;
+gap: 10px;
+}
+
+.top-section {
+display: flex;
+gap: 15px;
+align-items: center;
+}
+
+.author-img {
+width: 90px;
+height: 90px;
+
+object-fit: cover;
+}
+
+
+
+
+.author-bio {
+color: var(--color-text-secondary);
+line-height: 1.6;
+}
+
+
+
+    
+    @media(max-width:991px){
+      .fitmax-blog-post__body-contents-wrapper {
+        grid-template-columns: 1fr !important;
+      }
+      .fitmax-blog-post__menu {
+        position: relative;
+        top: 0;
+        max-height: none;
+        
+      }
+    }
+  </style>
+</div>
+{% module "module_17725309609771" path="../../modules/Modern Blog Cards", label="Modern Blog Cards" %}
+</main>
+
+
+{% endblock body %}
+
+{% require_js %}
+<script>
+(function fitmaxMobileTOC() {
+  const menu = document.querySelector('.fitmax-blog-post__menu');
+  if (!menu) return;
+  menu.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href*="#"]');
+    if (!a) return;
+    
+    const id = a.getAttribute('href').split('#').pop();
+    const target = document.getElementById(id);
+    if (target) {
+      e.preventDefault();
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const offset = isMobile ? 120 : 150; 
+      
+      const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+    }
+  });
+})();
+</script>
+{% end_require_js %}

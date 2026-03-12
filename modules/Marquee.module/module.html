@@ -1,0 +1,113 @@
+{% require_css %}
+<style>
+  {% scope_css %}
+  .container-marquee {
+    background: {{ module.style.marquee_settings.background.css }};
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .container-inner-marquee {
+    display: flex;
+    width: fit-content;
+    will-change: transform; 
+    animation: marquee-scroll {{ module.style.marquee_settings.marquee_speed }}s linear infinite; 
+  }
+
+  {% if module.style.marquee_settings.pause_on_hover %}
+  .container-inner-marquee:hover {
+    animation-play-state: paused;
+  }
+  {% endif %}
+
+  .icon {
+    display: flex; 
+    align-items: center;
+    margin-right: 15px; 
+    flex-shrink: 0; 
+  }
+
+ .icon svg, .icon img {
+  fill: {{ module.style.marquee_settings.icon_color.css }};
+  width: 48px;
+  height: 48px;
+  object-fit: contain; 
+}
+
+  .marquee-item {
+    display: flex;
+    align-items: center; 
+    white-space: nowrap;
+    text-transform: capitalize;
+   
+  }
+
+  @keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 1920px) { .marquee-item { font-size: 14.4px; } }
+  @media (max-width: 1728px) { .marquee-item { font-size: 12px; } }
+  @media (max-width: 1440px) { .marquee-item { font-size: 10.7px; } }
+  @media (max-width: 1280px) { .marquee-item { font-size: 10px; } }
+  @media (max-width: 1024px) { .marquee-item { font-size: 9px; } }
+  @media (max-width: 768px)  { .marquee-item { font-size: 16px; } }
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<section class="container-marquee bg-brand-primary">
+  <div class="container-inner-marquee" id="marquee-track">
+    {% for item in module.marquee_items.marquee_item %}
+
+    <div class="marquee-item pt-20 pb-20 pl-40">
+      
+      {% if item.icon_type == "svg_code" %}
+        <div class="icon">
+          {{ item.svg_code }}
+        </div>
+      
+      {% elif item.icon_type == "image" %}
+        <div class="icon">
+          {% if item.image_field.src %}
+             
+            <img src="{{ item.image_field.src|escape_url }}" alt="{{ item.image_field.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+          {% endif %}
+        </div>
+
+      {% elif item.icon_type == "hubspot_icon" %}
+        <div class="icon"> 
+          {% icon
+            name="{{ item.hubspot_icon.name }}"
+            style="{{ item.hubspot_icon.type }}"
+            unicode="{{ item.hubspot_icon.unicode }}"
+            icon_set="{{ item.hubspot_icon.icon_set }}"
+          %}
+        </div>
+      {% endif %}
+
+      <div class="richtext">{{ item.richtext_field }}</div>
+    </div>
+
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const track = document.getElementById('marquee-track');
+    if(track) {
+      const fragment = document.createDocumentFragment();
+      const items = Array.from(track.children);
+
+      items.forEach(item => {
+        const clone = item.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true'); 
+        fragment.appendChild(clone);
+      });
+      
+      track.appendChild(fragment);
+    }
+  });
+</script>

@@ -1,0 +1,1357 @@
+[ {
+  "id" : "d54a7bd6-12af-2cb1-6162-6fd5f1c0c5ee",
+  "name" : "section_label",
+  "label" : "Section Label",
+  "required" : false,
+  "locked" : false,
+  "type" : "richtext",
+  "display_width" : null,
+  "default" : "<h1 class='text-tertiary'>SEE HOW OUR CLIENT TRANSFORMED</h1>"
+}, {
+  "id" : "5a822097-c250-48e0-a931-15c0d52b47f1",
+  "name" : "testimonial_items",
+  "label" : "Testimonial Items",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 2,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : 3
+  },
+  "children" : [ {
+    "id" : "6b29f031-12cd-48e9-b541-32a5e8c1b2f3",
+    "name" : "client_stats",
+    "label" : "Client Statistics",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "1d4285f1-8a3b-4c5e-9f6d-2a1b5c3d4e7f",
+      "name" : "client_name",
+      "label" : "Name",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "display_width" : null,
+      "default" : "<h5 class='text-tertiary'>THIERY HENRY</h5>"
+    }, {
+      "id" : "9e8f7d6c-5b4a-3921-08d7-c6b5a4f3e2d1",
+      "name" : "age",
+      "label" : "Age",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "display_width" : null,
+      "default" : "<p class='text-tertiary'>Age: 42</p>"
+    }, {
+      "id" : "2a3b4c5d-6e7f-8901-2345-67890abcdef1",
+      "name" : "icon_type",
+      "label" : "Icon Type",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "svg", "SVG Code" ], [ "hubspot", "Hubspot Icon" ], [ "image", "Image Icon" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "svg"
+    }, {
+      "id" : "3b4c5d6e-7f89-0123-4567-890abcdef12",
+      "name" : "svg_icon",
+      "label" : "SVG Icon",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "testimonial_items.client_stats.icon_type",
+        "controlling_value_regex" : "svg",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"52\" height=\"39\" viewBox=\"0 0 52 39\" fill=\"none\"> <g clip-path=\"url(#clip0_9592_4040)\"> <path d=\"M30.0625 24.388C29.8386 24.2363 29.611 24.09 29.38 23.9492L34.0893 21.3557L32.5975 16.8155L32.5585 16.6952V16.5685L32.5098 14.5047L19.8282 21.489H19.812L0 32.4285L3.25975 38.35L21.476 28.2912C22.9794 28.4138 24.4356 28.8747 25.7357 29.6396C27.0358 30.4044 28.1461 31.4534 28.9835 32.708C30.1006 34.3688 30.6959 36.3256 30.693 38.3272H37.4432C37.4462 35.577 36.7749 32.868 35.4882 30.4373C34.2015 28.0067 32.3386 25.9285 30.0625 24.3847V24.388ZM51.6132 12.61C51.1011 11.3308 50.1263 10.2912 48.8828 9.69783C47.6392 9.10446 46.2178 9.00079 44.9013 9.40742C43.5848 9.81404 42.4695 10.7012 41.7771 11.8925C41.0848 13.0838 40.8661 14.492 41.1645 15.8372L41.4895 16.8285C42.0566 18.1315 43.1078 19.1633 44.4212 19.706C45.7346 20.2487 47.2075 20.2599 48.529 19.7372C49.883 19.2008 50.9686 18.1488 51.5475 16.8125C52.1264 15.4761 52.1512 13.9646 51.6165 12.61H51.6132Z\" fill=\"#DAFC00\"/> <path d=\"M39.803 0.650024L33.0527 0.799524L33.4005 16.549L40.5407 38.3175L46.9562 36.205L40.1312 15.3953L39.8062 0.650024H39.803Z\" fill=\"#DAFC00\"/> </g> <defs> <clipPath id=\"clip0_9592_4040\"> <rect width=\"52\" height=\"39\" fill=\"white\"/> </clipPath> </defs> </svg>"
+    }, {
+      "id" : "4c5d6e7f-8901-2345-6789-0abcdef123",
+      "name" : "hubspot_icon",
+      "label" : "Custom Icon",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "testimonial_items.client_stats.icon_type",
+        "controlling_value_regex" : "hubspot",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "icon_set" : "fontawesome-5.0.10",
+      "type" : "icon",
+      "display_width" : null,
+      "default" : {
+        "name" : "Star",
+        "unicode" : "f005",
+        "type" : "SOLID"
+      }
+    }, {
+      "id" : "5d6e7f89-0123-4567-890a-bcdef123456",
+      "name" : "image_icon",
+      "label" : "Image Icon",
+      "help_text" : "Note: Colors cannot be changed for image icons",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "testimonial_items.client_stats.icon_type",
+        "controlling_value_regex" : "image",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "responsive" : true,
+      "resizable" : true,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "size_type" : "auto",
+        "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/dumbbell.png",
+        "alt" : "Dumbbell Icon",
+        "loading" : "lazy",
+        "width" : 52,
+        "height" : 39,
+        "max_width" : 52,
+        "max_height" : 39
+      }
+    }, {
+      "id" : "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name" : "override_icon_styles",
+      "label" : "Override Icon Styles",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "b2c3d4e5-f678-90ab-cdef-123456789012",
+      "name" : "table_icon_color",
+      "label" : "Table Icon Color",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : null,
+          "controlling_field_path" : "testimonial_items.client_stats.override_icon_styles",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "testimonial_items.client_stats.icon_type",
+          "controlling_value_regex" : "image",
+          "property" : null,
+          "operator" : "NOT_EQUAL",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }, {
+      "id" : "5d6e7f89-0123-4567-8901-abcdef1234",
+      "name" : "first_column_title",
+      "label" : "First Column Title",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "display_width" : null,
+      "default" : "<h6 class='text-tertiary'>12 WEEKS</h6>"
+    }, {
+      "id" : "6e7f8901-2345-6789-0123-bcdef12345",
+      "name" : "second_column_title",
+      "label" : "Second Column Title",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "display_width" : null,
+      "default" : "<h6 class='text-tertiary'>BEFORE</h6>"
+    }, {
+      "id" : "7f890123-4567-8901-2345-cdef123456",
+      "name" : "third_column_title",
+      "label" : "Third Column Title",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "display_width" : null,
+      "default" : "<h6 class='text-tertiary'>AFTER</h6>"
+    }, {
+      "id" : "89012345-6789-0123-4567-def1234567",
+      "name" : "table_values",
+      "label" : "Table Values",
+      "required" : false,
+      "locked" : false,
+      "occurrence" : {
+        "min" : 1,
+        "max" : null,
+        "sorting_label_field" : null,
+        "default" : 3
+      },
+      "children" : [ {
+        "id" : "90123456-7890-1234-5678-ef12345678",
+        "name" : "first_column_value",
+        "label" : "First Column Value",
+        "required" : false,
+        "locked" : false,
+        "type" : "richtext",
+        "display_width" : null,
+        "default" : "<p class='text-tertiary'>Weight</p>"
+      }, {
+        "id" : "01234567-8901-2345-6789-f123456789",
+        "name" : "second_column_value",
+        "label" : "Second Column Value",
+        "required" : false,
+        "locked" : false,
+        "type" : "richtext",
+        "display_width" : null,
+        "default" : "<p class='text-tertiary'>99kg</p>"
+      }, {
+        "id" : "12345678-9012-3456-7890-1234567890",
+        "name" : "third_column_value",
+        "label" : "Third Column Value",
+        "required" : false,
+        "locked" : false,
+        "type" : "richtext",
+        "display_width" : null,
+        "default" : "<p class='text-tertiary' style='color:#DAFC00'>79kg</p>"
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : [ {
+        "first_column_value" : "<p class='text-tertiary'>Weight</p>",
+        "second_column_value" : "<p class='text-tertiary'>99kg</p>",
+        "third_column_value" : "<p class='text-tertiary' style='color:#DAFC00'>79kg</p>"
+      }, {
+        "first_column_value" : "<p class='text-tertiary'>Weight</p>",
+        "second_column_value" : "<p class='text-tertiary'>99kg</p>",
+        "third_column_value" : "<p class='text-tertiary' style='color:#DAFC00'>79kg</p>"
+      }, {
+        "first_column_value" : "<p class='text-tertiary'>Weight</p>",
+        "second_column_value" : "<p class='text-tertiary'>99kg</p>",
+        "third_column_value" : "<p class='text-tertiary' style='color:#DAFC00'>79kg</p>"
+      } ]
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "client_name" : "<h5 class='text-tertiary'>THIERY HENRY</h5>",
+      "age" : "<p class='text-tertiary'>Age: 42</p>",
+      "icon_type" : "svg",
+      "svg_icon" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"52\" height=\"39\" viewBox=\"0 0 52 39\" fill=\"none\"> <g clip-path=\"url(#clip0_9592_4040)\"> <path d=\"M30.0625 24.388C29.8386 24.2363 29.611 24.09 29.38 23.9492L34.0893 21.3557L32.5975 16.8155L32.5585 16.6952V16.5685L32.5098 14.5047L19.8282 21.489H19.812L0 32.4285L3.25975 38.35L21.476 28.2912C22.9794 28.4138 24.4356 28.8747 25.7357 29.6396C27.0358 30.4044 28.1461 31.4534 28.9835 32.708C30.1006 34.3688 30.6959 36.3256 30.693 38.3272H37.4432C37.4462 35.577 36.7749 32.868 35.4882 30.4373C34.2015 28.0067 32.3386 25.9285 30.0625 24.3847V24.388ZM51.6132 12.61C51.1011 11.3308 50.1263 10.2912 48.8828 9.69783C47.6392 9.10446 46.2178 9.00079 44.9013 9.40742C43.5848 9.81404 42.4695 10.7012 41.7771 11.8925C41.0848 13.0838 40.8661 14.492 41.1645 15.8372L41.4895 16.8285C42.0566 18.1315 43.1078 19.1633 44.4212 19.706C45.7346 20.2487 47.2075 20.2599 48.529 19.7372C49.883 19.2008 50.9686 18.1488 51.5475 16.8125C52.1264 15.4761 52.1512 13.9646 51.6165 12.61H51.6132Z\" fill=\"#DAFC00\"/> <path d=\"M39.803 0.650024L33.0527 0.799524L33.4005 16.549L40.5407 38.3175L46.9562 36.205L40.1312 15.3953L39.8062 0.650024H39.803Z\" fill=\"#DAFC00\"/> </g> <defs> <clipPath id=\"clip0_9592_4040\"> <rect width=\"52\" height=\"39\" fill=\"white\"/> </clipPath> </defs> </svg>",
+      "hubspot_icon" : {
+        "name" : "Star",
+        "unicode" : "f005",
+        "type" : "SOLID"
+      },
+      "image_icon" : {
+        "size_type" : "auto",
+        "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/dumbbell.png",
+        "alt" : "Dumbbell Icon",
+        "loading" : "lazy",
+        "width" : 52,
+        "height" : 39,
+        "max_width" : 52,
+        "max_height" : 39
+      },
+      "override_icon_styles" : false,
+      "table_icon_color" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "first_column_title" : "<h6 class='text-tertiary'>12 WEEKS</h6>",
+      "second_column_title" : "<h6 class='text-tertiary'>BEFORE</h6>",
+      "third_column_title" : "<h6 class='text-tertiary'>AFTER</h6>",
+      "table_values" : [ {
+        "first_column_value" : "<p class='text-tertiary'>Weight</p>",
+        "second_column_value" : "<p class='text-tertiary'>99kg</p>",
+        "third_column_value" : "<p class='text-tertiary' style='color:#DAFC00'>79kg</p>"
+      }, {
+        "first_column_value" : "<p class='text-tertiary'>Weight</p>",
+        "second_column_value" : "<p class='text-tertiary'>99kg</p>",
+        "third_column_value" : "<p class='text-tertiary' style='color:#DAFC00'>79kg</p>"
+      }, {
+        "first_column_value" : "<p class='text-tertiary'>Weight</p>",
+        "second_column_value" : "<p class='text-tertiary'>99kg</p>",
+        "third_column_value" : "<p class='text-tertiary' style='color:#DAFC00'>79kg</p>"
+      } ]
+    }
+  }, {
+    "id" : "23456789-0123-4567-8901-2345678901",
+    "name" : "before_text",
+    "label" : "Before Text",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<h6 class='text-tertiary'>Before</h6>"
+  }, {
+    "id" : "34567890-1234-5678-9012-3456789012",
+    "name" : "before_image",
+    "label" : "Before Image",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/Before.png",
+      "alt" : "Before",
+      "size_type" : "auto",
+      "width" : 290,
+      "height" : 410,
+      "loading" : "disabled",
+      "max_width" : 290,
+      "max_height" : 410
+    }
+  }, {
+    "id" : "45678901-2345-6789-0123-4567890123",
+    "name" : "after_text",
+    "label" : "After Text",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<h6 class='text-tertiary'>After</h6>"
+  }, {
+    "id" : "56789012-3456-7890-1234-5678901234",
+    "name" : "after_image",
+    "label" : "After Image",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/After.png",
+      "alt" : "After",
+      "size_type" : "auto",
+      "width" : 400,
+      "height" : 410,
+      "loading" : "lazy",
+      "max_width" : 400,
+      "max_height" : 410
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "client_stats" : {
+      "client_name" : "<h5 class='text-tertiary'>THIERY HENRY</h5>",
+      "age" : "<p class='text-tertiary'>Age: 42</p>",
+      "icon_type" : "svg",
+      "svg_icon" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"52\" height=\"39\" viewBox=\"0 0 52 39\" fill=\"none\"> <g clip-path=\"url(#clip0_9592_4040)\"> <path d=\"M30.0625 24.388C29.8386 24.2363 29.611 24.09 29.38 23.9492L34.0893 21.3557L32.5975 16.8155L32.5585 16.6952V16.5685L32.5098 14.5047L19.8282 21.489H19.812L0 32.4285L3.25975 38.35L21.476 28.2912C22.9794 28.4138 24.4356 28.8747 25.7357 29.6396C27.0358 30.4044 28.1461 31.4534 28.9835 32.708C30.1006 34.3688 30.6959 36.3256 30.693 38.3272H37.4432C37.4462 35.577 36.7749 32.868 35.4882 30.4373C34.2015 28.0067 32.3386 25.9285 30.0625 24.3847V24.388ZM51.6132 12.61C51.1011 11.3308 50.1263 10.2912 48.8828 9.69783C47.6392 9.10446 46.2178 9.00079 44.9013 9.40742C43.5848 9.81404 42.4695 10.7012 41.7771 11.8925C41.0848 13.0838 40.8661 14.492 41.1645 15.8372L41.4895 16.8285C42.0566 18.1315 43.1078 19.1633 44.4212 19.706C45.7346 20.2487 47.2075 20.2599 48.529 19.7372C49.883 19.2008 50.9686 18.1488 51.5475 16.8125C52.1264 15.4761 52.1512 13.9646 51.6165 12.61H51.6132Z\" fill=\"#DAFC00\"/> <path d=\"M39.803 0.650024L33.0527 0.799524L33.4005 16.549L40.5407 38.3175L46.9562 36.205L40.1312 15.3953L39.8062 0.650024H39.803Z\" fill=\"#DAFC00\"/> </g> <defs> <clipPath id=\"clip0_9592_4040\"> <rect width=\"52\" height=\"39\" fill=\"white\"/> </clipPath> </defs> </svg>",
+      "override_icon_styles" : false,
+      "table_icon_color" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "table_icon_size" : 32,
+      "first_column_title" : "<h6 class='text-tertiary'>12 WEEKS</h6>",
+      "second_column_title" : "<h6 class='text-tertiary'>BEFORE</h6>",
+      "third_column_title" : "<h6 class='text-tertiary'>AFTER</h6>",
+      "table_values" : [ {
+        "first_column_value" : "<p class='text-tertiary'>Weight</p>",
+        "second_column_value" : "<p class='text-tertiary'>99kg</p>",
+        "third_column_value" : "<p class='text-tertiary' style='color:#DAFC00'>79kg</p>"
+      }, {
+        "first_column_value" : "<p class='text-tertiary'>Body Fat</p>",
+        "second_column_value" : "<p class='text-tertiary'>33%</p>",
+        "third_column_value" : "<p class='text-tertiary' style='color:#DAFC00'>22%</p>"
+      }, {
+        "first_column_value" : "<p class='text-tertiary'>Body Fat</p>",
+        "second_column_value" : "<p class='text-tertiary'>33%</p>",
+        "third_column_value" : "<p class='text-tertiary' style='color:#DAFC00'>22%</p>"
+      } ]
+    },
+    "before_text" : "<h6 class='text-tertiary'>Before</h6>",
+    "before_image" : {
+      "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/Before.png",
+      "alt" : "Before",
+      "size_type" : "auto",
+      "width" : 290,
+      "height" : 410,
+      "loading" : "disabled",
+      "max_width" : 290,
+      "max_height" : 410
+    },
+    "after_text" : "<h6 class='text-tertiary'>After</h6>",
+    "after_image" : {
+      "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/After.png",
+      "alt" : "After",
+      "size_type" : "auto",
+      "width" : 400,
+      "height" : 410,
+      "loading" : "lazy",
+      "max_width" : 400,
+      "max_height" : 410
+    }
+  }, {
+    "client_stats" : {
+      "client_name" : "<h5 class='text-tertiary'>THIERY HENRY</h5>",
+      "age" : "<p class='text-tertiary'>Age: 42</p>",
+      "icon_type" : "svg",
+      "svg_icon" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"52\" height=\"39\" viewBox=\"0 0 52 39\" fill=\"none\"> <g clip-path=\"url(#clip0_9592_4040)\"> <path d=\"M30.0625 24.388C29.8386 24.2363 29.611 24.09 29.38 23.9492L34.0893 21.3557L32.5975 16.8155L32.5585 16.6952V16.5685L32.5098 14.5047L19.8282 21.489H19.812L0 32.4285L3.25975 38.35L21.476 28.2912C22.9794 28.4138 24.4356 28.8747 25.7357 29.6396C27.0358 30.4044 28.1461 31.4534 28.9835 32.708C30.1006 34.3688 30.6959 36.3256 30.693 38.3272H37.4432C37.4462 35.577 36.7749 32.868 35.4882 30.4373C34.2015 28.0067 32.3386 25.9285 30.0625 24.3847V24.388ZM51.6132 12.61C51.1011 11.3308 50.1263 10.2912 48.8828 9.69783C47.6392 9.10446 46.2178 9.00079 44.9013 9.40742C43.5848 9.81404 42.4695 10.7012 41.7771 11.8925C41.0848 13.0838 40.8661 14.492 41.1645 15.8372L41.4895 16.8285C42.0566 18.1315 43.1078 19.1633 44.4212 19.706C45.7346 20.2487 47.2075 20.2599 48.529 19.7372C49.883 19.2008 50.9686 18.1488 51.5475 16.8125C52.1264 15.4761 52.1512 13.9646 51.6165 12.61H51.6132Z\" fill=\"#DAFC00\"/> <path d=\"M39.803 0.650024L33.0527 0.799524L33.4005 16.549L40.5407 38.3175L46.9562 36.205L40.1312 15.3953L39.8062 0.650024H39.803Z\" fill=\"#DAFC00\"/> </g> <defs> <clipPath id=\"clip0_9592_4040\"> <rect width=\"52\" height=\"39\" fill=\"white\"/> </clipPath> </defs> </svg>",
+      "override_icon_styles" : false,
+      "table_icon_color" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "table_icon_size" : 32,
+      "first_column_title" : "<h6 class='text-tertiary'>12 WEEKS</h6>",
+      "second_column_title" : "<h6 class='text-tertiary'>BEFORE</h6>",
+      "third_column_title" : "<h6 class='text-tertiary'>AFTER</h6>",
+      "table_values" : [ {
+        "first_column_value" : "<p class='text-tertiary'>Weight</p>",
+        "second_column_value" : "<p class='text-tertiary'>99kg</p>",
+        "third_column_value" : "<p class='text-tertiary style='color:#DAFC00'>79kg</p>"
+      }, {
+        "first_column_value" : "<p class='text-tertiary'>Body Fat</p>",
+        "second_column_value" : "<p class='text-tertiary'>33%</p>",
+        "third_column_value" : "<p class='text-tertiary' style='color:#DAFC00'>22%</p>"
+      }, {
+        "first_column_value" : "<p class='text-tertiary'>Body Fat</p>",
+        "second_column_value" : "<p class='text-tertiary'>33%</p>",
+        "third_column_value" : "<p class='text-tertiary' style='color:#DAFC00'>22%</p>"
+      } ]
+    },
+    "before_text" : "<h6 class='text-tertiary'>Before</h6>",
+    "before_image" : {
+      "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/Before.png",
+      "alt" : "Before",
+      "size_type" : "auto",
+      "width" : 290,
+      "height" : 410,
+      "loading" : "disabled",
+      "max_width" : 290,
+      "max_height" : 410
+    },
+    "after_text" : "<h6 class='text-tertiary'>After</h6>",
+    "after_image" : {
+      "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/After.png",
+      "alt" : "After",
+      "size_type" : "auto",
+      "width" : 400,
+      "height" : 410,
+      "loading" : "lazy",
+      "max_width" : 400,
+      "max_height" : 410
+    }
+  }, {
+    "client_stats" : {
+      "client_name" : "<h5 class='text-tertiary'>THIERY HENRY</h5>",
+      "age" : "<p class='text-tertiary'>Age: 42</p>",
+      "icon_type" : "svg",
+      "svg_icon" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"52\" height=\"39\" viewBox=\"0 0 52 39\" fill=\"none\"> <g clip-path=\"url(#clip0_9592_4040)\"> <path d=\"M30.0625 24.388C29.8386 24.2363 29.611 24.09 29.38 23.9492L34.0893 21.3557L32.5975 16.8155L32.5585 16.6952V16.5685L32.5098 14.5047L19.8282 21.489H19.812L0 32.4285L3.25975 38.35L21.476 28.2912C22.9794 28.4138 24.4356 28.8747 25.7357 29.6396C27.0358 30.4044 28.1461 31.4534 28.9835 32.708C30.1006 34.3688 30.6959 36.3256 30.693 38.3272H37.4432C37.4462 35.577 36.7749 32.868 35.4882 30.4373C34.2015 28.0067 32.3386 25.9285 30.0625 24.3847V24.388ZM51.6132 12.61C51.1011 11.3308 50.1263 10.2912 48.8828 9.69783C47.6392 9.10446 46.2178 9.00079 44.9013 9.40742C43.5848 9.81404 42.4695 10.7012 41.7771 11.8925C41.0848 13.0838 40.8661 14.492 41.1645 15.8372L41.4895 16.8285C42.0566 18.1315 43.1078 19.1633 44.4212 19.706C45.7346 20.2487 47.2075 20.2599 48.529 19.7372C49.883 19.2008 50.9686 18.1488 51.5475 16.8125C52.1264 15.4761 52.1512 13.9646 51.6165 12.61H51.6132Z\" fill=\"#DAFC00\"/> <path d=\"M39.803 0.650024L33.0527 0.799524L33.4005 16.549L40.5407 38.3175L46.9562 36.205L40.1312 15.3953L39.8062 0.650024H39.803Z\" fill=\"#DAFC00\"/> </g> <defs> <clipPath id=\"clip0_9592_4040\"> <rect width=\"52\" height=\"39\" fill=\"white\"/> </clipPath> </defs> </svg>",
+      "image_icon" : {
+        "size_type" : "auto",
+        "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/dumbbell.png",
+        "alt" : "Dumbbell Icon",
+        "loading" : "lazy",
+        "width" : 52,
+        "height" : 39,
+        "max_width" : 52,
+        "max_height" : 39
+      },
+      "override_icon_styles" : false,
+      "table_icon_color" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "table_icon_size" : 32,
+      "first_column_title" : "<h6 class='text-tertiary'>12 WEEKS</h6>",
+      "second_column_title" : "<h6 class='text-tertiary'>BEFORE</h6>",
+      "third_column_title" : "<h6 class='text-tertiary'>AFTER</h6>",
+      "table_values" : [ {
+        "first_column_value" : "<p class='text-tertiary'>Weight</p>",
+        "second_column_value" : "<p class='text-tertiary'>99kg</p>",
+        "third_column_value" : "<p class='text-tertiary' style='color:#DAFC00'>79kg</p>"
+      }, {
+        "first_column_value" : "<p class='text-tertiary'>Body Fat</p>",
+        "second_column_value" : "<p class='text-tertiary'>33%</p>",
+        "third_column_value" : "<p class='text-tertiary' style='color:#DAFC00'>22%</p>"
+      }, {
+        "first_column_value" : "<p class='text-tertiary'>Body Fat</p>",
+        "second_column_value" : "<p class='text-tertiary'>33%</p>",
+        "third_column_value" : "<p class='text-tertiary' style='color:#DAFC00'>22%</p>"
+      } ]
+    },
+    "before_text" : "<h6 class='text-tertiary'>Before</h6>",
+    "before_image" : {
+      "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/Before.png",
+      "alt" : "Before",
+      "size_type" : "auto",
+      "width" : 290,
+      "height" : 410,
+      "loading" : "disabled",
+      "max_width" : 290,
+      "max_height" : 410
+    },
+    "after_text" : "<h6 class='text-tertiary'>After</h6>",
+    "after_image" : {
+      "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/After.png",
+      "alt" : "After",
+      "size_type" : "auto",
+      "width" : 400,
+      "height" : 410,
+      "loading" : "lazy",
+      "max_width" : 400,
+      "max_height" : 410
+    }
+  } ]
+}, {
+  "id" : "9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f",
+  "name" : "slider_buttons",
+  "label" : "Slider Buttons",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a",
+    "name" : "icon_type",
+    "label" : "Icon Type",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "svg", "SVG Icon" ], [ "custom", "Custom Icon" ], [ "image", "Image Icon" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "svg"
+  }, {
+    "id" : "1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b",
+    "name" : "svg_icon_left",
+    "label" : "SVG Icon Left",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "slider_buttons.icon_type",
+      "controlling_value_regex" : "svg",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"29\" height=\"29\" viewBox=\"0 0 29 29\" fill=\"none\">  <path d=\"M12.3656 23.5922C12.3475 23.6109 11.7905 23.7531 11.128 23.9082C10.4655 24.0633 9.91626 24.1666 9.90743 24.1378C9.89868 24.1089 9.83012 23.6404 9.75517 23.0966C9.60459 22.0046 9.24001 20.7297 8.85044 19.9323C7.63614 17.4473 5.45746 15.8019 2.81502 15.3742L2.14214 15.2653L2.14214 14.1675L2.14214 13.0697L2.75202 12.9655C6.74772 12.2825 9.35273 9.23856 9.84005 4.68332C9.87185 4.38587 9.90987 4.14258 9.92451 4.14258C10.0593 4.14258 12.2922 4.69085 12.3344 4.73428C12.365 4.76569 12.3423 5.04454 12.2839 5.35385C11.6377 8.77888 9.78764 11.5659 7.3868 12.7312L6.8109 13.0108L18.6536 13.0327L26.1421 13.0466L26.1421 15.2683L18.6343 15.2822L6.81957 15.3042L7.54663 15.6795C9.43281 16.6531 10.9261 18.5629 11.8056 21.1264C12.0562 21.8567 12.4343 23.5216 12.3656 23.5922Z\" fill=\"#101000\"/></svg>"
+  }, {
+    "id" : "5b310bf5-d41a-2c39-f0d8-392765bf2e3e",
+    "name" : "svg_icon_right",
+    "label" : "SVG Icon Right",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "slider_buttons.icon_type",
+      "controlling_value_regex" : "svg",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"29\" height=\"29\" viewBox=\"0 0 29 29\" fill=\"none\">  <path d=\"M15.9186 23.5922C15.9368 23.6109 16.4938 23.7531 17.1562 23.9082C17.8188 24.0633 18.368 24.1666 18.3768 24.1378C18.3856 24.1089 18.4542 23.6404 18.5291 23.0966C18.6797 22.0046 19.0443 20.7297 19.4338 19.9323C20.6481 17.4473 22.8268 15.8019 25.4692 15.3742L26.1421 15.2653L26.1421 14.1675L26.1421 13.0697L25.5323 12.9655C21.5365 12.2825 18.9315 9.23856 18.4442 4.68332C18.4124 4.38587 18.3744 4.14258 18.3598 4.14258C18.225 4.14258 15.9921 4.69085 15.9498 4.73428C15.9193 4.76569 15.942 5.04454 16.0004 5.35385C16.6465 8.77888 18.4966 11.5659 20.8975 12.7312L21.4734 13.0108L9.63069 13.0327L2.14213 13.0466L2.14213 15.2683L9.64995 15.2822L21.4647 15.3042L20.7376 15.6795C18.8515 16.6531 17.3581 18.5629 16.4787 21.1264C16.2281 21.8567 15.85 23.5216 15.9186 23.5922Z\" fill=\"#101000\"/></svg>"
+  }, {
+    "id" : "2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c",
+    "name" : "custom_icon_left",
+    "label" : "Custom Icon Left",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "slider_buttons.icon_type",
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "icon_set" : "fontawesome-5.14.0",
+    "type" : "icon",
+    "display_width" : null,
+    "default" : {
+      "name" : "Alternate Long Arrow Left",
+      "unicode" : "f30a",
+      "type" : "SOLID"
+    }
+  }, {
+    "id" : "4fae3645-1754-59c3-0bce-a76d46bc6c22",
+    "name" : "custom_icon_right",
+    "label" : "Custom Icon Right",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "slider_buttons.icon_type",
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "icon_set" : "fontawesome-5.14.0",
+    "type" : "icon",
+    "display_width" : null,
+    "default" : {
+      "name" : "Alternate Long Arrow Right",
+      "unicode" : "f30b",
+      "type" : "SOLID"
+    }
+  }, {
+    "id" : "3f4a5b6c-7d8e-9f0a-1b2c-3d4e5f6a7b8c",
+    "name" : "image_icon_left",
+    "label" : "Image Icon Left",
+    "help_text" : "Note: Colors cannot be changed for image icons",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "slider_buttons.icon_type",
+      "controlling_value_regex" : "image",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "size_type" : "auto",
+      "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-left.png",
+      "alt" : "Left Arrow",
+      "loading" : "lazy",
+      "width" : 29,
+      "height" : 29,
+      "max_width" : 29,
+      "max_height" : 29
+    }
+  }, {
+    "id" : "4a5b6c7d-8e9f-0a1b-2c3d-4e5f6a7b8c9d",
+    "name" : "image_icon_right",
+    "label" : "Image Icon Right",
+    "help_text" : "Note: Colors cannot be changed for image icons",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "slider_buttons.icon_type",
+      "controlling_value_regex" : "image",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "size_type" : "auto",
+      "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+      "alt" : "Right Arrow",
+      "loading" : "lazy",
+      "width" : 29,
+      "height" : 29,
+      "max_width" : 29,
+      "max_height" : 29
+    }
+  }, {
+    "id" : "3210e97e-7fcd-7c95-282e-d59f90cee719",
+    "name" : "override_styles",
+    "label" : "Override Styles",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "ce5249ac-50b8-ad4c-3d3d-ce8a10cd6b1a",
+    "name" : "icon_color",
+    "label" : "Icon Color",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "slider_buttons.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "slider_buttons.icon_type",
+        "controlling_value_regex" : "image",
+        "property" : null,
+        "operator" : "NOT_EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : null,
+      "opacity" : null
+    }
+  }, {
+    "id" : "ee28896c-86fb-0e33-68f7-a249f9507537",
+    "name" : "button_hover_icon_color",
+    "label" : "Button Hover Icon Color",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "slider_buttons.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "slider_buttons.icon_type",
+        "controlling_value_regex" : "image",
+        "property" : null,
+        "operator" : "NOT_EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : null,
+      "opacity" : null
+    }
+  }, {
+    "id" : "1e73053e-4689-4851-33ac-6a7e18a24425",
+    "name" : "button_background_accent_color",
+    "label" : "Button Background Accent Color",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "slider_buttons.override_styles",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : null,
+      "opacity" : null
+    }
+  }, {
+    "id" : "50e86562-c4e8-a5c7-a93a-09b42ce608c9",
+    "name" : "button_hover_background_color",
+    "label" : "Button Hover Background Color",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "slider_buttons.override_styles",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : null,
+      "opacity" : null
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "icon_type" : "svg",
+    "svg_icon_left" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"29\" height=\"29\" viewBox=\"0 0 29 29\" fill=\"none\">  <path d=\"M12.3656 23.5922C12.3475 23.6109 11.7905 23.7531 11.128 23.9082C10.4655 24.0633 9.91626 24.1666 9.90743 24.1378C9.89868 24.1089 9.83012 23.6404 9.75517 23.0966C9.60459 22.0046 9.24001 20.7297 8.85044 19.9323C7.63614 17.4473 5.45746 15.8019 2.81502 15.3742L2.14214 15.2653L2.14214 14.1675L2.14214 13.0697L2.75202 12.9655C6.74772 12.2825 9.35273 9.23856 9.84005 4.68332C9.87185 4.38587 9.90987 4.14258 9.92451 4.14258C10.0593 4.14258 12.2922 4.69085 12.3344 4.73428C12.365 4.76569 12.3423 5.04454 12.2839 5.35385C11.6377 8.77888 9.78764 11.5659 7.3868 12.7312L6.8109 13.0108L18.6536 13.0327L26.1421 13.0466L26.1421 15.2683L18.6343 15.2822L6.81957 15.3042L7.54663 15.6795C9.43281 16.6531 10.9261 18.5629 11.8056 21.1264C12.0562 21.8567 12.4343 23.5216 12.3656 23.5922Z\" fill=\"#101000\"/></svg>",
+    "svg_icon_right" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"29\" height=\"29\" viewBox=\"0 0 29 29\" fill=\"none\">  <path d=\"M15.9186 23.5922C15.9368 23.6109 16.4938 23.7531 17.1562 23.9082C17.8188 24.0633 18.368 24.1666 18.3768 24.1378C18.3856 24.1089 18.4542 23.6404 18.5291 23.0966C18.6797 22.0046 19.0443 20.7297 19.4338 19.9323C20.6481 17.4473 22.8268 15.8019 25.4692 15.3742L26.1421 15.2653L26.1421 14.1675L26.1421 13.0697L25.5323 12.9655C21.5365 12.2825 18.9315 9.23856 18.4442 4.68332C18.4124 4.38587 18.3744 4.14258 18.3598 4.14258C18.225 4.14258 15.9921 4.69085 15.9498 4.73428C15.9193 4.76569 15.942 5.04454 16.0004 5.35385C16.6465 8.77888 18.4966 11.5659 20.8975 12.7312L21.4734 13.0108L9.63069 13.0327L2.14213 13.0466L2.14213 15.2683L9.64995 15.2822L21.4647 15.3042L20.7376 15.6795C18.8515 16.6531 17.3581 18.5629 16.4787 21.1264C16.2281 21.8567 15.85 23.5216 15.9186 23.5922Z\" fill=\"#101000\"/></svg>",
+    "custom_icon_left" : {
+      "name" : "Alternate Long Arrow Left",
+      "unicode" : "f30a",
+      "type" : "SOLID"
+    },
+    "custom_icon_right" : {
+      "name" : "Alternate Long Arrow Right",
+      "unicode" : "f30b",
+      "type" : "SOLID"
+    },
+    "image_icon_left" : {
+      "size_type" : "auto",
+      "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-left.png",
+      "alt" : "Left Arrow",
+      "loading" : "lazy",
+      "width" : 29,
+      "height" : 29,
+      "max_width" : 29,
+      "max_height" : 29
+    },
+    "image_icon_right" : {
+      "size_type" : "auto",
+      "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+      "alt" : "Right Arrow",
+      "loading" : "lazy",
+      "width" : 29,
+      "height" : 29,
+      "max_width" : 29,
+      "max_height" : 29
+    },
+    "override_styles" : false,
+    "icon_color" : {
+      "color" : null,
+      "opacity" : null
+    },
+    "button_hover_icon_color" : {
+      "color" : null,
+      "opacity" : null
+    },
+    "button_background_accent_color" : {
+      "color" : null,
+      "opacity" : null
+    },
+    "button_hover_background_color" : {
+      "color" : null,
+      "opacity" : null
+    }
+  }
+}, {
+  "id" : "layout_alignment",
+  "name" : "layout_alignment",
+  "label" : "Layout",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "layout_alignment.section_max_width",
+    "name" : "section_max_width",
+    "label" : "Section Max Width",
+    "required" : false,
+    "locked" : false,
+    "display" : "text",
+    "step" : 1,
+    "suffix" : "px",
+    "type" : "number",
+    "display_width" : null,
+    "default" : 1280
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "section_max_width" : 1280
+  }
+}, {
+  "id" : "7eec5faf-79c9-eeb8-e1ea-5c60f718aa7c",
+  "name" : "style",
+  "label" : "Style",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "style.background",
+    "name" : "background",
+    "label" : "Background",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "style.background.enable",
+      "name" : "enable",
+      "label" : "Enable",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "style.background.background_type",
+      "name" : "background_type",
+      "label" : "Background Type",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.background.enable",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "image", "Image" ], [ "gradient", "Gradient" ], [ "solid_color", "Solid Color" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "image"
+    }, {
+      "id" : "style.background.background_image_position",
+      "name" : "background_image_position",
+      "label" : "Background Image Position",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_type",
+          "controlling_value_regex" : "image",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.enable",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "display" : "select",
+      "choices" : [ [ "top", "Top" ], [ "center", "Center" ], [ "bottom", "Bottom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "center"
+    }, {
+      "id" : "style.background.background_overlay",
+      "name" : "background_overlay",
+      "label" : "Background Overlay",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_type",
+          "controlling_value_regex" : "image",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.enable",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "display" : "toggle",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "style.background.gradient_field",
+      "name" : "gradient_field",
+      "label" : "Gradient",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_type",
+          "controlling_value_regex" : "gradient",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.enable",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "type" : "gradient",
+      "display_width" : null,
+      "default" : {
+        "side_or_corner" : {
+          "horizontalSide" : "RIGHT",
+          "verticalSide" : null
+        },
+        "colors" : [ {
+          "color" : {
+            "r" : 25,
+            "g" : 35,
+            "b" : 23,
+            "a" : 1
+          }
+        }, {
+          "color" : {
+            "r" : 218,
+            "g" : 252,
+            "b" : 0,
+            "a" : 1
+          }
+        } ]
+      }
+    }, {
+      "id" : "style.background.overlay_color",
+      "name" : "overlay_color",
+      "label" : "Overlay Color",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_type",
+          "controlling_value_regex" : "image",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.enable",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_overlay",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "type" : "gradient",
+      "display_width" : null,
+      "default" : {
+        "side_or_corner" : {
+          "horizontalSide" : "LEFT",
+          "verticalSide" : null
+        },
+        "colors" : [ {
+          "color" : {
+            "r" : 16,
+            "g" : 16,
+            "b" : 0,
+            "a" : 0.8
+          }
+        }, {
+          "color" : {
+            "r" : 255,
+            "g" : 255,
+            "b" : 255,
+            "a" : 0
+          }
+        } ]
+      }
+    }, {
+      "id" : "style.background.solid_color",
+      "name" : "solid_color",
+      "label" : "Solid Color",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_type",
+          "controlling_value_regex" : "solid_color",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.enable",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#17270B",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "style.background.background_image",
+      "name" : "background_image",
+      "label" : "Background Image",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_type",
+          "controlling_value_regex" : "image",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.enable",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "responsive" : false,
+      "resizable" : false,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "size_type" : "auto_custom_max",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Main%20Content.png",
+        "alt" : "Main Content",
+        "loading" : "lazy"
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "enable" : false,
+      "background_type" : "image",
+      "background_image_position" : "center",
+      "background_overlay" : false,
+      "gradient_field" : {
+        "side_or_corner" : {
+          "horizontalSide" : "RIGHT",
+          "verticalSide" : null
+        },
+        "colors" : [ {
+          "color" : {
+            "r" : 25,
+            "g" : 35,
+            "b" : 23,
+            "a" : 1
+          }
+        }, {
+          "color" : {
+            "r" : 218,
+            "g" : 252,
+            "b" : 0,
+            "a" : 1
+          }
+        } ]
+      },
+      "overlay_color" : {
+        "side_or_corner" : {
+          "horizontalSide" : "LEFT",
+          "verticalSide" : null
+        },
+        "colors" : [ {
+          "color" : {
+            "r" : 16,
+            "g" : 16,
+            "b" : 0,
+            "a" : 0.8
+          }
+        }, {
+          "color" : {
+            "r" : 255,
+            "g" : 255,
+            "b" : 255,
+            "a" : 0
+          }
+        } ]
+      },
+      "solid_color" : {
+        "color" : "#17270B",
+        "opacity" : 100
+      },
+      "background_image" : {
+        "size_type" : "auto_custom_max",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Main%20Content.png",
+        "alt" : "Main Content",
+        "loading" : "lazy"
+      }
+    }
+  }, 
+  
+ {
+        "label": "Animation",
+        "name": "animation",
+        "type": "group",
+        "children": [
+          {
+            "label": "Enable Heading Animation",
+            "name": "enable_heading_animation",
+            "default": false,
+            "display": "toggle",
+            "type": "boolean"
+          },
+          {
+            "label": "Enable Body Text Animation",
+            "name": "enable_body_text_animation",
+            "default": false,
+            "display": "toggle",
+            "type": "boolean"
+          },
+
+          
+          {
+            "label": "Enable Section Animation",
+            "name": "enable_section_animation",
+            "default": false,
+            "display": "toggle",
+            "type": "boolean"
+          }
+        ]
+      },
+
+  
+  
+  {
+    "id" : "a1b2c3d4-e5f6-7890-1234-56789abcdef0",
+    "name" : "blob_color",
+    "label" : "Table Color",
+    "required" : false,
+    "locked" : false,
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : null,
+      "opacity" : null
+    }
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "background" : {
+      "enable" : false,
+      "background_type" : "image",
+      "background_image_position" : "center",
+      "background_overlay" : false,
+      "gradient_field" : {
+        "side_or_corner" : {
+          "horizontalSide" : "RIGHT",
+          "verticalSide" : null
+        },
+        "colors" : [ {
+          "color" : {
+            "r" : 25,
+            "g" : 35,
+            "b" : 23,
+            "a" : 1
+          }
+        }, {
+          "color" : {
+            "r" : 218,
+            "g" : 252,
+            "b" : 0,
+            "a" : 1
+          }
+        } ]
+      },
+      "overlay_color" : {
+        "side_or_corner" : {
+          "horizontalSide" : "LEFT",
+          "verticalSide" : null
+        },
+        "colors" : [ {
+          "color" : {
+            "r" : 16,
+            "g" : 16,
+            "b" : 0,
+            "a" : 0.8
+          }
+        }, {
+          "color" : {
+            "r" : 255,
+            "g" : 255,
+            "b" : 255,
+            "a" : 0
+          }
+        } ]
+      },
+      "solid_color" : {
+        "color" : "#17270B",
+        "opacity" : 100
+      },
+      "background_image" : {
+        "size_type" : "auto_custom_max",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Main%20Content.png",
+        "alt" : "Main Content",
+        "loading" : "lazy"
+      }
+    },
+    "blob_color" : {
+      "color" : null,
+      "opacity" : null
+    }
+  }
+} ]

@@ -1,0 +1,29 @@
+/* Theme base styles */
+/* @import url('https://fonts.googleapis.com/css2?family=Anton&family=Genos:ital,wght@0,100..900;1,100..900&family=Lexend+Deca:wght@100..900&family=Lexend:wght@100..900&display=swap');
+*/
+/* --- Global components --- */
+{% include './generic/_reset.css' %}
+{% include './elements/_colorPalette.css' %}
+{% include './elements/_form.css' %}
+{% include './elements/_typography.css' %}
+{% include './elements/_global.css' %}
+
+
+
+
+.js-anim-trigger {
+  visibility: hidden; /* GSAP will reveal this */
+  opacity: 0;
+}
+
+/* Necessary styles for the custom split elements */
+.anim-line {
+  overflow: hidden;
+  display: block;
+}
+
+.anim-word, .anim-char {
+  display: inline-block;
+  white-space: pre; /* Preserves spaces */
+  position: relative;
+}

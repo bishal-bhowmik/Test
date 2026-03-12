@@ -1,0 +1,104 @@
+<!--
+templateType: error_page
+isAvailableForNewContent: true
+label: 500 Page
+screenshotPath: ../../Images/System-templates/500.png
+
+-->
+
+
+{# --- Connect to base.html #}
+{% extends "../layouts/base.html" %}
+
+{# ----- font awesome ----- #}
+<!-- {{ require_css("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css") }} -->
+
+{% import '../../macros/button-macros.html' as button_macros %}
+
+{# Creating home buttone here  #}
+  {% set home_btn = {
+  "button_text" : "Back To Hompage",
+  "button_type" : "primary",
+  "link":{
+        "url" :{
+            "href" :"/",
+            "type":"External"
+       },
+    "open_in_new_tab":false,
+    "rel":""
+
+     }
+  } %}
+
+
+
+{# --- Body element #}
+{% block body %}
+
+
+<style>
+
+.image{
+  max-width:700px;
+  margin:0 auto;
+}
+
+.image img {
+  width: 100%;
+}
+
+
+.description{
+max-width:50%;
+margin:0 auto;
+}
+
+@media(max-width:768px){
+.description{
+max-width:100%;
+}
+}
+
+</style>
+
+<div class="section">
+
+<div class="container">
+
+  <div class="image">
+    <img
+      src="https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Fitmax%20Theme%20images/Gym-themed%20404%20error%20illustration%2c%20no%20background%20color%2c%20cartoon_vector%20style%2c%20using%20main%20color%20%23DAFC00%20and%20dark%20color%20%23101000.%20Show%20a%20confused%20person%20in%20gym%20clothes%20holding%20a%20dumbbell%20or%20yoga%20mat%2c%20standing%20amon%20(3.webp"
+      alt="Fitmax theme 404 image" />
+  </div>
+
+
+  {% module "content"
+                path="@hubspot/rich_text",
+                html='<div class="text-center">
+    <h1 class="text-h3">
+      Our Server Pulled a Muscle
+    </h1>
+  </div>
+
+  <div class="text-center py-20 description">
+    <p>
+      We’re already fixing the issue. In the meantime, feel free to continue exploring the gym, classes, or membership options.
+    </p>
+  </div>'
+             %}
+
+  
+
+
+  <div class="text-center mt-40 ">
+      {{ button_macros.render_button(home_btn, theme) }}
+    </div>
+
+
+</div>
+
+</div>
+
+
+
+{% endblock body %}

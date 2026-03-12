@@ -1,0 +1,271 @@
+{% import '../../macros/button-macros.html' as button_macros %}
+{% import '../../macros/global-macros.html' as global_macros %} 
+
+{{ global_macros.module_css(module, name) }}
+
+{% set anim = module.style.animation %}
+  
+<section class="section"  id="{{name}}">
+  <div class="container gap-40 {% if anim.enable_section_animation %}reveal-card{% endif %}">
+    <div class="header-details gap-40">
+      <div class="section-label rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>{{ module.content.section_title }}</div>
+      <div class="description-details gap-40">
+        <div class="section-description rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+          {{ module.content.section_description }}
+        </div>
+        <div class="button-group mt-20 {% if anim.enable_section_animation %}reveal-left{% endif %}">
+          {% for item in module.button.button_repeater %} {{
+          button_macros.render_button(item, theme) }} {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="image-container gap-40">
+      <div class="primary-image  {% if anim.enable_section_animation %}reveal-left{% endif %}">
+        {% if module.media_section.primary_image.src %}
+        <img
+          src="{{ module.media_section.primary_image.src|escape_url }}"
+          alt="{{ module.media_section.primary_image.alt|escape_attr }}"
+          loading="lazy"
+        />
+        {% endif %}
+      </div>
+
+      <div class="right-container gap-40">
+        <div class="stats-row {% if anim.enable_section_animation %}reveal-right{% endif %}">
+          {% for item in module.counter_stats.counter_items %}
+          <div class="stat-item border p-30">
+            <div class="stat-details">
+              <div class="stat-number js-counter-number">
+                {{ item.feature_title }}
+              </div>
+              <div class="stat-label">{{ item.feature_description }}</div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="mobile-image {% if anim.enable_section_animation %}reveal-left{% endif %}">
+          {% if module.media_section.primary_image.src %}
+          <img
+            src="{{ module.media_section.primary_image.src|escape_url }}"
+            alt="{{ module.media_section.primary_image.alt|escape_attr }}"
+            loading="lazy"
+          />
+          {% endif %}
+        </div>
+        <div class="secondary-image  {% if anim.enable_section_animation %}reveal-right{% endif %}">
+          {% if module.media_section.secondary_image.src %}
+          <img
+            src="{{ module.media_section.secondary_image.src|escape_url }}"
+            alt="{{ module.media_section.secondary_image.alt|escape_attr }}"
+            loading="lazy"
+          />
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% require_css %}
+<style>
+     {% scope_css %}
+     
+
+     .container {
+       display: flex;
+       flex-direction: column;
+     }
+
+     .header-details {
+       display: flex;
+       justify-content: flex-start;
+     }
+
+     .section-label {
+       flex: 0 0 510px;
+     }
+  .section-label h2{
+       text-transform:uppercase;
+  }
+     .description-details {
+       display: flex;
+       flex-direction: column;
+       flex: 1;
+     }
+
+     .image-container {
+       display: flex;
+       flex-direction: row;
+       {% if module.layout_alignment.column_reverse %}
+        flex-direction: row-reverse;
+      {% endif %}
+     }
+
+     .primary-image ,.mobile-image {
+       flex: 0 0 510px;
+     }
+
+     .right-container {
+       display: flex;
+       flex-direction: column;
+       flex: 1;
+     }
+
+     .stats-row {
+       display: flex;
+       justify-content: flex-start;
+       text-align: center;
+       flex-wrap: wrap;
+     }
+
+     .stat-item {
+       flex: 1;
+       margin-left: -1px;
+        margin-bottom: -1px;
+       position: relative;
+       z-index: 1;
+     }
+
+
+
+     .stat-number {
+       margin-bottom: 5px;
+     }
+
+     .primary-image img,
+     .secondary-image img, .mobile-image img {
+       width: 100%;
+       height: auto;
+       border-radius: var(--radius-default);
+       display: block;
+       object-fit: cover;
+     }
+
+     .primary-image img ,.mobile-image img{
+       height: 100%;
+       min-height: 400px;
+     }
+     .primary-image{
+       display:block;
+       }
+       .mobile-image{
+       display:none;
+       }
+
+
+    @media (max-width: 1024px) {
+      .stats-row {
+         display: flex;
+         flex-wrap: wrap;
+       }
+      .stat-item {
+        padding: 30px;
+        margin-bottom:-1px;
+      }
+    }
+
+     @media (max-width: 991px) {
+
+       .header-details {
+         flex-direction: column;
+       }
+
+       .section-label {
+         flex: 0 0 auto;
+         min-width: 100%;
+       }
+
+       .image-container {
+         flex-direction: column;
+       }
+       .primary-image{
+       display:none;
+       }
+       .mobile-image{
+       display:block;
+       }
+       .primary-image, .mobile-image {
+         flex: 0 0 auto;
+       }
+
+       .right-container {
+         flex: 0 0 auto;
+         display: flex;
+         flex-direction: column;
+       }
+
+       .stat-item {
+         padding: 20px ;
+       }
+
+     }
+     {% end_scope_css %}
+</style>
+{% end_require_css %} {% require_js %}
+<script>
+  (function () {
+    const ANIMATION_DURATION = 2000;
+    const easeOutQuad = (t) => t * (2 - t);
+
+    const animateCounter = (element) => {
+      const textContent = element.textContent.trim();
+      const match = textContent.match(/(\d[\d,\.]*)/);
+      if (!match) return;
+
+      const numberString = match[0];
+      const suffix = textContent.replace(numberString, "");
+      const isFloat = numberString.includes(".");
+      const targetValue = parseFloat(numberString.replace(/,/g, ""));
+      const startValue = 0;
+      const wrapperTag =
+        element.querySelector("h1, h2, h3, h4, h5, h6, p, span") || element;
+
+      let startTime = null;
+      const step = (timestamp) => {
+        if (!startTime) startTime = timestamp;
+        const progress = timestamp - startTime;
+        const percentage = Math.min(progress / ANIMATION_DURATION, 1);
+        const ease = easeOutQuad(percentage);
+        let currentNumber = startValue + (targetValue - startValue) * ease;
+        let formattedNumber = isFloat
+          ? currentNumber.toFixed(1)
+          : Math.floor(currentNumber).toLocaleString("en-US");
+        wrapperTag.textContent = formattedNumber + suffix;
+        if (progress < ANIMATION_DURATION) {
+          window.requestAnimationFrame(step);
+        } else {
+          wrapperTag.textContent = numberString + suffix;
+        }
+      };
+      window.requestAnimationFrame(step);
+    };
+
+    const observerOptions = { threshold: 0.2 };
+    const observerCallback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const section = entry.target;
+          const counters = section.querySelectorAll(".js-counter-number");
+          counters.forEach((counter) => {
+            if (!counter.hasAttribute("data-animated")) {
+              animateCounter(counter);
+              counter.setAttribute("data-animated", "true");
+            }
+          });
+          observer.unobserve(section);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions,
+    );
+    const sectionId = document.getElementById("{{ name }}");
+    if (sectionId) observer.observe(sectionId);
+  })();
+</script>
+{% end_require_js %}

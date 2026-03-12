@@ -1,0 +1,791 @@
+{% import '../../macros/button-macros.html' as button_macros %}
+
+
+{% require_css %}
+<style>
+  {% scope_css %}
+
+  /* --- Layout --- */
+
+
+    .section {
+      {% if module.style.background.overwrite_style %}
+        {% if module.style.background.background_type == 'color' %}
+          background: {{ module.style.background.color.css }};
+        {% elif module.style.background.background_type == 'gradient' %}
+          background: {{ module.style.background.gradient_field.css }};
+        {% elif module.style.background.background_type == 'image' and module.style.background.image_field_2.src %}
+          background-image: url('{{ module.style.background.image_field_2.src }}');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        {% endif %}
+      {% endif %}
+    }
+
+  .container{
+   max-width: {{ module.layout_and_alignment.section_max_width ~ "px" }};
+  }
+
+  /* --- Left: Images --- */
+  .product-image {
+    flex: 1;
+  }
+
+  .product-primary-image {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+
+  .product-primary-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s;
+  }
+
+  /* Gallery Thumbs */
+  .product-image-gallery {
+    display: flex;
+    overflow-x: auto;      
+    overflow-y: hidden;    
+    flex-wrap: nowrap; 
+    max-width: 100%; 
+    width: 100%;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;  
+    -ms-overflow-style: none;  
+  }
+
+  .product-image-gallery::-webkit-scrollbar {
+    display: none;
+  }
+
+
+
+
+  /* --- Right: Info --- */
+  .product-info {
+    flex: 1;
+  }
+
+
+  .product-status {
+    
+   background: {{ module.product_information.status.status_background_color.css }};
+
+  }
+
+  .status-dot {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+  }
+
+  .dot-green {
+    background-color: var(--color-brand-primary); 
+    background-color: {{ module.product_status.active_status_color.color }};
+  }
+
+  .dot-black {
+    background-color: var(--color-brand-secondary);
+    background-color: {{ module.product_status.inactive_status_color }};
+  }
+
+
+  .oldprice {
+    text-decoration: line-through;
+  }
+
+  .category svg{
+    width:24px;
+  }
+
+  .category img {
+    width:24px;
+  }
+
+
+  /* --- Label --- */
+
+
+
+  /* --- Common Button Styles --- */
+  .qty-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    border: none;
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    padding:5px;
+  }
+
+  .qty-btn svg{
+    width:100%;
+    height:100%;
+    max-width:14px;
+  }
+
+
+  /* Specific Colors */
+  .qty-btn.minus {
+    background-color: var(--color-bg-primary-accent-1);
+    background-color: {{ module.quantity_settings.reduction_button.background_color.color }};
+  }
+
+  .qty-btn.minus svg {
+    fill: var( --color-text-secondary);
+    fill: {{ module.quantity_settings.reduction_button.icon_color.color }};
+  }
+
+
+  .qty-btn.plus {
+    background-color: var(--color-brand-secondary);
+    background-color: {{ module.quantity_settings.increment_button.background_color.color }}
+  }
+
+  .qty-btn.plus svg {
+    fill: var(--color-bg-primary);
+    fill: {{ module.quantity_settings.increment_button.icon_color.color }};
+  }
+
+  /* --- Input Styles --- */
+  #qtyInput {
+    width: 48px;
+    height:48px;
+    border: none;
+    background: transparent;
+    -moz-appearance: textfield;
+  }
+
+  #qtyInput::-webkit-outer-spin-button,
+  #qtyInput::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  
+
+  .addtocart button {
+    background: #000;
+    color: #fff;
+  }
+
+  .button button.buy-now-btn {
+    background: #DFFF00; /* Neon Yellow */
+    color: #000;
+  }
+
+  .terms {
+  }
+
+  /* --- Bottom Description --- */
+  .product-description {
+    border-top: 1px solid #eee;
+    padding-top: 40px;
+  }
+
+  .gallery-thumb {
+    width: 116px;
+    height: 116px;
+    background: var(--color-bg-primary-accent-2);
+    cursor: pointer;
+    border: var(--border-width-default) solid transparent; 
+    transition: all 0.2s ease;
+  }
+
+
+  .gallery-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex: 0 0 auto;
+  }
+
+  /* Hover State */
+  .gallery-thumb:hover {
+    border-color: var(--color-bg-primary-accent-1);
+  }
+
+  /* Active State (The clicked one) */
+  .gallery-thumb.active-thumb {
+    border-color:var(--color-brand-secondary);
+  }
+
+
+  /* --- Bottom Grid Layout --- */
+  .bottom-section-grid {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+  }
+
+  .tab-headers {
+    border-bottom: 1px solid var(--color-bg-primary-accent-1);
+  }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    border-radius: var(--radius-half) var(--radius-half) 0px 0px;
+  }
+
+
+  /* Active Tab Style */
+  .tab-btn.active {
+    background: var(--color-bg-primary-accent-1);
+  }
+
+  .tab-content {
+    display: none; /* Hidden by default */
+  }
+
+  .tab-content.active {
+    display: block; /* Show if active */
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Specs Table */
+  .specs-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .specs-table td {
+    padding: 10px 0;
+    border-bottom: var(--border-width-default) solid var(--color-border-default);
+  }
+
+  /* --- Card Structure --- */
+  .product-card {
+    position: relative;
+    background:transparent;
+    transition: all 0.3s ease;
+  }
+
+  .product-card:hover .card-details{
+  
+ 
+  }
+
+
+
+  /* --- Image Area (The Gray Box) --- */
+  .card-image-wrapper {    
+    aspect-ratio: 1 / 1;        
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;        
+    overflow: hidden; 
+    transition: all 0.3s ease;          
+  }
+
+
+  .card-image-wrapper img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: all 0.3s ease;
+  }
+
+  .card-details{
+    background: {{ module.style.similar_products.background_color.css }};
+  }
+
+  .card-details-inner {
+    transition: transform 0.3s ease;
+  }
+
+  .product-card:hover .card-hover-action {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .product-card:hover .card-details-inner{
+    transform:translateX(20px);
+  }
+
+  .product-card:hover .card-image-wrapper{
+    border-radius: var(--radius-default) var(--radius-default) 0px 0px;
+  }
+
+    .card-hover-action {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    /* Initial State: Hidden and pushed down */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease-in-out;
+  }
+
+
+  /********** Responsive Font size starts here *****************/
+  @media (max-width: 768px) {
+    .product-overview { flex-direction: column; }
+    .product-name-status { flex-direction:column; align-items:flex-start; gap:10px;}
+    .category{justify-content:center;}
+    .qty-btn {flex:1;}
+    .button-section {flex-direction:column; gap;24px;}
+    .terms{text-align:center;}
+    .bottom-section-grid {display:flex; flex-direction:column;}
+    .similar-title * {text-align:center;}
+    .card-hover-action {
+     opacity:1;
+     bottom:40px;
+    }
+
+  }
+
+
+  /************************************************************/
+
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<section class="section bg-primary {% if anim.enable_section_animation %}reveal-card{% endif %}">
+
+  <div class="container flex flex-col gap-40">
+
+    <div class="product-overview flex gap-40">
+
+      {# --- LEFT COLUMN: Images --- #}
+      {# Define Main Image Variable for cleaner code #}
+      {% set main_img = module.product_information.product_image %}
+
+      <div class="product-image {% if anim.enable_section_animation %}reveal-left{% endif %}">
+
+        {# 1. Main Display Image #}
+        <div class="product-primary-image bg-primary-accent-2 rounded flex align-center justify-center mb-20">
+          {% if main_img.src %}
+          <img id="mainProductImage" 
+               src="{{ main_img.src|escape_url }}" 
+               alt="{{ main_img.alt|default('Product Image')|escape_attr }}" 
+               width="{{ main_img.width }}" 
+               height="{{ main_img.height }}"
+               style="max-width: 100%;">
+          {% else %}
+          <img id="mainProductImage" src="https://via.placeholder.com/600x600?text=No+Image" alt="No Image">
+          {% endif %}
+        </div>
+
+        {# 2. Gallery Thumbnails #}
+        <div class="product-image-gallery flex gap-10 mt-20">
+
+          {# A. Static Main Image (As 1st Thumbnail) #}
+          {% if main_img.src %}
+          <div class="gallery-thumb rounded-half active-thumb" 
+               data-src="{{ main_img.src|escape_url }}">
+            <img class="rounded-half" 
+                 src="{{ main_img.src|escape_url }}" 
+                 alt="Main View" 
+                 >
+          </div>
+          {% endif %}
+
+          {# B. Repeater Images #}
+          {% for item in module.product_information.product_thumbnails.thumbnail_image %}
+          {% if item.src %}
+
+          {# Note: We use item.src, not just item #}
+          <div class="gallery-thumb rounded-half" 
+               data-src="{{ item.src|escape_url }}">
+
+            <img class="rounded-half" 
+                 src="{{ item.src|escape_url }}" 
+                 alt="{{ item.alt|default('Thumb')|escape_attr }}" 
+                 >
+          </div>
+
+          {% endif %}
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+      {# --- RIGHT COLUMN: Info --- #}
+      <div class="product-info flex flex-col {% if anim.enable_section_animation %}reveal-right{% endif %}">
+
+        <div class="product-sku text-primary mb-10 rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+          {{ module.product_information.product_sku }}
+        </div>
+
+        {% set manual_color  = module.product_information.status.status_color.color %}
+        {% set dot_class = "dot-" ~ manual_color %}
+
+        <div class="product-name-status flex-between mb-20" >
+          <div class="product-title text-primary rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+            {{ module.product_information.product_title }}
+
+          </div>
+
+          {% set status_text = module.product_information.status.status %}
+          {% set status_hex  = module.product_information.status.status_color.css %}
+
+          <div class="product-status bg-primary-accent-1 text-primary py-4 px-10 flex gap-10 align-center rounded rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+
+            {# 2. Apply the color directly using the 'style' attribute #}
+            <span class="status-dot rounded-full" 
+                  style="background-color: {{ status_hex }};">
+            </span>
+
+            <p>
+              {{ status_text }}
+            </p> 
+
+          </div>
+        </div>
+
+        <div class="product-price flex gap-20 mb-40 align-end">
+          <div class="price text-primary rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+            {{ module.product_information.price }}
+          </div>
+          <div class="oldprice text-secondary rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+           {{ module.product_information.discount_price }}
+          </div>
+        </div>
+
+        <div class="description border p-20 rounded mb-20">
+          <div class="text-primary mb-10 rich-text-anim-wrapper"{% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+            <p class="text-body-highlight">
+              {{ module.content.short_description_title }}
+            </p>
+          </div>
+
+          <div class="text-secondary rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+           {{ module.product_information.description|truncate(150) }}
+          </div>
+
+        </div>
+
+        <div class="category flex gap-20 mb-40">
+          <div class="pricing-model flex gap-10 align-center">
+            {% set pm_settings = module.product_category_icons.pricing_model %}
+
+            {% if pm_settings.icon_type == 'image' %}
+            <img src="{{ pm_settings.image_field_1.src|escape_url }}" alt="{{ pm_settings.image_field_1.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>             
+            {% elif pm_settings.icon_type == 'icon' %}
+            {% icon
+          name="{{ pm_settings.hubspot_icon.name }}"
+          style="{{ pm_settings.hubspot_icon.type }}"
+          unicode="{{ pm_settings.hubspot_icon.unicode }}"
+          icon_set="{{ pm_settings.hubspot_icon.icon_set }}"
+          purpose="decorative"
+        %}
+            {% elif pm_settings.icon_type == 'custom' %}
+            {{ pm_settings.custom_svg }} 
+            {% endif %} 
+            <p>
+              {{ module.product_information.pricing_model }}
+            </p>
+          </div>
+
+          {% set pt_settings = module.product_category_icons.product_type %}
+
+          <div class="product-type flex gap-10 align-center rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+            {% if pt_settings.icon_type == 'image' %}
+            <img src="{{ pt_settings.image_field.src|escape_url }}" alt="{{ pt_settings.image_field.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>            
+            {% elif pt_settings.icon_type == 'icon' %}
+            {% icon
+          name="{{ pt_settings.hubspot_icon.name }}"
+          style="{{ pt_settings.hubspot_icon.type }}"
+          unicode="{{ pt_settings.hubspot_icon.unicode }}"
+          icon_set="{{ pt_settings.hubspot_icon.icon_set }}"
+          purpose="decorative"
+        %}
+            {% elif pt_settings.icon_type == 'custom' %}
+            {{ pt_settings.custom_svg }}
+            {% endif %}  
+            <p>
+              {{ module.product_information.product_type }}
+            </p>
+
+          </div>
+        </div>
+
+
+     <div class="button-container mb-10">
+         {% for item in module.button_repeater %} {{ button_macros.render_button(item, theme) }} {% endfor %}
+        </div>
+
+        <div class="terms">
+          <p>
+            {{ module.product_information.terms }}
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+
+    {# --- BOTTOM SECTION CONTAINER --- #}
+    <div class="bottom-section-grid gap-40">
+
+      {# --- LEFT COLUMN: Tabs --- #}
+      <div class="product-tabs-wrapper {% if anim.enable_section_animation %}reveal-left{% endif %}">
+
+        {# Tab Headers #}
+        <div class="tab-headers flex mb-20">
+
+          {# Button 1: Description #}
+          <button class="tab-btn active px-40 py-20" data-target="desc-tab">
+            <div class="text-body-highlight rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+              {{ module.field_group.table_description_title }}
+            </div>
+          </button>
+
+          {# Button 2: Specifications #}
+          <button class="tab-btn px-40 py-20" data-target="specs-tab">
+            <div class="text-body-highlight rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+              {{ module.field_group.table_specification_title }}
+            </div>
+          </button>
+        </div>
+
+        {# Tab Content 1: Description #}
+        <div id="desc-tab" class="tab-content active">
+          <div class="description-text rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+            <p>
+              {{ module.product_information.description }}
+            </p> 
+          </div>
+        </div>
+
+        {# Tab Content 2: Specifications #}
+        <div id="specs-tab" class="tab-content">
+          <table class="specs-table">
+            <tbody>
+
+              {# Loop through the repeater items #}
+              {% for item in module.specification_table.specifications %}
+              <tr>
+
+                {# Column 1: Label #}
+                <td>
+                  <div class="text-secondary">
+                   {{ item.specification_label }}
+                  </div>
+                </td>
+
+                {# Column 2: Value #}
+                <td>
+                  <div class="text-body-highlight text-primary rich-text-anim-wrapper"{% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+                    {{ item.value }}
+                  </div>
+                </td>
+
+              </tr>
+              {% endfor %}
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+
+      {# --- RIGHT COLUMN: Similar Products --- #}
+
+      <div class="similar-products-sidebar {% if anim.enable_section_animation %}reveal-right{% endif %}">
+        <div class="similar-title mb-40 rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>{{ module.similar_products.similar_products_title }}</div>
+
+        <div class="similar-grid gap-20 flex-col">
+
+          {# 1. Check if the repeater has items #}
+          {% if module.similar_products.products|length > 0 %}
+
+          {# 2. Loop through the Manual Repeater #}
+          {% for item in module.similar_products.products %}
+
+          {# --- Card Markup --- #}
+          <div class="product-card flex-col rounded">
+
+            {# A. Image Section #}
+            <div class="card-image-wrapper bg-primary-accent-2 flex rounded">
+
+              {% if item.product_image.src %}
+              {# Logic to handle HubSpot Image Resizing & Loading #}
+              {% set sizeAttrs = 'width="' ~ item.product_image.width|escape_attr ~ '" height="' ~ item.product_image.height|escape_attr ~ '"' %}
+
+              {% if item.product_image.size_type == 'auto' %}
+              {% set sizeAttrs = sizeAttrs ~ ' style="max-width: 100%; height: auto;"' %}
+              {% elif item.product_image.size_type == 'auto_custom_max' %}
+              {% set sizeAttrs = 'width="' ~ item.product_image.max_width|escape_attr ~ '" height="' ~ item.product_image.max_height|escape_attr ~ '" style="max-width: 100%; height: auto;"' %}
+              {% endif %}
+
+              {% set loadingAttr = item.product_image.loading != 'disabled' ? 'loading="' ~ item.product_image.loading|escape_attr ~ '"' : '' %}
+
+              <img src="{{ item.product_image.src|escape_url }}" 
+                   alt="{{ item.product_image.alt|escape_attr }}" 
+                   {{ loadingAttr }} 
+                   {{ sizeAttrs }}>
+              {% endif %}
+
+                       <div class="card-hover-action">
+              <section class="button-container">
+                {% for btn_item in item.button_repeater %}
+                {{ button_macros.render_button(btn_item, theme) }}
+                {% endfor %}
+              </section>
+            </div>
+
+            </div>
+
+            {# B. Details Section #}
+            <div class="card-details bg-primary">
+              <div class="card-details-inner my-10 pr-20">
+
+                {# Title #}
+                <h6 class="product-name text-primary mb-5  rich-text-anim-wrapper"{% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+                  {{ item.product_title }}
+                </h6>
+
+                {# Price #}
+                <div class="price-row mb-5 flex gap-10">
+                  <div class="current-price text-primary">
+                    {{ item.price }}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+          {# --- End Card --- #}
+
+          {% endfor %}
+
+          {% else %}
+          {# 3. Fallback if repeater is empty #}
+          <p class="text-body-highlight  rich-text-anim-wrapper"{% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %} >No similar products found.</p>
+          {% endif %}
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</section>
+
+<script>
+
+  document.addEventListener("DOMContentLoaded", function() {
+
+    // --- 1. Gallery Logic ---
+    const thumbs = document.querySelectorAll('.gallery-thumb');
+    const mainImage = document.getElementById('mainProductImage');
+
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', function() {
+        const newSrc = this.getAttribute('data-src');
+
+        if(mainImage) {
+          mainImage.style.opacity = '0.5';
+          setTimeout(() => {
+            mainImage.src = newSrc;
+            mainImage.style.opacity = '1';
+          }, 150);
+        }
+
+        thumbs.forEach(t => t.classList.remove('active-thumb'));
+        this.classList.add('active-thumb');
+      });
+    });
+
+    // --- 2. Quantity Selector Logic ---
+    const btnMinus = document.getElementById('btnMinus');
+    const btnPlus = document.getElementById('btnPlus');
+    const qtyInput = document.getElementById('qtyInput');
+
+    if(btnMinus && btnPlus && qtyInput) {
+      btnMinus.addEventListener('click', function() {
+        let currentVal = parseInt(qtyInput.value) || 1;
+        if (currentVal > 1) {
+          qtyInput.value = currentVal - 1;
+        }
+      });
+
+      btnPlus.addEventListener('click', function() {
+        let currentVal = parseInt(qtyInput.value) || 1;
+        qtyInput.value = currentVal + 1;
+      });
+    }
+
+    // --- 3. Tab Switching Logic (NEW FIX) ---
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+
+        // A. Get the ID of the tab to open (e.g., 'desc-tab')
+        const targetId = this.getAttribute('data-target');
+
+        // B. Hide all tab contents
+        tabContents.forEach(content => {
+          content.style.display = 'none';
+          content.classList.remove('active');
+        });
+
+        // C. Remove 'active' class from all buttons
+        tabBtns.forEach(b => b.classList.remove('active'));
+
+        // D. Activate THIS button and Show TARGET content
+        this.classList.add('active');
+
+        const targetContent = document.getElementById(targetId);
+        if(targetContent) {
+          targetContent.style.display = 'block';
+
+          // Optional: Slight fade-in if you have CSS animation
+          setTimeout(() => {
+            targetContent.classList.add('active');
+          }, 10);
+        }
+
+      });
+    });
+
+  });
+
+</script>
+
+

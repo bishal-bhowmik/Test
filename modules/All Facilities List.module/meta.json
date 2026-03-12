@@ -1,0 +1,14 @@
+{
+  "global" : false,
+  "content_types" : ["LANDING_PAGE", "SITE_PAGE" ],
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 349218057556,
+  "css_assets" : [ {
+    "autoload" : true,
+    "path" : "../../css/main.css",
+    "name" : "main.css"
+  } ],
+  "label" : "All Facilities List",
+  "icon" : "https://242549800.fs1.hubspotusercontent-na2.net/hubfs/242549800/icon%20(1).svg",
+  "is_available_for_new_content" : true
+}

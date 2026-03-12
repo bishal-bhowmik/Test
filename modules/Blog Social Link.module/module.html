@@ -1,0 +1,164 @@
+{% import '../../macros/button-macros.html' as button_macros %}
+{% import '../../macros/global-macros.html' as global_macros %} 
+{{ global_macros.module_css(module, name) }}
+
+<section class="section" id="{{name}}">
+  <div class="container">
+    <div class="social-text">{{ module.content.section_title }}</div>
+    
+    <div class="social-wrapper">
+      {# Facebook Icon #}
+      {% if module.facebook.enabled %}
+       <a href="{{ module.facebook.custom_link_format }}">
+        <div class="social-item fb-item">
+        
+          {% if module.facebook.icon_type == "image" %} 
+            <img src="{{ module.facebook.image_icon.src|escape_url }}" alt="{{ module.facebook.image_icon.alt|escape_attr }}">
+          {% elif module.facebook.icon_type == "hubspot_icon" %} 
+            {% icon name="{{ module.facebook.hubspot_icon.name }}" style="{{ module.facebook.hubspot_icon.type }}" unicode="{{ module.facebook.hubspot_icon.unicode }}" icon_set="{{ module.facebook.hubspot_icon.icon_set }}" %}
+          {% elif module.facebook.icon_type == "custom_svg" %} 
+            {{ module.facebook.custom_svg }}
+          {% endif %}
+        </div>
+       </a>
+      {% endif %}
+
+       {# Twitter Icon #}
+      {% if module.twitter.enabled %}
+       <a href="{{ module.twitter.custom_link_format }}">
+        <div class="social-item fb-item">
+        
+          {% if module.twitter.icon_type == "image" %} 
+            <img src="{{ module.twitter.image_icon.src|escape_url }}" alt="{{ module.twitter.image_icon.alt|escape_attr }}">
+          {% elif module.twitter.icon_type == "hubspot_icon" %} 
+            {% icon name="{{ module.twitter.hubspot_icon.name }}" 
+            style="{{ module.twitter.hubspot_icon.type }}" 
+            unicode="{{ module.twitter.hubspot_icon.unicode }}" 
+            icon_set="{{ module.twitter.hubspot_icon.icon_set }}" 
+            %}
+          {% elif module.twitter.icon_type == "custom_svg" %} 
+            {{ module.twitter.custom_svg }}
+          {% endif %}
+        </div>
+       </a>
+      {% endif %}
+
+ {# LINKEDIN Icon #}
+      {% if module.linkedin.enabled %}
+       <a href="{{ module.linkedin.custom_link_format }}">
+        <div class="social-item fb-item">
+        
+          {% if module.linkedin.icon_type == "image" %} 
+            <img src="{{ module.linkedin.image_icon.src|escape_url }}" alt="{{ module.linkedin.image_icon.alt|escape_attr }}">
+          {% elif module.linkedin.icon_type == "hubspot_icon" %} 
+            {% icon name="{{ module.linkedin.hubspot_icon.name }}" 
+            style="{{ module.linkedin.hubspot_icon.type }}" 
+            unicode="{{ module.linkedin.hubspot_icon.unicode }}" 
+            icon_set="{{ module.linkedin.hubspot_icon.icon_set }}" 
+            %}
+          {% elif module.linkedin.icon_type == "custom_svg" %} 
+            {{ module.linkedin.custom_svg }}
+          {% endif %}
+        </div>
+       </a>
+      {% endif %}
+
+      {#  PINTEREST Icon #}
+      {% if module.pinterest.enabled %}
+       <a href="{{ module.pinterest.custom_link_format }}">
+        <div class="social-item fb-item">
+        
+          {% if module.pinterest.icon_type == "image" %} 
+            <img src="{{ module.pinterest.image_icon.src|escape_url }}" alt="{{ module.pinterest.image_icon.alt|escape_attr }}">
+          {% elif module.pinterest.icon_type == "hubspot_icon" %} 
+            {% icon name="{{ module.pinterest.hubspot_icon.name }}" 
+            style="{{ module.pinterest.hubspot_icon.type }}" 
+            unicode="{{ module.pinterest.hubspot_icon.unicode }}" 
+            icon_set="{{ module.pinterest.hubspot_icon.icon_set }}" 
+            %}
+          {% elif module.pinterest.icon_type == "custom_svg" %} 
+            {{ module.pinterest.custom_svg }}
+          {% endif %}
+        </div>
+       </a>
+      {% endif %}
+
+      {#  EMAIL Icon #}
+      {% if module.email.enabled %}
+       <a href="{{ module.email.custom_link_format }}">
+        <div class="social-item fb-item">
+        
+          {% if module.email.icon_type == "image" %} 
+            <img src="{{ module.email.image_icon.src|escape_url }}" alt="{{ module.email.image_icon.alt|escape_attr }}">
+          {% elif module.email.icon_type == "hubspot_icon" %} 
+            {% icon name="{{ module.email.hubspot_icon.name }}" 
+            style="{{ module.email.hubspot_icon.type }}" 
+            unicode="{{ module.email.hubspot_icon.unicode }}" 
+            icon_set="{{ module.email.hubspot_icon.icon_set }}" 
+            %}
+          {% elif module.email.icon_type == "custom_svg" %} 
+            {{ module.email.custom_svg }}
+          {% endif %}
+        </div>
+       </a>
+      {% endif %}
+     
+    </div>
+  </div>
+</section>
+
+{% require_css %}
+<style>
+  {% scope_css %}
+  .section {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--color-border-default);
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+    flex-wrap:wrap;
+    gap: 20px;
+  }
+
+  .social-text {
+    font-size: 24px;
+    font-weight: 600;
+   
+  }
+
+  .social-wrapper {
+    display: flex;
+    gap: 12px;
+  }
+
+  .social-item {
+    background-color:var(--color-brand-primary); 
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px; 
+    transition: 0.2s ease;
+  }
+
+ 
+  .social-item svg, 
+  .social-item i {
+    width: 28px !important;
+    height: 28px !important;
+    fill: var(--color-text-primary) !important; 
+    color: var(--color-text-primary) !important;
+    margin-top:8px;
+  }
+
+  .social-item img {
+    max-width: 28px;
+    height: auto;
+  }
+  {% end_scope_css %}
+</style>
+{% end_require_css %}

@@ -1,0 +1,717 @@
+{% import '../../macros/global-macros.html' as global_macros %} 
+  {{ global_macros.module_css(module, name) }}
+
+{% set anim = module.style.animation %}
+
+
+
+
+{% require_css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<style>
+  {% scope_css %}
+
+  .testimonial-nav-btn img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+  /* --- UTILITIES --- */
+
+
+  {%if module.style.fonts.title_font%}
+  h5 {
+    font-family: {{ module.style.fonts.title_font.font }}; 
+    {{ module.style.fonts.title_font.style|escape_attr }}; 
+    color: {{ module.style.fonts.title_font.color|escape_attr }}; 
+    font-size: {{ module.style.fonts.title_font.size|escape_attr }}{{module.style.fonts.title_font.size_unit|escape_attr }}
+  }
+  {%endif%}
+
+  {%if module.style.fonts.label_font%}
+  h2 {
+    font-family: {{ module.style.fonts.label_font.font }}; 
+    {{ module.style.fonts.label_font.style|escape_attr }}; 
+    color: {{ module.style.fonts.label_font.color|escape_attr }}; 
+    font-size: {{ module.style.fonts.label_font.size|escape_attr }}{{module.style.fonts.label_font.size_unit|escape_attr }}
+  }
+  {%endif%}
+
+  {%if module.style.fonts.name_font%}
+  .testimonial-author .text-h5 {
+    font-family: {{ module.style.fonts.name_font.font }}; 
+    {{ module.style.fonts.name_font.style|escape_attr }}; 
+    color: {{ module.style.fonts.name_font.color|escape_attr }}; 
+    font-size: {{ module.style.fonts.name_font.size|escape_attr }}{{module.style.fonts.name_font.size_unit|escape_attr }}
+  }
+  {%endif%}
+
+  {%if module.style.fonts.title_text_font%}
+  .testimonial-author .text-body {
+    font-family: {{ module.style.fonts.title_text_font.font }}; 
+    {{ module.style.fonts.title_text_font.style|escape_attr }}; 
+    color: {{ module.style.fonts.title_text_font.color|escape_attr }}; 
+    font-size: {{ module.style.fonts.title_text_font.size|escape_attr }}{{module.style.fonts.title_text_font.size_unit|escape_attr }}
+  }
+  {%endif%}
+
+  {%if module.style.fonts.testimonial_font%}
+  .testimonial-content .text-body {
+    font-family: {{ module.style.fonts.testimonial_font.font }}; 
+    {{ module.style.fonts.testimonial_font.style|escape_attr }}; 
+    color: {{ module.style.fonts.testimonial_font.color|escape_attr }}; 
+    font-size: {{ module.style.fonts.testimonial_font.size|escape_attr }}{{module.style.fonts.testimonial_font.size_unit|escape_attr }}
+  }
+  {%endif%}
+
+  {%if module.style.progress_bar_color%}
+  .progress-bar-bg .bg-brand-primary {
+    background-color: {{ module.style.progress_bar_color.color }}; 
+    opacity: {{ module.style.progress_bar_color.opacity }};
+  }
+  }
+  {%endif%}
+
+
+.testimonial-avatar {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  flex-shrink: 0;
+
+  {% if module.style.image_border_color.color %}
+    border: 3px solid rgba({{ module.style.image_border_color.color|convert_rgb }}, {{ module.style.image_border_color.opacity / 100 }});
+  {% else %}
+    border: 3px solid {{ theme.brand_colors.primary.color }};
+  {% endif %}
+}
+
+
+
+  .section {
+    padding-bottom: 0;
+    padding-right: 0;
+  }
+
+  .max-w-content {
+    padding-bottom: 0;
+    padding-right: 0;
+  }
+
+  .container {
+    max-width: 1440px;
+  }
+
+  .flex-col {
+    gap: 0;
+  }
+
+  .testimonial-card {
+    width: 100%;
+   
+  }
+
+  /* --- BUTTONS --- */
+  .testimonial-nav-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background-color: transparent;
+    border: 2px solid var(--color-brand-primary);
+  }
+  
+  {%if module.slider_buttons.button_background_accent_color.color %}
+    .testimonial-nav-btn {
+       border: 2px solid {{ module.slider_buttons.button_background_accent_color.color }};
+  }
+  {%endif%}
+
+  .testimonial-nav-btn .hs_cos_wrapper_type_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+  }
+
+  .testimonial-nav-btn svg,
+  .testimonial-nav-btn i {
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s ease;
+  }
+
+  /* Default state - both buttons transparent with primary border */
+  .testimonial-button-prev svg,
+  .testimonial-button-prev i,
+  .testimonial-button-prev path,
+  .testimonial-button-next svg,
+  .testimonial-button-next i,
+  .testimonial-button-next path {
+    fill: var(--color-brand-primary);
+    color: var(--color-brand-primary);
+  }
+  
+    {%if module.slider_buttons.button_background_accent_color.color %}
+      .testimonial-button-prev svg,
+  .testimonial-button-prev i,
+  .testimonial-button-prev path,
+  .testimonial-button-next svg,
+  .testimonial-button-next i,
+  .testimonial-button-next path {
+     fill: {{ module.slider_buttons.button_background_accent_color.color }};
+    color: {{ module.slider_buttons.button_background_accent_color.color }};
+  }
+  {%endif%}
+
+  /* Active state - filled background with secondary icons */
+  .testimonial-nav-btn.active {
+    background-color: var(--color-brand-primary);
+    border-color: var(--color-brand-primary);
+  }
+
+  {%if module.slider_buttons.button_background_accent_color %}
+    .testimonial-nav-btn.active {
+  background-color: {{ module.slider_buttons.button_background_accent_color.color }};
+  border-color: {{ module.slider_buttons.button_background_accent_color.color }};
+  }
+  {%endif%}
+
+
+
+  .testimonial-nav-btn.active svg,
+  .testimonial-nav-btn.active i,
+  .testimonial-nav-btn.active path {
+    fill: var(--color-brand-secondary);
+    color: var(--color-brand-secondary);
+  }
+
+  {%if module.slider_buttons.icon_color %}
+  .testimonial-nav-btn.active svg,
+  .testimonial-nav-btn.active i,
+  .testimonial-nav-btn.active path {
+    fill: {{ module.slider_buttons.icon_color.color }};
+    color: {{ module.slider_buttons.icon_color.color }};
+  }
+  {%endif%}
+
+  /* Hover state */
+  .testimonial-nav-btn:hover {
+    background-color: var(--color-brand-secondary);
+    border-color: var(--color-brand-secondary);
+  }
+  
+  {%if module.slider_buttons.button_hover_background_color.color %}
+   .testimonial-nav-btn:hover {
+   background-color: {{ module.slider_buttons.button_hover_background_color.color }};
+    border-color: {{ module.slider_buttons.button_hover_background_color.color }};
+  }
+  {%endif%}
+  
+
+
+  .testimonial-nav-btn:hover svg,
+  .testimonial-nav-btn:hover i,
+  .testimonial-nav-btn:hover path {
+    fill: var(--color-bg-primary-accent-1);
+    color: var(--color-bg-primary-accent-1);
+  }
+
+
+
+  {%if module.slider_buttons.button_hover_icon_color %}
+  .testimonial-nav-btn:hover svg,
+  .testimonial-nav-btn:hover i,
+  .testimonial-nav-btn:hover path {
+    fill: {{ module.slider_buttons.button_hover_icon_color.color }};
+    color: {{ module.slider_buttons.button_hover_icon_color.color }};
+  }
+  {%endif%}
+
+
+  /* --- DESKTOP --- */
+  .testimonial-left-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 100px;
+    min-width: 300px;
+  }
+
+  .testimonial-right-column {
+    flex: 1.2;
+    align-self: stretch;
+    padding-top: 141px;
+    padding-left: 8%;
+    padding-bottom: 80px;
+    padding-right: 0px;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .swiper-slide-custom {
+    width: 509px;
+    height: auto;
+    display: flex;
+    max-width: 85%;
+  }
+
+  .progress-bar-bg {
+    max-width: 400px;
+    height: 6px;
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s linear;
+  }
+
+  /* --- RESPONSIVE & MOBILE (Updated Layout) --- */
+  @media (max-width: 1280px) {
+    .testimonial-right-column {
+      padding-left: 60px;
+      padding-top: 100px;
+    }
+
+    .swiper-slide-custom {
+      width: 450px;
+    }
+  }
+
+  @media (max-width: 1080px) and (min-width: 769px) {
+  .testimonial-right-column {
+    padding-left: 25px;
+  }  
+}
+
+  @media (max-width: 768px) {
+    .testimonial-desktop-layout {
+      display: none !important;
+    }
+
+    .hidden-desktop {
+      display: flex !important;
+    }
+    
+
+        .section {
+        padding: 48px 0px;
+    }
+    
+
+    .section {
+      padding-bottom: 48px;
+      padding-right: 16px;
+    }
+
+    .mobile-header-spacing {
+      margin-bottom: 40px;
+    }
+
+    .mobile-visual-stack {
+      position: relative;
+      width: 85%;
+      max-width: 400px;
+      margin: 0 auto 30px auto;
+    }
+
+    .mobile-green-backdrop {
+      position: absolute;
+      top: -24px;
+      left: 24px;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .mobile-bg-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .testimonial-slider-wrapper {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+
+    .swiper-slide-mobile {
+      width: 100% !important;
+      display: flex;
+      justify-content: center;
+      height: auto;
+    }
+
+    .testimonial-card {
+      width: 100%;
+      height: 100%;
+      background-color: var(--color-bg-primary);
+    }
+
+  
+
+    .testimonial-nav-container-mobile {
+      margin-top: 10px;
+      position: relative;
+      z-index: 5;
+    }
+  }
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<section id="{{name}}" class="section bg-primary-accent-1 js-testimonial-slider" style="position: relative; overflow: visible;" data-total-slides="{{ module.testimonial_cards|length }}">
+  <div class=" container {% if anim.enable_section_animation %}reveal-card{% endif %}" style="position: relative; z-index: 1;">
+    <div class="flex flex-col gap-40">
+
+      <div class="flex gap-40 hidden-mobile testimonial-desktop-layout">
+        <div class="flex-col testimonial-left-column justify-center pb-60 rich-text-anim-wrapper"
+        {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+        {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}
+        >
+          {% if module.section_label %} 
+          <h5 class="text-secondary mb-20">{{ module.section_label }}</h5>
+          {% endif %}
+          {% if module.section_title %}
+          <h2 class="text-primary"
+          >{{ module.section_title }}</h2>
+          {% endif %}
+          <div class="mt-40 testimonial-progress-container">
+            <div class="progress-bar-bg bg-primary-accent-2">
+              <div class="progress-bar-fill bg-brand-primary"></div>
+            </div>
+          </div>
+
+          <div class="flex gap-20 testimonial-nav-container mt-40">
+            <button class="testimonial-button-prev swiper-nav-button flex-center testimonial-nav-btn">
+  {% if module.slider_buttons.icon_type == 'svg' %} 
+    {{ module.slider_buttons.svg_icon_left }} 
+  {% elif module.slider_buttons.icon_type == 'image' %}
+    <img src="{{ module.slider_buttons.image_icon_left.src }}" 
+         alt="{{ module.slider_buttons.image_icon_left.alt }}" 
+         width="24" 
+         height="24" />
+  {% else %} 
+    {% icon name="{{ module.slider_buttons.custom_icon_left.name }}" 
+        style="{{ module.slider_buttons.custom_icon_left.type }}" 
+        unicode="{{ module.slider_buttons.custom_icon_left.unicode }}" 
+        icon_set="{{ module.slider_buttons.custom_icon_left.icon_set }}" 
+      %} 
+  {% endif %}
+</button>
+
+<button class="testimonial-button-next swiper-nav-button flex-center testimonial-nav-btn">
+  {% if module.slider_buttons.icon_type == 'svg' %} 
+    {{ module.slider_buttons.svg_icon_right }} 
+  {% elif module.slider_buttons.icon_type == 'image' %}
+    <img src="{{ module.slider_buttons.image_icon_right.src }}" 
+         alt="{{ module.slider_buttons.image_icon_right.alt }}" 
+         width="24" 
+         height="24" />
+  {% else %} 
+    {% icon name="{{ module.slider_buttons.custom_icon_right.name }}"
+        style="{{ module.slider_buttons.custom_icon_right.type }}"
+        unicode="{{ module.slider_buttons.custom_icon_right.unicode }}"
+        icon_set="{{ module.slider_buttons.custom_icon_right.icon_set }}"
+      %} 
+  {% endif %}
+</button>
+          </div>
+        </div>
+
+        <div class="testimonial-right-column bg-secondary rounded" style="{% if module.background_image.src %}background-image: url('{{ module.background_image.src }}');{% endif %}">
+
+          <div class="testimonial-slider-wrapper w-full h-full">
+            <div class="swiper testimonialSwiper h-full">
+              <div class="swiper-wrapper">
+                {% for item in module.testimonial_cards %}
+                <div class="swiper-slide swiper-slide-custom">
+                  <div class="testimonial-card bg-primary rounded p-30 flex flex-col h-full justify-between">
+                    <div class="testimonial-card-content flex flex-col gap-20">
+                      <div class="flex gap-20 items-center">
+                        {% if item.testimonial_image.src %}
+                        <div class="testimonial-image">
+                          <img src="{{ item.testimonial_image.src }}" alt="{{ item.name }}" class="rounded-full testimonial-avatar">
+                        </div>
+                        {% endif %}
+                        <div class="testimonial-author rich-text-anim-wrapper"
+                        {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+                        {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}
+                        >
+
+                          {{item.author_text}}
+                        </div>
+                      </div>
+                      <div class="testimonial-content rich-text-anim-wrapper"
+                      {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+                      {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}
+                      >
+                        {{ item.testimonial_text }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-col hidden-desktop testimonial-mobile-layout">
+
+        <div class="text-center mobile-header-spacing">
+          {% if module.section_label %}
+          <h5 class="text-secondary mb-10">{{ module.section_label }}</h5>
+          {% endif %}
+          <h2 class="text-primary">{{ module.section_title }}</h2>
+        </div>
+
+        <div class="mobile-visual-stack">
+
+          <div class="mobile-green-backdrop bg-secondary rounded">
+            {% if module.background_image.src %}
+            <img src="{{ module.background_image.src }}" alt="Background" class="mobile-bg-image">
+            {% endif %}
+          </div>
+
+          <div class="testimonial-slider-wrapper w-full" style="position: relative; z-index: 2;">
+            <div class="swiper testimonialSwiperMobile">
+              <div class="swiper-wrapper">
+                {% for item in module.testimonial_cards %}
+                <div class="swiper-slide swiper-slide-mobile">
+                  <div class="testimonial-card bg-primary rounded p-30 mobile-card-shadow">
+                    <div class="testimonial-card-content flex flex-col gap-20">
+
+                      <div class="flex gap-20 items-center">
+                        {% if item.testimonial_image.src %}
+                        <div class="testimonial-image">
+                          <img src="{{ item.testimonial_image.src }}" alt="{{ item.name }}" class="rounded-full testimonial-avatar">
+                        </div>
+                        {% endif %}
+                        <div class="testimonial-author">
+                          <p class="text-h5 text-primary font-bold">{{ item.author_name }}</p>
+                          <p class="text-body text-secondary text-sm">{{ item.title }}</p>
+                        </div>
+                      </div>
+
+                      <div class="testimonial-content">
+                        <p class="text-body text-primary">{{ item.testimonial_text }}</p>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-20 testimonial-nav-container-mobile flex-center">
+          <button class="testimonial-button-prev testimonial-nav-btn flex-center">
+  {% if module.slider_buttons.icon_type == 'svg' %} 
+    {{ module.slider_buttons.svg_icon_left }} 
+  {% elif module.slider_buttons.icon_type == 'image' %}
+    <img src="{{ module.slider_buttons.image_icon_left.src }}" 
+         alt="{{ module.slider_buttons.image_icon_left.alt }}" 
+         width="24" 
+         height="24" />
+  {% else %} 
+    {% icon name="{{ module.slider_buttons.custom_icon_left.name }}" 
+        style="{{ module.slider_buttons.custom_icon_left.type }}" 
+        unicode="{{ module.slider_buttons.custom_icon_left.unicode }}" 
+        icon_set="{{ module.slider_buttons.custom_icon_left.icon_set }}" 
+      %} 
+  {% endif %}
+</button>
+
+<button class="testimonial-button-next testimonial-nav-btn flex-center">
+  {% if module.slider_buttons.icon_type == 'svg' %} 
+    {{ module.slider_buttons.svg_icon_right }} 
+  {% elif module.slider_buttons.icon_type == 'image' %}
+    <img src="{{ module.slider_buttons.image_icon_right.src }}" 
+         alt="{{ module.slider_buttons.image_icon_right.alt }}" 
+         width="24" 
+         height="24" />
+  {% else %} 
+    {% icon name="{{ module.slider_buttons.custom_icon_right.name }}" 
+        style="{{ module.slider_buttons.custom_icon_right.type }}" 
+        unicode="{{ module.slider_buttons.custom_icon_right.unicode }}" 
+        icon_set="{{ module.slider_buttons.custom_icon_right.icon_set }}" 
+      %} 
+  {% endif %}
+</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  
+</section>
+
+{% require_js %}
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  (function() {
+
+    // Function to initialize a single module instance
+    function initSlider(module) {
+
+      // 1. Get the total slides from the data attribute (safe for multiple instances)
+      const totalSlides = parseInt(module.getAttribute('data-total-slides')) || 1;
+
+      // 2. Select Elements scoped strictly to THIS module
+      const desktopContainer = module.querySelector('.testimonialSwiper');
+      const mobileContainer = module.querySelector('.testimonialSwiperMobile');
+      const progressBarFill = module.querySelector('.progress-bar-fill');
+
+      // Select Desktop Navigation Buttons (scoped)
+      const desktopNextBtn = module.querySelector('.testimonial-desktop-layout .testimonial-button-next');
+      const desktopPrevBtn = module.querySelector('.testimonial-desktop-layout .testimonial-button-prev');
+
+      // Select Mobile Navigation Buttons (scoped)
+      const mobileNextBtn = module.querySelector('.testimonial-nav-container-mobile .testimonial-button-next');
+      const mobilePrevBtn = module.querySelector('.testimonial-nav-container-mobile .testimonial-button-prev');
+
+      // 3. Progress Update Helper
+      function updateProgress(s) {
+        if (!progressBarFill) return;
+        const realIndex = s.realIndex;
+        const progress = ((realIndex + 1) / totalSlides) * 100;
+        progressBarFill.style.width = progress + '%';
+      }
+
+      // 4. Function to update button active states
+      function updateButtonStates(prevBtn, nextBtn, isBeginning, isEnd) {
+        if (!prevBtn || !nextBtn) return;
+
+        // Remove active class from both
+        prevBtn.classList.remove('active');
+        nextBtn.classList.remove('active');
+
+        // Add active class to the appropriate button
+        if (isBeginning) {
+          nextBtn.classList.add('active');
+        } else if (isEnd) {
+          prevBtn.classList.add('active');
+        } else {
+          nextBtn.classList.add('active');
+        }
+      }
+
+      // 5. Initialize Desktop Swiper
+      if (desktopContainer) {
+        const swiperDesktop = new Swiper(desktopContainer, {
+          slidesPerView: 'auto',
+          spaceBetween: 40,
+          centeredSlides: false,
+          loop: true,
+          navigation: {
+            nextEl: desktopNextBtn,
+            prevEl: desktopPrevBtn,
+          },
+          on: {
+            init: function() {
+              updateProgress(this);
+              // Set initial active state (next button active by default)
+              if (desktopNextBtn) desktopNextBtn.classList.add('active');
+            },
+            slideChange: function() {
+              updateProgress(this);
+            },
+            slideNextTransitionStart: function() {
+              updateButtonStates(desktopPrevBtn, desktopNextBtn, false, false);
+            },
+            slidePrevTransitionStart: function() {
+              updateButtonStates(desktopPrevBtn, desktopNextBtn, false, false);
+            }
+          }
+        });
+
+        // Add click listeners to toggle active state
+        if (desktopNextBtn) {
+          desktopNextBtn.addEventListener('click', function() {
+            updateButtonStates(desktopPrevBtn, desktopNextBtn, false, false);
+          });
+        }
+        if (desktopPrevBtn) {
+          desktopPrevBtn.addEventListener('click', function() {
+            updateButtonStates(desktopPrevBtn, desktopNextBtn, false, true);
+          });
+        }
+      }
+
+      // 6. Initialize Mobile Swiper
+      if (mobileContainer) {
+        const swiperMobile = new Swiper(mobileContainer, {
+          slidesPerView: 1,
+          spaceBetween: 30,
+          centeredSlides: true,
+          loop: true,
+          autoHeight: true,
+          navigation: {
+            nextEl: mobileNextBtn,
+            prevEl: mobilePrevBtn,
+          },
+          on: {
+            init: function() {
+              // Set initial active state (next button active by default)
+              if (mobileNextBtn) mobileNextBtn.classList.add('active');
+            },
+            slideNextTransitionStart: function() {
+              updateButtonStates(mobilePrevBtn, mobileNextBtn, false, false);
+            },
+            slidePrevTransitionStart: function() {
+              updateButtonStates(mobilePrevBtn, mobileNextBtn, false, false);
+            }
+          }
+        });
+
+        // Add click listeners to toggle active state
+        if (mobileNextBtn) {
+          mobileNextBtn.addEventListener('click', function() {
+            updateButtonStates(mobilePrevBtn, mobileNextBtn, false, false);
+          });
+        }
+        if (mobilePrevBtn) {
+          mobilePrevBtn.addEventListener('click', function() {
+            updateButtonStates(mobilePrevBtn, mobileNextBtn, false, true);
+          });
+        }
+      }
+    }
+
+    // Main Entry Point
+    document.addEventListener('DOMContentLoaded', function() {
+      // Find all instances of this specific module
+      const sliderModules = document.querySelectorAll('.js-testimonial-slider');
+
+      // Initialize each instance independently
+      sliderModules.forEach(function(module) {
+        initSlider(module);
+      });
+    });
+
+  })();
+</script>
+{% end_require_js %}

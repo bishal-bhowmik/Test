@@ -1,0 +1,234 @@
+{% import '../../macros/button-macros.html' as button_macros %}
+  {% import '../../macros/global-macros.html' as global_macros %} 
+  {{ global_macros.module_css(module, name) }}
+
+{% set anim = module.style.animation %}
+
+{% import '../../macros/button-macros.html' as button_macros %} {# --- MACRO:
+Render HubSpot Video --- #} {% macro render_video_player(video_data) %} {% if
+video_data.player_id %} {% video_player "embed_player" player_id={{
+video_data.player_id }} type={{ video_data.player_type || 'scriptV4' }}
+full_width={{ video_data.size_type == 'auto_full_width' }} conversion_asset={{
+video_data.conversion_asset|tojson|safe }} autoplay={{ video_data.autoplay }}
+hidden_controls={{ video_data.hide_controls }} loop={{ video_data.loop_video }}
+muted={{ video_data.mute_by_default }} play_button_color="#ffffff" %} {% endif
+%} {% endmacro %} {% require_css %}
+<style>
+       {% scope_css %}
+
+         .section {
+            {% if module.style.padding.enable %}
+              --padding-top: clamp({{ module.style.padding.mobile.top_padding|default(48) }}px, 4vw , {{ module.style.padding.desktop.top_padding|default(80) }}px);
+              --padding-left: clamp({{ module.style.padding.mobile.left_padding|default(16) }}px, 4vw , {{ module.style.padding.desktop.left_padding|default(80) }}px);
+              --padding-right: clamp({{ module.style.padding.mobile.right_padding|default(16) }}px, 4vw , {{ module.style.padding.desktop.right_padding|default(80) }}px);
+              --padding-bottom: clamp({{ module.style.padding.mobile.bottom_padding|default(48) }}px, 4vw , {{ module.style.padding.desktop.bottom_padding|default(0) }}px);
+              padding-top: var(--padding-top);
+              padding-bottom: var(--padding-bottom);
+              padding-left: var(--padding-left);
+              padding-right: var(--padding-right);
+            {% endif %}
+            
+           
+          }
+       .card-container {
+         display: flex;
+         flex-wrap: wrap;
+         align-items: center;
+         justify-content: space-between;
+
+
+       }
+       {% if module.layout_alignment.alignment.column_reverse %}
+
+    	  .card-container {
+         display: flex;
+         flex-wrap: wrap;
+         align-items: center;
+         justify-content: space-between;
+        flex-direction:row-reverse;
+
+       }
+
+  {% endif %}
+
+       .details-column {
+         flex: 1.4;
+         min-width: 320px;
+       }
+
+      .section-title h3 ,h1 {
+      color:var(--color-text-primary);
+       }
+       .section-title p {
+      color:var(--color-text-secondary);
+       }
+
+       .video-column {
+         flex: 1;
+         min-width: 320px;
+       }
+
+       .media-wrapper {
+         width: 100%;
+         overflow: hidden;
+         position: relative;
+         z-index: 1;
+       }
+
+       .media-wrapper img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         display: block;
+       }
+
+       .media-wrapper .hs_cos_wrapper_type_video,
+       .media-wrapper .hs-video-widget,
+       .media-wrapper .hs-video-container,
+       .media-wrapper .hs-video-wrapper,
+       .media-wrapper .video-js {
+         width: 100% !important;
+         height: 100% !important;
+         position: absolute !important;
+         top: 0;
+         left: 0;
+         padding: 0 !important;
+       }
+
+       .media-wrapper .vjs-tech {
+         object-fit: cover !important;
+       }
+
+       .media-wrapper .iframe_wrapper {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+       }
+
+
+       @media (max-width: 768px) {
+         .card-container { flex-direction: column; }
+         .details-column, .video-column { width: 100%;
+         min-width:100%; }
+       }
+       {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<section class="section bg-primary-accent-1" id="{{name}}">
+  <div class="container {% if anim.enable_section_animation %}reveal-card{% endif %}" >
+    <div class="card-container gap-40">
+      <div class="details-column {% if anim.enable_section_animation %}reveal-left{% endif %}">
+        <div class="section-title pb-40 rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %} >
+          {{ module.content.section_title }}
+        </div>
+        <div class="button-group">
+          {% for item in module.buttons.button_repeater %} {{
+          button_macros.render_button(item, theme) }} {% endfor %}
+        </div>
+      </div>
+
+      <div class="video-column ">
+        {% set media_data = module.testimonial_items %}
+
+{% set ratio_style = "aspect-ratio: 16 / 9;" %}
+
+{% if media_data.video_aspect_ratio == 'landscape' %}
+  {% set ratio_style = "aspect-ratio: 16 / 9;" %}
+{% elif media_data.video_aspect_ratio == 'square' %}
+  {% set ratio_style = "aspect-ratio: 1 / 1;" %}
+    {% elif media_data.video_aspect_ratio == 'vertical' %}
+  {% set ratio_style = "aspect-ratio: 51 / 61;" %}
+{% elif media_data.video_aspect_ratio == 'custom' and media_data.custom_ratio_width and media_data.custom_ratio_height %}
+  {% set ratio_style = "aspect-ratio: " ~ media_data.custom_ratio_width ~ " / " ~ media_data.custom_ratio_height ~ ";" %}
+{% endif %}
+
+
+        <div class="media-wrapper rounded {% if anim.enable_section_animation %}reveal-right{% endif %}" style="{{ ratio_style }}">
+          {% if media_data.video_source_type == 'image' %} {% if
+          media_data.image.src %} {% set loadingAttr = media_data.image.loading
+          != 'disabled' ? 'loading="' ~ media_data.image.loading ~ '"' : '' %}
+          <img
+            src="{{ media_data.image.src }}"
+            alt="{{ media_data.image.alt|escape_attr }}"
+            width="{{ media_data.image.width }}"
+            height="{{ media_data.image.height }}"
+            {{
+            loadingAttr
+            }}
+          />
+          {% endif %} {% elif media_data.video_source_type == 'embed' %} {% set
+          embedField = media_data.embed_field %} {% if embedField.source_type ==
+          "oembed" %}
+          <div class="oembed_container">
+            <div
+              class="iframe_wrapper"
+              data-embed-response-html="{{ embedField.oembed_response.html|escape_attr }}"
+              data-embed-url="{{ embedField.oembed_url|escape_attr }}"
+            ></div>
+          </div>
+          {% else %}
+          <div class="embed_container">
+            <div class="iframe_wrapper">{{ embedField.embed_html }}</div>
+          </div>
+          {% endif %} {% else %} {{
+          render_video_player(media_data.video_file_media) }} {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% require_js position="footer" %}
+<script>
+  (function () {
+    function loadEmbedField(oembedContainer) {
+      const iframeWrapper = oembedContainer.querySelector(".iframe_wrapper");
+      if (!iframeWrapper) return;
+      const url = iframeWrapper.dataset.embedUrl;
+      const responseHtml = iframeWrapper.dataset.embedResponseHtml;
+
+      if (responseHtml) {
+        const el = document.createElement("div");
+        el.innerHTML = responseHtml;
+        const iframe = el.firstChild;
+        if (iframe) {
+          iframe.style.width = "100%";
+          iframe.style.height = "100%";
+          iframeWrapper.appendChild(iframe);
+        }
+        return;
+      }
+
+      if (url) {
+        const request = new XMLHttpRequest();
+        const requestUrl =
+          "/_hcms/oembed?url=" + encodeURIComponent(url) + "&autoplay=0";
+        request.open("GET", requestUrl, true);
+        request.onload = function () {
+          if (request.status >= 200 && request.status < 400) {
+            const data = JSON.parse(request.responseText);
+            const el = document.createElement("div");
+            el.innerHTML = data.html;
+            const iframe = el.firstChild;
+            if (iframe) {
+              iframe.style.width = "100%";
+              iframe.style.height = "100%";
+              iframeWrapper.appendChild(iframe);
+            }
+          }
+        };
+        request.send();
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var oEmbedContainers = document.querySelectorAll(".oembed_container");
+      oEmbedContainers.forEach(loadEmbedField);
+    });
+  })();
+</script>
+{% end_require_js %}

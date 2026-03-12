@@ -1,0 +1,56 @@
+<!--
+  templateType: "page"
+  isAvailableForNewContent: false
+-->
+
+{% macro module_css(module, name) %} 
+  {% require_css %}
+    <style>
+      
+      /* --- LAYOUT --- */
+      #{{ name }}.section .container {
+        {% if module.layout_alignment.section_max_width %}
+          max-width: {{ module.layout_alignment.section_max_width }}px;
+        {% endif %}
+      }
+
+      /* --- BACKGROUND --- */
+      {% if module.style.background.enable %}
+        #{{ name }}.section {
+          
+          {# Solid Color #}
+          {% if module.style.background.background_type == "solid_color" %}
+            background-color: {{ module.style.background.solid_color.css }};
+          
+          {# Gradient #}
+          {% elif module.style.background.background_type == "gradient" %}
+            background: {{ module.style.background.gradient_field.css }};
+          
+          {# Image #}
+          {% elif module.style.background.background_type == "image" %}
+            
+            {% if module.style.background.background_overlay %}
+              /* Stack the overlay gradient ON TOP of the image */
+              background: {{ module.style.background.overlay_color.css }}, url("{{ module.style.background.background_image.src }}");
+            {% else %}
+              /* Image only */
+              background: url("{{ module.style.background.background_image.src }}");
+            {% endif %}
+
+            background-size: cover;
+            {% if module.style.background.background_image_position  == "center" %}
+      background-position: center;
+       {% elif module.style.background.background_image_position  == "top" %}
+       background-position: top;
+      {% elif module.style.background.background_image_position  == "bottom" %}
+       background-position: bottom;
+      {% endif %}
+            background-repeat: no-repeat;
+            
+          {% endif %}
+        }
+      {% endif %}
+
+    </style>
+  {% end_require_css %} 
+{% endmacro %}

@@ -1,0 +1,656 @@
+[
+  {
+    "label": "Content",
+    "name": "content",
+    "type": "group",
+    "expanded": false,
+    "children": [
+      {
+        "label": "Rich Text",
+        "name": "section_title",
+        "default": "<h6>Share Now</h6>",
+        "type": "richtext"
+      }
+    ]
+  },
+  {
+    "label": "Facebook",
+    "name": "facebook",
+    "type": "group",
+    "expanded": false,
+    "children": [
+      {
+        "label": "Enabled?",
+        "name": "enabled",
+        "display": "checkbox",
+        "default": false,
+        "required": true,
+        "type": "boolean"
+      },
+      {
+        "label": "Link",
+        "name": "custom_link_format",
+        "default": "https://www.facebook.com/share.php?u={{ social_link_url|urlencode }}",
+        "required": true,
+        "visibility": {
+          "controlling_field_path": "facebook.enabled",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "text"
+      },
+      {
+        "label": "Icon Type",
+        "name": "icon_type",
+        "choices": [
+          [
+            "hubspot_icon",
+            "Hubspot Icon"
+          ],
+          [
+            "custom_svg",
+            "Custom SVG"
+          ],
+          [
+            "image",
+            "Image Icon"
+          ]
+        ],
+        "default": "custom_svg",
+        "help_text": "The image icon will not contain the global color",
+        "visibility": {
+          "controlling_field_path": "facebook.enabled",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Hubspot Icon",
+        "name": "hubspot_icon",
+        "default": {
+          "name": "Facebook",
+          "type": "SOLID",
+          "unicode": "f09a"
+        },
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "facebook.icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "hubspot_icon"
+            },
+            {
+              "controlling_field_path": "facebook.enabled",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "icon"
+      },
+      {
+        "label": "Custom SVG",
+        "name": "custom_svg",
+        "default": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 640\"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d=\"M240 363.3L240 576L356 576L356 363.3L442.5 363.3L460.5 265.5L356 265.5L356 230.9C356 179.2 376.3 159.4 428.7 159.4C445 159.4 458.1 159.8 465.7 160.6L465.7 71.9C451.4 68 416.4 64 396.2 64C289.3 64 240 114.5 240 223.4L240 265.5L174 265.5L174 363.3L240 363.3z\"/></svg>",
+        "placeholder": "Enter SVG Code",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "facebook.icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "custom_svg"
+            },
+            {
+              "controlling_field_path": "facebook.enabled",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "text"
+      },
+      {
+        "label": "Image Icon",
+        "name": "image_icon",
+        "default": {
+          "src": "../../Images/Vector.svg",
+          "alt": "Image Icon"
+        },
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "facebook.icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "image"
+            },
+            {
+              "controlling_field_path": "facebook.enabled",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "image"
+      }
+    ]
+  },
+  {
+    "label": "Twitter",
+    "name": "twitter",
+    "type": "group",
+    "expanded": false,
+    "children": [
+      {
+        "label": "Enabled?",
+        "name": "enabled",
+        "display": "checkbox",
+        "default": false,
+        "required": true,
+        "type": "boolean"
+      },
+      {
+        "label": "Link",
+        "name": "custom_link_format",
+        "default": "https://twitter.com/intent/tweet?original_referer={{ social_link_url|urlencode }}&url={{ social_link_url|urlencode }}&source=tweetbutton&text={{ social_page_title|urlencode }}",
+        "required": true,
+        "visibility": {
+          "controlling_field_path": "twitter.enabled",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "text"
+      },
+      {
+        "label": "Icon Type",
+        "name": "icon_type",
+        "choices": [
+          [
+            "hubspot_icon",
+            "Hubspot Icon"
+          ],
+          [
+            "custom_svg",
+            "Custom SVG"
+          ],
+          [
+            "image",
+            "Image Icon"
+          ]
+        ],
+        "default": "custom_svg",
+        "help_text": "The image icon will not contain the global color",
+        "visibility": {
+          "controlling_field_path": "twitter.enabled",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Hubspot Icon",
+        "name": "hubspot_icon",
+        "default": {
+          "name": "Twitter",
+          "type": "SOLID",
+          "unicode": "f099"
+        },
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "twitter.icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "hubspot_icon"
+            },
+            {
+              "controlling_field_path": "twitter.enabled",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "icon"
+      },
+      {
+        "label": "Custom SVG",
+        "name": "custom_svg",
+        "default": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 640\"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d=\"M453.2 112L523.8 112L369.6 288.2L551 528L409 528L297.7 382.6L170.5 528L99.8 528L264.7 339.5L90.8 112L236.4 112L336.9 244.9L453.2 112zM428.4 485.8L467.5 485.8L215.1 152L173.1 152L428.4 485.8z\"/></svg>",
+        "placeholder": "Enter SVG Code",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "twitter.icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "custom_svg"
+            },
+            {
+              "controlling_field_path": "twitter.enabled",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "text"
+      },
+      {
+        "label": "Image Icon",
+        "name": "image_icon",
+        "default": {
+          "src": "../../Images/Vector.svg",
+          "alt": "Image Icon"
+        },
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "twitter.icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "image"
+            },
+            {
+              "controlling_field_path": "twitter.enabled",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "image"
+      }
+    ]
+  },
+  {
+    "label": "LinkedIn",
+    "name": "linkedin",
+    "type": "group",
+    "expanded": false,
+    "children": [
+      {
+        "label": "Enabled?",
+        "name": "enabled",
+        "display": "checkbox",
+        "default": false,
+        "required": true,
+        "type": "boolean"
+      },
+      {
+        "label": "Link",
+        "name": "custom_link_format",
+        "default": "https://www.linkedin.com/shareArticle?mini=true&url={{ social_link_url|urlencode }}",
+        "required": true,
+        "visibility": {
+          "controlling_field_path": "linkedin.enabled",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "text"
+      },
+      {
+        "label": "Icon Type",
+        "name": "icon_type",
+        "choices": [
+          [
+            "hubspot_icon",
+            "Hubspot Icon"
+          ],
+          [
+            "custom_svg",
+            "Custom SVG"
+          ],
+          [
+            "image",
+            "Image Icon"
+          ]
+        ],
+        "default": "custom_svg",
+        "help_text": "The image icon will not contain the global color",
+        "visibility": {
+          "controlling_field_path": "linkedin.enabled",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Hubspot Icon",
+        "name": "hubspot_icon",
+        "default": {
+          "name": "Linkedin",
+          "type": "SOLID",
+          "unicode": "f08c"
+        },
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "linkedin.icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "hubspot_icon"
+            },
+            {
+              "controlling_field_path": "linkedin.enabled",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "icon"
+      },
+      {
+        "label": "Custom SVG",
+        "name": "custom_svg",
+        "default": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 640\"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d=\"M512 96L127.9 96C110.3 96 96 110.5 96 128.3L96 511.7C96 529.5 110.3 544 127.9 544L512 544C529.6 544 544 529.5 544 511.7L544 128.3C544 110.5 529.6 96 512 96zM231.4 480L165 480L165 266.2L231.5 266.2L231.5 480L231.4 480zM198.2 160C219.5 160 236.7 177.2 236.7 198.5C236.7 219.8 219.5 237 198.2 237C176.9 237 159.7 219.8 159.7 198.5C159.7 177.2 176.9 160 198.2 160zM480.3 480L413.9 480L413.9 376C413.9 351.2 413.4 319.3 379.4 319.3C344.8 319.3 339.5 346.3 339.5 374.2L339.5 480L273.1 480L273.1 266.2L336.8 266.2L336.8 295.4L337.7 295.4C346.6 278.6 368.3 260.9 400.6 260.9C467.8 260.9 480.3 305.2 480.3 362.8L480.3 480z\"/></svg>",
+        "placeholder": "Enter SVG Code",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "linkedin.icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "custom_svg"
+            },
+            {
+              "controlling_field_path": "linkedin.enabled",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "text"
+      },
+      {
+        "label": "Image Icon",
+        "name": "image_icon",
+        "default": {
+          "src": "../../Images/Vector.svg",
+          "alt": "Image Icon"
+        },
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "linkedin.icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "image"
+            },
+            {
+              "controlling_field_path": "linkedin.enabled",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "image"
+      }
+    ]
+  },
+  {
+    "label": "Pinterest",
+    "name": "pinterest",
+    "type": "group",
+    "expanded": false,
+    "children": [
+      {
+        "label": "Enabled?",
+        "name": "enabled",
+        "display": "checkbox",
+        "default": false,
+        "required": true,
+        "type": "boolean"
+      },
+      {
+        "label": "Link",
+        "name": "custom_link_format",
+        "default": "https://pinterest.com/pin/create/button/?url={{ social_link_url|urlencode }}&media={{ pinterest_media }}",
+        "required": true,
+        "visibility": {
+          "controlling_field_path": "pinterest.enabled",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "text"
+      },
+      {
+        "label": "Icon Type",
+        "name": "icon_type",
+        "choices": [
+          [
+            "hubspot_icon",
+            "Hubspot Icon"
+          ],
+          [
+            "custom_svg",
+            "Custom SVG"
+          ],
+          [
+            "image",
+            "Image Icon"
+          ]
+        ],
+        "default": "custom_svg",
+        "help_text": "The image icon will not contain the global color",
+        "visibility": {
+          "controlling_field_path": "pinterest.enabled",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Hubspot Icon",
+        "name": "hubspot_icon",
+        "default": {
+          "name": "Pinterest",
+          "type": "SOLID",
+          "unicode": "f0d2"
+        },
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "pinterest.icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "hubspot_icon"
+            },
+            {
+              "controlling_field_path": "pinterest.enabled",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "icon"
+      },
+      {
+        "label": "Custom SVG",
+        "name": "custom_svg",
+        "default": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 640\"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d=\"M568 320C568 457 457 568 320 568C294.4 568 269.8 564.1 246.6 556.9C256.7 540.4 271.8 513.4 277.4 491.9C280.4 480.3 292.8 432.9 292.8 432.9C300.9 448.3 324.5 461.4 349.6 461.4C424.4 461.4 478.3 392.6 478.3 307.1C478.3 225.2 411.4 163.9 325.4 163.9C218.4 163.9 161.5 235.7 161.5 314C161.5 350.4 180.9 395.7 211.8 410.1C216.5 412.3 219 411.3 220.1 406.8C220.9 403.4 225.1 386.5 227 378.7C227.6 376.2 227.3 374 225.3 371.6C215.2 359.1 207 336.3 207 315C207 260.3 248.4 207.4 319 207.4C379.9 207.4 422.6 248.9 422.6 308.3C422.6 375.4 388.7 421.9 344.6 421.9C320.3 421.9 302 401.8 307.9 377.1C314.9 347.6 328.4 315.8 328.4 294.5C328.4 275.5 318.2 259.6 297 259.6C272.1 259.6 252.1 285.3 252.1 319.8C252.1 341.8 259.5 356.6 259.5 356.6C259.5 356.6 235 460.4 230.5 479.8C225.5 501.2 227.5 531.4 229.6 551C137.4 514.9 72 425.1 72 320C72 183 183 72 320 72C457 72 568 183 568 320z\"/></svg>",
+        "placeholder": "Enter SVG Code",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "pinterest.icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "custom_svg"
+            },
+            {
+              "controlling_field_path": "pinterest.enabled",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "text"
+      },
+      {
+        "label": "Image Icon",
+        "name": "image_icon",
+        "default": {
+          "src": "../../Images/Vector.svg",
+          "alt": "Image Icon"
+        },
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "pinterest.icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "image"
+            },
+            {
+              "controlling_field_path": "pinterest.enabled",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "image"
+      }
+    ]
+  },
+  {
+    "label": "Email",
+    "name": "email",
+    "type": "group",
+    "expanded": false,
+    "children": [
+      {
+        "label": "Enabled?",
+        "name": "enabled",
+        "display": "checkbox",
+        "default": false,
+        "required": true,
+        "type": "boolean"
+      },
+      {
+        "label": "Link",
+        "name": "custom_link_format",
+        "default": "mailto:?subject=Check+out+{{ social_link_url|urlencode }}&body=Check+out+{{ social_link_url|urlencode }}",
+        "required": true,
+        "visibility": {
+          "controlling_field_path": "email.enabled",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "text"
+      },
+      {
+        "label": "Icon Type",
+        "name": "icon_type",
+        "choices": [
+          [
+            "hubspot_icon",
+            "Hubspot Icon"
+          ],
+          [
+            "custom_svg",
+            "Custom SVG"
+          ],
+          [
+            "image",
+            "Image Icon"
+          ]
+        ],
+        "default": "custom_svg",
+        "help_text": "The image icon will not contain the global color",
+        "visibility": {
+          "controlling_field_path": "email.enabled",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Hubspot Icon",
+        "name": "hubspot_icon",
+        "default": {
+          "name": "Envelope",
+          "type": "SOLID",
+          "unicode": "f0e0"
+        },
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "email.icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "hubspot_icon"
+            },
+            {
+              "controlling_field_path": "email.enabled",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "icon"
+      },
+      {
+        "label": "Custom SVG",
+        "name": "custom_svg",
+        "default": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 640\"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d=\"M112 128C85.5 128 64 149.5 64 176C64 191.1 71.1 205.3 83.2 214.4L291.2 370.4C308.3 383.2 331.7 383.2 348.8 370.4L556.8 214.4C568.9 205.3 576 191.1 576 176C576 149.5 554.5 128 528 128L112 128zM64 260L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 260L377.6 408.8C343.5 434.4 296.5 434.4 262.4 408.8L64 260z\"/></svg>",
+        "placeholder": "Enter SVG Code",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "email.icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "custom_svg"
+            },
+            {
+              "controlling_field_path": "email.enabled",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "text"
+      },
+      {
+        "label": "Image Icon",
+        "name": "image_icon",
+        "default": {
+          "src": "../../Images/Vector.svg",
+          "alt": "Image Icon"
+        },
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "email.icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "image"
+            },
+            {
+              "controlling_field_path": "email.enabled",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "image"
+      }
+    ]
+  }
+]

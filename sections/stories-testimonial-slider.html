@@ -1,0 +1,78 @@
+<!--
+  templateType: section
+  label: Stories Testimonial Slider
+  isAvailableForNewContent: true
+  screenshotPath: ../Images/sections/stories-testimonial-slider.png
+  description: "A sliding review section with a text box on the left and client photos on the right."
+-->
+
+
+{% dnd_section %}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/Stories Testimonial Slider",
+        offset=0,
+        width=12,
+        style={
+          "background" : {
+            "background_type" : "solid_color",
+            "enable" : true,
+            "solid_color" : {
+              "color" : "#101000",
+              "opacity" : 100
+            }
+          }
+        },
+        testimonial={
+          "testimonial_items" : [ {
+            "client_image" : {
+              "alt" : "Client transformation",
+              "loading" : "lazy",
+              "size_type" : "auto",
+              "src" : "https://242549800.fs1.hubspotusercontent-na2.net/hubfs/242549800/raw_assets/public/Publishable_Theme/FitMax-New/Images/Client%201.png"
+            },
+            "client_info" : {
+              "client_name" : "<h6 class='text-tertiary'>TIM D.</h6>",
+              "testimonial_text" : "<p class='text-tertiary'>I recently started using this fitness program, and I couldn't be happier! The short, personalized workouts are perfectly designed to fit my goals and lifestyle.</p>"
+            }
+          }, {
+            "client_image" : {
+              "alt" : "4746 1",
+              "height" : 525,
+              "loading" : "lazy",
+              "max_height" : 525,
+              "max_width" : 290,
+              "size_type" : "auto",
+              "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Fitmax%20Theme%20images/4746%201.webp",
+              "width" : 290
+            },
+            "client_info" : {
+              "client_name" : "<h6 class=\"text-tertiary\">&nbsp;<span>Glen M.</span></h6>",
+              "testimonial_text" : "<p class=\"text-tertiary\">I recently started this fitness program and I’m genuinely impressed. The short, personalized workouts fit seamlessly into my day and are tailored to my goals and lifestyle.</p>"
+            }
+          }, {
+            "client_image" : {
+              "alt" : "4746 1 (1)",
+              "height" : 525,
+              "loading" : "lazy",
+              "max_height" : 525,
+              "max_width" : 290,
+              "size_type" : "auto",
+              "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Fitmax%20Theme%20images/4746%201%20(1).webp",
+              "width" : 290
+            },
+            "client_info" : {
+              "client_name" : "<h6 class=\"text-tertiary\">Steve S.</h6>",
+              "testimonial_text" : "<p class=\"text-tertiary\">I just started using this fitness program and I’m honestly blown away. The short, tailored workouts fit right into my day and still keep me on track with my goals.</p>"
+            }
+          } ]
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

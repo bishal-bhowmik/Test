@@ -1,0 +1,218 @@
+<!--
+  templateType: membership_login_page
+  isAvailableForNewContent: true
+  label: Membership Login with Password
+  screenshotPath: ../../Images/System-templates/membership-login.png
+-->
+
+
+{% extends "../layouts/base.html" %}
+
+{# pageTitle is used on system templates for setting a value for the title tag #}
+{% set pageTitle = " Membership | Login" %}
+
+
+{% block body %}
+<body>
+
+<div class='login section'>
+    <div class='login container'>
+        
+        <div class='text-content'>
+             {% module "content"
+                path="@hubspot/rich_text",
+                html="<h1 class='text-h3'>Login to Your Fitness Account</h1>
+                <p>Track your progress, manage classes, and stay committed.</p>"
+             %}
+        </div>
+
+        <div class='input-box login-card'> 
+            {% member_login "fitmax_login"
+                  email_label= "Email*",
+                  password_label= "Password*",
+                  remember_me_label= "I accept the Terms & Conditions",
+                  reset_password_text= "Forget Password?",
+                  submit_button_text= "Submit"
+            %}
+        </div>  
+
+    </div>
+</div>
+
+</body>
+
+
+{# Custom styles for this module #}
+<style>
+
+/* --- 1. Main Layout Structure --- */
+.login.section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login.container {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Vertically center the text with the card */
+    gap: 2.5rem;
+}
+
+.text-content {
+    flex: 1;
+}
+
+/* --- 2. The Gray Card (Right Side) --- */
+.input-box {
+    flex: 1;
+}
+
+.login-card {
+    background-color: var(--color-bg-primary-accent-2); /* Gray background from image */
+    padding: 1.875rem;
+    border-radius: var(--radius-default);
+}
+
+/* --- 3. Form Fields (Optimized Layout) --- */
+
+/* Standard Fields (Email/Password) */
+.hs-form-field {
+    margin-bottom: 1.25rem;
+}
+
+.hs-form-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+}
+
+.input-box form input{
+padding:1rem;
+ border: var(--border-width-default) solid var(--color-border-default);
+   border-radius: var(--radius-default);
+
+
+{# from global call #}
+ {% if theme.typography.body_text.font == 'primary' %}
+  font-family: var(--font-family-primary);
+  {% else %}
+  font-family: var(--font-family-secondary);
+  {% endif %}
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-body-highlight);
+  line-height: var(--line-height-secondary);
+  letter-spacing: var(--letter-spacing-secondary);
+  color: var(--color-text-secondary);
+}
+
+
+
+.input-box form input{
+  outline: none;
+  border-color: var(--color-brand-primary);
+  box-shadow: 0 0 0 3px rgba(218, 252, 0, 0.1);
+  width:-webkit-fill-available;
+}
+
+/* --- 4. Special Handling: Checkbox Row --- */
+/* Target the field containing the checkbox to align it horizontally */
+.hs-form-field:has(input[type="checkbox"]) {
+    display: flex;
+    flex-direction: row; /* Puts label on right, checkbox on left */
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Fallback for older browsers if :has isn't supported */
+.hs-form-field input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.hs-form-field input[type="checkbox"] + label {
+    margin-bottom: 0;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+/* --- 5. Submit Button (Lime Green) --- */
+.hs_submit .actions {
+    text-align: right; /* Aligns button to the right */
+    margin-top: 20px;
+}
+
+.input-box input[type="submit"] {
+   padding:0.875em;
+border:none;
+font-weight:700;
+cursor:pointer;
+width:auto;
+}
+
+.input-box form input[type="submit"]:hover{
+background-color:var(--color-bg-primary);
+ color: var(--color-text-primary);
+}
+
+
+/* --- 6. Links & Extras --- */
+
+/* Forgot Password Link - Align Right */
+#hs_login_reset {
+    display: block;
+    text-align: right;
+    margin-top: -10px; /* Pull it up closer to password field */
+    margin-bottom: 20px;
+    font-size: 1rem;
+    text-decoration: underline;
+    color: var(--color-text-primary);
+    cursor:pointer;
+}
+
+/* Show Password Toggle (Small Text) */
+.hs-login-widget-show-password {
+    float: right;
+    font-size:1rem;
+    margin-top: -30px; /* HACK: Pulls it into the input area visually if needed, otherwise adjust margin */
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
+    margin-right: 10px;
+    cursor: pointer;
+        color: var(--color-text-primary);
+
+}
+
+/* --- 7. Hide Unwanted Elements --- */
+/* This hides the "Or login with..." and "Register" sections to match your clean image */
+.form-separator, 
+#hs-membership-passwordless-auth-form,
+#hs-login-self-registration-link {
+    display: none !important;
+}
+
+/* --- 8. Mobile Responsiveness --- */
+@media(max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+
+    .text-content, .input-box {
+        max-width: 100%;
+    }
+
+    /* On mobile, make the button full width for easier tapping */
+    .input-box input[type="submit"] {
+        width: 100%;
+    }
+}
+
+</style>
+{% endblock body %}

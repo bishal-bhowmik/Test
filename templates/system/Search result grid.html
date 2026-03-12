@@ -1,0 +1,50 @@
+<!--
+    templateType: search_results_page
+    isAvailableForNewContent: true
+    label:  Search Result Grid with Image
+    screenshotPath: ../../Images/System-templates/search-results-grid.png
+-->
+{% extends "../layouts/base.html" %}
+
+
+
+{% block body %}
+<div class='section'>
+<div class='container'> 
+ 
+
+  {% module "content"
+        path="@hubspot/rich_text",
+        html="<h1 class='text-h3 text-center'>Search Results</h1>"
+        %}
+
+  <div class='ap-result'>
+    <div class="ap-loader-container">
+      <div class="ap-loader"></div>
+    </div>
+
+  {% module "module_17707360399272" path="../../modules/search_results", label="search_results" %} 
+  
+  
+  </div>
+
+  </div>
+</div>
+{% endblock %}
+
+
+{% require_css %}
+<style>
+
+ 
+
+</style>
+{% end_require_css %}
+
+
+
+
+{% require_js %}
+
+
+{% end_require_js %}

@@ -1,0 +1,167 @@
+{% set secondary_color =  theme.typography.text_colors.primary_color.color   %}
+
+{% macro recent_post(post) %}
+  <article class="fitmax-blog-menu_related_post">
+    <a href="{{ post.absolute_url }}">
+      <span class="post-title">{{ post.name }}</span>
+    </a>
+  </article>
+{% endmacro %}
+
+{% macro automatically_generate_anchors() %}
+  {% require_js %}
+    <script>
+      window.addEventListener("load", () => {
+        const parentList = document.getElementById("fitmax-blog-menu_navigation");
+        if (!parentList) return;
+
+        const headings = document.querySelectorAll(".fitmax-blog-post__body h2, .fitmax-blog-post__body h3, .fitmax-blog-post__body h5");
+
+        function createAnchor(headingID, headingText){
+          const a = document.createElement("a");
+          a.href = "#" + headingID;
+          a.innerText = headingText;
+          return a;
+        }
+
+        for (let i = 0; i < headings.length; i++) {
+          const headingID = headings[i].innerText.replace(/\W/g,'_').toLowerCase() + "_" + i;
+          headings[i].id = headingID;
+        }
+
+        for (let i = 0; i < headings.length; i++) {
+          if (headings[i].tagName === "H2" || headings[i].tagName === "H5") {
+            const li = document.createElement("li");
+            li.className = "toc-item-primary";
+            li.appendChild(createAnchor(headings[i].id, headings[i].innerText));
+
+            if (headings[i + 1] && headings[i + 1].tagName === "H3") {
+              const ul = document.createElement("ul");
+              ul.className = "nested-toc"; 
+              li.appendChild(ul);
+              for (let j = i + 1; j < headings.length; j++) {
+                if (headings[j].tagName === "H2" || headings[j].tagName === "H5") break;
+                const cli = document.createElement("li");
+                cli.appendChild(createAnchor(headings[j].id, headings[j].innerText));
+                ul.appendChild(cli);
+              }
+            }
+            parentList.appendChild(li);
+          }
+        }
+
+        const tocLinks = parentList.querySelectorAll("a");
+        window.addEventListener("scroll", () => {
+          let active = null;
+          headings.forEach(h => {
+            if (window.scrollY >= h.offsetTop - 150) active = h.id;
+          });
+          tocLinks.forEach(a => {
+            a.style.color = (a.getAttribute("href") === "#" + active) ? "{{ secondary_color }}" : "";
+          });
+        });
+      });
+    </script>
+  {% end_require_js %}
+{% endmacro %}
+
+<div class="fitmax-blog-menu">
+  <div class="fitmax-toc-card p-30 rounded bg-primary-accent-1">
+    <div class="fitmax-toc-header">{{ module.title }}</div>
+
+    <div class="fitmax-toc-body">
+      {% if module.similar_or_navigation %}
+        <ul class="fitmax-blog-menu_navigation" id="fitmax-blog-menu_navigation">
+          {% if module.automatically_generate_anchors %}
+            {{ automatically_generate_anchors() }}
+          {% else %}
+            {% for anchor in module.anchors_group.anchors %}
+              <li class="toc-item-primary">
+                <a href="{{anchor.anchor_link}}">{{anchor.anchor_text}}</a>
+                {% if anchor.child_anchors.anchor_text != "" %}
+                  <ul class="nested-toc">
+                    {% for child_anchor in anchor.child_anchors %}
+                      <li><a href="{{child_anchor.anchor_link}}">{{child_anchor.anchor_text}}</a></li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </li>
+            {% endfor %}
+          {% endif %}
+        </ul>
+      {% else %}
+        <div class="fitmax-blog-menu_related">
+          {% set first_tag = content.topic_list | first %}
+          {% set tag_posts = blog_recent_tag_posts("default", [first_tag], 4, "AND") | rejectattr("id", "equalto", content.id) %}
+          
+          {% if !tag_posts[0] %}
+            {% set tag_posts = blog_recent_posts("default", 4) | rejectattr("id", "equalto", content.id) %}
+          {% endif %}
+          
+          {% for tag_post in tag_posts %}
+            {% if loop.index < 4 %}
+              {{ recent_post(tag_post) }}
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% require_css %}
+<style>
+  .fitmax-blog-menu { width: 100%; max-width: 100%; margin-bottom: 30px; }
+  .fitmax-toc-header { color: var(--color-text-primary); letter-spacing: -0.5px; font-weight: bold; margin-bottom: 10px; }
+  .fitmax-blog-menu_navigation { list-style: none; padding: 0; margin: 0; }
+  
+  .toc-item-primary {
+    border-bottom: var(--border-width-default) solid var(--color-bg-secondary);
+    padding: 20px 0;
+  }
+  .toc-item-primary:last-child { border-bottom: none; }
+  .toc-item-primary > a { color: var(--color-text-secondary); text-decoration: none; display: block; transition: color 0.2s ease; }
+
+  .fitmax-blog-menu_navigation ul.nested-toc {
+    list-style: none;
+    padding: 15px 0 0 10px;
+  }
+
+  .fitmax-blog-menu_navigation ul.nested-toc li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .fitmax-blog-menu_navigation ul.nested-toc li::before {
+    content: "•"; 
+    position: absolute;
+    left: 0;
+    color: var(--color-text-secondary);
+    font-size: 18px;
+    line-height: 1;
+    opacity: 0.6;
+  }
+
+  .fitmax-blog-menu_navigation ul.nested-toc li a {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    opacity: 0.8;
+    text-decoration: none;
+  }
+
+  .fitmax-blog-menu_related { display: flex; flex-direction: column; gap: 5px; padding-top: 15px; }
+  .fitmax-blog-menu_related_post { border-bottom: var(--border-width-default) solid var(--color-bg-secondary); }
+  .fitmax-blog-menu_related_post:last-child { border-bottom: none; }
+  .fitmax-blog-menu_related_post a { display: flex; align-items: center; gap: 15px; padding: 15px 0; text-decoration: none; color: var(--color-text-secondary); transition: all 0.2s ease; }
+  .fitmax-blog-menu_related_post a:hover { color: {{ secondary_color }}; }
+
+  @media (max-width: 768px) {
+    .fitmax-toc-card { padding: 25px; border-radius: 16px; }
+    .fitmax-toc-header { font-size: 32px; }
+    .toc-item-primary > a { font-size: 18px; }
+  }
+</style>
+{% end_require_css %}

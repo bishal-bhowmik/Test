@@ -1,0 +1,170 @@
+<!--
+    templateType: email_subscription_preferences_page
+    isAvailableForNewContent: true
+    label: Email Subscription Prefernces
+    screenshotPath: ../../Images/System-templates/email-subscription-preferences.png
+-->
+
+{% extends "../layouts/base.html" %}
+{# pageTitle is used on system templates for setting a value for the title tag #}
+{% set pageTitle = "Email Subscription Prefernces" %}
+
+
+{% block body %}
+
+<body>
+
+<div class='email section'> 
+  <div class='email container flex gap-40 flex-between'>
+
+  <div class='text-content'>
+ {% module "content"
+        path="@hubspot/rich_text",
+        html="<div class='title'>
+<h1 class='text-h3'>Customize Your Fitness Inbox</h1>
+</div>
+<div class='sub-title'>
+<p>Choose the types of gym updates you want to receive.</p>
+</div>"
+      %}
+
+
+
+
+
+
+
+  </div>
+
+    <!--  Form start    -->
+    <div class = 'email-block'>
+      {% email_subscriptions "email_subscriptions"
+  header="{{ module.header }}",
+  header_heading_level="{{ module.header_heading_level }}",
+  email_heading_level="{{ module.email_heading_level }}",
+  subheader_text="{{ module.subheader_text }}",
+  unsubscribe_single_text="{{ module.unsubscribe_single_text }}",
+  language_select_label_text="{{ module.language_dropdown_label }}",
+  unsubscribe_all_text="{{ module.unsubscribe_all_text }}",
+  unsubscribe_all_option="{{ module.unsubscribe_all_option }}",
+  unsubscribe_all_unsubbed_text="{{ module.unsubscribe_all_unsubbed_text }}",
+  button_text="{{ module.button_text }}",
+  resubscribe_button_text="{{ module.resubscribe_button_text }}" %}
+
+    </div>
+
+
+</div>
+</div>
+
+  {{ standard_footer_includes }}
+</body>
+
+
+
+<style>
+
+:root{
+/* Border Colors */
+  --color-border-default: {{ theme.general_view.borders.border_color.color }};
+  --border-width-default: {{ theme.general_view.borders.border_width }}px;
+}
+
+{# hide default text from this module #}
+
+.text-content, .email-block{
+flex:1;
+}
+
+.page-header{
+display:none;
+}
+
+.email.section{
+padding:5em 0;
+}
+
+.email.container{
+max-width:1440px;
+width:90%;
+margin:0 auto;
+align-items:flex-start;
+}
+
+  .checkbox-row{
+    padding:1rem;
+    border:var(--border-width-default) solid var(--color-border-default);
+    border-radius:12px;
+}
+.item-inner p {
+display:none;
+}
+
+.email-block .header{
+display:none;
+}
+
+.item{
+margin-bottom:1rem;
+}
+
+
+
+
+.email-block form input{
+padding:1rem;
+ border: var(--border-width-default) solid var(--color-border-default);
+   border-radius: var(--radius-default);
+
+
+{# from global call #}
+ {% if theme.typography.body_text.font == 'primary' %}
+  font-family: var(--font-family-primary);
+  {% else %}
+  font-family: var(--font-family-secondary);
+  {% endif %}
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-body-highlight);
+  line-height: var(--line-height-secondary);
+  letter-spacing: var(--letter-spacing-secondary);
+  color: var(--color-text-secondary);
+}
+
+
+
+.email-block input[type="submit"] {
+   padding:0.875em;
+border:none;
+font-weight:700;
+cursor:pointer;
+width:auto;
+margin-top:1rem;
+cursor:pointer;
+}
+
+.email-block form input[type="submit"]:hover{
+background-color:var(--color-bg-primary);
+ color: var(--color-text-primary);
+ border: var(--border-width-default) solid var(--color-border-default);
+}
+
+
+@media(max-width:768px){
+.flex{
+flex-direction:column;
+}
+.title,.sub-title{
+text-align:center;
+}
+
+.email-block input[type="submit"]{
+width:-webkit-fill-available;
+}
+}
+
+
+
+</style>
+
+
+{% endblock body %}

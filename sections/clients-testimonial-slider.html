@@ -1,0 +1,84 @@
+<!--
+  templateType: section
+  label: Clients Testimonial Slider
+  isAvailableForNewContent: true
+  screenshotPath: ../Images/sections/clients-testimonial-slider.jpg
+  description: "Highlights real client feedback using an engaging carousel layout with profile images, names, and quotes."
+-->
+
+
+{% dnd_section %}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/Clients Testimonial Slider",
+        offset=0,
+        width=12,
+        style={
+          "animation" : {
+            "enable_body_text_animation" : true,
+            "enable_heading_animation" : true,
+            "enable_section_animation" : true
+          }
+        },
+        testimonial_cards=[ {
+          "author_text" : "<h6>Anita R.</h6><br><p>Marketing Professional</p>",
+          "testimonial_image" : {
+            "alt" : "Image",
+            "height" : 86,
+            "loading" : "lazy",
+            "max_height" : 86,
+            "max_width" : 86,
+            "size_type" : "auto",
+            "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/Image.png",
+            "width" : 86
+          },
+          "testimonial_text" : "<p>“When I first joined, I couldn’t even do a single push-up. Now, 8 months later, I’ve lost 18 kg and gained a whole new level of confidence. The trainers here are more like family — they don’t just push you physically but also mentally.”</p>"
+        }, {
+          "author_text" : "<h6>&nbsp;<span>Saiful H.</span>&nbsp;</h6><br><p>&nbsp;<span>Teacher</span>&nbsp;</p>",
+          "testimonial_image" : {
+            "alt" : "Image (5)",
+            "height" : 86,
+            "loading" : "lazy",
+            "max_height" : 86,
+            "max_width" : 86,
+            "size_type" : "auto_custom_max",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Fitmax%20Theme%20images/Image%20(5).png",
+            "width" : 86
+          },
+          "testimonial_text" : "<p>“Joining FitLife Gym totally changed how I see fitness! I walked in feeling a bit lost, but after 8 months of grinding, I've shed 20 pounds and feel like a rockstar. The coaches are awesome; they really care about my journey and keep me pumped up every step of the way!”</p>"
+        }, {
+          "author_text" : "<h6>&nbsp;<span>Maya P.</span>&nbsp;</h6><br><p>&nbsp;<span>Engineer</span>&nbsp;</p>",
+          "testimonial_image" : {
+            "alt" : "Image (6)",
+            "height" : 86,
+            "loading" : "lazy",
+            "max_height" : 86,
+            "max_width" : 86,
+            "size_type" : "auto_custom_max",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Fitmax%20Theme%20images/Image%20(6).png",
+            "width" : 86
+          },
+          "testimonial_text" : "<p>“On my first day at the gym, I struggled with the lightest weights. Now, after 8 months of dedication, I've lost 20 pounds and my confidence is soaring! The trainers here motivate me to push my limits and grow both physically and mentally.”</p>"
+        }, {
+          "author_text" : "<h6>&nbsp;<span>Alex J.</span>&nbsp;</h6><br><p>&nbsp;Designer&nbsp;</p>",
+          "testimonial_image" : {
+            "alt" : "Image (7)",
+            "height" : 86,
+            "loading" : "lazy",
+            "max_height" : 86,
+            "max_width" : 86,
+            "size_type" : "auto_custom_max",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Fitmax%20Theme%20images/Image%20(7).png",
+            "width" : 86
+          },
+          "testimonial_text" : "<p>“Joining this gym was a game changer for me. I couldn't even do one sit-up! Fast forward 8 months, and I've lost 20 pounds and my confidence is booming. The trainers are fantastic, treating us like family and cheering us on to hit our goals!”</p>"
+        } ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

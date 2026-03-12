@@ -1,0 +1,1804 @@
+[ {
+  "id" : "content",
+  "name" : "content",
+  "label" : "Content",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "content.header",
+    "name" : "header",
+    "label" : "Header",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<h5 style='text-align: center;'>Fitness Journey</h5><h2 style='text-align: center;'>Pricing Plans</h2>"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : true,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "header" : "<h5 style='text-align: center;'>Fitness Journey</h5><h2 style='text-align: center;'>Pricing Plans</h2>"
+  }
+}, {
+  "id" : "pricing_plans",
+  "name" : "pricing_plans",
+  "label" : "Pricing Plans",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : null,
+    "sorting_label_field" : "plan_name",
+    "default" : 1
+  },
+  "children" : [ {
+    "id" : "pricing_plans.plan_name",
+    "name" : "plan_name",
+    "label" : "Plan Name",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p>Personal Training</p>"
+  }, {
+    "id" : "pricing_plans.pricing_card",
+    "name" : "pricing_card",
+    "label" : "Pricing Card",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : 0,
+      "max" : null,
+      "sorting_label_field" : "card_header.card_title",
+      "default" : 0
+    },
+    "children" : [ {
+      "id" : "pricing_plans.pricing_card.card_header",
+      "name" : "card_header",
+      "label" : "Card Header",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "pricing_plans.pricing_card.card_header.card_title",
+        "name" : "card_title",
+        "label" : "Card Title",
+        "required" : false,
+        "locked" : false,
+        "type" : "richtext",
+        "display_width" : null,
+        "default" : "<p>Basic Plan</p>"
+      }, {
+        "id" : "pricing_plans.pricing_card.card_header.card_logo_type",
+        "name" : "card_logo_type",
+        "label" : "Card Logo Type",
+        "required" : false,
+        "locked" : false,
+        "display" : "select",
+        "choices" : [ [ "image", "Image" ], [ "svg", "SVG Code" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "image"
+      }, {
+        "id" : "pricing_plans.pricing_card.card_header.card_logo_image",
+        "name" : "card_logo_image",
+        "label" : "Card Logo Image",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "pricing_plans.pricing_card.card_header.card_logo_type",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "image",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "responsive" : true,
+        "resizable" : true,
+        "show_loading" : false,
+        "type" : "image",
+        "display_width" : null,
+        "default" : {
+          "src" : "",
+          "alt" : ""
+        }
+      }, {
+        "id" : "pricing_plans.pricing_card.card_header.custom_svg_code",
+        "name" : "custom_svg_code",
+        "label" : "Custom SVG Code",
+        "required" : false,
+        "locked" : false,
+        
+        "visibility" : {
+          "controlling_field" : "pricing_plans.pricing_card.card_header.card_logo_type",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "svg",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null
+      }, {
+        "id" : "pricing_plans.pricing_card.card_header.show_discount_badge",
+        "name" : "show_discount_badge",
+        "label" : "Show Discount Badge",
+        "required" : false,
+        "locked" : false,
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : true
+      }, {
+        "id" : "pricing_plans.pricing_card.card_header.discount",
+        "name" : "discount",
+        "label" : "Discount",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "pricing_plans.pricing_card.card_header.show_discount_badge",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "type" : "richtext",
+        "display_width" : null,
+        "default" : "<p>20% OFF</p>"
+      }
+       ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "card_title" : "<p>Basic Plan</p>",
+        "card_logo_type" : "image",
+        "card_logo_image" : {
+          "src" : "",
+          "alt" : ""
+        },
+        "show_discount_badge" : true,
+        "discount" : "<p>20% OFF</p>",
+        "badge_bg_color" : {
+          "color" : "",
+          "opacity" : 100
+        }
+      }
+    }, {
+      "id" : "pricing_plans.pricing_card.pricing",
+      "name" : "pricing",
+      "label" : "Pricing",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "pricing_plans.pricing_card.pricing.price",
+        "name" : "price",
+        "label" : "Price",
+        "required" : false,
+        "locked" : false,
+        "type" : "richtext",
+        "display_width" : null,
+        "default" : "<h4>$99</h4>"
+      }, {
+        "id" : "pricing_plans.pricing_card.pricing.price_suffix",
+        "name" : "price_suffix",
+        "label" : "Price Suffix",
+        "required" : false,
+        "locked" : false,
+        "type" : "richtext",
+        "display_width" : null,
+        "default" : "/month"
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "price" : "<h4>$99</h4>",
+        "price_suffix" : "/month"
+      }
+    }, {
+      "id" : "7a2f8b1c-3e4d-5a6c-7c8d-9e0f1a2b3c4d",
+      "name" : "button_repeater",
+      "label" : "Card Buttons",
+      "required" : false,
+      "locked" : false,
+      "occurrence" : {
+        "min" : null,
+        "max" : 4,
+        "sorting_label_field" : null,
+        "default" : 1
+      },
+      "children" : [ {
+        "id" : "b1a2c3d4-e5y6-4a5b-8c9d-0e1f2a3b4c5d",
+        "name" : "button_text",
+        "label" : "Button Label",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.keep_only_icon",
+          "controlling_value_regex" : "false",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null,
+        "default" : "Get Started"
+      }, {
+        "id" : "c2d3e4f5-a6b7-4c9d-9e0f-1a2b3c4d5e6f",
+        "name" : "link",
+        "label" : "Button Link",
+        "required" : false,
+        "locked" : false,
+        "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG" ],
+        "show_advanced_rel_options" : false,
+        "type" : "link",
+        "display_width" : null,
+        "default" : {
+          "url" : {
+            "type" : "EXTERNAL",
+            "href" : "https://www.google.com"
+          }
+        }
+      }, {
+        "id" : "d3e4f5a6-b7c8-4d9e-0f3a-2b3c4d5e6f7a",
+        "name" : "button_type",
+        "label" : "Button Variant",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.keep_only_icon",
+          "controlling_value_regex" : "false",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display" : "select",
+        "choices" : [ [ "primary", "Primary Button" ], [ "secondary", "Secondary Button" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "primary"
+      }, {
+        "id" : "71b7f52a-0193-af03-6d77-bb3bdac0d9a7",
+        "name" : "turn_on_button_icon",
+        "label" : "Turn on Button Icon",
+        "required" : false,
+        "locked" : false,
+        "display" : "toggle",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "ca40b4a8-7f25-5095-e485-c99cda4b9cb2",
+        "name" : "button_icon_type",
+        "label" : "Button Icon Type",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.turn_on_button_icon",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display" : "select",
+        "choices" : [ [ "svg", "SVG Icon" ], [ "custom", "Hubspot Icon" ], [ "image", "Image Icon" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "svg"
+      },
+       {
+        "id" : "60fd7eea-4ea0-989b-9824-eaa1e20b3ec8",
+        "name" : "svg_icon",
+        "label" : "SVG Icon",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.turn_on_button_icon",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.button_icon_type",
+            "controlling_value_regex" : "svg",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null,
+        "default" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"36\" height=\"36\" viewBox=\"0 0 36 36\" fill=\"none\">  <path d=\"M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z\" fill=\"#101000\"/></svg>"
+      }, {
+        "id" : "140837f5-543f-209e-07f0-d68cc17a8d14",
+        "name" : "custom_icon",
+        "label" : "Custom Icon",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.turn_on_button_icon",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.button_icon_type",
+            "controlling_value_regex" : "custom",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "icon_set" : "fontawesome-5.14.0",
+        "type" : "icon",
+        "display_width" : null,
+        "default" : {
+          "name" : "Alternate Long Arrow Right",
+          "unicode" : "f30b",
+          "type" : "SOLID"
+        }
+      }, {
+        "id" : "a1b2c3d4-e5f6-7g8h-9i0j-k1l2m3n4o5p6",
+        "name" : "button_icon_image",
+        "label" : "Button Icon Image",
+        "help_text" : "⚠️ CAUTION: When using image icons, icon colors cannot be changed. The image will display as-is.",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.turn_on_button_icon",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.button_icon_type",
+            "controlling_value_regex" : "image",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "responsive" : true,
+        "resizable" : true,
+        "show_loading" : false,
+        "type" : "image",
+        "display_width" : null,
+        "default" : {
+          "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+          "alt" : "Arrow right icon",
+          "width" : 24,
+          "height" : 24
+        }
+      }, {
+        "id" : "75e93451-e4c0-0d39-899d-1f68d311ef15",
+        "name" : "keep_only_icon",
+        "label" : "Keep Only Icon",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.turn_on_button_icon",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "125086c4-306e-7faf-5b9a-621986ad91e6",
+        "name" : "override_styles",
+        "label" : "Override Styles",
+        "required" : false,
+        "locked" : false,
+        "display" : "toggle",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "22068aae-1f25-8c79-c758-985e1ba57dd8",
+        "name" : "hide_show_color_settings",
+        "label" : "Show/Hide Color Settings",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.override_styles",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "e4f5a6b7-c8d9-4e0u-1a2b-3c4d5e6f7a8b",
+        "name" : "custom_text_color",
+        "label" : "Text Color",
+        "help_text" : "Leave empty to use theme default",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.override_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.hide_show_color_settings",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        }
+      }, {
+        "id" : "f5a6b7c8-d9e0-7f1a-2b3c-4d5e6f7a8b9c",
+        "name" : "custom_bg_color",
+        "label" : "Background Color",
+        "help_text" : "Leave empty to use theme default",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.override_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.hide_show_color_settings",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        }
+      }, {
+        "id" : "5baa9224-fedd-a86f-14dc-1107dcd5422c",
+        "name" : "hide_show_hover_settings",
+        "label" : "Show/Hide Hover Settings",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.override_styles",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "h7i8j9k0-l1m2-7n3o-4p5q-6r7s8t9u0v1w",
+        "name" : "hover_bg_color",
+        "label" : "Hover Background Color",
+        "help_text" : "Leave empty to use theme default",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.override_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.hide_show_hover_settings",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        }
+      }, {
+        "id" : "g6h7i8j9-k0l1-4m2n-3o8i-5q6r7s8t9u0v",
+        "name" : "hover_text_color",
+        "label" : "Hover Text Color",
+        "help_text" : "Leave empty to use theme default",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.override_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.hide_show_hover_settings",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        }
+      }, {
+        "id" : "f2f8f533-5a53-43ca-aeb9-e5d6b2c1a78f",
+        "name" : "hide_show_border_settings",
+        "label" : "Show/Hide Border Settings",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.override_styles",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "k0l1m2n3-o4p5-4q6u-7s8t-9u0v1w2x3y4z",
+        "name" : "custom_border_radius",
+        "label" : "Border Radius",
+        "help_text" : "In pixels - Leave empty to use theme default",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.override_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.hide_show_border_settings",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "display" : "slider",
+        "step" : 1,
+        "suffix" : "px",
+        "type" : "number",
+        "display_width" : null
+      }, {
+        "id" : "i8j9k0l1-m2k3-4o4p-5q6r-7s8t9u0v1w2x",
+        "name" : "hover_border_color",
+        "label" : "Hover Border Color",
+        "help_text" : "Leave empty to use theme default",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.override_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.hide_show_border_settings",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        }
+      }, {
+        "id" : "l1m2n3o4-p5q6-4r7s-8t0u-0v1w2x3y4z5a",
+        "name" : "hover_border_width",
+        "label" : "Hover Border Width",
+        "help_text" : "In pixels - Leave empty to use theme default (2px)",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.override_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.hide_show_border_settings",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "display" : "text",
+        "step" : 1,
+        "suffix" : "px",
+        "type" : "number",
+        "display_width" : null
+      }, {
+        "id" : "04868614-368f-a789b-7a6a-e978ab1a74af",
+        "name" : "hide_show_font_settings",
+        "label" : "Show/Hide Font Settings",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.override_styles",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "a6b7c8d9-e0f1-4a2b-3c9d-5e6f7a8b9c0d",
+        "name" : "button_font",
+        "label" : "Font Settings",
+        "help_text" : "Leave empty to use theme default",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.override_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.hide_show_font_settings",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "load_external_fonts" : true,
+        "type" : "font",
+        "display_width" : null,
+        "default" : {
+          "font" : null,
+          "font_set" : "DEFAULT",
+          "styles" : null,
+          "size" : null,
+          "size_unit" : null,
+          "color" : null,
+          "variant" : null,
+          "fallback" : null,
+          "style" : null
+        }
+      }, {
+        "id" : "25bc4e21-7c5e-ad0d-5673-f80a53629c91",
+        "name" : "hide_show_padding_settings",
+        "label" : "Show/Hide Padding Settings",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.override_styles",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "n3o4p5q6-r7s8-4t9u-0v1w-2p3y4z5a6b7c",
+        "name" : "padding_vertical",
+        "label" : "Vertical Padding",
+        "help_text" : "In pixels - Leave empty to use theme default",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.override_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.hide_show_padding_settings",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "display" : "text",
+        "step" : 1,
+        "suffix" : "px",
+        "type" : "number",
+        "display_width" : null
+      }, {
+        "id" : "o4p5q6r7-s8t9-4u6v-1w2x-3y4z5a6b7c8d",
+        "name" : "padding_horizontal",
+        "label" : "Horizontal Padding",
+        "help_text" : "In pixels - Leave empty to use theme default",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.override_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "pricing_plans.pricing_card.button_repeater.hide_show_padding_settings",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "display" : "text",
+        "step" : 1,
+        "suffix" : "px",
+        "type" : "number",
+        "display_width" : null
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : [ {
+        "button_text" : "Get Started",
+        "link" : {
+          "url" : {
+            "type" : "EXTERNAL",
+            "href" : "https://www.google.com"
+          }
+        },
+        "button_type" : "primary",
+        "turn_on_button_icon" : false,
+        "button_icon_type" : "svg",
+        "svg_icon" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"36\" height=\"36\" viewBox=\"0 0 36 36\" fill=\"none\">  <path d=\"M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z\" fill=\"#101000\"/></svg>",
+        "custom_icon" : {
+          "name" : "Alternate Long Arrow Right",
+          "unicode" : "f30b",
+          "type" : "SOLID"
+        },
+        "button_icon_image" : {
+          "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+          "alt" : "Arrow right icon",
+          "width" : 24,
+          "height" : 24
+        },
+        "keep_only_icon" : false,
+        "override_styles" : false,
+        "hide_show_color_settings" : false,
+        "custom_text_color" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        },
+        "custom_bg_color" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        },
+        "hide_show_hover_settings" : false,
+        "hover_bg_color" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        },
+        "hover_text_color" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        },
+        "hide_show_border_settings" : false,
+        "hover_border_color" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        },
+        "hide_show_font_settings" : false,
+        "button_font" : {
+          "font" : null,
+          "font_set" : "DEFAULT",
+          "styles" : null,
+          "size" : null,
+          "size_unit" : null,
+          "color" : null,
+          "variant" : null,
+          "fallback" : null,
+          "style" : null
+        },
+        "hide_show_padding_settings" : false
+      } ]
+    }, {
+      "id" : "pricing_plans.pricing_card.highlight_section",
+      "name" : "highlight_section",
+      "label" : "Highlight Section",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "pricing_plans.pricing_card.highlight_section.highlight_label",
+        "name" : "highlight_label",
+        "label" : "Highlight Label",
+        "required" : false,
+        "locked" : false,
+        "type" : "richtext",
+        "display_width" : null,
+        "default" : "<h6>Great for</h6>"
+      }, {
+        "id" : "pricing_plans.pricing_card.highlight_section.highlight_icon_type",
+        "name" : "highlight_icon_type",
+        "label" : "Highlight Icon Type",
+        "required" : false,
+        "locked" : false,
+        "display" : "select",
+        "choices" : [ [ "image", "Image" ], [ "hubspot_icon", "HubSpot Icon" ], [ "custom_svg", "Custom SVG" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : ""
+      }, {
+        "id" : "pricing_plans.pricing_card.highlight_section.highlight_icon",
+        "name" : "highlight_icon",
+        "label" : "Highlight Icon",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "pricing_plans.pricing_card.highlight_section.highlight_icon_type",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "image",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "responsive" : true,
+        "resizable" : true,
+        "show_loading" : false,
+        "type" : "image",
+        "display_width" : null,
+        "default" : {
+          "src" : "",
+          "alt" : ""
+        }
+      }, {
+        "id" : "pricing_plans.pricing_card.highlight_section.hubspot_icon",
+        "name" : "hubspot_icon",
+        "label" : "HubSpot Icon",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "pricing_plans.pricing_card.highlight_section.highlight_icon_type",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "hubspot_icon",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "icon_set" : "fontawesome-5.0.10",
+        "type" : "icon",
+        "display_width" : null,
+        "default" : {
+          "name" : "check",
+          "type" : "SOLID",
+          "unicode" : "f00c"
+        }
+      }, {
+        "id" : "pricing_plans.pricing_card.highlight_section.custom_svg_code",
+        "name" : "custom_svg_code",
+        "label" : "Custom SVG Code",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "pricing_plans.pricing_card.highlight_section.highlight_icon_type",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "custom_svg",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null
+      }, {
+        "id" : "pricing_plans.pricing_card.highlight_section.description",
+        "name" : "description",
+        "label" : "Description",
+        "required" : false,
+        "locked" : false,
+        "type" : "richtext",
+        "display_width" : null,
+        "default" : "<p>Beginners or those testing our program before a longer commitment.</p>"
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "highlight_label" : "<h6>Great for</h6>",
+        "highlight_icon_type" : "",
+        "highlight_icon" : {
+          "src" : "",
+          "alt" : ""
+        },
+        "hubspot_icon" : {
+          "name" : "check",
+          "type" : "SOLID",
+          "unicode" : "f00c"
+        },
+        "description" : "<p>Beginners or those testing our program before a longer commitment.</p>"
+      }
+    },
+     {
+      "id" : "pricing_plans.pricing_card.features_section",
+      "name" : "features_section",
+      "label" : "Features Section",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "pricing_plans.pricing_card.features_section.feature_title",
+        "name" : "feature_title",
+        "label" : "Feature Title",
+        "required" : false,
+        "locked" : false,
+        "type" : "richtext",
+        "display_width" : null,
+        "default" : "<h6>Features:</h6>"
+      }, {
+        "id" : "pricing_plans.pricing_card.features_section.features",
+        "name" : "features",
+        "label" : "Features",
+        "required" : false,
+        "locked" : false,
+        "occurrence" : {
+          "min" : 1,
+          "max" : null,
+          "sorting_label_field" : "feature_name",
+          "default" : 1
+        },
+        "children" : [
+           {
+          "id" : "pricing_plans.pricing_card.features_section.features.feature_name",
+          "name" : "feature_name",
+          "label" : "Feature Name",
+          "required" : false,
+          "locked" : false,
+          "type" : "richtext",
+          "display_width" : null,
+          "default" : "<p>4 one-on-one sessions per month</p>"
+        } ,
+           {
+          "id" : "pricing_plans.pricing_card.features_section.features.feature_icon_type",
+          "name" : "feature_icon_type",
+          "label" : "Feature Icon Type",
+          "required" : false,
+          "locked" : false,
+          "display" : "select",
+          "choices" : [ [ "image", "Image" ], [ "hubspot_icon", "HubSpot Icon" ], [ "custom_svg", "Custom SVG" ] ],
+          "multiple" : false,
+          "reordering_enabled" : true,
+          "preset" : null,
+          "type" : "choice",
+          "display_width" : null,
+          "default" : "image"
+        }, {
+          "id" : "pricing_plans.pricing_card.features_section.features.feature_icon",
+          "name" : "feature_icon",
+          "label" : "Feature Icon",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : "pricing_plans.pricing_card.features_section.features.feature_icon_type",
+            "controlling_field_path" : null,
+            "controlling_value_regex" : "image",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "responsive" : true,
+          "resizable" : true,
+          "show_loading" : false,
+          "type" : "image",
+          "display_width" : null,
+          "default" : {
+            "src" : "",
+            "alt" : ""
+          }
+        }, {
+          "id" : "pricing_plans.pricing_card.features_section.features.hubspot_icon",
+          "name" : "hubspot_icon",
+          "label" : "HubSpot Icon",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : "pricing_plans.pricing_card.features_section.features.feature_icon_type",
+            "controlling_field_path" : null,
+            "controlling_value_regex" : "hubspot_icon",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "icon_set" : "fontawesome-5.0.10",
+          "type" : "icon",
+          "display_width" : null,
+          "default" : {
+            "name" : "check",
+            "type" : "SOLID",
+            "unicode" : "f00c"
+          }
+        }, {
+          "id" : "pricing_plans.pricing_card.features_section.features.custom_svg_code",
+          "name" : "custom_svg_code",
+          "label" : "Custom SVG Code",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : "pricing_plans.pricing_card.features_section.features.feature_icon_type",
+            "controlling_field_path" : null,
+            "controlling_value_regex" : "custom_svg",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "allow_new_line" : false,
+          "type" : "text",
+          "display_width" : null
+        }
+       ],
+        "tab" : "CONTENT",
+        "expanded" : true,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : [ {
+          "feature_icon_type" : "image",
+          "feature_icon" : {
+            "src" : "",
+            "alt" : ""
+          },
+          "hubspot_icon" : {
+            "name" : "check",
+            "type" : "SOLID",
+            "unicode" : "f00c"
+          },
+          "feature_name" : "<p>4 one-on-one sessions per month</p>"
+        } ]
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "feature_title" : "<h6>Features:</h6>",
+        "features" : [ {
+          "feature_icon_type" : "image",
+          "feature_icon" : {
+            "src" : "",
+            "alt" : ""
+          },
+          "hubspot_icon" : {
+            "name" : "check",
+            "type" : "SOLID",
+            "unicode" : "f00c"
+          },
+          "feature_name" : "<p>4 one-on-one sessions per month</p>"
+        } ]
+      }
+    }, {
+      "id" : "pricing_plans.pricing_card.overwrite_styles",
+      "name" : "overwrite_styles",
+      "label" : "Overwrite Styles",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "pricing_plans.pricing_card.overwrite_styles.overwrite_background",
+        "name" : "overwrite_background",
+        "label" : "Overwrite Background",
+        "required" : false,
+        "locked" : false,
+        "display" : "toggle",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "pricing_plans.pricing_card.overwrite_styles.background_options",
+        "name" : "background_options",
+        "label" : "Background Options",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "pricing_plans.pricing_card.overwrite_styles.overwrite_background",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "children" : [ {
+          "id" : "pricing_plans.pricing_card.overwrite_styles.background_options.background_type",
+          "name" : "background_type",
+          "label" : "Background Type",
+          "required" : false,
+          "locked" : false,
+          "display" : "select",
+          "choices" : [ [ "color", "Color" ], [ "image", "Image" ], [ "gradient", "Gradient" ] ],
+          "multiple" : false,
+          "reordering_enabled" : true,
+          "preset" : null,
+          "type" : "choice",
+          "display_width" : null,
+          "default" : "color"
+        }, {
+          "id" : "pricing_plans.pricing_card.overwrite_styles.background_options.background_color",
+          "name" : "background_color",
+          "label" : "Background Color",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : "pricing_plans.pricing_card.overwrite_styles.background_options.background_type",
+            "controlling_field_path" : null,
+            "controlling_value_regex" : "color",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "type" : "color",
+          "display_width" : null,
+          "default" : {
+            "color" : "",
+            "opacity" : 100
+          }
+        }, {
+          "id" : "pricing_plans.pricing_card.overwrite_styles.background_options.gradient_direction",
+          "name" : "gradient_direction",
+          "label" : "Gradient Direction",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : "pricing_plans.pricing_card.overwrite_styles.background_options.background_type",
+            "controlling_field_path" : null,
+            "controlling_value_regex" : "gradient",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "display" : "select",
+          "choices" : [ [ "to top", "Bottom to Top" ], [ "to bottom", "Top to Bottom" ], [ "to right", "Left to Right" ], [ "to left", "Right to Left" ], [ "to bottom right", "Top Left to Bottom Right" ], [ "to bottom left", "Top Right to Bottom Left" ] ],
+          "multiple" : false,
+          "reordering_enabled" : true,
+          "preset" : null,
+          "type" : "choice",
+          "display_width" : null,
+          "default" : "to bottom"
+        }, {
+          "id" : "pricing_plans.pricing_card.overwrite_styles.background_options.gradient_color_1",
+          "name" : "gradient_color_1",
+          "label" : "Gradient Color 1",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : "pricing_plans.pricing_card.overwrite_styles.background_options.background_type",
+            "controlling_field_path" : null,
+            "controlling_value_regex" : "gradient",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "type" : "color",
+          "display_width" : null,
+          "default" : {
+            "color" : "",
+            "opacity" : 100
+          }
+        }, {
+          "id" : "pricing_plans.pricing_card.overwrite_styles.background_options.gradient_color_2",
+          "name" : "gradient_color_2",
+          "label" : "Gradient Color 2",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : "pricing_plans.pricing_card.overwrite_styles.background_options.background_type",
+            "controlling_field_path" : null,
+            "controlling_value_regex" : "gradient",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "type" : "color",
+          "display_width" : null,
+          "default" : {
+            "color" : "",
+            "opacity" : 100
+          }
+        }, {
+          "id" : "pricing_plans.pricing_card.overwrite_styles.background_options.background_image",
+          "name" : "background_image",
+          "label" : "Background Image",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : "pricing_plans.pricing_card.overwrite_styles.background_options.background_type",
+            "controlling_field_path" : null,
+            "controlling_value_regex" : "image",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "responsive" : true,
+          "resizable" : true,
+          "show_loading" : false,
+          "type" : "image",
+          "display_width" : null,
+          "default" : {
+            "src" : "",
+            "alt" : null,
+            "size_type" : null,
+            "width" : null,
+            "height" : null,
+            "max_width" : null,
+            "max_height" : null,
+            "loading" : "disabled"
+          }
+        } ],
+        "tab" : "CONTENT",
+        "expanded" : true,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "background_type" : "color",
+          "background_color" : {
+            "color" : "",
+            "opacity" : 100
+          },
+          "gradient_direction" : "to bottom",
+          "gradient_color_1" : {
+            "color" : "",
+            "opacity" : 100
+          },
+          "gradient_color_2" : {
+            "color" : "",
+            "opacity" : 100
+          },
+          "background_image" : {
+            "src" : "",
+            "alt" : null,
+            "size_type" : null,
+            "width" : null,
+            "height" : null,
+            "max_width" : null,
+            "max_height" : null,
+            "loading" : "disabled"
+          }
+        }
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "overwrite_background" : false,
+        "background_options" : {
+          "background_type" : "color",
+          "background_color" : {
+            "color" : "",
+            "opacity" : 100
+          },
+          "gradient_direction" : "to bottom",
+          "gradient_color_1" : {
+            "color" : "",
+            "opacity" : 100
+          },
+          "gradient_color_2" : {
+            "color" : "",
+            "opacity" : 100
+          },
+          "background_image" : {
+            "src" : "",
+            "alt" : null,
+            "size_type" : null,
+            "width" : null,
+            "height" : null,
+            "max_width" : null,
+            "max_height" : null,
+            "loading" : "disabled"
+          }
+        }
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : true,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : true,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "plan_name" : "<p>Personal Training</p>",
+    "pricing_card" : [ ]
+  } ]
+}, {
+  "id" : "layout_alignment",
+  "name" : "layout_alignment",
+  "label" : "Layout",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "layout_alignment.section_max_width",
+    "name" : "section_max_width",
+    "label" : "Section Max Width",
+    "required" : false,
+    "locked" : false,
+    "display" : "text",
+    "step" : 1,
+    "suffix" : "px",
+    "type" : "number",
+    "display_width" : null,
+    "default" : "1280"
+  }, {
+    "id" : "layout_alignment.card_max_width",
+    "name" : "card_max_width",
+    "label" : "Card Max Width",
+    "required" : false,
+    "locked" : false,
+    "display" : "text",
+    "step" : 1,
+    "suffix" : "px",
+    "type" : "number",
+    "display_width" : null,
+    "default" : 400
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "section_max_width" : "1280",
+    "card_max_width" : 400
+  }
+}, {
+  "id" : "style",
+  "name" : "style",
+  "label" : "Style",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "style.background",
+    "name" : "background",
+    "label" : "Background",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "style.background.background_type",
+      "name" : "background_type",
+      "label" : "Background Type",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "color", "Color" ], [ "gradient", "Gradient" ], [ "image", "Image" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "color"
+    }, {
+      "id" : "style.background.background_color",
+      "name" : "background_color",
+      "label" : "Background Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "style.background.background_type",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "color",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "style.background.background_gradient",
+      "name" : "background_gradient",
+      "label" : "Background Gradient",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "style.background.background_type",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "gradient",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "gradient",
+      "display_width" : null,
+      "default" : { }
+    }, {
+      "id" : "style.background.background_image",
+      "name" : "background_image",
+      "label" : "Background Image",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "style.background.background_type",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "image",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "responsive" : true,
+      "resizable" : true,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "src" : "",
+        "alt" : null,
+        "size_type" : null,
+        "width" : null,
+        "height" : null,
+        "max_width" : null,
+        "max_height" : null,
+        "loading" : "disabled"
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_type" : "color",
+      "background_color" : {
+        "color" : "",
+        "opacity" : 100
+      },
+      "background_gradient" : { },
+      "background_image" : {
+        "src" : "",
+        "alt" : null,
+        "size_type" : null,
+        "width" : null,
+        "height" : null,
+        "max_width" : null,
+        "max_height" : null,
+        "loading" : "disabled"
+      }
+    }
+  },
+   {
+    "id" : "style.padding",
+    "name" : "padding",
+    "label" : "Padding",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "style.padding.enable_card_padding",
+      "name" : "enable_card_padding",
+      "label" : "Enable Card Padding",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "style.padding.card_padding",
+      "name" : "card_padding",
+      "label" : "Card Padding",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "style.padding.enable_card_padding",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "style.padding.card_padding.top_padding",
+        "name" : "top_padding",
+        "label" : "Padding Top",
+        "required" : false,
+        "locked" : false,
+        "display" : "text",
+        "step" : 1,
+        "suffix" : "px",
+        "type" : "number",
+        "display_width" : null,
+        "default" : ""
+      }, {
+        "id" : "style.padding.card_padding.bottom_padding",
+        "name" : "bottom_padding",
+        "label" : "Padding Bottom",
+        "required" : false,
+        "locked" : false,
+        "display" : "text",
+        "step" : 1,
+        "suffix" : "px",
+        "type" : "number",
+        "display_width" : null,
+        "default" : ""
+      }, {
+        "id" : "style.padding.card_padding.left_padding",
+        "name" : "left_padding",
+        "label" : "Padding Left",
+        "required" : false,
+        "locked" : false,
+        "display" : "text",
+        "step" : 1,
+        "suffix" : "px",
+        "type" : "number",
+        "display_width" : null,
+        "default" : ""
+      }, {
+        "id" : "style.padding.card_padding.right_padding",
+        "name" : "right_padding",
+        "label" : "Padding Right",
+        "required" : false,
+        "locked" : false,
+        "display" : "text",
+        "step" : 1,
+        "suffix" : "px",
+        "type" : "number",
+        "display_width" : null,
+        "default" : ""
+      } ],
+      "tab" : "STYLE",
+      "expanded" : true,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "top_padding" : "",
+        "bottom_padding" : "",
+        "left_padding" : "",
+        "right_padding" : ""
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "enable_card_padding" : false,
+      "card_padding" : {
+        "top_padding" : "",
+        "bottom_padding" : "",
+        "left_padding" : "",
+        "right_padding" : ""
+      }
+    }
+  } ,{ "id": "22a52d48-ddf7-8856-5acf-33b173d7c9a0", "name": "filter_buttons_style", "label": "Filter Buttons Style", "required": false, "locked": false, "children": [ { "id": "ce3cf5fa-96b1-1efa-c241-be753821d7fb", "name": "overwrite_active_button_styles", "label": "Overwrite Active Button Styles", "required": false, "locked": false, "display": "toggle", "type": "boolean", "display_width": null, "default": false }, { "id": "87ad801c-ff64-fb27-116a-5ecd405edcb0", "name": "active_button_type", "label": "Active Button Type", "required": false, "locked": false, "visibility": { "controlling_field": null, "controlling_field_path": "style.filter_buttons_style.overwrite_active_button_styles", "controlling_value_regex": "true", "property": null, "operator": "EQUAL", "access": null }, "display": "select", "choices": [ [ "fill", "Fill Background" ], [ "outline", "Outline Only" ] ], "multiple": false, "reordering_enabled": true, "preset": null, "type": "choice", "display_width": null, "default": "outline" }, { "id": "cc6b318a-d680-3729-5265-76666f366545", "name": "button_background_outline_color", "label": "Button Background/Outline Color", "required": false, "locked": false, "visibility": { "controlling_field": null, "controlling_field_path": "style.filter_buttons_style.overwrite_active_button_styles", "controlling_value_regex": "true", "property": null, "operator": "EQUAL", "access": null }, "type": "color", "display_width": null, "default": { "color": "#DAFC00", "opacity": 100 } }, { "id": "80843b28-57bd-1859-723b-d3bda0ee4084", "name": "inactive_button_type", "label": "Inactive Button Type", "required": false, "locked": false, "display": "select", "choices": [ [ "outline", "Outline" ], [ "transparent", "Transparent" ] ], "multiple": false, "reordering_enabled": true, "preset": null, "type": "choice", "display_width": null, "default": "transparent" } ], "tab": "STYLE", "expanded": false, "group_occurrence_meta": null, "type": "group", "display_width": null, "default": { "overwrite_active_button_styles": false, "active_button_type": "outline", "button_background_outline_color": { "color": "#DAFC00", "opacity": 100 }, "inactive_button_type": "transparent" } } ,
+{
+        "label": "Animation",
+        "name": "animation",
+        "type": "group",
+        "children": [
+          {
+            "label": "Enable Heading Animation",
+            "name": "enable_heading_animation",
+            "default": false,
+            "display": "toggle",
+            "type": "boolean"
+          },
+          {
+            "label": "Enable Body Text Animation",
+            "name": "enable_body_text_animation",
+            "default": false,
+            "display": "toggle",
+            "type": "boolean"
+          },
+          {
+            "label": "Enable Section Animation",
+            "name": "enable_section_animation",
+            "default": false,
+            "display": "toggle",
+            "type": "boolean"
+          }
+        ]
+      }],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "background" : {
+      "background_type" : "color",
+      "background_color" : {
+        "color" : "",
+        "opacity" : 100
+      },
+      "background_gradient" : { },
+      "background_image" : {
+        "src" : "",
+        "alt" : null,
+        "size_type" : null,
+        "width" : null,
+        "height" : null,
+        "max_width" : null,
+        "max_height" : null,
+        "loading" : "disabled"
+      }
+    },
+    "padding" : {
+      "enable_card_padding" : false,
+      "card_padding" : {
+        "top_padding" : "",
+        "bottom_padding" : "",
+        "left_padding" : "",
+        "right_padding" : ""
+      }
+    }
+  }
+} ]

@@ -1,0 +1,183 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: Shop Page
+screenshotPath: ../../Images/Page-template/shop.jpg
+-->
+
+{# --- Connect to base.html #}
+{% extends "../layouts/base.html" %}
+
+{# --- Body element #}
+{% block body %}
+
+{# --- Area to add Drag & Drop modules #}
+{% dnd_area "body-area" label="Body", class="body-area" %}
+
+
+{# Hero Banner #}
+{% dnd_section %}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../../modules/Hero Banner",
+        offset=0,
+        width=12,
+        button_enable=false,
+        layout_alignment={
+          "height" : {
+            "desktop_height" : 70,
+            "mobile" : 50
+          }
+        },
+        rich_text={
+          "richtext_field" : '<h5><span style="color: #101000;">FITNESS GEAR</span></h5><h1><span style="color: #101000;">YOUR ESSENTIALS</span></h1>'
+        },
+        style={
+          "background" : {
+            "background_image" : {
+              "alt" : "c932844c237bfd2147ecbfddcfecc2a4b943564b",
+              "height" : 1890,
+              "loading" : "lazy",
+              "max_height" : 922.8515624999999,
+              "max_width" : 2000,
+              "size_type" : "auto_custom_max",
+              "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/c932844c237bfd2147ecbfddcfecc2a4b943564b.webp",
+              "width" : 4096
+            },
+            "model" : {
+              "model_enable" : false
+            }
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+{# Hero Banner End #}
+
+
+
+{# Product List #}
+{% dnd_section %}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../../modules/Product List",
+        offset=0,
+        width=12,
+        card_button={
+          "button_repeater" : [ {
+            "button_font" : {
+              "font_set" : "DEFAULT"
+            },
+            "button_icon_image" : {
+              "alt" : "Arrow right icon",
+              "height" : 24,
+              "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+              "width" : 24
+            },
+            "button_icon_type" : "svg",
+            "button_text" : "Buy Now",
+            "button_type" : "primary",
+            "custom_bg_color" : { },
+            "custom_icon" : {
+              "name" : "Alternate Long Arrow Right",
+              "type" : "SOLID",
+              "unicode" : "f30b"
+            },
+            "custom_text_color" : { },
+            "hide_show_border_settings" : false,
+            "hide_show_color_settings" : false,
+            "hide_show_font_settings" : false,
+            "hide_show_hover_settings" : false,
+            "hide_show_padding_settings" : false,
+            "hover_bg_color" : { },
+            "hover_border_color" : { },
+            "hover_text_color" : { },
+            "keep_only_icon" : false,
+            "link" : {
+              "url" : {
+                "content_id" : 369789182193,
+                "type" : "CONTENT"
+              }
+            },
+            "override_styles" : false,
+            "svg_icon" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"36\" height=\"36\" viewBox=\"0 0 36 36\" fill=\"none\">  <path d=\"M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z\" fill=\"#101000\"/></svg>",
+            "turn_on_button_icon" : false
+          } ]
+        },
+        filter_groups=[ {
+          "group_header" : "<p>Cateogry</p>",
+          "options" : [ "<p>Active</p>", "<p>Inactive</p>" ]
+        }, {
+          "group_header" : "<p>Brands</p>",
+          "options" : [ "<p>FitPro</p>", "<p>PowerMax</p>", "<p>HyperAthletics</p>", "<p>TitanLabs</p>" ]
+        } ],
+        product_from_crm={
+          "product" : [ {
+            "filter_tags" : [ "Fitpro", "Active" ],
+            "specific_product" : {
+              "id" : 396207891645
+            }
+          }, {
+            "filter_tags" : [ "PowerMax", "Active" ],
+            "specific_product" : {
+              "id" : 395711268084
+            }
+          }, {
+            "filter_tags" : [ "TitanLabs", "Active" ],
+            "specific_product" : {
+              "id" : 395710548210
+            }
+          }, {
+            "filter_tags" : [ "TitanLabs", "Inactive" ],
+            "specific_product" : {
+              "id" : 395711268086
+            }
+          }, {
+            "filter_tags" : [ "HyperAthletics", "Active" ],
+            "specific_product" : {
+              "id" : 395711268088
+            }
+          }, {
+            "filter_tags" : [ "Fitpro", "Inactive" ],
+            "specific_product" : {
+              "id" : 396057607381
+            }
+          }, {
+            "filter_tags" : [ "TitanLabs", "Active" ],
+            "specific_product" : {
+              "id" : 396208611527
+            }
+          }, {
+            "filter_tags" : [ "Fitpro", "Active" ],
+            "specific_product" : {
+              "id" : 395868874990
+            }
+          }, {
+            "filter_tags" : [ "Fitpro", "Active" ],
+            "specific_product" : {
+              "id" : 396208611528
+            }
+          } ]
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+{# Product List End  #}
+ 
+    
+
+{% end_dnd_area %}
+
+{% endblock body %}

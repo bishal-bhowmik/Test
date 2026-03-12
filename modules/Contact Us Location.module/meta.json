@@ -1,0 +1,19 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE" ],
+  "host_template_types" : [ "PAGE"],
+  "module_id" : 337767359001,
+  "css_assets" : [ {
+    "autoload" : true,
+    "path" : "../../css/main.css",
+    "name" : "main.css"
+  } ],
+  "js_assets" : [ {
+    "autoload" : true,
+    "path" : "../../js/main.js",
+    "name" : "main.js"
+  } ],
+  "label" : "Contact Us Location",
+  "icon" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/contact%20us%20location.svg",
+  "is_available_for_new_content" : true
+}

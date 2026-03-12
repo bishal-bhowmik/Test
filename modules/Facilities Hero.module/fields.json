@@ -1,0 +1,516 @@
+[
+  {
+    "label": "Content",
+    "name": "content",
+    "type": "group",
+    "expanded": false,
+    "children": [
+      {
+        "label": "Section Label",
+        "name": "section_label",
+        "default": "<h1>FACILITIES FOR ALL!</h1>",
+        "type": "richtext"
+      }
+    ]
+  },
+  {
+    "label": "Trainers Section",
+    "name": "trainers_section",
+    "type": "group",
+    "expanded": true,
+    "children": [
+      {
+        "label": "Trainer Title",
+        "name": "trainer_title",
+        "default": "<h6>Trainers</h6>",
+        "type": "richtext"
+      },
+      {
+        "label": "Trainer Description",
+        "name": "trainer_description",
+        "default": "<p>From strength training and HIIT to yoga, Pilates, and recovery — explore over 20+ online classes designed to keep you motivated, challenged, and coming back for more.</p>",
+        "type": "richtext"
+      },
+      {
+        "label": "Trainer Count Prefix",
+        "name": "trainer_count",
+        "default": "<h6>9+</h6>",
+        "type": "richtext"
+      },
+      {
+        "label": "Trainer Avatars",
+        "name": "trainers_avartar",
+        "type": "group",
+        "expanded": true,
+        "children": [
+          {
+            "label": "Trainer Avatar Item",
+            "name": "avartar_item",
+            "type": "group",
+            "expanded": true,
+            "occurrence": {
+              "default": 5,
+              "max": 5,
+              "sorting_label_field": "icon_type"
+            },
+            "children": [
+              {
+                "label": "Trainer Image",
+                "name": "trainer_image",
+                "default": {
+                  "src": "https://242549800.fs1.hubspotusercontent-na2.net/hubfs/242549800/a21301d45219853d1c8c595508f7312a7f3830cf.jpg",
+                  "alt": "Fitness Programs"
+                },
+                "type": "image"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Media Section",
+    "name": "media_section",
+    "type": "group",
+    "expanded": false,
+    "children": [
+      {
+        "label": "Bottom Left Overlay Text",
+        "name": "overlay_text",
+        "default": "<h6>Let's hit body goals!</h6>",
+        "type": "richtext"
+      },
+      {
+        "label": "Bottom Left Image",
+        "name": "left_image",
+        "default": {
+          "src": "../../Images/792c8d0ca75d06f054e6dcacebabaf19a5ffb2aa.jpg",
+          "alt": "Fitness Programs"
+        },
+        "type": "image"
+      },
+      {
+        "label": "Bottom Right Image",
+        "name": "right_image",
+        "default": {
+          "src": "../../Images/53c67e596175453fd60d46c8dd105f22da4d7963.png",
+          "alt": "Fitness Programs"
+        },
+        "type": "image"
+      }
+    ]
+  },
+  {
+    "label": "Bottom Badge",
+    "name": "overlay_badge",
+    "type": "group",
+    "expanded": true,
+    "children": [
+      {
+        "label": "Badge Value",
+        "name": "badge_value",
+        "default": "<p>12+</p>",
+        "type": "richtext"
+      },
+      {
+        "label": "Badge Label",
+        "name": "badge_label",
+        "default": "<p>years of experience</p>",
+        "type": "richtext"
+      }
+    ]
+  },
+  {
+    "label": "Style",
+    "name": "style",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "label": "Background",
+        "name": "background",
+        "type": "group",
+        "children": [
+          {
+            "label": "Enable",
+            "name": "enable",
+            "default": false,
+            "display": "toggle",
+            "type": "boolean"
+          },
+          {
+            "label": "Background Type",
+            "name": "background_type",
+            "default": "image",
+            "display": "select",
+            "choices": [
+              [
+                "image",
+                "Image"
+              ],
+              [
+                "gradient",
+                "Gradient"
+              ],
+              [
+                "solid_color",
+                "Solid Color"
+              ]
+            ],
+            "visibility": {
+              "controlling_field_path": "style.background.enable",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            },
+            "type": "choice"
+          },
+          {
+            "label": "Background Image Position",
+            "name": "background_image_position",
+            "default": "center",
+            "display": "select",
+            "choices": [
+              [
+                "top",
+                "Top"
+              ],
+              [
+                "center",
+                "Center"
+              ],
+              [
+                "bottom",
+                "Bottom"
+              ]
+            ],
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "style.background.background_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "image"
+                },
+                {
+                  "controlling_field_path": "style.background.enable",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            "type": "choice"
+          },
+          {
+            "label": "Background Overlay",
+            "name": "background_overlay",
+            "default": false,
+            "display": "toggle",
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "style.background.background_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "image"
+                },
+                {
+                  "controlling_field_path": "style.background.enable",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            "type": "boolean"
+          },
+          {
+            "label": "Gradient",
+            "name": "gradient_field",
+            "default": {
+              "side_or_corner": {
+                "horizontalSide": "RIGHT",
+                "verticalSide": null
+              },
+              "colors": [
+                {
+                  "color": {
+                    "r": 25,
+                    "g": 35,
+                    "b": 23,
+                    "a": 1
+                  }
+                },
+                {
+                  "color": {
+                    "r": 218,
+                    "g": 252,
+                    "b": 0,
+                    "a": 1
+                  }
+                }
+              ]
+            },
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "style.background.background_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "gradient"
+                },
+                {
+                  "controlling_field_path": "style.background.enable",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            "type": "gradient"
+          },
+          {
+            "label": "Overlay Color",
+            "name": "overlay_color",
+            "default": {
+              "side_or_corner": {
+                "horizontalSide": "LEFT",
+                "verticalSide": null
+              },
+              "colors": [
+                {
+                  "color": {
+                    "r": 16,
+                    "g": 16,
+                    "b": 0,
+                    "a": 0.8
+                  }
+                },
+                {
+                  "color": {
+                    "r": 255,
+                    "g": 255,
+                    "b": 255,
+                    "a": 0
+                  }
+                }
+              ]
+            },
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "style.background.background_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "image"
+                },
+                {
+                  "controlling_field_path": "style.background.enable",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                },
+                {
+                  "controlling_field_path": "style.background.background_overlay",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            "type": "gradient"
+          },
+          {
+            "label": "Solid Color",
+            "name": "solid_color",
+            "default": {
+              "color": "#17270B",
+              "opacity": 100
+            },
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "style.background.background_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "solid_color"
+                },
+                {
+                  "controlling_field_path": "style.background.enable",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            "type": "color"
+          },
+          {
+            "label": "Background Image",
+            "name": "background_image",
+            "default": {
+              "size_type": "auto_custom_max",
+              "src": "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Main%20Content.png",
+              "alt": "Main Content",
+              "loading": "lazy"
+            },
+            "responsive": false,
+            "resizable": false,
+            "show_loading": false,
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "style.background.background_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "image"
+                },
+                {
+                  "controlling_field_path": "style.background.enable",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            "type": "image"
+          }
+        ]
+      },
+      {
+        "label": "Animation",
+        "name": "animation",
+        "type": "group",
+        "children": [
+          {
+            "label": "Enable Heading Animation",
+            "name": "enable_heading_animation",
+            "default": false,
+            "display": "toggle",
+            "type": "boolean"
+          },
+          {
+            "label": "Enable Body Text Animation",
+            "name": "enable_body_text_animation",
+            "default": false,
+            "display": "toggle",
+            "type": "boolean"
+          },
+          {
+            "label": "Enable Section Animation",
+            "name": "enable_section_animation",
+            "default": false,
+            "display": "toggle",
+            "type": "boolean"
+          }
+        ]
+      },
+      {
+        "label": "Padding",
+        "name": "padding",
+        "type": "group",
+        "expanded": true,
+        "children": [
+          {
+            "label": "Enable",
+            "name": "enable",
+            "default": false,
+            "type": "boolean"
+          },
+          {
+            "label": "Desktop",
+            "name": "desktop",
+            "type": "group",
+            "expanded": true,
+            "visibility": {
+              "controlling_field": "style.padding.enable",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            },
+            "children": [
+              {
+                "label": "Padding Top",
+                "name": "top_padding",
+                "suffix": "px",
+                "type": "number"
+              },
+              {
+                "label": "Padding Bottom",
+                "name": "bottom_padding",
+                "suffix": "px",
+                "type": "number"
+              },
+              {
+                "label": "Padding Left",
+                "name": "left_padding",
+                "suffix": "px",
+                "type": "number"
+              },
+              {
+                "label": "Padding Right",
+                "name": "right_padding",
+                "suffix": "px",
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "label": "Mobile",
+            "name": "mobile",
+            "type": "group",
+            "expanded": true,
+            "visibility": {
+              "controlling_field": "style.padding.enable",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            },
+            "suffix": "px",
+            "children": [
+              {
+                "label": "Padding Top",
+                "name": "top_padding",
+                "suffix": "px",
+                "type": "number"
+              },
+              {
+                "label": "Padding Bottom",
+                "name": "bottom_padding",
+                "suffix": "px",
+                "type": "number"
+              },
+              {
+                "label": "Padding Left",
+                "name": "left_padding",
+                "suffix": "px",
+                "type": "number"
+              },
+              {
+                "label": "Padding Right",
+                "name": "right_padding",
+                "suffix": "px",
+                "type": "number"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Layout",
+    "name": "layout_alignment",
+    "type": "group",
+    "tab": "CONTENT",
+    "children": [
+      {
+        "label": "Section Max Width",
+        "name": "section_max_width",
+        "default": 1280,
+        "display": "text",
+        "step": 1,
+        "suffix": "px",
+        "type": "number"
+      }
+    ]
+  }
+]

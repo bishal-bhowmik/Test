@@ -1,0 +1,534 @@
+[ {
+  "id" : "8d1a65e7-2e22-da49-ad5b-f0b05e799cbd",
+  "name" : "content",
+  "label" : "Footer Top ",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "804a9067-387b-8e7d-5bf7-f276fcb871fb",
+    "name" : "title",
+    "label" : "Title",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<h6><span>Start Your Fitness Journey Now!</span></h6>"
+  }, {
+    "id" : "994de916-a1c2-39a2-bd26-c2f9ae349fbc",
+    "name" : "subtitle",
+    "label" : "Subtitle",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p><span>Join our community and transform your health, body, and mind.</span></p>"
+  }, {
+    "id" : "33b987c9-83cd-0b12-8c7e-d14a6c33b743",
+    "name" : "subscription_form",
+    "label" : "Subscription Form",
+    "required" : false,
+    "locked" : false,
+    "embed_versions" : [ "v2", "v4" ],
+    "type" : "form",
+    "display_width" : null,
+    "default" : {
+      "form_id" : "",
+      "response_type" : "inline",
+      "message" : "Thanks for submitting the form.",
+      "form_type" : "HUBSPOT"
+    }
+  }, {
+    "id" : "69909eb2-6a4a-ff1c-d19c-d6576462b798",
+    "name" : "form_alignment_column",
+    "label" : "Form Alignment Column",
+    "help_text" : "",
+    "inline_help_text" : "If you select multi-line forms, then toggle this for column display for the forms",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "title" : "<h6><span>Start Your Fitness Journey Now!</span></h6>",
+    "subtitle" : "<p><span>Join our community and transform your health, body, and mind.</span></p>",
+    "subscription_form" : {
+      "form_id" : "",
+      "response_type" : "inline",
+      "message" : "Thanks for submitting the form.",
+      "form_type" : "HUBSPOT"
+    },
+    "form_alignment_column" : false
+  }
+}, {
+  "id" : "946de069-d306-f115-9c49-4dde575f1584",
+  "name" : "brand_identity",
+  "label" : "Brand Identity",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "590f9294-d68f-56e5-3e29-1a2806cac6a1",
+    "name" : "logo",
+    "label" : "Logo",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Fitmax-logo.svg",
+      "alt" : "Fitmax-logo",
+      "loading" : "lazy",
+      "width" : 131,
+      "height" : 36
+    }
+  }, {
+    "id" : "99a9bbc2-f56f-e474-f556-fb375ae1bd58",
+    "name" : "footer_paragraph",
+    "label" : "Footer Paragraph",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p><span>It is more than just a gym — we’re a lifestyle hub dedicated to helping you achieve your fitness goals. </span></p>"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "logo" : {
+      "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Fitmax-logo.svg",
+      "alt" : "Fitmax-logo",
+      "loading" : "lazy",
+      "width" : 131,
+      "height" : 36
+    },
+    "footer_paragraph" : "<p><span>It is more than just a gym — we’re a lifestyle hub dedicated to helping you achieve your fitness goals. </span></p>"
+  }
+}, {
+  "id" : "6ea02fbe-3133-276f-29f9-656cbdb9b08b",
+  "name" : "footer_middle",
+  "label" : "Dynamic Navigation",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : 1
+  },
+  "children" : [ {
+    "id" : "9c88beac-c34a-70c1-9a86-0a52ab8f2790",
+    "name" : "link_title",
+    "label" : "Column Title",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Quick Links"
+  }, {
+    "id" : "895112a1-5324-95cc-a30b-17dede6f3e01",
+    "name" : "links",
+    "label" : "Links",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : 1,
+      "max" : null,
+      "sorting_label_field" : null,
+      "default" : 1
+    },
+    "children" : [ {
+      "id" : "f0745bc3-7d83-b090-b9b6-76bd2bd0f0d2",
+      "name" : "link_label",
+      "label" : "Label",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Home"
+    }, {
+      "id" : "da756445-20c8-4b8e-f30d-cdc9d7d08f13",
+      "name" : "link_field",
+      "label" : "Link",
+      "required" : false,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "FILE", "CONTENT", "BLOG", "CALL_TO_ACTION", "PAYMENT", "EMAIL_ADDRESS", "PHONE_NUMBER", "WHATSAPP_NUMBER" ],
+      "show_advanced_rel_options" : false,
+      "type" : "link",
+      "display_width" : null,
+      "default" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ {
+      "link_label" : "Home",
+      "link_field" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "link_title" : "Quick Links",
+    "links" : [ {
+      "link_label" : "Home",
+      "link_field" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ]
+  } ]
+}, {
+  "id" : "9ad227de-e01e-846a-60ed-aa218e4fd0df",
+  "name" : "show_contact_section",
+  "label" : "Show Contact Section",
+  "required" : false,
+  "locked" : false,
+  "display" : "toggle",
+  "type" : "boolean",
+  "display_width" : null,
+  "default" : true
+}, {
+  "id" : "6d518594-423c-6716-a70f-795684d9baff",
+  "name" : "style",
+  "label" : "Style",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "806df89e-59a3-9edd-4559-37c529972ca9",
+    "name" : "background_settings",
+    "label" : "Background Settings",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "2e6922b0-af43-28d5-8f1d-1dd84c61324c",
+      "name" : "override_background",
+      "label" : "Override Background",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "8ee08938-19c4-6881-0228-1fc9d790882c",
+      "name" : "background_type",
+      "label" : "Background Type",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.background_settings.override_background",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "color", "Color" ], [ "gradient", "Gradient" ], [ "image", "Image" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null
+    }, {
+      "id" : "165d45a4-79ec-0401-e07f-b2e9e3497337",
+      "name" : "background_color",
+      "label" : "Background Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.background_settings.background_type",
+        "controlling_value_regex" : "color",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }, {
+      "id" : "acc35535-e7bb-6167-2fe6-f6e69ad0dd6b",
+      "name" : "background_gradient",
+      "label" : "Background Gradient",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.background_settings.background_type",
+        "controlling_value_regex" : "gradient",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "gradient",
+      "display_width" : null,
+      "default" : { }
+    }, {
+      "id" : "b11d64c6-7ec6-5ecf-1411-d09935ae58cf",
+      "name" : "background_image",
+      "label" : "Background Image",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.background_settings.background_type",
+        "controlling_value_regex" : "image",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "responsive" : true,
+      "resizable" : true,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "src" : "",
+        "alt" : null,
+        "loading" : "lazy"
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "override_background" : false,
+      "background_color" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "background_gradient" : { },
+      "background_image" : {
+        "src" : "",
+        "alt" : null,
+        "loading" : "lazy"
+      }
+    }
+  }, {
+    "id" : "694c7028-8b1b-8a54-57f4-d7ea86391b30",
+    "name" : "text_colors",
+    "label" : "Text Colors",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "e37fca8d-a95d-fcb0-3a60-24dc3bff0ff2",
+      "name" : "text_color",
+      "label" : "Text Color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }, {
+      "id" : "e415f71c-27d7-c717-a74e-d095778887d7",
+      "name" : "links_color",
+      "label" : "Links Color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }, {
+      "id" : "ec834bad-5593-f42e-6a7f-ea87477a3745",
+      "name" : "links_hover_color",
+      "label" : "Links Hover Color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : null,
+        "opacity" : null
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "text_color" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "links_color" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "links_hover_color" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "background_settings" : {
+      "override_background" : false,
+      "background_color" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "background_gradient" : { },
+      "background_image" : {
+        "src" : "",
+        "alt" : null,
+        "loading" : "lazy"
+      }
+    },
+    "text_colors" : {
+      "text_color" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "links_color" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "links_hover_color" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }
+  }
+}, {
+  "id" : "e6bd2df8-3ebd-fd18-e9f5-eee38b272285",
+  "name" : "footer_right_section",
+  "label" : "Contact Information",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : 1
+  },
+  "visibility" : {
+    "controlling_field" : null,
+    "controlling_field_path" : "show_contact_section",
+    "controlling_value_regex" : "true",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "children" : [ {
+    "id" : "cdcd02e3-1930-71d6-7c29-bc13adf9c279",
+    "name" : "right_side_title",
+    "label" : "Title",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Address"
+  }, {
+    "id" : "8eabc599-0d17-5572-21aa-a52f45756921",
+    "name" : "information",
+    "label" : "Information",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p><span>125 Fitness Avenue, New York, NY 10001</span></p>"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "right_side_title" : "Address",
+    "information" : "<p><span>125 Fitness Avenue, New York, NY 10001</span></p>"
+  } ]
+}, {
+  "id" : "f425fd8d-84c9-6458-68a7-8b6406b33803",
+  "name" : "layout",
+  "label" : "Layout",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "d1e42748-8ede-fe41-398c-298ba54429f7",
+    "name" : "section_max_width",
+    "label" : "Section Max Width",
+    "required" : false,
+    "locked" : false,
+    "display" : "text",
+    "step" : 1,
+    "suffix" : "px",
+    "type" : "number",
+    "display_width" : null
+  }, {
+    "id" : "98689716-60e5-e4a5-2fcb-fb08ff66c351",
+    "name" : "content_max_width",
+    "label" : "Content Max Width",
+    "required" : false,
+    "locked" : false,
+    "display" : "text",
+    "step" : 1,
+    "suffix" : "px",
+    "type" : "number",
+    "display_width" : null
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : { }
+} ]

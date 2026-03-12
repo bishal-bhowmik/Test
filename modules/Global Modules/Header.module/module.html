@@ -1,0 +1,3140 @@
+{# --- Add the global Macro functions #}
+{% import '../../../macros/button-macros.html' as button_macros %}
+
+
+<!-- ***************************** --> 
+<!--      Local Scop Vatiables     --> 
+<!-- ***************************** -->
+
+<!-- A Unique ID to scope the CSS/JS module-wise -->
+{% set module_name = "fitmax-nav" %}
+{% set random_number = range(1, 999999) | random %}
+{% set unique_id = "RIT-" ~ random_number ~ "-" ~ module_name %} 
+{% set NAV_TYPE = module.navigation_field_group.navbar_type %} 
+  
+{% set NAV_BEHAVIOR = module.style.navbar_style_and_alignment.navbar_behavior %}
+{% set is_sticky = NAV_BEHAVIOR.sticky_navbar %}
+{% set is_floating = NAV_BEHAVIOR.floating_navbar %}
+
+
+<!--  -----------------------------------------------
+Header Items Dynamic font size, Height and width variables
+------------------------------------------------- -->
+
+{# --- Dynamic Scaling Configuration --- #}
+{# Fetch Count based on Current Selection #}
+{% if NAV_TYPE == 'advance' %}
+  {% set nav_item_count = module.navigation_field_group.menu_items|length %}
+{% else %}
+  {% set selected_menu_id = module.navigation_field_group.menu_selector %}
+  {% set menu_tree = menu(selected_menu_id) %}
+  {% set nav_item_count = menu_tree.children|length %}
+{% endif %}
+
+{# Final logic flag #}
+{% set is_crowded = nav_item_count > 4 %}
+
+{# Define Sizes based on Crowded state #}
+{% if is_crowded %}
+  {% set dynamic_font_size   = "clamp(16px, 1.2vw, 20px)" %}
+  {% set dynamic_logo_w      = "clamp(110px, 10vw, 130px)" %}
+  {% set dynamic_logo_h      = "clamp(45px, 4vw, 50px)" %}
+  {% set dynamic_action_size = "clamp(38px, 3.5vw, 45px)" %}
+  {% set dynamic_action_icon_size = "clamp(18px, 2vw, 24px);" %}
+  {% set dynamic_nav_gap     = "clamp(8px, 0.8vw, 12px)" %}
+  {% set dynamic_cta_padding_y = "clamp(16px, 0.5vw, 20px)" %}
+  {% set dynamic_cta_padding_x = "clamp(16px, 8px, 20px)" %}
+
+{% else %}
+  {% set dynamic_font_size   = "clamp(16px, 1.56vw, 20px)" %}
+  {% set dynamic_logo_w      = "clamp(130px, 12.5vw, 160px)" %}
+  {% set dynamic_logo_h      = "clamp(55px, 4.68vw, 60px)" %}
+  {% set dynamic_action_size = "clamp(48px, 4.7vw, 60px)" %}
+  {% set dynamic_action_icon_size = "clamp(24px, 2.7vw, 32px);" %}
+  {% set dynamic_nav_gap     = "clamp(12px, 1vw, 20px)" %}
+  {% set dynamic_cta_padding_y = "clamp(16px, 1vw, 20px)" %}
+  {% set dynamic_cta_padding_x = "clamp(16px, 14.67px, 20px)" %}
+{% endif %}
+    
+<!--  -----------------------------------------------
+Header Background Styles Overwrite logic and variables
+------------------------------------------------- -->
+
+{# Set the value based on Style Fields #}
+{% set header_background = module.style.navbar_style_and_alignment.navbar_background %}
+{% set is_overwrite_background = module.style.navbar_style_and_alignment.navbar_background.overwrite_navbar_background %}
+
+{# Default fallback (used when is_overwrite_background is false) #}
+{% set nav_bg_value = "var(--color-bg-secondary)" %}
+
+{% if is_overwrite_background %}
+{# 1. Gradient has highest priority #}
+{% if header_background.background_type == "gradient" %}
+{% set nav_bg_value = header_background.background_gradient.css %}
+
+{# 2. Solid color (only works after user touches the picker) #}
+{% elif header_background.background_type == "color" and header_background.background_color.color %}
+{% set nav_bg_value = header_background.background_color.color %}
+
+{# 3. transparent choice #}
+{% elif header_background.background_type == "transparent" %}
+{% set nav_bg_value = "transparent" %}
+{% endif %}
+{% endif %}
+
+
+<!--  -----------------------------------------------
+Header Text and Icon Color Overwrite logic and variables
+------------------------------------------------- -->
+{% set text_settings = module.style.navbar_style_and_alignment.navbar_text %}
+
+{# Default text color fallback #}
+{% set nav_text_color = "var(--color-text-tertiary)" %}
+{% set nav_text_hover_color = "var(--color-brand-primary)" %}
+
+
+{# Override only if enabled and color exists #}
+{% if text_settings.overwrite_text_color and text_settings.menu_item_text_color.color %}
+{% set nav_text_color = text_settings.menu_item_text_color.color %}
+{% endif %}
+
+{% if text_settings.overwrite_text_color and text_settings.menu_item_hover_text_color.color %}
+{% set nav_text_hover_color = text_settings.menu_item_hover_text_color.color %}
+{% endif %}
+
+
+<!--  -----------------------------------------------
+Feature Mega Menu Color Overwrite logic and variables
+------------------------------------------------- -->
+{% set feature_mega_menu = module.style.mega_menu_styles.featured_mega_menu %}
+
+{# Default text color fallback #}
+{% set link_hover_background_color = "var(--color-bg-primary-accent-1)" %}
+
+{# Override only if enabled and color exists #}
+{% if feature_mega_menu.overwrite_link_hover_background_color and feature_mega_menu.link_hover_background_color.color %}
+{% set link_hover_background_color = feature_mega_menu.link_hover_background_color.color %}
+{% endif %}
+
+
+
+
+<!--  -----------------------------------------------
+Mega Menu Text and Color Overwrite logic and variables
+------------------------------------------------- -->
+{% set mega_menu = module.style.mega_menu_styles %}
+
+{# Default text color fallback #}
+{% set link_background_color = "var(--color-bg-primary-accent-1)" %}
+{% set link_text_color = "var(--color-text-secondary)" %}
+
+{% set active_link_background_color = "var(--color-bg-secondary-accent)" %}
+{% set active_link_text_color = "var(--color-text-tertiary)" %}
+
+{# Override only if enabled and color exists #}
+{% if mega_menu.overwrite_link_styles %}
+{% set link_background_color = mega_menu.link_background_color.color %}
+{% set link_text_color = mega_menu.link_text_color.color %}
+{% endif %}
+
+{% if mega_menu.overwrite_active_link_styles %}
+{% set active_link_background_color = mega_menu.active_link_background_color.color %}
+{% set active_link_text_color = mega_menu.active_link_text_color.color %}
+{% endif %}
+
+
+<!--  -----------------------------------------------
+Mega Menu Background Style Overwrite logic and variables
+------------------------------------------------- -->
+{% set mega_menu_background_group = module.style.mega_menu_styles.mega_menu_background %}
+{% set mega_menu_background = "var(--color-bg-primary)" %}
+
+{# Override only if enabled and color exists #}
+{% if mega_menu_background_group.overwrite_background_style and mega_menu_background_group.background_color %}
+{% set mega_menu_background = mega_menu_background_group.background_color.color %}
+{% endif %}
+
+ <!-------------------------------------------------
+Header Search Handler logic and variables for content-type and serch-page-path
+------------------------------------------------- -->
+  {# 1. Determine Search Results Page Path #}
+  {% set search_page_path = site_settings.content_search_results_page_path %}
+
+  {% if module.search_option.use_custom_search_results_template %}
+    {% if module.search_option.path_id %}
+      {# Use content_by_id to get the URL of the selected page #}
+      {% set search_page_path = content_by_id(module.search_option.path_id).absolute_url %}
+    {% endif %}
+  {% endif %}
+
+  {# 2. Map Content Types to HS API Values #}
+  {% set content_types = module.search_option.content_types %}
+  {% set type_params = "" %}
+    
+  {% if content_types.website_pages %}{% set type_params = type_params ~ "&type=SITE_PAGE" %}{% endif %}
+  {% if content_types.landing_pages %}{% set type_params = type_params ~ "&type=LANDING_PAGE" %}{% endif %}
+  {% if content_types.blog_posts %}{% set type_params = type_params ~ "&type=BLOG_POST" %}{% endif %}
+  {% if content_types.knowledge_articles %}{% set type_params = type_params ~ "&type=KNOWLEDGE_ARTICLE" %}{% endif %}
+  {% if content_types.case_studies %}{% set type_params = type_params ~ "&type=HS_CASE_STUDY" %}{% endif %}
+
+
+<!-- ***************************** --> 
+<!--         CSS  START            --> 
+<!-- ***************************** -->
+{% require_css %}
+<style>
+{% scope_css %}
+p, ul, li {
+  margin : 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul, li {
+  list-style-type: none;
+}
+
+
+/* -----------------------------------------------
+Start Common Styles for Both Navbar 
+-------------------------------------------------*/ 
+
+.header-container {
+  {% if not is_floating %}
+    /* If not floating, this div stays in the flow and takes up 100px */
+    {# top: 0; #}
+    height: 6.25rem; 
+    position: relative;
+  {% else %}
+    /* If floating, this div takes 0px space so Hero slides to top */
+    height: 0; 
+    position: absolute;
+    top: 0;
+    width: 100%;
+  {% endif %}
+}
+
+header {
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  transition: all 0.3s ease;
+  top: 0;
+  width: 100%;
+  {# max-width: 1440px; #}
+
+
+  /* --- SCENARIO 1: Sticky + Floating --- */
+  {% if is_sticky and is_floating %}
+    position: fixed; 
+  /* --- SCENARIO 2: Sticky + NOT Floating (FIXED & BLOCKED) --- */
+  {% elif is_sticky and not is_floating %}
+    position: fixed; 
+  /* --- SCENARIO 3: NOT Sticky + Floating --- */
+  {% elif not is_sticky and is_floating %}
+    position: absolute; 
+  /* --- SCENARIO 4: NOT Sticky + NOT Floating --- */
+  {% else %}
+    position: absolute; /* Parent blocks the 100px, header sits at top */
+  {% endif %}
+}
+
+
+
+.header-warper {
+  background: {{ nav_bg_value }};
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.main-header {
+  height: 6.25rem;
+  display: flex;
+  align-items: center;
+}
+
+{# header.header--hidden {
+  transform: translateX(-50%) translateY(-150%);
+  opacity: 0;
+}
+
+header.header--sticky {
+  top: 0;
+  width: 100%;
+  transform: translateX(-50%) translateY(0);
+}
+
+header.header--sticky .header-warper {
+  border-radius: 0;
+} #}
+
+/* Icon circle */
+.icon {
+  width: clamp(24px, 2.5vw, 32px) !important;
+  height: clamp(24px, 2.5vw, 32px) !important;
+  background: var(--color-brand-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon * {
+  width: clamp(12px, 1.5vw, 20px) !important;
+  height: clamp(12px, 1.5vw, 20px) !important;
+}
+/* -----------------------------------------------
+End Common Styles for Both Navbar
+-------------------------------------------------*/
+
+
+
+/* -----------------------------------------------
+Start Styles for Header Actions / Right Side 
+-------------------------------------------------*/
+/* Handlers (Language & Search) */
+.header-handlers {
+  display: flex;
+  order: 5;
+  align-items: center;
+  {% if module.style.navbar_style_and_alignment.logo_alignment == 'left' and  module.style.navbar_style_and_alignment.menu_alignment == 'left' %}
+    margin-left: auto;
+  {% endif %}
+  
+}
+
+.nav-action-icon {
+  background: none;
+  cursor: pointer;
+  width: clamp(48px, 4.7vw, 60px);
+  height: clamp(48px, 4.7vw, 60px);
+  border-color: var(--color-text-secondary)
+}
+
+.nav-action-icon svg{
+  width: clamp(24px, 2.7vw, 32px);
+  height: clamp(24px, 2.7vw, 32px);
+}
+
+.nav-action-icon img{
+  width: clamp(24px, 2.7vw, 32px);
+  height: clamp(24px, 2.7vw, 32px);
+}
+
+.nav-action-icon:hover {
+  border-color: var(--color-text-tertiary)
+}
+
+
+/* =================================
+Start Search Hendler Styles -
+Search Tigger and Dropdown
+===================================*/
+/* Search Dropdown specific overrides */
+.search-dropdown-warper {
+  display: none; /* JS will toggle this to 'block' */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(30px) skewY(1deg); /* Fancy entrance tilt */
+  transition: opacity 0.5s ease, 
+              transform 0.6s cubic-bezier(0.18, 0.89, 0.32, 1.15), 
+              visibility 0.5s;
+}
+
+/* The Animation State Trigger */
+.search-dropdown-warper.is-open {
+  pointer-events: auto !important;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) skewY(0deg);
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper input {
+  border: none;
+  width: 100%;
+  padding: clamp(12px, 1vw, 20px) clamp(12px, 1vw, 20px);
+  font-family: "Fjalla One";
+  font-size: 1.25rem;
+  outline: none;
+}
+
+.suggestion-label{
+  font-size: 1rem;
+}
+
+ul.search-results-list {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.search-results-list li {
+  margin-bottom: 10px;
+}
+
+.search-results-list li a {
+  display: flex;
+  align-items: center;
+  padding: clamp(12px, 1vw, 20px) clamp(12px, 1vw, 20px);
+  border-radius: 8px;
+  color: var(--color-text-secondary);
+  transition: 0.3s;
+}
+
+.search-results-list li a:hover {
+  background: var(--color-bg-primary-accent-2);
+}
+
+/* Add a small arrow before results to match your image */
+.search-results-list li a::before {
+  content: '→';
+  margin-right: 1rem;
+  color: var(--color-text-secondary);
+}
+
+/* CTA Button */
+.btn-join {
+  text-decoration: none;
+}
+
+/* Overlay Background (Blurry/Dark) */
+.search-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(16,16,0,0.8);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Drop from top */
+  padding-top: 6.25rem;
+}
+
+/* The White Modal Box */
+.search-modal-content {
+  width: 100%;
+  max-width: 31.25rem;
+  border-radius: 0.75rem;
+  padding: 1.875rem;
+  color:black;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-3.125rem); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Suggestions Area */
+{# #suggestions-list-{{ unique_id }} li a:hover { background: var(--bg-accent-1); color: var(--color-brand-primary); } #}
+/* =================================
+End Search Hendler Styles -
+Search Tigger and Dropdown
+===================================*/
+
+
+
+/* =================================
+Start Language Switcher Styles -
+Language Tigger and Dropdown
+===================================*/
+
+  /* Container styling for Figma alignment */
+.lang-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.hs-language-switcher { position: relative; display: inline-block; }
+
+.hs-language-switcher__button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: var(--color-bg-primary);
+  background: none;
+  justify-content: center;
+}
+
+.hs-language-switcher__icon { }
+.hs-language-switcher__icon--dropdown { margin-left: 8px; transition: transform 0.2s; }
+.hs-language-switcher__icon--dropdown.active { transform: rotate(180deg); }
+
+.hs-language-switcher__menu {
+  position: absolute;
+  top: 5rem;
+  right: 0;
+  display: none;
+  min-width: 150px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  list-style: none;
+  padding: 5px 0;
+  z-index: 9999;
+}
+
+.hs-language-switcher__menu.visible { display: block; }
+
+.hs-language-switcher__item a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+.hs-language-switcher__item:hover { background: #f5f5f5; }
+.hs-language-switcher__item.active { font-weight: bold; }
+
+.button-container{
+    flex-wrap: nowrap;
+}
+
+/* =================================
+End Language Switcher Styles -
+Language Tigger and Dropdown
+===================================*/
+
+
+/* =================================
+Start CTA  Styles -
+Language Tigger and Dropdown
+===================================*/
+.btn {
+  font-size: {{dynamic_font_size}}
+}
+.btn-primary {
+  padding: {{dynamic_cta_padding_y}} {{dynamic_cta_padding_x}};
+}
+
+/* -----------------------------------------------
+End Styles for Header Actions / Right Side 
+-------------------------------------------------*/
+
+
+/* ------------------ Devider -------------------- */
+
+
+
+/* -----------------------------------------------
+Start Hubspot Navbar Style  
+-------------------------------------------------*/
+/* =================================
+Start HUBSPOT TOP MAIN MENU warper -
+Mani Nvigation at top of the page
+===================================*/
+
+/* Main Menu Items Wrapper */
+.hubspot-navbar .hs-menu-wrapper > ul {
+  display: flex;
+  column-gap: clamp(12px, 1vw, 20px);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Parent - Main Menu - Item */
+/* Relative for it's immediate children but not for nested children  */
+.hubspot-navbar .hs-menu-wrapper > ul > li {
+  position: relative !important; /* Forces dropdown to look at .main-header instead */
+}
+
+/* Main Menu - Item  */
+.hubspot-navbar .hs-menu-wrapper > ul > li > a {
+  color: {{ nav_text_color }};
+  display: flex;
+  align-items: center;
+  gap: 0.313rem;
+  text-decoration: none;
+  font-size: clamp(17px, 1.56vw, 20px) !important;
+}
+
+/* Hover */
+.hubspot-navbar .hs-menu-wrapper > ul > li > a:hover {
+  color: {{ nav_text_hover_color }};
+}
+
+/* Main Menu Item - ARROW INDICATOR */
+.hubspot-navbar .hs-menu-wrapper li.hs-menu-depth-1.hs-item-has-children > a::after {
+  content: "";
+  width: 1rem; /* 16px */
+  height: 0.563rem; /* 9px */
+  display: inline-block;
+
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23D2FF00' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  transition: transform 0.25s ease;
+}
+
+/* Main Menu Item - Rotate arrow on hover/open */
+.hs-menu-wrapper li.hs-menu-depth-1.hs-item-has-children.is-open > a::after {
+  transform: rotate(180deg);
+}
+/* =================================
+End HUBSPOT TOP MAIN MENU warper -
+Mani Nvigation at top of the page
+===================================*/
+
+
+
+/* =================================
+Start HUBSPOT MENU DROPDOWN -
+immediate and the Nested Dropdown
+===================================*/
+/* Each Dropdown panel - Main Menu immediate children Wrapper */
+.hubspot-navbar .hs-menu-children-wrapper {
+  position: absolute;
+  top: 4.06rem;
+  left: 0;
+
+  width: max-content;
+  min-width: 12.5rem;
+  {# max-width: none; #}
+  border-radius: 0;
+  background: #fafafa; 
+
+  display: none; /* Initially Hide  */
+  padding: 0;
+  margin: 0;
+}
+
+/* Show only when open */
+.hubspot-navbar .hs-item-has-children.is-open > .hs-menu-children-wrapper {
+  display: block !important;
+  z-index: 9999;
+}
+/* =========================
+HUBSPOT MENU Nested DROPDOWN
+============================*/
+
+/* Nested submenus warper (childs of Main Menu immediate children) */
+.hubspot-navbar .hs-item-has-children .hs-item-has-children > .hs-menu-children-wrapper {
+  position: absolute;
+  top: 0;       /* Automatically pushes to the top of the immediate parent LI */
+  left: 100%;   /* Now aligns to the left edge of the immediate parent LI, not the screen */
+  border-left: 1px solid #f0f0f0;
+  z-index: 1000;
+}
+
+/* Alaways Relative for it's immediate Nested Submenu  */
+.hubspot-navbar .hs-item-has-children > ul > li {
+  position: relative !important;
+}
+
+/* Common for all of the Child items/links   */
+.hubspot-navbar li.hs-menu-depth-1 .hs-menu-children-wrapper a {
+  display: block;
+  padding: clamp(16px, 1vw, 20px);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  border-bottom: var(--border-width-default) solid var(--color-border-default);
+  font-size: clamp(17px, 1.56vw, 20px) !important;
+}
+
+/* Common for all of the Child item has it's own children/nested */
+/* Nested Parent   */
+.hubspot-navbar li.hs-menu-depth-1 .hs-item-has-children a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Common for all of the Child item - Hover effect */
+.hubspot-navbar .hs-menu-children-wrapper a:hover {
+  background: var(--color-bg-primary-accent-1);
+}
+
+/* Nested Parent Item Arrow Icon */
+.hubspot-navbar li.hs-menu-depth-1 .hs-item-has-children > a::after {
+  content: "";
+  width: 1.25rem; /* 20px */
+  height: 1.25rem; /* 20px */
+  display: inline-block;
+
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11.2335 16.5902C11.2461 16.6029 11.6329 16.6999 12.093 16.8056C12.5531 16.9113 12.9345 16.9817 12.9406 16.962C12.9467 16.9423 12.9943 16.623 13.0463 16.2524C13.1509 15.5081 13.4041 14.6391 13.6746 14.0956C14.5179 12.4018 16.0309 11.2803 17.8659 10.9888L18.3332 10.9146L18.3332 10.1663L18.3332 9.41804L17.9096 9.34698C15.1348 8.88145 13.3258 6.80671 12.9874 3.70186C12.9653 3.49911 12.9389 3.33329 12.9287 3.33329C12.8352 3.33329 11.2845 3.70699 11.2552 3.73659C11.234 3.758 11.2498 3.94806 11.2903 4.15889C11.739 6.4934 13.0238 8.39305 14.691 9.18734L15.091 9.37788L6.86689 9.3928L1.6665 9.40227L1.6665 10.9166L6.88026 10.9261L15.085 10.941L14.58 11.1969C13.2702 11.8605 12.2332 13.1622 11.6225 14.9095C11.4484 15.4073 11.1858 16.5421 11.2335 16.5902Z' fill='%234C4C40'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* Nested Parent Active/Opend Item */
+.hubspot-navbar .hs-menu-depth-2.hs-item-has-children.is-open,
+.hubspot-navbar .hs-menu-depth-2 .hs-item-has-children.is-open{
+  background: var(--color-bg-primary-accent-1);
+}
+
+/* Remove last border */
+.hubspot-navbar .hs-menu-children-wrapper li:last-child a {
+  /*     border-bottom: none; */
+}
+
+/* -----------------------------------------------
+End Hubspot Navbar Style 
+--------------------------------------------------*/
+
+
+/* ------------------ Devider -------------------- */
+
+
+/* -----------------------------------------------
+Start Custom / Advance Navbar Mega Menu
+-------------------------------------------------*/
+
+.custom-navbar ul.nav-list{
+  padding:0px;
+  position: static;
+}
+.custom-navbar .nav-list .has-children{
+  position: static;
+}
+
+.custom-navbar .nav-list .has-children .nav-item-link .hover-buffer {
+  position: absolute;
+  top: 100%;      /* right under header */
+  left: 0;
+  width: 100%;    /* spans full header */
+  height: 230%;   /* buffer height */
+  pointer-events: auto;
+}
+
+/* Trigger link */
+.custom-navbar .nav-list .nav-item-link > a {
+  color: {{ nav_text_color }};
+  font-size: clamp(16px, 1.56vw, 20px) !important;
+}
+
+/* Hover */
+.custom-navbar .nav-list .nav-item-link > a:hover {
+  color: {{ nav_text_hover_color }};
+}
+
+.custom-navbar .nav-list .has-children .nav-item-link > a {
+  display: inline-flex;
+  transition: color 0.2s ease;
+}
+
+/* Arrow - Updated to match new Neon #DAFC00 */
+.custom-navbar .nav-list .has-children .nav-item-link > a::after {
+  content: "";
+  width: 1rem; /* 10px */
+  height: 0.563rem; /* 6px */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23DAFC00' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: transform 0.3s ease;
+}
+
+/* Rotate arrow */
+.custom-navbar .has-children.is-open .nav-item-link > a::after {
+  transform: rotate(180deg);
+}
+
+.custom-navbar .has-children.is-open > .nav-item-link a {
+  color: {{ nav_text_hover_color }};
+}
+
+
+/* =================================
+Start Mega Menu Container / warper
+Common For Both Mega Menu Category
+===================================*/
+
+/* Mega panel Container */
+.mega-menu-warper {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  
+  /* Animation Setup */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px); /* Starts slightly lower */
+  transition: opacity 0.4s ease, 
+              transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+              visibility 0.4s;
+              
+  background: {{mega_menu_background}};
+  border-right: var(--border-width-default) solid var(--color-border-default);
+  border-bottom: var(--border-width-default) solid var(--color-border-default);
+  border-left: var(--border-width-default) solid var(--color-border-default);
+  box-shadow: 0 1.875rem 3.75rem rgba(0,0,0,0.15);
+  z-index: 9999;
+  pointer-events: none; /* Prevents clicking through while invisible */
+
+  max-height: calc(100vh - 6.25rem); /* 100px header + 20px gap */
+  overflow-y: auto;
+}
+
+/* OPEN STATE - The Slide Up & Fade In */
+.custom-navbar .has-children.is-open > .mega-menu-warper {
+  display: block !important; /* Keep this for HubSpot compatibility */
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0); /* Slides up to position */
+  pointer-events: auto;
+}
+
+/* 2. Desktop Columns - The Mobile "Skew" Effect */
+.mega-menu-grid > * {
+  opacity: 0;
+  /* Applying the mobile nav animation style: Translate + Skew */
+  transform: translateY(50px) skewY(2deg);
+  transform-origin: top left;
+  transition: opacity 0.6s ease, transform 0.8s cubic-bezier(0.18, 0.89, 0.32, 1.15);
+}
+
+/* 3. Open State for Warper */
+.custom-navbar .has-children.is-open > .mega-menu-warper {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* 4. Open State for Columns (Staggered) */
+.custom-navbar .has-children.is-open .mega-menu-grid > * {
+  opacity: 1;
+  transform: translateY(0) skewY(0deg);
+}
+
+/* 5. Logic for Staggered Timing (Up to 6 columns) */
+{# .custom-navbar .has-children.is-open .mega-menu-grid > *:nth-child(1) { transition-delay: 0.1s; }
+.custom-navbar .has-children.is-open .mega-menu-grid > *:nth-child(2) { transition-delay: 0.15s; }
+.custom-navbar .has-children.is-open .mega-menu-grid > *:nth-child(3) { transition-delay: 0.2s; }
+.custom-navbar .has-children.is-open .mega-menu-grid > *:nth-child(4) { transition-delay: 0.25s; }
+.custom-navbar .has-children.is-open .mega-menu-grid > *:nth-child(5) { transition-delay: 0.3s; }
+.custom-navbar .has-children.is-open .mega-menu-grid > *:nth-child(6) { transition-delay: 0.35s; } #}
+
+/* 6. Extra Fancy: Animate internal Links (Pills/Cards) */
+.mega-menu-grid .pill, 
+.mega-menu-grid .link-card, 
+.mega-menu-grid .featured-item {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.4s ease-out;
+}
+
+.custom-navbar .has-children.is-open .mega-menu-grid .pill,
+.custom-navbar .has-children.is-open .mega-menu-grid .link-card,
+.custom-navbar .has-children.is-open .mega-menu-grid .featured-item {
+  opacity: 1;
+  transform: translateX(0);
+  /* This delay starts AFTER the column has finished skewing */
+  transition-delay: 0.2s; 
+}
+
+/* Mega panel Grid */
+.custom-navbar .mega-menu-grid {
+  display: grid;
+}
+
+{# .custom-navbar .mega-menu-grid span, #}
+.custom-navbar .mega-menu-grid p,
+.custom-navbar .mega-menu-grid a {
+  font-size: clamp(16px, 1.5vw, 20px) !important;
+}
+/* ==================================
+End Mega Menu Container / warper
+Common For Both Mega Menu Category
+====================================*/
+
+
+
+/* ==================================
+Start Mega Menu Category - 1
+Only Links List
+-==================================*/
+
+/* Column Label */
+.custom-navbar .link_list-mega-menu .mega-menu-column-label {
+  display: flex;
+  align-items: center;
+  min-height: 2.5rem; 
+  gap: 0.625rem;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  min-height: 2.5rem;
+  color: {{ link_text_color }};
+  background-color: {{ link_background_color }};
+  cursor: pointer;
+  transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover style same as active */
+.pill:hover,
+.pill.active {
+  color: {{ active_link_text_color }};
+  background-color: {{ active_link_background_color }};
+}
+
+/* Optional: smooth scaling back on hover out */
+.pill:not(.active):hover {
+  transform: scale(1.05);
+}
+
+/* ==================================
+End Mega Menu Category - 1
+Only Links List
+==================================-*/
+
+
+/* ==================================
+Start Mega Menu Category - 2
+Featured Cards And Links 
+-==================================*/
+
+/*---- Left Side Grid Styling ---- */
+.custom-navbar .links-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.custom-navbar .link-card {
+  transition: background 0.2s;
+}
+
+.custom-navbar .link-card:hover {
+  background: {{link_hover_background_color}};
+}
+
+.custom-navbar .link-icon-box {
+  width: 2rem;
+  height: 2rem;
+  background: var(--color-brand-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-navbar .link-icon-box * {
+  max-width: 1.25rem;
+  max-height: 1.25rem;
+}
+
+.custom-navbar .link-text .label {
+  display: block;
+}
+
+/*----- Right Side Featured Styling ------ */
+.custom-navbar .featured-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.custom-navbar .view-all {
+  text-decoration: none;
+}
+
+.custom-navbar .featured-item {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  align-items: center;
+  gap: 0px clamp(12px, 1vw, 20px);
+}
+
+/* Image takes 1 column */
+.custom-navbar .featured-img {
+  grid-column: span 1;
+  height: 7.188rem;
+  width: 11.25rem;
+}
+
+.custom-navbar .featured-img img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  max-height: 115px;
+}
+
+/* Info takes 2 columns */
+.custom-navbar .featured-info {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  max-width: 330px;
+}
+
+.custom-navbar .featured-info span {
+  font-size: clamp(16px, 1vw, 16px);
+}
+
+.custom-navbar .link-icon-box.arrow-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.custom-navbar .watch-link {
+  text-decoration: underline;
+}
+
+/* ==================================
+End Mega Menu Category - 2
+Featured Cards And Links 
+==================================*/
+
+
+/* ==================================
+Mega Menu Bottom Bar
+Common For Both Mega Menu Category
+====================================*/
+
+.custom-navbar .mega-menu-footer {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+  margin-top: auto; /* Pushes to bottom if content is short */
+}
+
+.custom-navbar .mega-menu-footer .footer-actions-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.custom-navbar .mega-menu-grid.featured-mega-menu {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* -----------------------------------------------
+End Custom / Advance Navbar Mega Menu
+-------------------------------------------------*/
+
+
+/* ------------------ Devider -------------------- */
+
+
+/* -----------------------------------------------
+Start Mobile Friendly Navigation Style
+-------------------------------------------------*/
+
+.mobile-nav-wrapper {
+  position: fixed;
+  top: 6.25rem; /* 100px - Match your header height */
+  right: 0;
+  width: 100%;
+  height: calc(100vh - 6.25rem);
+  background: #FFFFFF;
+  z-index: 999;
+
+  /* CRITICAL: Start off-screen */
+  transform: translateX(100%); 
+  visibility: hidden;
+  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0.3s;
+}
+
+.mobile-nav-wrapper.is-visible {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+/* Panel Mechanics */
+.nav-panel {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  transition: transform 0.2s ease-in-out;
+  {# background: {{mega_menu_background}}; #}
+  background: #fff;
+}
+
+.nav-panel.active { transform: translateX(0); z-index: 2; }
+.nav-panel.slide-right { transform: translateX(100%); z-index: 1; }
+.nav-panel.slide-left { transform: translateX(-100%); z-index: 1; }
+
+/* --- MENU ITEM ANIMATION (Top to Bottom) --- */
+.main-links li.nav-row {
+  transform: translateY(-80px) skewY(-2deg);
+  /* Fast reset animation when class is removed */
+  transition: none; 
+}
+
+/* This class enables the sophisticated opening animation */
+.mobile-nav-wrapper.is-visible .main-links li.nav-row {
+  transform: translateY(0) skewY(0deg);
+  transition: transform 0.7s cubic-bezier(0.18, 0.89, 0.32, 1.15);
+}
+
+.main-links .nav-row .label{
+  color: {{nav_text_color}};
+  display: flex;
+}
+
+.main-links .nav-row svg,
+.main-links .nav-row svg path {
+  stroke: {{ nav_text_color }};
+  fill: {{ nav_text_color }};
+  transition: stroke 0.3s ease, fill 0.3s ease;
+}
+
+/* Title and Footer translate as well for consistency */
+.panel-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+}
+
+.panel-header {
+  padding:  clamp(24px, 2vw, 40px) var(--spacing-section-horizontal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.panel-body{
+  height: 100svh;
+  overflow: hidden;
+  padding: 0 var(--spacing-section-horizontal);
+}
+
+.panel-content{
+  {% if module.call_to_action_buttons.hide_cta_buttons %}
+    height: calc(100vh - 228px);
+  {%else%}
+    height: calc(100vh - 300px);
+  {%endif%}
+  overflow-y: scroll;
+}
+
+.panel-item{
+  border-bottom: 1px solid var(--color-bg-primary-accent-2);
+
+}
+
+.back-btn {
+  position: absolute;
+  left: 1rem;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: #fff;
+}
+
+/* List Items */
+.nav-row {
+  height: 3.25rem;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.nav-row .label{
+  display: flex;
+}
+
+/* Accordion */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background: #fff;
+}
+
+.accordion-content ul li a {
+  height: auto;
+}
+
+.accordion-content ul li:last-child {
+  margin-bottom: clamp(12px, 1vw, 20px);
+}
+
+/* Join Button */
+.join-btn {
+  display: block;
+  text-align: center;
+  padding: clamp(12px, 1vw, 20px) clamp(24px, 2vw, 40px);;
+  margin: clamp(12px, 1vw, 20px) var(--spacing-section-horizontal);
+  font-weight: 800;
+  text-decoration: none;
+  width: 100%;
+}
+
+.hamburger-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers the lines vertically */
+  align-items: flex-end;   /* Aligns the staggered lines to the right */
+  gap: 6px;                /* Spaces the lines out evenly */
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--color-brand-primary);
+  opacity: var(--color-brand-primary-opacity);
+  border: none;
+  border-radius: 8px;      /* Matches the rounded corners in your image */
+  padding: 8px;            /* Adds some internal breathing room */
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger-menu .line {
+  height: 4px;             /* Slightly thicker to match the bold design */
+  background-color: #000;
+  transition: all 0.2s ease-in-out;
+  border-radius: 4px;
+}
+
+/* Staggering the widths to match the image */
+.hamburger-menu .line:nth-child(1) {
+  width: 60%;  /* Top line is short */
+}
+
+.hamburger-menu .line:nth-child(2) {
+  width: 85%;  /* Middle line is longest */
+}
+
+.hamburger-menu .line:nth-child(3) {
+  width: 45%;  /* Bottom line is shortest */
+}
+
+/* Transform to "X" - Reset widths to 100% for a clean cross */
+.hamburger-menu.is-active .line {
+  width: 100% !important; 
+}
+
+.hamburger-menu.is-active .line:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.hamburger-menu.is-active .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.is-active .line:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+
+/* ========================
+MOBILE MENU UI ELEMENTS
+=========================== */
+
+/* The Right-Pointing Arrow for Main Menu Rows */
+.arrow-right-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 5L12 10L7 15' stroke='%234C4C40' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* The Back Button Circle Style */
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #E5E5E5;
+  background: #FFF;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* The Left-Pointing Arrow in the Back Button */
+.arrow-left-icon {
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13 15L8 10L13 5' stroke='%234C4C40' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Chevron for Accordion (Rotates when open) */
+.chevron {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+  background-image: url("data:image/svg+xml,%3Csvg%20width%3D'18'%20height%3D'18'%20viewBox%3D'0%200%2018%2018'%20fill%3D'none'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cg%20clip-path%3D'url(%23clip0_9912_14511)'%3E%3Cpath%20d%3D'M14.625%206.75L9%2012.375L3.375%206.75'%20stroke%3D'%230D0D0D'%20stroke-width%3D'1.3'%20stroke-linecap%3D'round'%20stroke-linejoin%3D'round'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath%20id%3D'clip0_9912_14511'%3E%3Crect%20width%3D'18'%20height%3D'18'%20fill%3D'white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.accordion-item.open .chevron {
+  transform: rotate(180deg);
+}
+
+.accordion-item.open .nav-row {
+  {# border: none; #}
+}
+
+
+
+/* ==================================
+Start Mobile Mega Menu Category - 2
+Featured Cards And Links 
+-==================================*/
+.mobile-nav-wrapper .featured-img{
+  height: 7.188rem;
+  width: 100%;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 0.75rem;
+}
+
+.mega-featured-column{
+ height: max-content;
+}
+/* ==================================
+End Mobile Mega Menu Category - 2
+Featured Cards And Links 
+-==================================*/
+
+/* -----------------------------------------------
+End Mobile Friendly Navigation Style
+-------------------------------------------------*/
+
+
+/* ------------------ Devider -------------------- */
+
+
+/* -----------------------------------------------
+Start Logo Overwrite Stylw Here
+-------------------------------------------------*/
+
+{% set nav_settings = module.style.navbar_style_and_alignment %}
+{% set logo_align = nav_settings.logo_alignment %}
+
+{# Switch between the full menu field and the restricted menu field #}
+{% set menu_align = (logo_align == 'center') ? nav_settings.menu_alignment_restricted : nav_settings.menu_alignment %}
+
+/* --- Logo Area Handling --- */
+.logo-area {
+  display: flex;
+  {% if logo_align == 'left' %}
+    order: 1;
+    margin-right: clamp(12px, 1vw, 20px);
+  {% elif logo_align == 'center' %}
+    order: 2;
+    flex: 1;
+    justify-content: center;
+  {% elif logo_align == 'right' %}
+    order: 4;
+    margin-left: auto;
+  {% endif %}
+}
+
+/* --- Desktop Menu Handling --- */
+.desktop-nav-wrapper {
+  display: flex;
+  {% if menu_align == 'left' %}
+    order: 2;
+    {# If logo is not left, the menu needs to push handlers to the right #}
+    {% if logo_align != 'left' %}
+      margin-right: auto;
+    {% endif %}
+  {% elif menu_align == 'center' %}
+    {# This block only runs if logo_align is NOT 'center' due to JSON restrictions #}
+    order: 3;
+    flex: 1;
+    justify-content: center;
+  {% elif menu_align == 'right' %}
+    order: 3;
+    margin-left: auto;
+    {# If logo is also right, ensure a gap #}
+    {% if logo_align == 'right' %}
+      {# margin-right: 30px; #}
+    {% endif %}
+  {% endif %}
+}
+
+.logo-area .logo-desktop{
+  max-width: clamp(130px, 12.5vw, 160px);
+  max-height: clamp(55px, 4.68vw, 60px);
+  object-fit: contain; /* Ensures logo doesn't stretch */
+  display: block;
+}
+
+.logo-area .logo-desktop svg{
+  width: clamp(130px, 12.5vw, 160px);
+  height: clamp(55px, 4.68vw, 60px);
+  object-fit: contain; /* Ensures logo doesn't stretch */
+  display: block;
+}
+
+.logo-area .logo-desktop img{
+  width: clamp(130px, 12.5vw, 160px);
+  height: clamp(55px, 4.68vw, 60px);
+  object-fit: contain; /* Ensures logo doesn't stretch */
+  display: block;
+}
+
+/* Override ONLY when enabled */
+.logo-svg.has-color-override svg [fill="#DAFC00"] {
+  fill: var(--logo-icon-color);
+}
+
+.logo-svg.has-color-override svg [fill="white"],
+.logo-svg.has-color-override svg [fill="#ffffff"],
+.logo-svg.has-color-override svg [fill="#FFF"] {
+  fill: var(--logo-text-color);
+}
+
+/* -----------------------------------------------
+End Logo Overwrite Stylw Here
+-------------------------------------------------*/
+
+
+/* ==========================================================================
+STRART RESPONSIVE DISPLAY DESINGN
+========================================================================== */
+
+/* Show on Mobile/Tablet, Hide on Desktop (Large devices and up) */
+@media (min-width: 992px) {
+  .d-lg-none {
+    display: none !important;
+  }
+
+  .hubspot-navbar  .hs-menu-wrapper > ul > li > a {
+    font-size: {{ dynamic_font_size }} !important;
+  }
+
+  .custom-navbar .nav-list .nav-item-link > a {
+    font-size: {{ dynamic_font_size }} !important;
+  }
+
+  .logo-area .logo-desktop svg{
+    width: {{dynamic_logo_w}};
+    height: {{dynamic_logo_h}};
+  }
+
+  .logo-area .logo-desktop img{
+    width: {{dynamic_logo_w}};
+    height: {{dynamic_logo_h}};
+  }
+
+  .nav-action-icon {
+    width: {{dynamic_action_size}};
+    height: {{dynamic_action_size}};
+  }
+
+  .nav-action-icon svg{
+    width: {{dynamic_action_icon_size}};
+    height: {{dynamic_action_icon_size}};
+  }
+
+  .nav-action-icon img{
+    width: {{dynamic_action_icon_size}};
+    height: {{dynamic_action_icon_size}};
+  }
+}
+
+/* Hide on Mobile/Tablet, Show on Desktop (Large devices and up) */
+@media (max-width: 991px) {
+  {# -----------------------------------------------
+  Header Text and Icon Color Overwrite logic and variables
+  -------------------------------------------------- #}
+  {% set text_settings = module.style.navbar_style_and_alignment.navbar_text %}
+
+  {# Default text color fallback #}
+  {% set nav_text_color = "var(--color-text-primary)" %}
+  {% set nav_text_hover_color = "var(--color-text-primary)" %}
+
+
+  {# Override only if enabled and color exists #}
+  {% if text_settings.overwrite_text_color and text_settings.menu_item_text_color.color %}
+  {% set nav_text_color = text_settings.menu_item_text_color.color %}
+  {% endif %}
+
+  {% if text_settings.overwrite_text_color and text_settings.menu_item_hover_text_color.color %}
+  {% set nav_text_hover_color = text_settings.menu_item_hover_text_color.color %}
+  {% endif %}
+
+  header{
+    position: fixed;
+  }
+  .d-none-mobile {
+    display: none !important;
+  }
+
+  /* Ensure the header height stays consistent on mobile */
+  .main-header {
+    height: 80px; /* Adjusted from 100px for better mobile proportions */
+  }
+
+  .mobile-nav-wrapper {
+    top: 80px; /* Match mobile header height */
+    height: calc(100vh - 80px);
+  }
+
+  .main-links .nav-row .label{
+    color: {{nav_text_color}};
+  }
+
+  .main-links .nav-row svg,
+  .main-links .nav-row svg path {
+    stroke: {{ nav_text_color }};
+    fill: {{ nav_text_color }};
+    transition: stroke 0.3s ease, fill 0.3s ease;
+  }
+
+  .logo-area {
+    justify-content: start;
+  }
+
+  .hs-language-switcher__menu {
+    top: 4rem;
+  }
+
+  .icon {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+  }
+
+  .icon * {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+
+
+  /* =================================
+  Start HUBSPOT MENU MOBILE RESPONSIVE
+  ===================================*/
+  /* Main wrapper vertical */
+  .hubspot-navbar .hs-menu-wrapper > ul {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Reset parent positioning */
+  .hubspot-navbar .hs-menu-wrapper > ul > li {
+    position: static !important;
+    border-bottom: 1px solid var(--color-border-default);
+  }
+
+  .hubspot-navbar .hs-menu-wrapper li.hs-menu-depth-1.hs-item-has-children > a::after {
+    background-image: url("data:image/svg+xml,%3Csvg width='13' height='7' viewBox='0 0 13 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11.8999 0.650391L6.2749 6.27539L0.649902 0.650391' stroke='%230D0D0D' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); 
+  }
+
+  /* Main menu links */
+  .hubspot-navbar .hs-menu-wrapper > ul > li > a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color:{{nav_text_color}};
+    padding: 1rem;
+    {# width: 100%; #}
+  }
+
+  /* Hover */
+  .hubspot-navbar .hs-menu-wrapper > ul > li > a:hover {
+    color: {{ nav_text_hover_color }};
+  }
+
+  .hubspot-navbar .hs-menu-children-wrapper {
+    position: static;
+    display: none;
+    width: 100%;
+    max-width: 100%;
+    border: none;
+    background: transparent;
+  }
+
+  /* Open state */
+  .hubspot-navbar .hs-item-has-children.is-open > .hs-menu-children-wrapper {
+    display: block !important;
+  }
+
+  /* Level 2 */
+  .hubspot-navbar .hs-menu-depth-2 > a {
+    padding-left: 35px;
+  }
+
+  /* Level 3 */
+  .hubspot-navbar .hs-menu-depth-3 > a {
+    padding-left: 55px;
+  }
+
+  /* Level 4 */
+  .hubspot-navbar .hs-menu-depth-4 > a {
+    padding-left: 75px;
+  }
+
+    /* Level 5 */
+  .hubspot-navbar .hs-menu-depth-5 > a {
+    padding-left: 95px;
+  }
+
+    /* Level 5 */
+  .hubspot-navbar .hs-menu-depth-6 > a {
+    padding-left: 115px;
+  }
+
+  .hubspot-navbar .hs-item-has-children > a::after {
+    transition: transform 0.25s ease;
+  }
+
+  .hubspot-navbar .hs-item-has-children.is-open > a::after {
+    transform: rotate(180deg);
+  }
+
+  .hubspot-navbar .hs-item-has-children 
+  .hs-item-has-children > .hs-menu-children-wrapper {
+    position: static;
+    left: auto;
+    top: auto;
+    border-left: none;
+  }
+
+  .hubspot-navbar .hs-menu-children-wrapper {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+    display: block;
+  }
+
+  .hubspot-navbar .hs-item-has-children.is-open > .hs-menu-children-wrapper {
+    max-height: 1000px;
+  }
+  
+  /* =================================
+  End HUBSPOT MENU MOBILE RESPONSIVE
+  ===================================*/
+}
+@media (max-width: 600px) {
+  .header-container {
+    height: 5rem;
+  }
+  .mobile-nav-wrapper  .featured-item {
+    grid-template-columns: repeat(1, 1fr);
+    gap: clamp(12px, 1vw, 20px) 0px;
+  }
+}
+
+{% end_scope_css %}
+</style>
+{% end_require_css %}
+<!-- ***************************** --> 
+<!--         CSS  END            --> 
+<!-- ***************************** -->
+
+{% macro build_chevron_down() %}
+<svg class="hs-language-switcher__icon--dropdown" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.24106 7.7459C4.53326 7.44784 4.99051 7.42074 5.31272 7.66461L5.40503 7.7459L12 14.4734L18.595 7.7459C18.8872 7.44784 19.3444 7.42074 19.6666 7.66461L19.7589 7.7459C20.0511 8.04396 20.0777 8.51037 19.8386 8.83904L19.7589 8.93321L12.582 16.2541C12.2898 16.5522 11.8325 16.5793 11.5103 16.3354L11.418 16.2541L4.24106 8.93321C3.91965 8.60534 3.91965 8.07376 4.24106 7.7459Z" fill="white"/>
+</svg>
+
+
+{% endmacro %}
+{# --- 1. SET GLOBALS --- #}
+{% set switcher_group = module.language_switcher %}
+{% set icon_type = switcher_group.icon_type %}
+{% set content_type = switcher_group.switcher_content_type %}
+
+{# --- 2. MACROS --- #}
+{% macro build_custom_icon() %}
+{% set size_val = button.group_icon.size|default(32) %}
+
+{# Option: Raw SVG Code #}
+{# Note: Ensure icon_svg_code is a Text/TextArea field for raw code #}
+{% if icon_type == "svg" and switcher_group.icon_svg_code %}
+{{ switcher_group.icon_svg_code }}
+{# Option: Uploaded Image File #}
+{% elif icon_type == "image" and switcher_group.icon_image_file.src %}
+{% set img = switcher_group.icon_image_file %}
+{% set is_svg_file = img.src is string_containing ".svg" %}
+{% set image_src = is_svg_file ? img.src : resize_image_url(img.src, 0, size_val, size_val) %}
+
+<img class="hs-language-switcher__icon--custom" 
+    src="{{ image_src|escape_url }}" 
+    alt="{{ img.alt|escape_attr }}"
+    width="{{ size_val }}"
+    height="{{ size_val }}"
+    {{ img.loading != 'disabled' ? 'loading="' ~ img.loading|escape_attr ~ '"' : '' }}>
+{% endif %}
+{% endmacro %}
+
+{% macro add_icon() %}
+{# Logic check based on your Choice field values #}
+{% if icon_type == "image" or icon_type == "svg" %}
+{{ build_custom_icon() }}
+{% else %}
+{# Fallback to the HubSpot Icon Field named 'icon' in your screenshot #}
+{% if icon_type == "default" and switcher_group.icon.unicode %}
+{% set icon_unicode = switcher_group.icon.unicode %}
+{% set icon_name = switcher_group.icon.name %}
+{% set icon_style = switcher_group.icon.type %}
+{% else %}
+{% set icon_unicode = 'f0ac' %}
+{% set icon_name = 'globe' %}
+{% set icon_style = "solid" %}
+{% endif %}
+
+{% icon
+    extra_classes='hs-language-switcher__icon'
+    name='{{ icon_name }}'
+    purpose='decorative'
+    style='{{ icon_style }}'
+    unicode='{{ icon_unicode }}'
+  %}
+{% endif %}
+{% endmacro %}
+
+{% macro render_language_identity(active_lang) %}
+{# Matches 'switcher_content_type' choice field #}
+{% if content_type == "icon" %}
+{{ add_icon() }}
+{% else %}
+<span class="hs-language-switcher__short-code">
+{{ active_lang.languageCode|upper }}
+</span>
+{% endif %}
+{% endmacro %}
+
+<div class="header-container {% if is_sticky and not is_floating %}reserve-space{% endif %}">
+  <header class="header-warper js-module-{{ unique_id }}" data-nav-type="{{ NAV_TYPE }}">
+    <section class="container">
+      <div class="section py-0">
+        <div class="main-header">
+          <!-------------------------------
+            Left Side initially / Navigation Meunu Area
+            -------------------------------->
+
+          <!-------------------------------
+            Desktop Friendly Navigation
+            -------------------------------->
+          <div class="desktop-nav-wrapper d-none-mobile">
+            <!-- Conditionally Rendering Navigation Design -->
+            {% if NAV_TYPE and NAV_TYPE == 'advance' %}  
+            <!--  Start Custome/Advance Navbar Here   -->
+            <nav class="nav custom-navbar"> 
+              <ul class="nav-list flex align-center gap-y-20">
+                {% for menu_item in module.navigation_field_group.menu_items %}
+
+                <!--  Variables  -->
+                {% set item_type = menu_item.menu_item_type %}
+                {% set item_tag = item_type == 'link' ? 'a' : 'button' %}	
+                {% set item_link = menu_item.menu_item_type == 'link' ? menu_item.menu_item_link.url.href : '#' %}		
+
+                <!--  Contents  -->
+                <li class="nav-item {% if item_type == 'mega_menu' %}has-children{% endif %} ">
+                  <!--   Main Navigation Item - Dropdown Tigger / Link   -->
+                  <div class="nav-item-link">
+                    <a class="align-center text-tertiary gap-10" 
+                        href="{{item_link}}"
+                        {% if item_type == 'mega_menu' %} data-menu-id="{{ loop.index }}" {% endif %}
+                        role="menuitem"
+                      >
+                      <span>{{ menu_item.menu_item_label }}</span>
+                    </a>
+                    {# {% if item_type == 'mega_menu' %}<div class="hover-buffer"></div> {% endif %} #}
+                    <!-- invisible zone to keep menu open on mouse point here-->
+                  </div>
+                  <!--   Mega Menu Dropdown Warper  -->
+                  {% if item_type == 'mega_menu' %}
+                  <section class="mega-menu-warper">  
+                    <!--  Mega Menu Body  -->           
+                    <div class="container">
+                      <div class="section mega-menu p-40">
+                        <!-- Mega Menu Dropdown Body  -->
+                        {% set mega_menu_type = menu_item.mega_menu_type %} <!-- Mega Menu Type  -->
+                        {% if mega_menu_type == 'featured' %} 
+                        <!-- Case 1: Flat Links With Featured Cards -->
+                        <div class="featured-mega-menu mega-menu-grid gap-40">
+                          <!--  Links Column  -->
+                          <div class="pt-30" style="{% if menu_item.mega_menu_column_reverse %} order: 2; {% endif %}">
+                            <!--  Mega Menu Column Header -->
+                            <div class="mega-menu-header pb-20">
+                              <h6 class="title text-primary">
+                                {{ menu_item.menu_item_label }}
+                              </h6>
+                            </div>
+                            <!--  Mega Menu Column Items - Link List -->
+                            <div class="links-grid gap-x-10 gap-y-40">
+                              {% for item in menu_item.links %}
+                              <a href="{{ item.mega_menu_item_link.link.url.href }}" class="link-card flex align-start py-10 px-20 gap-10 rounded">
+                                <div>
+                                  <div class="icon">
+                                  {% if item.mega_menu_item_icon_type == 'image' %}
+                                  <img src="{{ item.mega_menu_item_icon_image.image_file.src }}" alt="{{ item.mega_menu_item_icon.alt }}"/>
+                                  {% else %}
+                                  {{ item.mega_menu_item_icon_svg }}
+                                  {% endif %}
+                                </div>
+                                </div>
+                                <div class="link-text">
+                                  <p class="label text-body-highlight text-primary pb-10">{{ item.mega_menu_item_label }}</p>
+                                  <p class="subtext text-body text-secondary ">{{item.mega_menu_subtitle}}</p>
+                                </div>
+                              </a>
+                              {% endfor %}
+                            </div>
+                          </div>
+                          <!--  Featured cards Column --> 
+                          {% set cardsHeader = menu_item.mega_menu_featured_cards_header %}
+                          <div class="mega-featured-column p-30 bg-primary-accent-1 rounded">
+                            <!--  Mega Menu Column Header -->
+                            <div class="mega-menu-header featured-header pb-20">
+                              <!--  Column Name  -->
+                              <h6 class="title text-primary">
+                                {{cardsHeader.header_title}}
+                              </h6>
+                              <!-- Redirect Link  -->
+                              <a href="{{cardsHeader.header_cta_link.url.href}}" class="view-all text-primary">
+                                <span>{{cardsHeader.header_cta_label}}</span> 
+                                <svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M9.56701 13.257C9.57963 13.2697 9.96641 13.3666 10.4265 13.4723C10.8866 13.5781 11.268 13.6484 11.2741 13.6288C11.2802 13.6091 11.3278 13.2898 11.3798 12.9191C11.4844 12.1748 11.7376 11.3058 12.0081 10.7624C12.8514 9.06857 14.3644 7.94705 16.1994 7.65555L16.6667 7.58131L16.6667 6.83308L16.6667 6.08479L16.2431 6.01372C13.4683 5.5482 11.6593 3.47346 11.3209 0.368607C11.2988 0.165862 11.2724 3.43358e-05 11.2622 3.43366e-05C11.1687 3.43445e-05 9.61801 0.373737 9.58868 0.40334C9.56748 0.424747 9.58325 0.614813 9.62379 0.825636C10.0725 3.16015 11.3573 5.0598 13.0245 5.85409L13.4245 6.04463L5.20038 6.05955L-6.37518e-07 6.06902L-5.09872e-07 7.58333L5.21376 7.59281L13.4184 7.60779L12.9135 7.86361C11.6037 8.52721 10.5667 9.82895 9.95596 11.5762C9.78193 12.074 9.51934 13.2089 9.56701 13.257Z" fill="#101000"/>
+                                </svg>
+                              </a>
+                            </div>
+                            <!--  Mega Menu Column Items - Card List -->
+                            <div class="featured-list flex flex-col gap-x-20">
+                              {% for item in menu_item.featured_cards %}
+                              <div class="featured-item gap-20">
+                                <div class="featured-img">
+                                  <img src="{{item.card_featured_image.src}}" alt="Class">
+                                </div>
+                                <div class="featured-info flex-col gap-x-10">
+                                  <p class="text-body-highlight text-primary">{{item.card_title}}</p>
+                                  <span class="text-secondary">
+                                    {{ item.card_subtitle|truncate(100, True, '...') }}
+                                  </span>
+                                  <div class="flex align-center gap-10">
+                                    <div class="link-icon-box arrow-icon">
+                                      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6.82253 6.08878C6.83283 6.0888 7.02981 5.97078 7.2602 5.82651C7.4906 5.68221 7.67456 5.55555 7.66906 5.54505C7.66352 5.53456 7.55287 5.38514 7.42314 5.21302C7.16265 4.86737 6.91189 4.41042 6.80075 4.07895C6.45441 3.04586 6.61381 1.9731 7.24234 1.10718L7.40238 0.886668L7.0977 0.581988L6.793 0.277284L6.5916 0.42081C5.27214 1.36115 3.69067 1.25295 2.28857 0.126454C2.19702 0.0528889 2.11875 -0.00388459 2.11461 0.000254563C2.0765 0.0383627 1.59725 0.821957 1.59736 0.845953C1.59744 0.863305 1.68126 0.934277 1.78361 1.00362C2.91694 1.77151 4.21364 2.02189 5.21598 1.66642L5.45642 1.58115L2.11365 4.93608L-8.84164e-05 7.05753L0.616538 7.67416L2.74344 5.55497L6.09049 2.22012L5.98906 2.52989C5.72591 3.33348 5.8337 4.28583 6.29651 5.246C6.42834 5.51956 6.78353 6.08859 6.82253 6.08878Z" fill="#101000"/>
+                                      </svg>
+                                    </div>
+                                    <a href="{{item.card_video_link.url.href}}" class="watch-link text-primary">{{item.card_video_label}}</a>
+                                  </div>
+                                </div>
+                              </div>
+                              {% endfor %}
+                            </div>
+                          </div>
+                        </div>
+                        {% else %}
+                        <!-- Case 2: Only Link List  -->
+                        <div class="link_list-mega-menu">
+                          <!--  Mega Menu Header -->
+                          <div class="mega-menu-header pb-40">
+                            <h6 class="title text-primary">
+                              {{ menu_item.menu_item_label }}
+                            </h6>
+                          </div>
+                          <!--  Mega Menu Columns -->
+                          {# Calculate the gap based on column count #}
+                          {% set col_count = menu_item.number_of_columns_per_row|default(4) %}
+
+                          {# Logic: 1-3 cols: 40px | 4 cols: 32px | 5 cols: 28px | 6 cols: 24px (scaled via clamp) #}
+                          {% if col_count <= 4 %}
+                            {% set gap_value = "40px" %}
+                          {% elif col_count == 5 %}
+                            {% set gap_value = "clamp(24px, 2vw, 40px)" %}
+                          {% elif col_count == 6 %}
+                            {% set gap_value = "clamp(20px, 1.5vw, 32px)" %}
+                          {% else %} {# 6 columns #}
+                            {% set gap_value = "clamp(16px, 1vw, 24px)" %}
+                          {% endif %}
+
+                          <div class="mega-menu-grid" 
+                              style="grid-template-columns: repeat({{ col_count }}, 1fr); 
+                                      gap: 20px {{ gap_value }};
+                                      {# gap: calc(60px - {{col_count}} * 6px)); #}
+                                      --column-transition-delay: {{ 0.3 + loop.index0 * 0.25 }}s; 
+                                      --column-z-index: {{ loop.revindex }}">
+                            {% for column in menu_item.mega_menu_columns %}
+                            {% set is_first_column = loop.first %}
+                            <div class="flex flex-col gap-10{% if mega_menu_item_type == 'link' and not loop.first %} has-divider{% endif %}">
+                              <div>
+                              <!-- individual Column -->
+                              <!-- Start Mega Menu's column Label -->
+                              {% if not column.hide_column_label %}
+                                <!-- Label Variables -->
+                                {% set label_data = column.mega_menu_column_label %}
+                                {% set label_content %}
+                                {% if not label_data.hide_label_icon %}
+                                  <span class="icon">
+                                    {% if label_data.label_icon_type == 'image' %}
+                                    <img src="{{ label_data.label_icon_image.src }}" alt="{{ label_data.label_icon_image.alt }}">
+                                    {% else %}
+                                    {{ label_data.label_icon_svg }} <!-- SVG Code -->
+                                    {% endif %}
+                                  </span> 
+                                {% endif %}
+                                  {{ label_data.label_name }}
+                                {% endset %}
+
+                                <!-- Label Content -->
+                                {% if label_data.label_type == 'link' %}
+                                  <a class="mega-menu-column-label text-primary" href="{{ label_data.link_field.url.href }}" >{{ label_content }}</a>
+                                {% else %}
+                                <div>
+                                  <p class="mega-menu-column-label">{{ label_content }}</p>
+                                </div>
+                                {% endif %}
+                              {% else %}
+                                {# This renders when the label is hidden to maintain the layout block #}
+                                <div class="mega-menu-column-label spacer" aria-hidden="true" style="visibility: hidden; pointer-events: none;">
+                                    &nbsp;
+                                </div>
+                              {% endif %}
+                              <!-- End Mega Menu's column Label  -->
+                              </div>
+
+                              <!-- Start Mega Menu's Items of a column  -->
+                              {% for item in column.mega_menu_column_items %}
+                              {% set mega_menu_item_type = item.mega_menu_item_type %} 
+                              {% if mega_menu_item_type == 'link' %}
+                              <a class="pill rounded px-20 {% if is_first_column and loop.first %}{% else %}{% endif %}" 
+                                  href="{{ item.mega_menu_item_link.url.href }}" 
+                                  role="menuitem">
+                                {{ item.mega_menu_item_label }}
+                              </a>
+                              {% endif %}
+                              {% if mega_menu_item_type == 'rich_text'%}
+                              <div class="atlas-navbar__mega-menu-richtext">
+                                {{ item.menu_item_rich_text }}
+                              </div>
+                              {% endif %}
+                              {% if mega_menu_item_type == 'image'%}
+                              {{ macros.render_image(item.mega_menu_item_image) }}
+                              {% endif %}
+                              {% if mega_menu_item_type == 'button'%}
+                              {# {{ macros.button(item) }} #}
+                              <button class="" role="menuitem">{{ item.mega_menu_item_label }}</button>
+                              {% endif %}
+                              {% endfor %}
+                              <!-- End Mega Menu's Each Item of a column  -->
+                            </div>
+                            {% endfor %}
+                          </div>
+                        </div>
+                        {% endif %}
+
+
+                        
+                      </div>
+                    </div>
+                    <!--  Mega Menu Footer -->
+                    {% if not menu_item.hide_mega_menu_bottom_bar %} 
+                      <div class="mega-menu-footer bg-brand-primary">
+                        <div class="container">
+                          <div class="section py-20 footer-actions-container">
+                            <!--  Bottom Bar Left Side -->
+                            {{menu_item.mega_menu_bottom_bar.join_text}}
+
+                            <!--  Bottom Bar Right Side -->
+                            <div class="flex flex-wrap align-center gap-40 justify-end">
+                              {% for item in menu_item.mega_menu_bottom_bar.action_links %}
+                              <div class="flex align-center">
+                                <a class="flex align-center gap-10 text-primary" href="{{item.link.url.href}}">
+                                  <span class="link-icon-box">
+                                    {% if item.icon_type == 'image' %}
+                                    <img src="{{ item.icon_image_file.src }}" alt="{{ item.icon_image_file.alt }}"/>
+                                    {% else %}
+                                    {{ item.icon_svg_code }}
+                                    {% endif %}
+                                  </span> 
+                                  {{item.link_label}}
+                                </a>
+                              </div>
+                              {% endfor %}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {% endif %}
+                  </section>
+                  {% endif %}
+                </li>
+                {% endfor %}
+              </ul>
+            </nav>
+            <!--  End Custome/Advance Navbar Here   -->
+            {% else %}   
+            <!-- Hubspot Default Header Start Here -->
+            <nav class="hubspot-navbar">                
+              {% menu "my_menu" 
+                id={{ module.navigation_field_group.menu_selector }}, 
+                root_type="site_root" 
+              %}
+            </nav>
+            <!-- Hubspot Default Header End Here -->
+            {% endif %}
+          </div>
+
+          <!-------------------------------
+            Mobile and Tablet Friendly Navigation
+            -------------------------------->
+          <div class="mobile-nav-wrapper custom-navbar d-lg-none">
+          <!-- Conditionally Rendering Navigation Design -->
+            {% if NAV_TYPE and NAV_TYPE == 'advance' %} 
+            <!-- MAIN PANEL: Loop through primary items -->
+            <div class="nav-panel active" id="mobile-main-panel">
+              <div class="panel-header">
+                <h4 class="panel-title">Menu</h4>
+              </div>
+              <ul class="panel-body main-links">
+                {% for menu_item in module.navigation_field_group.menu_items %}
+                {% set item_type = menu_item.menu_item_type %}
+                {% set item_link = item_type == 'link' ? menu_item.menu_item_link.url.href : 'javascript:void(0);' %}
+
+                <li class="nav-row flex justify-between align-center panel-item" {% if item_type == 'mega_menu' %} data-target-panel="panel-{{ loop.index }}" {% endif %}>
+                  {% if item_type == 'link' %}
+                  <a class="label" href="{{ item_link }}">{{ menu_item.menu_item_label }}</a>
+                  {% else %}
+                  <span class="label">{{ menu_item.menu_item_label }}</span>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.2335 16.5902C11.2461 16.6029 11.6329 16.6999 12.093 16.8056C12.5531 16.9113 12.9345 16.9817 12.9406 16.962C12.9467 16.9423 12.9943 16.623 13.0463 16.2524C13.1509 15.5081 13.4041 14.6391 13.6746 14.0956C14.5179 12.4018 16.0309 11.2803 17.8659 10.9888L18.3332 10.9146L18.3332 10.1663L18.3332 9.41804L17.9096 9.34698C15.1348 8.88145 13.3258 6.80671 12.9874 3.70186C12.9653 3.49911 12.9389 3.33329 12.9287 3.33329C12.8352 3.33329 11.2845 3.70699 11.2552 3.73659C11.234 3.758 11.2498 3.94806 11.2903 4.15889C11.739 6.4934 13.0238 8.39305 14.691 9.18734L15.091 9.37788L6.86689 9.3928L1.6665 9.40227L1.6665 10.9166L6.88026 10.9261L15.085 10.941L14.58 11.1969C13.2702 11.8605 12.2332 13.1622 11.6225 14.9095C11.4484 15.4073 11.1858 16.5421 11.2335 16.5902Z" fill="#101000"/>
+                  </svg>
+                  {% endif %}
+                </li>
+                {% endfor %}
+              </ul>
+
+              {% if not module.call_to_action_buttons.hide_cta_buttons %}
+              <!-- HTML to show when checked -->
+              <!-- Footer from module -->
+              <div class="panel-footer">
+                {# 3. CTA Button #}
+                {% for item in module.call_to_action_buttons.cta_buttons_group %}
+                {% set href = item.cta_link.url.href %}
+
+                {% if item.cta_link.url.type is equalto "EMAIL_ADDRESS" %}
+                {% set href = "mailto:" + href %}
+                {% elif item.cta_link.url.type is equalto "PHONE_NUMBER" %}
+                {% set href = "tel:" + href %}
+                {% endif %}
+
+                <a
+                    class="join-btn bg-brand-primary text-primary"
+                    href="{{ href }}"
+                    {% if item.cta_link.open_in_new_tab %}
+                    target="_blank"
+                    {% endif %}
+                    {% if item.cta_link.rel %}
+                    rel="{{ item.cta_link.rel }}"
+                    {% endif %}
+                    >
+                  {{ item.cta_label }}
+                </a>
+                {% endfor %}
+              </div>
+              {% endif %}
+
+            </div>
+
+            <!-- SUB PANELS: Generated for Mega Menu items -->
+            {% for menu_item in module.navigation_field_group.menu_items %}
+            {% if menu_item.menu_item_type == 'mega_menu' %}
+            <div class=" nav-panel slide-right" id="panel-{{ loop.index }}">
+              <div class="panel-header">
+                <button class="back-btn" data-target-panel="mobile-main-panel">
+                  <span class="arrow-left-icon"></span>
+                </button>
+                <h4 class="panel-title">Menu</h4>
+              </div>
+
+              <div class="panel-body {% if column.hide_column_label %} accordion-list {% else %} flat-list  {% endif %} ">
+                {% set mega_menu_type = menu_item.mega_menu_type %}
+                <h5 class="panel-title text-center text-secondary ">{{ menu_item.menu_item_label }}</h5>
+                <div class="panel-content mt-20">
+                  <!-- Case A: Feature Card Mega Menu -->
+                  {% if mega_menu_type == 'featured' %}
+                    <!-- Category 1: Label hidden, render Flat Link List And Feature Cards -->
+                    <div class="flex flex-col gap-x-40">
+                      <!-- Featured Type: Links -->
+                      <div style="{% if menu_item.mega_menu_column_reverse %} order: 2; {% endif %}">
+                        <div class="flex flex-col gap-20">
+                          {% for item in menu_item.links %}
+                          <a href="{{ item.mega_menu_item_link.url.href }}" class="link-card flex align-center rounded gap-20 rounded p-20 bg-primary-accent-1 text-secondary">
+                            <div class="link-icon-box">
+                              {% if item.mega_menu_item_icon_type == 'image' %}
+                              <img src="{{ item.mega_menu_item_icon_image.image_file.src }}" alt="{{ item.mega_menu_item_icon.alt }}"/>
+                              {% else %}
+                              {{ item.mega_menu_item_icon_svg }}
+                              {% endif %}
+                            </div>
+                            <div class="link-text">
+                              <p class="label text-body-highlight text-primary pb-10">{{ item.mega_menu_item_label }}</p>
+                              <p class="subtext text-body text-secondary ">{{item.mega_menu_subtitle}}</p>
+                            </div>
+                          </a>
+                          {% endfor %}
+                        </div>
+                      </div>
+
+                      <!-- Featured Type: Featured Cards -->
+                      {% set cardsHeader = menu_item.mega_menu_featured_cards_header %}
+                      <div class="mega-featured-column feature-card-warper p-30 bg-primary-accent-1 rounded">
+                        <!--  Mega Menu Column Header -->
+                        <div class="mega-menu-header featured-header pb-20">
+                          <!--  Column Name  -->
+                          <h6 class="title text-primary">
+                            {{cardsHeader.header_title}}
+                          </h6>
+                          <!-- Redirect Link  -->
+                          <a href="{{cardsHeader.header_cta_link.url.href}}" class="view-all text-primary flex align-center gap-10">
+                            <h6>{{cardsHeader.header_cta_label}}</h6> 
+                            <svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M9.56701 13.257C9.57963 13.2697 9.96641 13.3666 10.4265 13.4723C10.8866 13.5781 11.268 13.6484 11.2741 13.6288C11.2802 13.6091 11.3278 13.2898 11.3798 12.9191C11.4844 12.1748 11.7376 11.3058 12.0081 10.7624C12.8514 9.06857 14.3644 7.94705 16.1994 7.65555L16.6667 7.58131L16.6667 6.83308L16.6667 6.08479L16.2431 6.01372C13.4683 5.5482 11.6593 3.47346 11.3209 0.368607C11.2988 0.165862 11.2724 3.43358e-05 11.2622 3.43366e-05C11.1687 3.43445e-05 9.61801 0.373737 9.58868 0.40334C9.56748 0.424747 9.58325 0.614813 9.62379 0.825636C10.0725 3.16015 11.3573 5.0598 13.0245 5.85409L13.4245 6.04463L5.20038 6.05955L-6.37518e-07 6.06902L-5.09872e-07 7.58333L5.21376 7.59281L13.4184 7.60779L12.9135 7.86361C11.6037 8.52721 10.5667 9.82895 9.95596 11.5762C9.78193 12.074 9.51934 13.2089 9.56701 13.257Z" fill="#101000"/>
+                            </svg>
+                          </a>
+                        </div>
+                        <!--  Mega Menu Column Items - Card List -->
+                        <div class="featured-list flex flex-col gap-x-40">
+                          {% for item in menu_item.featured_cards %}
+                          <div class="featured-item">
+                            <div class="featured-img" style="background-image: url({{item.card_featured_image.src}})"> </div>
+                            <div class="featured-info flex-col gap-x-10">
+                              <p class="text-body-highlight text-primary">{{item.card_title}}</p>
+                              <span class="text-secondary"> {{ item.card_subtitle|truncate(130, True, '...') }}</span>
+                              <div class="flex align-center gap-10">
+                                <div class="link-icon-box arrow-icon">
+                                  <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6.82253 6.08878C6.83283 6.0888 7.02981 5.97078 7.2602 5.82651C7.4906 5.68221 7.67456 5.55555 7.66906 5.54505C7.66352 5.53456 7.55287 5.38514 7.42314 5.21302C7.16265 4.86737 6.91189 4.41042 6.80075 4.07895C6.45441 3.04586 6.61381 1.9731 7.24234 1.10718L7.40238 0.886668L7.0977 0.581988L6.793 0.277284L6.5916 0.42081C5.27214 1.36115 3.69067 1.25295 2.28857 0.126454C2.19702 0.0528889 2.11875 -0.00388459 2.11461 0.000254563C2.0765 0.0383627 1.59725 0.821957 1.59736 0.845953C1.59744 0.863305 1.68126 0.934277 1.78361 1.00362C2.91694 1.77151 4.21364 2.02189 5.21598 1.66642L5.45642 1.58115L2.11365 4.93608L-8.84164e-05 7.05753L0.616538 7.67416L2.74344 5.55497L6.09049 2.22012L5.98906 2.52989C5.72591 3.33348 5.8337 4.28583 6.29651 5.246C6.42834 5.51956 6.78353 6.08859 6.82253 6.08878Z" fill="#101000"/>
+                                  </svg>
+                                </div>
+                                <a href="{{item.card_video_link.url.href}}" class="text-body watch-link text-primary">{{item.card_video_label}}</a>
+                              </div>
+                            </div>
+                          </div>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    </div>
+                  <!-- Case B: Only Link Grid Mega Menu -->
+                  {% else %}
+                    <!-- Link List Type: Each column becomes an Accordion or Flat List -->
+                    <!-- Link List Type: Dynamic Accordion vs Flat List -->
+                    {% for column in menu_item.mega_menu_columns %}
+                      {% if not column.hide_column_label %}
+                        <!-- Category 2: Label exists, render Accordion -->
+                        <div class="accordion-item panel-item">
+                          <div class="accordion-header nav-row">
+                            <div class="header-left">
+                              <!-- Label Variables -->
+                              {% set label_data = column.mega_menu_column_label %}
+                              {% set label_content %}
+                              {% if not label_data.hide_label_icon %}
+                              <span class="icon">
+                                {% if label_data.label_icon_type == 'image' %}
+                                <img src="{{ label_data.label_icon_image.src }}" alt="{{ label_data.label_icon_image.alt }}">
+                                {% else %}
+                                {{ label_data.label_icon_svg }} <!-- SVG Code -->
+                                {% endif %}
+                              </span> 
+                              {% endif %}
+                              {{ label_data.label_name }}
+                              {% endset %}
+
+                              <!-- Label Content -->
+                              <span class="label text-body flex align-center gap-10">{{ label_content }}</span>
+                            </div>
+                            <span class="chevron"></span>
+                          </div>
+                          <div class="accordion-content">
+                            <ul class="sub-link-list flat-list flex flex-col gap-20">
+                              {% for item in column.mega_menu_column_items %}
+                              {% if item.mega_menu_item_type == 'link' %}
+                              <li>
+                                <a class="pill rounded p-20 bg-primary-accent-1 text-secondary flex-center" href="{{ item.mega_menu_item_link.url.href }}">{{ item.mega_menu_item_label }}</a>
+                              </li>
+                              {% endif %}
+                              {% endfor %}
+                            </ul>
+                          </div>
+                        </div>
+                      {% else %}
+                        <!-- Category 3: Label hidden, render Flat Link List -->
+                        <div class="py-20 panel-item">
+                          <ul class="sub-link-list flat-list flex flex-col gap-20">
+                            {% for item in column.mega_menu_column_items %}
+                            {% if item.mega_menu_item_type == 'link' %}
+                            <li>
+                              <a class="pill rounded p-10 bg-primary-accent-1 text-secondary flex-center" href="{{ item.mega_menu_item_link.url.href }}">{{ item.mega_menu_item_label }}</a>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+                          </ul>
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                </div>
+
+              </div>
+
+              {% if not module.call_to_action_buttons.hide_cta_buttons %}
+              <!-- HTML to show when checked -->
+              <!-- Footer from module -->
+              <div class="panel-footer">
+                {# 3. CTA Button #}
+                {% for item in module.call_to_action_buttons.cta_buttons_group %}
+                {% set href = item.cta_link.url.href %}
+
+                {% if item.cta_link.url.type is equalto "EMAIL_ADDRESS" %}
+                {% set href = "mailto:" + href %}
+                {% elif item.cta_link.url.type is equalto "PHONE_NUMBER" %}
+                {% set href = "tel:" + href %}
+                {% endif %}
+
+                <a
+                    class="join-btn bg-brand-primary text-primary"
+                    href="{{ href }}"
+                    {% if item.cta_link.open_in_new_tab %}
+                    target="_blank"
+                    {% endif %}
+                    {% if item.cta_link.rel %}
+                    rel="{{ item.cta_link.rel }}"
+                    {% endif %}
+                    >
+                  {{ item.cta_label }}
+                </a>
+                {% endfor %}
+              </div>
+              {% endif %}
+
+            </div>
+            {% endif %}
+            {% endfor %}
+            <!--  End Custome/Advance Navbar Here   -->
+            {% else %}   
+            <!-- Hubspot Default Header Start Here -->
+            <nav class="hubspot-navbar">                
+              {% menu "my_menu" 
+                id={{ module.navigation_field_group.menu_selector }}, 
+                root_type="site_root" 
+              %}
+            </nav>
+            <!-- Hubspot Default Header End Here -->
+            {% endif %}
+          </div>
+
+
+          <!-------------------------------
+            Middle Point initially / Brand Logo Area
+            -------------------------------->
+          <div class="logo-area">
+            <a href="{{ module.logo_field_group.logo_link.redirect_link.url.href }}">
+              {% if module.logo_field_group.logo_type == 'image' %}
+              <!--  Logo For Desktop / Large Devices   -->
+              <img class="logo-desktop d-none-mobile" src="{{ module.logo_field_group.logo_file.logo_image.src }}" alt="{{ module.logo_field_group.logo_file.logo_image.alt }}">
+
+              <!--  Logo For Mobile / Table Devices   -->
+              <img class="logo-mobile d-lg-none" src="{{ module.logo_field_group.logo_file.logo_image_mobile.src }}" alt="{{ module.logo_field_group.logo_file.logo_image.alt }}">
+              {% else %}
+              <span class="logo-svg 
+                            {% if module.logo_field_group.logo_svg.override_svg_color %} has-color-override{% endif %}"
+                    {% if module.logo_field_group.logo_svg.override_svg_color %}
+                    style=" --logo-icon-color: {{module.logo_field_group.logo_svg.svg_color.svg_icon_fill_color.color}}; --logo-text-color: {{module.logo_field_group.logo_svg.svg_color.svg_text_fill_color.color}};"
+                    {% endif %}
+                    >
+                <!--  Logo For Desktop / Large Devices   -->
+                <span class="logo-desktop d-none-mobile">{{ module.logo_field_group.logo_svg.logo_svg_code }}</span>
+
+                <!--  Logo For Mobile / Table Devices   -->
+                <span class="logo-mobile d-lg-none">{{ module.logo_field_group.logo_svg.logo_svg_mobile }}</span>
+              </span>
+              {% endif %}
+            </a>
+          </div>
+
+
+          <!-------------------------------
+            Right side initially / Header Actions Area
+            -------------------------------->
+
+          <div class="header-handlers gap-20">
+
+            {# 1. Language Handler Container #}
+            <div class="lang-wrapper">
+              {# Check if the module toggle for the language switcher is enabled #}
+              {% if module.language_switcher.show_language_switcher %}
+
+              {# Initialize language data: Fetch variants and identify the currently active language #}
+              {% set languages = language_variants(module.display_mode) %}
+              {% set activeLanguage = languages|selectattr('isActive', true)|first %}
+
+              {# Only render the switcher if there are at least 2 languages to choose from #}
+              {% if languages|length >= 2 %}
+
+              <nav class="hs-language-switcher" aria-label="Language Selector">
+                <div class="hs-language-switcher__inner-wrapper">
+
+                  {# Main trigger button: Calls the identity macro (Icon/Short Code) based on module settings #}
+                  <button class="hs-language-switcher__button nav-action-icon flex align-center justify-center border border-secondary rounded-full nav-i" 
+                          aria-expanded="false" 
+                          type="button">
+                    {{ render_language_identity(activeLanguage) }}
+                  </button>
+
+                  {# Dropdown menu: Contains the list of available language versions #}
+                  <ul class="hs-language-switcher__menu" role="menu">
+                    {% for language in languages %}
+
+                    {# Individual language item - Highlight 'active' for the current page language #}
+                    <li class="hs-language-switcher__item {% if language.isActive %}active{% endif %}" role="menuitem">
+                      <a lang="{{ language.languageCode }}" 
+                          hreflang="{{ language.languageCode }}" 
+                          href="{{ language.localizedUrl }}">
+                        {{ language.languageDisplayName }}
+                      </a>
+                    </li>
+
+                    {% endfor %}
+                  </ul>
+
+                </div>
+              </nav>
+
+              {% endif %} {# End languages length check #}
+              {% endif %} {# End show_language_switcher toggle check #}
+
+            </div>
+
+            {# 2. Search Handler #}
+            {% if module.search_option.show_search_button %}
+            <!-- HTML to show when checked -->
+
+            <div class="search-handler" id="search-scope-{{ unique_id }}" >
+              {# Define the data object in HubL #}
+              {# The Attributes can't get from the module vaarivale in Search Tigger Function #}
+              {% set search_config = {
+                "path": search_page_path|default('/search'),
+                "filters": type_params
+              } %}
+
+              {# Deposit the data as JSON to access from the Search Tigger Function #}
+              <script type="application/json" id="search-config-{{ unique_id }}">
+                {{ search_config|tojson }}
+              </script>
+
+              <!--  Search Toggler -->
+              <button class="nav-action-icon search-trigger flex align-center justify-center border border-secondary rounded-full nav-i" id="search-btn-{{ unique_id }}">
+                {% inline_text field="search_option.search_icon" value="{{ module.search_option.search_icon }}" %}
+              </button>
+              <!--  Search Area And Resutls Warper   -->
+              <div class="mega-menu-warper bg-primary search-dropdown-warper" id="search-dropdown-{{ unique_id }}" style="display:none;">
+                <div class="container">
+                  <div class="section pt-40 pb-80">
+                  
+                    <div class="input-wrapper border-b mb-40 px-20">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 17L21 21" stroke="#101000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19C15.4183 19 19 15.4183 19 11Z" stroke="#101000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      <input type="text" id="search-input-{{ unique_id }}" placeholder="Search Desired Page..." autocomplete="off">
+                    </div>
+
+                    <div class="suggestions-area">
+                      <p class="suggestion-label pb-20 px-20">Quick Suggestions</p>
+                      <ul id="suggestions-list-{{ unique_id }}" class="search-results-list">
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
+            {# 3. Shopping Icon #}
+            {% if module.add_to_cart.show_add_to_cart %}
+              {% set cart_link = module.add_to_cart.cart_link %}
+              
+              {# Logic to resolve the URL from HubSpot's link object #}
+              {% set href = cart_link.url.href %}
+              {% if cart_link.url.type is equalto "CONTENT" %}
+                {% set href = content_by_id(cart_link.url.content_id).absolute_url %}
+              {% endif %}
+
+              <a href="{{ href|default('#', true) }}" 
+                class="nav-action-link"
+                {% if cart_link.open_in_new_tab %}target="_blank"{% endif %}
+                {% if cart_link.no_follow %}rel="nofollow"{% endif %}
+                style="text-decoration: none; display: inline-block;">
+                
+                <button type="button" class="nav-action-icon flex align-center justify-center border border-secondary rounded-full nav-i" id="shoping-btn-{{ unique_id }}">
+                  {% if module.add_to_cart.cart_icon %}
+                    {{ module.add_to_cart.cart_icon }}
+                  {% else %}
+                    {# Fallback SVG #}
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8 7H16C17.8856 7 18.8284 7 19.4142 7.58579C20 8.17157 20 9.11438 20 11V15C20 18.2998 20 19.9497 18.9749 20.9749C17.9497 22 16.2998 22 13 22H11C7.70017 22 6.05025 22 5.02513 20.9749C4 19.9497 4 18.2998 4 15V11C4 9.11438 4 8.17157 4.58579 7.58579C5.17157 7 6.11438 7 8 7Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M16 9.5C16 5.63401 14.2091 2 12 2C9.79086 2 8 5.63401 8 9.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {% endif %}
+                </button>
+              </a>
+            {% endif %}
+            
+
+            {# 4. CTA Button #}
+            {% if not module.call_to_action_buttons.hide_cta_buttons %}
+            <!-- HTML to show when checked -->
+            <div class="button-container d-none-mobile">
+              {% for item in module.call_to_action_buttons.button_repeater %} {{ button_macros.render_button(item, theme) }} {% endfor %}
+            </div>
+            {% endif %}
+
+
+            <!-- Responsive Nvigation Toggler -->
+            <button class="hamburger-menu d-lg-none" id="hamburger-trigger" aria-label="Toggle Menu">
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+            </button>
+
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+</div>
+
+
+
+<!-- ***************************** --> 
+<!--         js  START            --> 
+<!-- ***************************** -->
+
+{% require_js %}
+
+<!-- Others Scripts Will be place here -->
+
+<script>
+(function() {
+
+  function closeAllUI(module, uid, skipSearch = false) {
+    // 1. Close Search with animation (only if not skipping)
+    if (!skipSearch) {
+      const searchDropdown = module.querySelector("#search-dropdown-" + uid);
+      if (searchDropdown && searchDropdown.classList.contains("is-open")) {
+        searchDropdown.classList.remove("is-open");
+        setTimeout(() => { 
+          if (!searchDropdown.classList.contains("is-open")) searchDropdown.style.display = "none"; 
+        }, 500);
+      }
+    }
+
+    // 2. Close Navigation Menus
+    const openMenus = document.querySelectorAll('.hs-item-has-children.is-open, .nav-item.has-children.is-open, .has-children.is-open');
+    openMenus.forEach(m => m.classList.remove('is-open'));
+
+    // 3. Close Language Switcher
+    const langMenu = module.querySelector('.hs-language-switcher__menu');
+    if (langMenu) {
+      langMenu.classList.remove('visible');
+      // Also reset the button state
+      const langBtn = module.querySelector('.hs-language-switcher__button');
+      if (langBtn) langBtn.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  /* -----------------------------------------------
+      Header Scroll Animation
+      @param - 
+    -------------------------------------------------*/
+  function headerShowHideToggleOnScroll() {
+    const header = document.querySelector('header');
+    let lastScrollY = window.scrollY;
+    const scrollThreshold = 100; // Header starts reacting after 100px
+
+    window.addEventListener("scroll", () => {
+      const currentScrollY = window.scrollY;
+
+      // 1. Initially Sticky / Floating check
+      if (currentScrollY > scrollThreshold) {
+        header.classList.add("header--sticky");
+      } else {
+        header.classList.remove("header--sticky");
+      }
+
+      // 2. Detect Scroll Direction for Show/Hide
+      if (currentScrollY > lastScrollY && currentScrollY > 300) {
+        // Scrolling Down - Hide it
+        header.classList.add("header--hidden");
+      } else {
+        // Scrolling Up - Show it
+        header.classList.remove("header--hidden");
+      }
+
+      lastScrollY = currentScrollY;
+    });
+  }
+
+  /* -----------------------------------------------
+      Language Switcher Handler
+      @param - module {HTMLElement}  - The full module wrapper element
+      @param - uid {string} - The unique ID used for scoping
+    -------------------------------------------------*/
+  function initLanguageSwitcher(module, uid) {
+    const switcher = module.querySelector('.hs-language-switcher');
+    if (!switcher) return;
+
+    const button = switcher.querySelector('.hs-language-switcher__button');
+    const menu = switcher.querySelector('.hs-language-switcher__menu');
+    const chevron = switcher.querySelector('.hs-language-switcher__icon--dropdown');
+
+    // Bridge to Search
+    const searchDropdown = module.querySelector("#search-dropdown-" + uid);
+
+    const toggleMenu = (forceState) => {
+      const isOpening = forceState !== undefined ? forceState : !menu.classList.contains('visible');
+
+      if (isOpening) {
+        // 1. Close ALL open Navigation menus (Custom & HubSpot)
+        const openMenus = document.querySelectorAll('.hs-item-has-children.is-open, .nav-item.has-children.is-open, .has-children.is-open');
+        openMenus.forEach(m => m.classList.remove('is-open'));
+
+        // 2. Close Search Dropdown if it exists
+        {# if (searchDropdown) {
+          searchDropdown.style.display = "none";
+        } #}
+
+        if (!menu.classList.contains('visible')) {
+            closeAllUI(module, uid); // Clean up everything else before opening
+        }
+
+        menu.classList.add('visible');
+        button.setAttribute('aria-expanded', 'true');
+        if (chevron) chevron.classList.add('active');
+      } else {
+        menu.classList.remove('visible');
+        button.setAttribute('aria-expanded', 'false');
+        if (chevron) chevron.classList.remove('active');
+      }
+    };
+
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!switcher.contains(e.target)) {
+        toggleMenu(false);
+      }
+    });
+
+    // Handle Escape Key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') toggleMenu(false);
+    });
+
+    // Dynamic Alignment Check
+    const handleAlign = () => {
+      const rect = switcher.getBoundingClientRect();
+      if (rect.left + 200 > window.innerWidth) {
+        menu.classList.add('hs--align-right');
+        menu.classList.remove('hs--align-left');
+      } else {
+        menu.classList.add('hs--align-left');
+        menu.classList.remove('hs--align-right');
+      }
+    };
+
+    handleAlign();
+    window.addEventListener('resize', handleAlign);
+  }
+
+  /* -----------------------------------------------
+      Custom / Advance Navbar Mega Toggler
+      @param - module {HTMLElement}  - The full module wrapper element
+      @param - uid {string} - The unique ID used for scoping
+    -------------------------------------------------*/
+  function megaNavbarToggle(module, uid) {
+    const customParents = module.querySelectorAll('.custom-navbar .has-children');
+    const searchDropdown = module.querySelector("#search-dropdown-" + uid);
+
+    customParents.forEach(function(item) {
+      const link = item.querySelector('.nav-item-link > a');
+
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const isOpen = item.classList.contains('is-open');
+
+        // 1. Close the search dropdown if it's open
+        {# if (searchDropdown) {
+          searchDropdown.style.display = "none";
+        } #}
+         if (!item.classList.contains('is-open')) {
+              closeAllUI(module, uid); // Clean up everything else before opening
+          }
+
+        // 2. Close Language Switcher
+        const langMenu = module.querySelector('.hs-language-switcher__menu');
+        const langBtn = module.querySelector('.hs-language-switcher__button');
+        const langChevron = module.querySelector('.hs-language-switcher__icon--dropdown');
+        
+        if (langMenu) {
+            langMenu.classList.remove('visible');
+            langBtn.setAttribute('aria-expanded', 'false');
+            if (langChevron) langChevron.classList.remove('active');
+        }
+
+        // 3. Close all other open mega menus
+        customParents.forEach(p => p.classList.remove('is-open'));
+
+        // 4. Toggle current menu
+        if (!isOpen) {
+          item.classList.add('is-open');
+        }
+        
+      });
+    });
+
+    // Close Mega Menu when clicking outside ---
+    document.addEventListener("click", function(e) {
+        customParents.forEach(function(item) {
+            // Check if the click was outside the menu item
+            if (!item.contains(e.target)) {
+                item.classList.remove('is-open');
+            }
+        });
+    });
+  }
+
+  /* -----------------------------------------------
+      Hubspot Navbar Mega Toggler
+      @param - module {HTMLElement}  - The full module wrapper element
+      @param - uid {string} - The unique ID used for scoping
+    -------------------------------------------------*/
+  function hubspotMenuClickToggle(module, uid) {
+    const parents = module.querySelectorAll(".hubspot-navbar li.hs-item-has-children");
+
+    parents.forEach(item => {
+      const link = item.querySelector(":scope > a");
+      if (!link) return;
+
+      link.addEventListener("click", function (e) {
+        const isMobile = window.innerWidth <= 991;
+
+        if (isMobile) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const isOpen = item.classList.contains("is-open");
+
+          // ONLY call closeAllUI if we are at the top level (depth-1) 
+          // and opening a fresh menu. This prevents closing parents when opening children.
+          if (!isOpen && item.classList.contains("hs-menu-depth-1")) {
+            closeAllUI(module, uid); 
+          }
+
+          // Handle sibling closing logic
+          const siblings = item.parentElement.querySelectorAll(":scope > .hs-item-has-children");
+          siblings.forEach(sibling => {
+            if (sibling !== item) {
+              sibling.classList.remove("is-open");
+              sibling.querySelectorAll(".hs-item-has-children").forEach(n => n.classList.remove("is-open"));
+            }
+          });
+
+          item.classList.toggle("is-open");
+          return; // Exit mobile logic
+        }
+
+        // DESKTOP LOGIC
+        if (item.classList.contains("hs-menu-depth-1")) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          if (!item.classList.contains("is-open")) {
+            closeAllUI(module, uid); // Clean up Search/Lang before opening Desktop menu
+          }
+          item.classList.toggle("is-open");
+        }
+      });
+    });
+  }
+  {# For Desktop Only #}
+  function nestedMegaMenuHover(module) {
+
+    const nestedParents = module.querySelectorAll(
+      ".hubspot-navbar li.hs-item-has-children li.hs-item-has-children"
+    );
+
+    nestedParents.forEach(parent => {
+
+      const submenu = parent.querySelector(":scope > .hs-menu-children-wrapper");
+      if (!submenu) return;
+
+      parent.addEventListener("mouseenter", () => {
+        if (window.innerWidth <= 991) return; // ❗ Desktop only
+        parent.classList.add("is-open");
+      });
+
+      parent.addEventListener("mouseleave", () => {
+        if (window.innerWidth <= 991) return; // ❗ Desktop only
+        parent.classList.remove("is-open");
+      });
+
+    });
+  }
+
+  /* -----------------------------------------------
+      Search Result Toggler
+      @param - module {HTMLElement}  - The full module wrapper element
+      @param - uid {string} - The unique ID used for scoping
+    -------------------------------------------------*/
+  function tiggerSearchResult(module, uid) {
+
+    // 1. Get the JSON config instead of attributes
+    const configScript = document.getElementById('search-config-' + uid);
+    {# const customParents = module.querySelectorAll('.custom-navbar .has-children'); #}
+
+    if (!configScript) {
+      console.error("Could not find JSON config for:", uid);
+      return;
+    }
+    // 2. Close all other open mega menus
+    {# customParents.forEach(p => p.classList.remove('is-open')); #}
+
+    // Parse the data 
+    const config = JSON.parse(configScript.textContent);
+    const searchPath = config.path;
+    const typeFilters = config.filters;
+    
+    // Check if any content types are selected for the dropdown suggestions
+    const hasSelectedTypes = typeFilters && typeFilters.trim().length > 0;
+
+    // Document Elements
+    const searchBtn = module.querySelector("#search-btn-" + uid);
+    const searchDropdown = module.querySelector("#search-dropdown-" + uid);
+    const searchInput = module.querySelector("#search-input-" + uid);
+    const suggestionsList = module.querySelector("#suggestions-list-" + uid);
+    
+    
+    // 2. INPUT SYNC
+    const params = new URLSearchParams(window.location.search);
+    const currentTerm = params.get('term') || params.get('q');
+    if (currentTerm && searchInput) {
+      searchInput.value = decodeURIComponent(currentTerm);
+    }
+
+    // 3. REDIRECT ON ENTER (Always works)
+    if (searchInput) {
+      searchInput.addEventListener("keydown", function(e) {
+        if (e.key === 'Enter') {
+          const term = searchInput.value.trim();
+          if (term.length > 0) {
+            const connector = searchPath.includes('?') ? '&' : '?';
+            const finalUrl = `${searchPath}${connector}term=${encodeURIComponent(term)}${typeFilters}`;
+            window.location.href = finalUrl;
+          }
+        }
+      });
+    }
+
+    // 4. LIVE SEARCH (Only works if types are selected)
+    if (searchInput && suggestionsList) {
+      searchInput.addEventListener("input", function() {
+        const term = searchInput.value.trim();
+
+        // NEW LOGIC: If no types are selected, clear suggestions and STOP
+        if (!hasSelectedTypes) {
+          suggestionsList.innerHTML = '';
+          return;
+        }
+
+        if (term.length < 2) {
+          suggestionsList.innerHTML = '';
+          return;
+        }
+
+        const ajaxUrl = `/_hcms/search?term=${encodeURIComponent(term)}&limit=5&autocomplete=true&analytics=true${typeFilters}`;
+
+        fetch(ajaxUrl)
+          .then(response => response.json())
+          .then(data => {
+            suggestionsList.innerHTML = '';
+            if (data.results && data.results.length > 0) {
+              data.results.forEach(result => {
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="${result.url}">${result.title}</a>`;
+                suggestionsList.appendChild(li);
+              });
+              
+              const connector = searchPath.includes('?') ? '&' : '?';
+              const seeAll = document.createElement('li');
+              seeAll.className = "view-all-results";
+              seeAll.innerHTML = `<a href="${searchPath}${connector}term=${encodeURIComponent(term)}${typeFilters}"><strong>View all results for "${term}" →</strong></a>`;
+              suggestionsList.appendChild(seeAll);
+            } else {
+              suggestionsList.innerHTML = '<li class="px-20">No results found</li>';
+            }
+          });
+      });
+    }
+
+    // 5. UI TOGGLE FIXED
+    {# if (searchBtn && searchDropdown) {
+      searchBtn.addEventListener("click", function(e) {
+        e.stopPropagation();
+        
+        // Check if it's currently open by looking for the class
+        const isCurrentlyOpen = searchDropdown.classList.contains("is-open");
+
+        if (!isCurrentlyOpen) {
+            // --- CLEAR OTHER UI ELEMENTS ---
+            // 1. Close Nav Menus
+            document.querySelectorAll('.hs-item-has-children.is-open, .nav-item.has-children.is-open, .has-children.is-open')
+                    .forEach(menu => menu.classList.remove('is-open'));
+
+            // 2. Close Language Switcher
+            const langMenu = module.querySelector('.hs-language-switcher__menu');
+            if (langMenu) langMenu.classList.remove('visible');
+
+            // --- OPEN SEARCH ---
+            searchDropdown.style.display = "block"; // Make it exist in DOM
+            
+            // Minimal timeout allows the browser to register display:block 
+            // before the animation class starts
+            setTimeout(() => {
+              searchDropdown.classList.add("is-open");
+              if (searchInput) searchInput.focus();
+            }, 10);
+
+        } else {
+            // --- CLOSE SEARCH WITH ANIMATION ---
+            searchDropdown.classList.remove("is-open");
+            
+            // Wait for CSS transition (0.5s) to finish before setting display: none
+            setTimeout(() => {
+              if (!searchDropdown.classList.contains("is-open")) {
+                searchDropdown.style.display = "none";
+              }
+            }, 500);
+        }
+      });
+    } #}
+    if (searchBtn && searchDropdown) {
+      searchBtn.addEventListener("click", function(e) {
+        e.stopPropagation();
+        
+        const isCurrentlyOpen = searchDropdown.classList.contains("is-open");
+
+        if (!isCurrentlyOpen) {
+            // 1. CLEAR EVERYTHING ELSE FIRST
+            // This closes open Nav Menus and the Language Switcher
+            closeAllUI(module, uid);
+
+            // 2. OPEN SEARCH
+            searchDropdown.style.display = "block"; 
+            
+            // Timeout to allow display:block to render before animation starts
+            setTimeout(() => {
+              searchDropdown.classList.add("is-open");
+              if (searchInput) searchInput.focus();
+            }, 10);
+
+        } else {
+            // --- CLOSE SEARCH ONLY ---
+            // We don't call closeAllUI here because we only want to animate the search closing
+            searchDropdown.classList.remove("is-open");
+            
+            setTimeout(() => {
+              if (!searchDropdown.classList.contains("is-open")) {
+                searchDropdown.style.display = "none";
+              }
+            }, 500);
+        }
+      });
+    }
+
+    // Updated Outside Click Listener
+    document.addEventListener("click", function(e) {
+      // 1. Check if the dropdown is currently open
+      const isSearchOpen = searchDropdown.classList.contains("is-open");
+      
+      if (isSearchOpen) {
+        // 2. Check if the click happened OUTSIDE the dropdown AND OUTSIDE the trigger button
+        // .contains() is the key here to prevent closing when clicking inside inputs/results
+        const isClickInsideDropdown = searchDropdown.contains(e.target);
+        const isClickOnTrigger = searchBtn.contains(e.target);
+
+        if (!isClickInsideDropdown && !isClickOnTrigger) {
+          // Start closing animation
+          searchDropdown.classList.remove("is-open");
+          
+          // Wait for animation to finish before hiding from DOM
+          setTimeout(() => {
+            if (!searchDropdown.classList.contains("is-open")) {
+              searchDropdown.style.display = "none";
+            }
+          }, 500);
+        }
+      }
+    });
+
+    // Also, prevent clicks inside the dropdown from bubbling up to the document
+    searchDropdown.addEventListener("click", function(e) {
+      e.stopPropagation();
+    });
+
+    // 5. UI TOGGLE
+    {# if (searchBtn && searchDropdown) {
+      searchBtn.addEventListener("click", function(e) {
+        e.stopPropagation();
+        
+        const isOpen = searchDropdown.style.display === "block";
+
+        if (!isOpen) {
+            // 1. Close Navigation Menus
+            const openMenus = document.querySelectorAll('.hs-item-has-children.is-open, .nav-item.has-children.is-open, .has-children.is-open');
+            openMenus.forEach(menu => menu.classList.remove('is-open'));
+
+            // 2. Close Language Switcher
+            const langMenu = module.querySelector('.hs-language-switcher__menu');
+            const langBtn = module.querySelector('.hs-language-switcher__button');
+            const langChevron = module.querySelector('.hs-language-switcher__icon--dropdown');
+            
+            if (langMenu) {
+                langMenu.classList.remove('visible');
+                langBtn.setAttribute('aria-expanded', 'false');
+                if (langChevron) langChevron.classList.remove('active');
+            }
+        }
+
+        searchDropdown.style.display = isOpen ? "none" : "block";
+        
+        if (!isOpen && searchInput) {
+          setTimeout(() => searchInput.focus(), 100);
+        }
+      });
+    }
+
+    document.addEventListener("click", function(e) {
+      if (searchDropdown && !searchDropdown.contains(e.target) && e.target !== searchBtn) {
+        searchDropdown.style.display = "none";
+      }
+    }); #}
+  }
+
+
+  /* -----------------------------------------------
+      MOBIBLE Nav - MOBILE SPECIFIC LOGIC
+      @param - module {HTMLElement}  - The full module wrapper element
+      @param - uid {string} - The unique ID used for scoping
+    -------------------------------------------------*/
+  function mobileNavInit(module, uid) {
+    const hamburger = module.querySelector('#hamburger-trigger');
+    const mobileWrapper = module.querySelector('.mobile-nav-wrapper');
+
+    if (!hamburger || !mobileWrapper) return;
+
+    const menuItems = module.querySelectorAll('.main-links li.nav-row');
+    const baseDelay = 0.15; 
+    const staggerDelay = 0.05; 
+
+    // Function to apply/remove delays
+    const setStaggerDelays = (enable) => {
+      menuItems.forEach((item, index) => {
+        item.style.transitionDelay = enable ? (baseDelay + (index * staggerDelay)) + 's' : '0s';
+      });
+    };
+
+    // Initially set to 0s
+    setStaggerDelays(false);
+
+    // 1. Toggle Wrapper Visibility
+    hamburger.addEventListener('click', function(e) {
+      e.preventDefault();
+      const isOpen = this.classList.toggle('is-active');
+
+      if (isOpen) {
+        setStaggerDelays(true); // Enable stagger for entry
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            mobileWrapper.classList.add('is-visible');
+          });
+        });
+        document.body.style.overflow = 'hidden';
+      } else {
+        setStaggerDelays(false); // Disable stagger for exit so items move together
+        mobileWrapper.classList.remove('is-visible');
+        document.body.style.overflow = '';
+
+        // CRITICAL FIX: To prevent "simultaneous closing" visual glitch,
+        // we do NOT reset the internal panels until the wrapper is completely hidden.
+        // This keeps the current sub-panel visible inside the sliding drawer.
+        const handleClose = () => {
+          if (!hamburger.classList.contains('is-active')) {
+            resetMobilePanels(module);
+          }
+          mobileWrapper.removeEventListener('transitionend', handleClose);
+        };
+        mobileWrapper.addEventListener('transitionend', handleClose);
+
+        // Fallback timeout in case transitionend doesn't fire
+        setTimeout(() => {
+          if (!hamburger.classList.contains('is-active')) {
+            resetMobilePanels(module);
+          }
+        }, 400);
+      }
+    });
+
+    // 2. Panel Sliding Trigger
+    const slideButtons = module.querySelectorAll('[data-target-panel]');
+    slideButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-target-panel');
+        const targetPanel = module.querySelector('#' + targetId);
+        const activePanel = module.querySelector('.nav-panel.active');
+        const mainPanel = module.querySelector('#mobile-main-panel');
+
+        if (!targetPanel || !activePanel) return;
+
+        if (targetId === 'mobile-main-panel') {
+          activePanel.classList.remove('active');
+          activePanel.classList.add('slide-right');
+          targetPanel.classList.add('active');
+          targetPanel.classList.remove('slide-left');
+        } else {
+          mainPanel.classList.add('slide-left');
+          mainPanel.classList.remove('active');
+          targetPanel.classList.add('active');
+          targetPanel.classList.remove('slide-right');
+        }
+      });
+    });
+
+    // 3. Accordion Handler
+    module.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', function() {
+        const item = this.parentElement;
+        const content = this.nextElementSibling;
+        const isOpen = item.classList.contains('open');
+
+        if (!isOpen) {
+          item.classList.add('open');
+          content.style.maxHeight = content.scrollHeight + "px";
+        } else {
+          item.classList.remove('open');
+          content.style.maxHeight = null;
+        }
+      });
+    });
+  }
+
+  function resetMobilePanels(module) {
+    const panels = module.querySelectorAll('.nav-panel');
+
+    // Disable transitions temporarily for an instant reset while hidden
+    panels.forEach(p => p.classList.add('no-transition'));
+
+    panels.forEach(p => {
+      p.classList.remove('active', 'slide-left', 'slide-right');
+      if (p.id === 'mobile-main-panel') p.classList.add('active');
+      else p.classList.add('slide-right');
+    });
+
+    module.querySelectorAll('.accordion-item').forEach(acc => {
+      acc.classList.remove('open');
+      acc.querySelector('.accordion-content').style.maxHeight = null;
+    });
+
+    // Force reflow and remove the no-transition class
+    setTimeout(() => {
+      panels.forEach(p => p.classList.remove('no-transition'));
+    }, 50);
+  }
+
+
+  /** 
+    * initModule — Runs ONLY for this module instance
+    * @param - module {HTMLElement}  - The module wrapper element
+    * @param - uid {string} - The unique ID used for scoping
+  */
+  function initModule(module, uid) {
+
+    /* -----------------------------------------------
+          MODULE JS CODE GOES INSIDE THIS BLOCK ONLY
+          ----------------------------------------------- */
+
+    const searchBtn = module.querySelector("#search-btn-" + uid);
+    const searchOverlay = module.querySelector("#search-overlay-" + uid);
+    const searchInput = module.querySelector("#search-input-" + uid);
+    const suggestionsList = module.querySelector("#suggestions-list-" + uid);
+    const closeBtn = module.querySelector("#search-close-" + uid);
+    const langWrapper = module.querySelector('.lang-wrapper');
+
+    {# headerShowHideToggleOnScroll(); #}
+
+    // Language Switcher Init
+    initLanguageSwitcher(module, uid);
+
+    // Mobile Nav Initialization
+    mobileNavInit(module, uid);
+
+    // Custom / Advance Navbar Mega-Menu Toggle //
+    megaNavbarToggle(module, uid);
+
+    // Hubspot Navbar Toggler
+    hubspotMenuClickToggle(module, uid);
+
+    //
+    nestedMegaMenuHover(module);
+
+    // Toggle Search Overlay
+    tiggerSearchResult(module, uid);
+
+    document.addEventListener("click", function (e) {
+      const parent = e.target.closest(".hs-item-has-children > a");
+      if (!parent) return;
+
+      if (window.innerWidth <= 991) {
+        e.preventDefault();
+        parent.parentElement.classList.toggle("is-open");
+      }
+    }); 
+
+  }
+
+
+
+  // WAIT UNTIL DOM IS READY
+  document.addEventListener("DOMContentLoaded", function() {
+
+    // UNIQUE ID from HubSpot (ALWAYS REQUIRED in your module)
+    const uid = "{{ unique_id }}";
+
+    // Module root selector (ALWAYS REQUIRED)
+    const selector = ".js-module-" + uid;
+
+    // Find module instances on page
+    const modules = document.querySelectorAll(selector);
+
+    // Initialize every instance safely
+    modules.forEach(function(module) {
+      initModule(module, uid);
+    });
+
+  });
+
+})();
+</script>
+
+{% end_require_js %}

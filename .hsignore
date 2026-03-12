@@ -1,0 +1,6 @@
+// Ignore files for HubSpot theme development
+**/fields.js
+.git
+.github
+node_modules
+README.md

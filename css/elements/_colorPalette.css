@@ -1,0 +1,31 @@
+/* @import url('http://example.com/example_style.css'); */
+
+/***********************************************/
+/* CSS @imports must be at the top of the file */
+/* Add them above this section                 */
+/***********************************************/
+
+/*****************************************/
+/* Start your style declarations here    */
+/*****************************************/
+
+
+:root{
+  --transparent: transparent;
+  --light-blue:rgba(100, 186, 226, 1);
+  --dark-blue:#04587A;
+  --black:#001B34;
+  --white:#ffffff;
+  --white-background1:rgba(245, 247, 250, 1);
+  --white-background2:rgba(255, 255, 255, 1);
+  --paragraph1:rgba(0, 28, 52, 1);
+  --paragraph2:#f7f7f7;
+  --separation-line:rgba(233, 222, 242, 0.25);
+  --light-blue20:#F0F9FD;
+  --black25:rgba(0, 27, 52, 0.25);
+  --black50:rgba(0, 27, 52, 0.5);
+  --black75:rgba(0, 27, 52, 0.75);
+  --color-rating:rgba(237, 185, 59, 1);
+  --linear-gradient: linear-gradient(rgba(0, 27, 52, 0), rgba(0, 27, 52, 0.75));
+}
+

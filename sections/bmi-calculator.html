@@ -1,0 +1,33 @@
+<!--
+  templateType: section
+  label: BMI Calculator
+  isAvailableForNewContent: true
+  screenshotPath: ../Images/sections/bmi-calculator.png
+  description: "A two-column layout featuring an illustration on the left and a functional BMI calculator form on the right."
+-->
+
+{% dnd_section %}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/BMI Calculator",
+        offset=0,
+        width=12,
+        content={
+          "section_title" : "<h2>Verify Your Health Zone</h2>"
+        },
+        style={
+          "animation" : {
+            "enable_body_text_animation" : true,
+            "enable_heading_animation" : true,
+            "enable_section_animation" : true
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

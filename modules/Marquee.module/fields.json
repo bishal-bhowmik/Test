@@ -1,0 +1,536 @@
+[ {
+  "id" : "d9399458-3aa8-bb72-8646-a9d01cafc64c",
+  "name" : "style",
+  "label" : "Style",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "b81291d2-a06c-5c5d-1cb1-2bbd2f0798ba",
+    "name" : "marquee_settings",
+    "label" : "Marquee Settings",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "0625ecf1-4f13-0f98-00d1-16590407af9e",
+      "name" : "marquee_speed_settings",
+      "label" : "Hide/Show Speed Settings",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "45af688f-c605-c2ff-3db4-12d4af2666a2",
+      "name" : "marquee_speed",
+      "label" : "Marquee Speed",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.marquee_settings.marquee_speed_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "text",
+      "suffix" : "s",
+      "type" : "number",
+      "display_width" : null,
+      "default" : 25
+    }, {
+      "id" : "12cd0147-0c2b-3bd5-c8cf-abda4570c17a",
+      "name" : "color_settings",
+      "label" : "Hide/Show Color Settings",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "3d739dc1-f9cb-ca50-8bd4-35485b446317",
+      "name" : "background",
+      "label" : "Background",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.marquee_settings.color_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }, {
+      "id" : "e5a1520e-ab02-eac1-6344-0b3489872c38",
+      "name" : "icon_color",
+      "label" : "Icon Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.marquee_settings.color_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }, {
+      "id" : "615ada56-75ac-f33b-f345-3efb4dee8f27",
+      "name" : "pause_on_hover",
+      "label" : "Pause on Hover",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : true
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "marquee_speed_settings" : false,
+      "marquee_speed" : 25,
+      "color_settings" : false,
+      "background" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "icon_color" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "pause_on_hover" : true
+    }
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "marquee_settings" : {
+      "marquee_speed_settings" : false,
+      "marquee_speed" : 25,
+      "color_settings" : false,
+      "background" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "icon_color" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "pause_on_hover" : true
+    }
+  }
+}, {
+  "id" : "ec22b03b-9ed0-9932-7634-79974fa1f218",
+  "name" : "marquee_items",
+  "label" : "Marquee Items",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "2b280bd4-79f1-5280-d5fe-af017d742ee7",
+    "name" : "marquee_item",
+    "label" : "Marquee Item",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : null,
+      "sorting_label_field" : null,
+      "default" : 7
+    },
+    "children" : [ {
+      "id" : "98ebb8e8-5aea-7012-366c-6b9ea85bcdb7",
+      "name" : "richtext_field",
+      "label" : "Text",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "display_width" : null,
+      "default" : "<p>Flexible Membership Options</p>"
+    }, {
+      "id" : "2a24a7f7-b5d4-e5c5-8082-5453a25e5a2e",
+      "name" : "icon_type",
+      "label" : "Icon Type",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "svg_code", "SVG Code" ], [ "image", "Image" ], [ "hubspot_icon", "Hubspot Icon" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "svg_code"
+    }, {
+      "id" : "23783e20-b6ca-5a57-94b4-ea8fab0ba8f2",
+      "name" : "svg_code",
+      "label" : "SVG Code",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "marquee_items.marquee_item.icon_type",
+        "controlling_value_regex" : "svg_code",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : " <svg class=\"dumbbell-icon\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 5V19H4V5H6M19 5H21V19H19V5M14 11H9V13H14V11M8 6H6V18H8V6M19 6H17V18H19V6M9 6H16V8H9V6M9 16H16V18H9V16Z\" /></svg>"
+    }, {
+      "id" : "34f15a9e-6747-2912-35e2-0568ccf97582",
+      "name" : "image_field",
+      "label" : "Icon Image",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "marquee_items.marquee_item.icon_type",
+        "controlling_value_regex" : "image",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "responsive" : true,
+      "resizable" : true,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Checked-1.png",
+        "alt" : "Checked-1",
+        "loading" : "lazy",
+        "width" : 22,
+        "height" : 20,
+        "max_width" : 22,
+        "max_height" : 20
+      }
+    }, {
+      "id" : "bdb9a5d2-cec3-dfed-c542-2917d14f7d99",
+      "name" : "hubspot_icon",
+      "label" : " Hubspot Icon",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "marquee_items.marquee_item.icon_type",
+        "controlling_value_regex" : "hubspot_icon",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "icon_set" : "fontawesome-5.14.0",
+      "type" : "icon",
+      "display_width" : null,
+      "default" : {
+        "name" : "StayLinked",
+        "unicode" : "f3f5",
+        "type" : "REGULAR"
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ {
+      "svg_code" : " <svg class=\"dumbbell-icon\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 5V19H4V5H6M19 5H21V19H19V5M14 11H9V13H14V11M8 6H6V18H8V6M19 6H17V18H19V6M9 6H16V8H9V6M9 16H16V18H9V16Z\" /></svg>",
+      "richtext_field" : "<p>Flexible Membership Options</p>",
+      "icon_type" : "svg_code",
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Checked-1.png",
+        "alt" : "Checked-1",
+        "loading" : "lazy",
+        "width" : 22,
+        "height" : 20,
+        "max_width" : 22,
+        "max_height" : 20
+      },
+      "hubspot_icon" : {
+        "name" : "StayLinked",
+        "unicode" : "f3f5",
+        "type" : "REGULAR"
+      }
+    }, {
+      "svg_code" : " <svg class=\"dumbbell-icon\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 5V19H4V5H6M19 5H21V19H19V5M14 11H9V13H14V11M8 6H6V18H8V6M19 6H17V18H19V6M9 6H16V8H9V6M9 16H16V18H9V16Z\" /></svg>",
+      "richtext_field" : "<p>Flexible Membership Options</p>",
+      "icon_type" : "svg_code",
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Checked-1.png",
+        "alt" : "Checked-1",
+        "loading" : "lazy",
+        "width" : 22,
+        "height" : 20,
+        "max_width" : 22,
+        "max_height" : 20
+      },
+      "hubspot_icon" : {
+        "name" : "StayLinked",
+        "unicode" : "f3f5",
+        "type" : "REGULAR"
+      }
+    }, {
+      "svg_code" : " <svg class=\"dumbbell-icon\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 5V19H4V5H6M19 5H21V19H19V5M14 11H9V13H14V11M8 6H6V18H8V6M19 6H17V18H19V6M9 6H16V8H9V6M9 16H16V18H9V16Z\" /></svg>",
+      "richtext_field" : "<p>Flexible Membership Options</p>",
+      "icon_type" : "svg_code",
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Checked-1.png",
+        "alt" : "Checked-1",
+        "loading" : "lazy",
+        "width" : 22,
+        "height" : 20,
+        "max_width" : 22,
+        "max_height" : 20
+      },
+      "hubspot_icon" : {
+        "name" : "StayLinked",
+        "unicode" : "f3f5",
+        "type" : "REGULAR"
+      }
+    }, {
+      "svg_code" : " <svg class=\"dumbbell-icon\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 5V19H4V5H6M19 5H21V19H19V5M14 11H9V13H14V11M8 6H6V18H8V6M19 6H17V18H19V6M9 6H16V8H9V6M9 16H16V18H9V16Z\" /></svg>",
+      "richtext_field" : "<p>Flexible Membership Options</p>",
+      "icon_type" : "svg_code",
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Checked-1.png",
+        "alt" : "Checked-1",
+        "loading" : "lazy",
+        "width" : 22,
+        "height" : 20,
+        "max_width" : 22,
+        "max_height" : 20
+      },
+      "hubspot_icon" : {
+        "name" : "StayLinked",
+        "unicode" : "f3f5",
+        "type" : "REGULAR"
+      }
+    }, {
+      "svg_code" : " <svg class=\"dumbbell-icon\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 5V19H4V5H6M19 5H21V19H19V5M14 11H9V13H14V11M8 6H6V18H8V6M19 6H17V18H19V6M9 6H16V8H9V6M9 16H16V18H9V16Z\" /></svg>",
+      "richtext_field" : "<p>Flexible Membership Options</p>",
+      "icon_type" : "svg_code",
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Checked-1.png",
+        "alt" : "Checked-1",
+        "loading" : "lazy",
+        "width" : 22,
+        "height" : 20,
+        "max_width" : 22,
+        "max_height" : 20
+      },
+      "hubspot_icon" : {
+        "name" : "StayLinked",
+        "unicode" : "f3f5",
+        "type" : "REGULAR"
+      }
+    }, {
+      "svg_code" : " <svg class=\"dumbbell-icon\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 5V19H4V5H6M19 5H21V19H19V5M14 11H9V13H14V11M8 6H6V18H8V6M19 6H17V18H19V6M9 6H16V8H9V6M9 16H16V18H9V16Z\" /></svg>",
+      "richtext_field" : "<p>Flexible Membership Options</p>",
+      "icon_type" : "svg_code",
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Checked-1.png",
+        "alt" : "Checked-1",
+        "loading" : "lazy",
+        "width" : 22,
+        "height" : 20,
+        "max_width" : 22,
+        "max_height" : 20
+      },
+      "hubspot_icon" : {
+        "name" : "StayLinked",
+        "unicode" : "f3f5",
+        "type" : "REGULAR"
+      }
+    }, {
+      "svg_code" : " <svg class=\"dumbbell-icon\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 5V19H4V5H6M19 5H21V19H19V5M14 11H9V13H14V11M8 6H6V18H8V6M19 6H17V18H19V6M9 6H16V8H9V6M9 16H16V18H9V16Z\" /></svg>",
+      "richtext_field" : "<p>Flexible Membership Options</p>",
+      "icon_type" : "svg_code",
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Checked-1.png",
+        "alt" : "Checked-1",
+        "loading" : "lazy",
+        "width" : 22,
+        "height" : 20,
+        "max_width" : 22,
+        "max_height" : 20
+      },
+      "hubspot_icon" : {
+        "name" : "StayLinked",
+        "unicode" : "f3f5",
+        "type" : "REGULAR"
+      }
+    } ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "marquee_item" : [ {
+      "svg_code" : " <svg class=\"dumbbell-icon\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 5V19H4V5H6M19 5H21V19H19V5M14 11H9V13H14V11M8 6H6V18H8V6M19 6H17V18H19V6M9 6H16V8H9V6M9 16H16V18H9V16Z\" /></svg>",
+      "richtext_field" : "<p>Flexible Membership Options</p>",
+      "icon_type" : "svg_code",
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Checked-1.png",
+        "alt" : "Checked-1",
+        "loading" : "lazy",
+        "width" : 22,
+        "height" : 20,
+        "max_width" : 22,
+        "max_height" : 20
+      },
+      "hubspot_icon" : {
+        "name" : "StayLinked",
+        "unicode" : "f3f5",
+        "type" : "REGULAR"
+      }
+    }, {
+      "svg_code" : " <svg class=\"dumbbell-icon\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 5V19H4V5H6M19 5H21V19H19V5M14 11H9V13H14V11M8 6H6V18H8V6M19 6H17V18H19V6M9 6H16V8H9V6M9 16H16V18H9V16Z\" /></svg>",
+      "richtext_field" : "<p>Flexible Membership Options</p>",
+      "icon_type" : "svg_code",
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Checked-1.png",
+        "alt" : "Checked-1",
+        "loading" : "lazy",
+        "width" : 22,
+        "height" : 20,
+        "max_width" : 22,
+        "max_height" : 20
+      },
+      "hubspot_icon" : {
+        "name" : "StayLinked",
+        "unicode" : "f3f5",
+        "type" : "REGULAR"
+      }
+    }, {
+      "svg_code" : " <svg class=\"dumbbell-icon\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 5V19H4V5H6M19 5H21V19H19V5M14 11H9V13H14V11M8 6H6V18H8V6M19 6H17V18H19V6M9 6H16V8H9V6M9 16H16V18H9V16Z\" /></svg>",
+      "richtext_field" : "<p>Flexible Membership Options</p>",
+      "icon_type" : "svg_code",
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Checked-1.png",
+        "alt" : "Checked-1",
+        "loading" : "lazy",
+        "width" : 22,
+        "height" : 20,
+        "max_width" : 22,
+        "max_height" : 20
+      },
+      "hubspot_icon" : {
+        "name" : "StayLinked",
+        "unicode" : "f3f5",
+        "type" : "REGULAR"
+      }
+    }, {
+      "svg_code" : " <svg class=\"dumbbell-icon\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 5V19H4V5H6M19 5H21V19H19V5M14 11H9V13H14V11M8 6H6V18H8V6M19 6H17V18H19V6M9 6H16V8H9V6M9 16H16V18H9V16Z\" /></svg>",
+      "richtext_field" : "<p>Flexible Membership Options</p>",
+      "icon_type" : "svg_code",
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Checked-1.png",
+        "alt" : "Checked-1",
+        "loading" : "lazy",
+        "width" : 22,
+        "height" : 20,
+        "max_width" : 22,
+        "max_height" : 20
+      },
+      "hubspot_icon" : {
+        "name" : "StayLinked",
+        "unicode" : "f3f5",
+        "type" : "REGULAR"
+      }
+    }, {
+      "svg_code" : " <svg class=\"dumbbell-icon\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 5V19H4V5H6M19 5H21V19H19V5M14 11H9V13H14V11M8 6H6V18H8V6M19 6H17V18H19V6M9 6H16V8H9V6M9 16H16V18H9V16Z\" /></svg>",
+      "richtext_field" : "<p>Flexible Membership Options</p>",
+      "icon_type" : "svg_code",
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Checked-1.png",
+        "alt" : "Checked-1",
+        "loading" : "lazy",
+        "width" : 22,
+        "height" : 20,
+        "max_width" : 22,
+        "max_height" : 20
+      },
+      "hubspot_icon" : {
+        "name" : "StayLinked",
+        "unicode" : "f3f5",
+        "type" : "REGULAR"
+      }
+    }, {
+      "svg_code" : " <svg class=\"dumbbell-icon\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 5V19H4V5H6M19 5H21V19H19V5M14 11H9V13H14V11M8 6H6V18H8V6M19 6H17V18H19V6M9 6H16V8H9V6M9 16H16V18H9V16Z\" /></svg>",
+      "richtext_field" : "<p>Flexible Membership Options</p>",
+      "icon_type" : "svg_code",
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Checked-1.png",
+        "alt" : "Checked-1",
+        "loading" : "lazy",
+        "width" : 22,
+        "height" : 20,
+        "max_width" : 22,
+        "max_height" : 20
+      },
+      "hubspot_icon" : {
+        "name" : "StayLinked",
+        "unicode" : "f3f5",
+        "type" : "REGULAR"
+      }
+    }, {
+      "svg_code" : " <svg class=\"dumbbell-icon\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 5V19H4V5H6M19 5H21V19H19V5M14 11H9V13H14V11M8 6H6V18H8V6M19 6H17V18H19V6M9 6H16V8H9V6M9 16H16V18H9V16Z\" /></svg>",
+      "richtext_field" : "<p>Flexible Membership Options</p>",
+      "icon_type" : "svg_code",
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Checked-1.png",
+        "alt" : "Checked-1",
+        "loading" : "lazy",
+        "width" : 22,
+        "height" : 20,
+        "max_width" : 22,
+        "max_height" : 20
+      },
+      "hubspot_icon" : {
+        "name" : "StayLinked",
+        "unicode" : "f3f5",
+        "type" : "REGULAR"
+      }
+    } ]
+  }
+} ]

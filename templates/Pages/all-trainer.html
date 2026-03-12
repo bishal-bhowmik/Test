@@ -1,0 +1,1245 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: All Trainers
+screenshotPath: ../../Images/Page-template/all-trainers.jpg
+-->
+
+{# --- Connect to base.html #}
+{% extends "../layouts/base.html" %}
+
+{# --- Body element #}
+{% block body %}
+
+{# --- Area to add Drag & Drop modules #}
+{% dnd_area "body-area" label="Body", class="body-area" %}
+
+{# Team Hero Banner #}
+{% dnd_section %}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../../modules/Team-Hero-Banner",
+        offset=0,
+        width=12,
+        layout_alignment={
+          "section_max_width" : 1280
+        },
+        media_section={
+          "feature_image" : {
+            "alt" : "Top Image",
+            "height" : 600,
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Top%20Image.webp",
+            "width" : 800
+          },
+          "left_image" : {
+            "alt" : "792c8d0ca75d06f054e6dcacebabaf19a5ffb2aa",
+            "height" : 667,
+            "loading" : "disabled",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/792c8d0ca75d06f054e6dcacebabaf19a5ffb2aa.webp",
+            "width" : 1000
+          },
+          "right_image" : {
+            "alt" : "53c67e596175453fd60d46c8dd105f22da4d7963",
+            "height" : 1000,
+            "loading" : "disabled",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/53c67e596175453fd60d46c8dd105f22da4d7963.webp",
+            "width" : 800
+          }
+        },
+        style={
+          "animation" : {
+            "enable_body_text_animation" : true,
+            "enable_heading_animation" : true,
+            "enable_section_animation" : true
+          }
+        },
+        trainers_section={
+          "trainers_avartar" : {
+            "avartar_item" : [ {
+              "trainer_image" : {
+                "alt" : "a1",
+                "height" : 1000,
+                "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/a1.webp",
+                "width" : 1000
+              }
+            }, {
+              "trainer_image" : {
+                "alt" : "a3",
+                "height" : 1000,
+                "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/a3.webp",
+                "width" : 1000
+              }
+            }, {
+              "trainer_image" : {
+                "alt" : "a2",
+                "height" : 1000,
+                "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/a2.webp",
+                "width" : 1000
+              }
+            }, {
+              "trainer_image" : {
+                "alt" : "a4",
+                "height" : 1000,
+                "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/a4.webp",
+                "width" : 1000
+              }
+            }, {
+              "trainer_image" : {
+                "alt" : "a5",
+                "height" : 1000,
+                "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/a5.webp",
+                "width" : 1000
+              }
+            } ]
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+{# Team Hero Banner End #}
+
+
+{# Meet The Coaches #}
+{% dnd_section %}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../../modules/Meet The Coaches",
+        offset=0,
+        width=12,
+        coaches=[ {
+          "coach_category" : "<p>Strength</p>",
+          "coaches_list" : [ {
+            "button_repeater" : [ {
+              "button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "button_icon_image" : {
+                "alt" : "Arrow right icon",
+                "height" : 24,
+                "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+                "width" : 24
+              },
+              "button_icon_type" : "custom",
+              "button_text" : "Get Started",
+              "button_type" : "primary",
+              "custom_bg_color" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              },
+              "custom_icon" : {
+                "name" : "Facebook F",
+                "type" : "REGULAR",
+                "unicode" : "f39e"
+              },
+              "custom_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "hide_show_border_settings" : false,
+              "hide_show_color_settings" : true,
+              "hide_show_font_settings" : false,
+              "hide_show_hover_settings" : true,
+              "hide_show_padding_settings" : true,
+              "hover_bg_color" : {
+                "color" : "#DAFC00",
+                "opacity" : 100
+              },
+              "hover_border_color" : { },
+              "hover_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "keep_only_icon" : true,
+              "link" : {
+                "url" : {
+                  "href" : "https://www.facebook.com/hubxpert/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "override_styles" : true,
+              "padding_horizontal" : 12,
+              "padding_vertical" : 12,
+              "svg_icon" : '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">  <path d="M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z" fill="#101000"/></svg>',
+              "turn_on_button_icon" : true
+            }, {
+              "button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "button_icon_image" : {
+                "alt" : "Arrow right icon",
+                "height" : 24,
+                "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+                "width" : 24
+              },
+              "button_icon_type" : "custom",
+              "button_text" : "Get Started",
+              "button_type" : "primary",
+              "custom_bg_color" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              },
+              "custom_icon" : {
+                "name" : "Instagram",
+                "type" : "REGULAR",
+                "unicode" : "f16d"
+              },
+              "custom_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "hide_show_border_settings" : false,
+              "hide_show_color_settings" : true,
+              "hide_show_font_settings" : false,
+              "hide_show_hover_settings" : true,
+              "hide_show_padding_settings" : true,
+              "hover_bg_color" : {
+                "color" : "#DAFC00",
+                "opacity" : 100
+              },
+              "hover_border_color" : { },
+              "hover_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "keep_only_icon" : true,
+              "link" : {
+                "url" : {
+                  "href" : "https://www.facebook.com/hubxpert/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "override_styles" : true,
+              "padding_horizontal" : 12,
+              "padding_vertical" : 12,
+              "svg_icon" : '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">  <path d="M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z" fill="#101000"/></svg>',
+              "turn_on_button_icon" : true
+            }, {
+              "button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "button_icon_image" : {
+                "alt" : "Arrow right icon",
+                "height" : 24,
+                "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+                "width" : 24
+              },
+              "button_icon_type" : "custom",
+              "button_text" : "Get Started",
+              "button_type" : "primary",
+              "custom_bg_color" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              },
+              "custom_icon" : {
+                "name" : "Instagram",
+                "type" : "REGULAR",
+                "unicode" : "f16d"
+              },
+              "custom_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "hide_show_border_settings" : false,
+              "hide_show_color_settings" : true,
+              "hide_show_font_settings" : false,
+              "hide_show_hover_settings" : true,
+              "hide_show_padding_settings" : true,
+              "hover_bg_color" : {
+                "color" : "#DAFC00",
+                "opacity" : 100
+              },
+              "hover_border_color" : { },
+              "hover_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "keep_only_icon" : true,
+              "link" : {
+                "url" : {
+                  "href" : "https://www.facebook.com/hubxpert/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "override_styles" : true,
+              "padding_horizontal" : 12,
+              "padding_vertical" : 12,
+              "svg_icon" : '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">  <path d="M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z" fill="#101000"/></svg>',
+              "turn_on_button_icon" : true
+            }, {
+              "button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "button_icon_image" : {
+                "alt" : "Arrow right icon",
+                "height" : 24,
+                "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+                "width" : 24
+              },
+              "button_icon_type" : "svg",
+              "button_text" : "Get Started",
+              "button_type" : "primary",
+              "custom_bg_color" : { },
+              "custom_icon" : {
+                "name" : "Alternate Long Arrow Right",
+                "type" : "SOLID",
+                "unicode" : "f30b"
+              },
+              "custom_text_color" : { },
+              "hide_show_border_settings" : false,
+              "hide_show_color_settings" : false,
+              "hide_show_font_settings" : false,
+              "hide_show_hover_settings" : false,
+              "hide_show_padding_settings" : true,
+              "hover_bg_color" : { },
+              "hover_border_color" : { },
+              "hover_text_color" : { },
+              "keep_only_icon" : true,
+              "link" : {
+                "url" : {
+                  "content_id" : 369033467102,
+                  "type" : "CONTENT"
+                }
+              },
+              "override_styles" : true,
+              "padding_horizontal" : 12,
+              "padding_vertical" : 12,
+              "svg_icon" : '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">  <path d="M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z" fill="#101000"/></svg>',
+              "turn_on_button_icon" : true
+            } ],
+            "coach_designation" : "<p>Powerlifting Specialist&nbsp;</p>",
+            "coach_image" : {
+              "alt" : "11",
+              "height" : 400,
+              "max_height" : 400,
+              "max_width" : 290,
+              "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/11.png",
+              "width" : 290
+            },
+            "coach_name" : "<h6>Emerson Lubin</h6>"
+          }, {
+            "button_repeater" : [ {
+              "button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "button_icon_image" : {
+                "alt" : "Arrow right icon",
+                "height" : 24,
+                "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+                "width" : 24
+              },
+              "button_icon_type" : "custom",
+              "button_text" : "Get Started",
+              "button_type" : "primary",
+              "custom_bg_color" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              },
+              "custom_icon" : {
+                "name" : "Facebook F",
+                "type" : "REGULAR",
+                "unicode" : "f39e"
+              },
+              "custom_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "hide_show_border_settings" : false,
+              "hide_show_color_settings" : true,
+              "hide_show_font_settings" : false,
+              "hide_show_hover_settings" : true,
+              "hide_show_padding_settings" : true,
+              "hover_bg_color" : {
+                "color" : "#DAFC00",
+                "opacity" : 100
+              },
+              "hover_border_color" : { },
+              "hover_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "keep_only_icon" : true,
+              "link" : {
+                "url" : {
+                  "href" : "https://www.facebook.com/hubxpert/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "override_styles" : true,
+              "padding_horizontal" : 12,
+              "padding_vertical" : 12,
+              "svg_icon" : '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">  <path d="M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z" fill="#101000"/></svg>',
+              "turn_on_button_icon" : true
+            }, {
+              "button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "button_icon_image" : {
+                "alt" : "Arrow right icon",
+                "height" : 24,
+                "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+                "width" : 24
+              },
+              "button_icon_type" : "custom",
+              "button_text" : "Get Started",
+              "button_type" : "primary",
+              "custom_bg_color" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              },
+              "custom_icon" : {
+                "name" : "Instagram",
+                "type" : "REGULAR",
+                "unicode" : "f16d"
+              },
+              "custom_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "hide_show_border_settings" : false,
+              "hide_show_color_settings" : true,
+              "hide_show_font_settings" : false,
+              "hide_show_hover_settings" : true,
+              "hide_show_padding_settings" : true,
+              "hover_bg_color" : {
+                "color" : "#DAFC00",
+                "opacity" : 100
+              },
+              "hover_border_color" : { },
+              "hover_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "keep_only_icon" : true,
+              "link" : {
+                "url" : {
+                  "href" : "https://www.facebook.com/hubxpert/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "override_styles" : true,
+              "padding_horizontal" : 12,
+              "padding_vertical" : 12,
+              "svg_icon" : '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">  <path d="M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z" fill="#101000"/></svg>',
+              "turn_on_button_icon" : true
+            }, {
+              "button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "button_icon_image" : {
+                "alt" : "Arrow right icon",
+                "height" : 24,
+                "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+                "width" : 24
+              },
+              "button_icon_type" : "svg",
+              "button_text" : "Get Started",
+              "button_type" : "primary",
+              "custom_bg_color" : { },
+              "custom_icon" : {
+                "name" : "Alternate Long Arrow Right",
+                "type" : "SOLID",
+                "unicode" : "f30b"
+              },
+              "custom_text_color" : { },
+              "hide_show_border_settings" : false,
+              "hide_show_color_settings" : false,
+              "hide_show_font_settings" : false,
+              "hide_show_hover_settings" : false,
+              "hide_show_padding_settings" : true,
+              "hover_bg_color" : { },
+              "hover_border_color" : { },
+              "hover_text_color" : { },
+              "keep_only_icon" : true,
+              "link" : {
+                "url" : {
+                  "content_id" : 369033467102,
+                  "type" : "CONTENT"
+                }
+              },
+              "override_styles" : true,
+              "padding_horizontal" : 12,
+              "padding_vertical" : 12,
+              "svg_icon" : '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">  <path d="M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z" fill="#101000"/></svg>',
+              "turn_on_button_icon" : true
+            } ],
+            "coach_designation" : "<p>Bodybuilding Coach </p>",
+            "coach_image" : {
+              "alt" : "1-Feb-21-2026-07-10-07-7352-AM",
+              "height" : 400,
+              "max_height" : 400,
+              "max_width" : 290,
+              "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/1-Feb-21-2026-07-10-07-7352-AM.webp",
+              "width" : 290
+            },
+            "coach_name" : "<h6>Chance Levin&nbsp;</h6>"
+          }, {
+            "button_repeater" : [ {
+              "button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "button_icon_image" : {
+                "alt" : "Arrow right icon",
+                "height" : 24,
+                "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+                "width" : 24
+              },
+              "button_icon_type" : "custom",
+              "button_text" : "Get Started",
+              "button_type" : "primary",
+              "custom_bg_color" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              },
+              "custom_icon" : {
+                "name" : "Facebook F",
+                "type" : "REGULAR",
+                "unicode" : "f39e"
+              },
+              "custom_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "hide_show_border_settings" : false,
+              "hide_show_color_settings" : true,
+              "hide_show_font_settings" : false,
+              "hide_show_hover_settings" : true,
+              "hide_show_padding_settings" : true,
+              "hover_bg_color" : {
+                "color" : "#DAFC00",
+                "opacity" : 100
+              },
+              "hover_border_color" : { },
+              "hover_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "keep_only_icon" : true,
+              "link" : {
+                "open_in_new_tab" : true,
+                "url" : {
+                  "href" : "https://www.facebook.com/hubxpert/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "override_styles" : true,
+              "padding_horizontal" : 12,
+              "padding_vertical" : 12,
+              "svg_icon" : '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">  <path d="M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z" fill="#101000"/></svg>',
+              "turn_on_button_icon" : true
+            }, {
+              "button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "button_icon_image" : {
+                "alt" : "Arrow right icon",
+                "height" : 24,
+                "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+                "width" : 24
+              },
+              "button_icon_type" : "custom",
+              "button_text" : "Get Started",
+              "button_type" : "primary",
+              "custom_bg_color" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              },
+              "custom_icon" : {
+                "name" : "Instagram",
+                "type" : "REGULAR",
+                "unicode" : "f16d"
+              },
+              "custom_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "hide_show_border_settings" : false,
+              "hide_show_color_settings" : true,
+              "hide_show_font_settings" : false,
+              "hide_show_hover_settings" : true,
+              "hide_show_padding_settings" : true,
+              "hover_bg_color" : {
+                "color" : "#DAFC00",
+                "opacity" : 100
+              },
+              "hover_border_color" : { },
+              "hover_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "keep_only_icon" : true,
+              "link" : {
+                "open_in_new_tab" : true,
+                "url" : {
+                  "href" : "https://www.facebook.com/hubxpert/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "override_styles" : true,
+              "padding_horizontal" : 12,
+              "padding_vertical" : 12,
+              "svg_icon" : '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">  <path d="M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z" fill="#101000"/></svg>',
+              "turn_on_button_icon" : true
+            }, {
+              "button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "button_icon_image" : {
+                "alt" : "Arrow right icon",
+                "height" : 24,
+                "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+                "width" : 24
+              },
+              "button_icon_type" : "svg",
+              "button_text" : "Get Started",
+              "button_type" : "primary",
+              "custom_bg_color" : { },
+              "custom_icon" : {
+                "name" : "Alternate Long Arrow Right",
+                "type" : "SOLID",
+                "unicode" : "f30b"
+              },
+              "custom_text_color" : { },
+              "hide_show_border_settings" : false,
+              "hide_show_color_settings" : false,
+              "hide_show_font_settings" : false,
+              "hide_show_hover_settings" : false,
+              "hide_show_padding_settings" : true,
+              "hover_bg_color" : { },
+              "hover_border_color" : { },
+              "hover_text_color" : { },
+              "keep_only_icon" : true,
+              "link" : {
+                "url" : {
+                  "content_id" : 369033467102,
+                  "type" : "CONTENT"
+                }
+              },
+              "override_styles" : true,
+              "padding_horizontal" : 12,
+              "padding_vertical" : 12,
+              "svg_icon" : '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">  <path d="M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z" fill="#101000"/></svg>',
+              "turn_on_button_icon" : true
+            } ],
+            "coach_designation" : "<p>CrossFit &amp; Power</p>",
+            "coach_image" : {
+              "alt" : "12",
+              "height" : 1500,
+              "max_height" : 1500,
+              "max_width" : 1000,
+              "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/12.jpg",
+              "width" : 1000
+            },
+            "coach_name" : "<h6>Wilson Stanton</h6>"
+          } ]
+        }, {
+          "coach_category" : "<p>Performance</p>",
+          "coaches_list" : [ {
+            "button_repeater" : [ {
+              "button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "button_icon_image" : {
+                "alt" : "Arrow right icon",
+                "height" : 24,
+                "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+                "width" : 24
+              },
+              "button_icon_type" : "custom",
+              "button_text" : "Get Started",
+              "button_type" : "primary",
+              "custom_bg_color" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              },
+              "custom_icon" : {
+                "name" : "Facebook F",
+                "type" : "REGULAR",
+                "unicode" : "f39e"
+              },
+              "custom_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "hide_show_border_settings" : false,
+              "hide_show_color_settings" : true,
+              "hide_show_font_settings" : false,
+              "hide_show_hover_settings" : true,
+              "hide_show_padding_settings" : true,
+              "hover_bg_color" : {
+                "color" : "#DAFC00",
+                "opacity" : 100
+              },
+              "hover_border_color" : { },
+              "hover_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "keep_only_icon" : true,
+              "link" : {
+                "url" : {
+                  "href" : "https://www.facebook.com/hubxpert/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "override_styles" : true,
+              "padding_horizontal" : 12,
+              "padding_vertical" : 12,
+              "svg_icon" : '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">  <path d="M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z" fill="#101000"/></svg>',
+              "turn_on_button_icon" : true
+            }, {
+              "button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "button_icon_image" : {
+                "alt" : "Arrow right icon",
+                "height" : 24,
+                "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+                "width" : 24
+              },
+              "button_icon_type" : "custom",
+              "button_text" : "Get Started",
+              "button_type" : "primary",
+              "custom_bg_color" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              },
+              "custom_icon" : {
+                "name" : "Instagram",
+                "type" : "REGULAR",
+                "unicode" : "f16d"
+              },
+              "custom_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "hide_show_border_settings" : false,
+              "hide_show_color_settings" : true,
+              "hide_show_font_settings" : false,
+              "hide_show_hover_settings" : true,
+              "hide_show_padding_settings" : true,
+              "hover_bg_color" : {
+                "color" : "#DAFC00",
+                "opacity" : 100
+              },
+              "hover_border_color" : { },
+              "hover_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "keep_only_icon" : true,
+              "link" : {
+                "url" : {
+                  "href" : "https://www.facebook.com/hubxpert/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "override_styles" : true,
+              "padding_horizontal" : 12,
+              "padding_vertical" : 12,
+              "svg_icon" : '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">  <path d="M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z" fill="#101000"/></svg>',
+              "turn_on_button_icon" : true
+            }, {
+              "button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "button_icon_image" : {
+                "alt" : "Arrow right icon",
+                "height" : 24,
+                "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+                "width" : 24
+              },
+              "button_icon_type" : "svg",
+              "button_text" : "Get Started",
+              "button_type" : "primary",
+              "custom_bg_color" : { },
+              "custom_icon" : {
+                "name" : "Alternate Long Arrow Right",
+                "type" : "SOLID",
+                "unicode" : "f30b"
+              },
+              "custom_text_color" : { },
+              "hide_show_border_settings" : false,
+              "hide_show_color_settings" : false,
+              "hide_show_font_settings" : false,
+              "hide_show_hover_settings" : false,
+              "hide_show_padding_settings" : true,
+              "hover_bg_color" : { },
+              "hover_border_color" : { },
+              "hover_text_color" : { },
+              "keep_only_icon" : true,
+              "link" : {
+                "url" : {
+                  "content_id" : 369033467102,
+                  "type" : "CONTENT"
+                }
+              },
+              "override_styles" : true,
+              "padding_horizontal" : 12,
+              "padding_vertical" : 12,
+              "svg_icon" : '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">  <path d="M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z" fill="#101000"/></svg>',
+              "turn_on_button_icon" : true
+            } ],
+            "coach_designation" : "<p>Advanced Hypertrophy</p>",
+            "coach_image" : {
+              "alt" : "2e19ae8745db1f8e3954538a52c02cb837415926",
+              "height" : 600,
+              "max_height" : 600,
+              "max_width" : 435,
+              "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/2e19ae8745db1f8e3954538a52c02cb837415926.webp",
+              "width" : 435
+            },
+            "coach_name" : "<h6>Alfredo Botosh</h6>"
+          }, {
+            "button_repeater" : [ {
+              "button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "button_icon_image" : {
+                "alt" : "Arrow right icon",
+                "height" : 24,
+                "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+                "width" : 24
+              },
+              "button_icon_type" : "custom",
+              "button_text" : "Get Started",
+              "button_type" : "primary",
+              "custom_bg_color" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              },
+              "custom_icon" : {
+                "name" : "Facebook F",
+                "type" : "REGULAR",
+                "unicode" : "f39e"
+              },
+              "custom_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "hide_show_border_settings" : false,
+              "hide_show_color_settings" : true,
+              "hide_show_font_settings" : false,
+              "hide_show_hover_settings" : true,
+              "hide_show_padding_settings" : true,
+              "hover_bg_color" : {
+                "color" : "#DAFC00",
+                "opacity" : 100
+              },
+              "hover_border_color" : { },
+              "hover_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "keep_only_icon" : true,
+              "link" : {
+                "open_in_new_tab" : true,
+                "url" : {
+                  "href" : "https://www.facebook.com/hubxpert/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "override_styles" : true,
+              "padding_horizontal" : 12,
+              "padding_vertical" : 12,
+              "svg_icon" : '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">  <path d="M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z" fill="#101000"/></svg>',
+              "turn_on_button_icon" : true
+            }, {
+              "button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "button_icon_image" : {
+                "alt" : "Arrow right icon",
+                "height" : 24,
+                "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+                "width" : 24
+              },
+              "button_icon_type" : "custom",
+              "button_text" : "Get Started",
+              "button_type" : "primary",
+              "custom_bg_color" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              },
+              "custom_icon" : {
+                "name" : "Instagram",
+                "type" : "REGULAR",
+                "unicode" : "f16d"
+              },
+              "custom_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "hide_show_border_settings" : false,
+              "hide_show_color_settings" : true,
+              "hide_show_font_settings" : false,
+              "hide_show_hover_settings" : true,
+              "hide_show_padding_settings" : true,
+              "hover_bg_color" : {
+                "color" : "#DAFC00",
+                "opacity" : 100
+              },
+              "hover_border_color" : { },
+              "hover_text_color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              },
+              "keep_only_icon" : true,
+              "link" : {
+                "open_in_new_tab" : true,
+                "url" : {
+                  "href" : "https://www.facebook.com/hubxpert/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "override_styles" : true,
+              "padding_horizontal" : 12,
+              "padding_vertical" : 12,
+              "svg_icon" : '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">  <path d="M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z" fill="#101000"/></svg>',
+              "turn_on_button_icon" : true
+            }, {
+              "button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "button_icon_image" : {
+                "alt" : "Arrow right icon",
+                "height" : 24,
+                "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+                "width" : 24
+              },
+              "button_icon_type" : "svg",
+              "button_text" : "Get Started",
+              "button_type" : "primary",
+              "custom_bg_color" : { },
+              "custom_icon" : {
+                "name" : "Alternate Long Arrow Right",
+                "type" : "SOLID",
+                "unicode" : "f30b"
+              },
+              "custom_text_color" : { },
+              "hide_show_border_settings" : false,
+              "hide_show_color_settings" : false,
+              "hide_show_font_settings" : false,
+              "hide_show_hover_settings" : false,
+              "hide_show_padding_settings" : true,
+              "hover_bg_color" : { },
+              "hover_border_color" : { },
+              "hover_text_color" : { },
+              "keep_only_icon" : true,
+              "link" : {
+                "url" : {
+                  "content_id" : 369033467102,
+                  "type" : "CONTENT"
+                }
+              },
+              "override_styles" : true,
+              "padding_horizontal" : 12,
+              "padding_vertical" : 12,
+              "svg_icon" : '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">  <path d="M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z" fill="#101000"/></svg>',
+              "turn_on_button_icon" : true
+            } ],
+            "coach_designation" : "<p>Yoga &amp; Mobility Guide</p>",
+            "coach_image" : {
+              "alt" : "3-1",
+              "height" : 404,
+              "max_height" : 404,
+              "max_width" : 720,
+              "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/3-1.png",
+              "width" : 720
+            },
+            "coach_name" : "<h6>Makenna Westervelt&nbsp;</h6>"
+          } ]
+        } ],
+        style={
+          "animation" : {
+            "enable_body_text_animation" : true,
+            "enable_heading_animation" : true,
+            "enable_section_animation" : true
+          },
+          "background" : {
+            "background_color" : {
+              "color" : "#F6F6F2",
+              "opacity" : 100
+            }
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+{# Meet The Coaches End #}
+
+
+{# Transformation Slider #}
+{% dnd_section %}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../../modules/Transformation Slider",
+        offset=0,
+        width=12,
+        style={
+          "animation" : {
+            "enable_body_text_animation" : true,
+            "enable_heading_animation" : true,
+            "enable_section_animation" : true
+          },
+          "background" : {
+            "background_type" : "solid_color",
+            "enable" : false,
+            "solid_color" : {
+              "color" : "#FF0201",
+              "opacity" : 10
+            }
+          }
+        },
+        testimonial_items=[ {
+          "after_image" : {
+            "alt" : "After",
+            "height" : 410,
+            "loading" : "lazy",
+            "max_height" : 410,
+            "max_width" : 400,
+            "size_type" : "auto",
+            "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/After.png",
+            "width" : 400
+          },
+          "after_text" : '<h6 class="text-tertiary">After</h6>',
+          "before_image" : {
+            "alt" : "Before",
+            "height" : 410,
+            "loading" : "disabled",
+            "max_height" : 410,
+            "max_width" : 290,
+            "size_type" : "auto",
+            "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/Before.png",
+            "width" : 290
+          },
+          "before_text" : '<h6 class="text-tertiary">Before</h6>',
+          "client_stats" : {
+            "age" : '<p class="text-tertiary">Age: 42</p>',
+            "client_name" : '<h5 class="text-tertiary">THIERY HENRY</h5>',
+            "first_column_title" : '<h6 class="text-tertiary">12 WEEKS</h6>',
+            "icon_type" : "svg",
+            "override_icon_styles" : false,
+            "second_column_title" : '<h6 class="text-tertiary">BEFORE</h6>',
+            "svg_icon" : '<svg xmlns="http://www.w3.org/2000/svg" width="52" height="39" viewBox="0 0 52 39" fill="none"> <g clip-path="url(#clip0_9592_4040)"> <path d="M30.0625 24.388C29.8386 24.2363 29.611 24.09 29.38 23.9492L34.0893 21.3557L32.5975 16.8155L32.5585 16.6952V16.5685L32.5098 14.5047L19.8282 21.489H19.812L0 32.4285L3.25975 38.35L21.476 28.2912C22.9794 28.4138 24.4356 28.8747 25.7357 29.6396C27.0358 30.4044 28.1461 31.4534 28.9835 32.708C30.1006 34.3688 30.6959 36.3256 30.693 38.3272H37.4432C37.4462 35.577 36.7749 32.868 35.4882 30.4373C34.2015 28.0067 32.3386 25.9285 30.0625 24.3847V24.388ZM51.6132 12.61C51.1011 11.3308 50.1263 10.2912 48.8828 9.69783C47.6392 9.10446 46.2178 9.00079 44.9013 9.40742C43.5848 9.81404 42.4695 10.7012 41.7771 11.8925C41.0848 13.0838 40.8661 14.492 41.1645 15.8372L41.4895 16.8285C42.0566 18.1315 43.1078 19.1633 44.4212 19.706C45.7346 20.2487 47.2075 20.2599 48.529 19.7372C49.883 19.2008 50.9686 18.1488 51.5475 16.8125C52.1264 15.4761 52.1512 13.9646 51.6165 12.61H51.6132Z" fill="#DAFC00"/> <path d="M39.803 0.650024L33.0527 0.799524L33.4005 16.549L40.5407 38.3175L46.9562 36.205L40.1312 15.3953L39.8062 0.650024H39.803Z" fill="#DAFC00"/> </g> <defs> <clipPath id="clip0_9592_4040"> <rect width="52" height="39" fill="white"/> </clipPath> </defs> </svg>',
+            "table_icon_color" : { },
+            "table_icon_size" : 32,
+            "table_values" : [ {
+              "first_column_value" : '<p class="text-tertiary">Weight</p>',
+              "second_column_value" : '<p class="text-tertiary">99kg</p>',
+              "third_column_value" : '<p class="text-tertiary" style="color:#DAFC00">79kg</p>'
+            }, {
+              "first_column_value" : '<p class="text-tertiary">Body Fat</p>',
+              "second_column_value" : '<p class="text-tertiary">33%</p>',
+              "third_column_value" : '<p class="text-tertiary" style="color:#DAFC00">22%</p>'
+            }, {
+              "first_column_value" : '<p class="text-tertiary">Body Fat</p>',
+              "second_column_value" : '<p class="text-tertiary">33%</p>',
+              "third_column_value" : '<p class="text-tertiary" style="color:#DAFC00">22%</p>'
+            } ],
+            "third_column_title" : '<h6 class="text-tertiary">AFTER</h6>'
+          }
+        }, {
+          "after_image" : {
+            "alt" : "1-b (1)",
+            "height" : 1600,
+            "loading" : "lazy",
+            "max_height" : 1600,
+            "max_width" : 1067,
+            "size_type" : "auto",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/1-b%20(1).jpg",
+            "width" : 1067
+          },
+          "after_text" : '<h6 class="text-tertiary">After</h6>',
+          "before_image" : {
+            "alt" : "2-b",
+            "height" : 1600,
+            "loading" : "disabled",
+            "max_height" : 1600,
+            "max_width" : 1120,
+            "size_type" : "auto",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/2-b.jpg",
+            "width" : 1120
+          },
+          "before_text" : '<h6 class="text-tertiary">Before</h6>',
+          "client_stats" : {
+            "age" : '<p class="text-tertiary">Age: 39</p>',
+            "client_name" : '<h5 class="text-tertiary">&nbsp;<span>Brandon Dias</span></h5>',
+            "first_column_title" : '<h6 class="text-tertiary">10&nbsp;WEEKS</h6>',
+            "icon_type" : "svg",
+            "override_icon_styles" : false,
+            "second_column_title" : '<h6 class="text-tertiary">BEFORE</h6>',
+            "svg_icon" : '<svg xmlns="http://www.w3.org/2000/svg" width="52" height="39" viewBox="0 0 52 39" fill="none"> <g clip-path="url(#clip0_9592_4040)"> <path d="M30.0625 24.388C29.8386 24.2363 29.611 24.09 29.38 23.9492L34.0893 21.3557L32.5975 16.8155L32.5585 16.6952V16.5685L32.5098 14.5047L19.8282 21.489H19.812L0 32.4285L3.25975 38.35L21.476 28.2912C22.9794 28.4138 24.4356 28.8747 25.7357 29.6396C27.0358 30.4044 28.1461 31.4534 28.9835 32.708C30.1006 34.3688 30.6959 36.3256 30.693 38.3272H37.4432C37.4462 35.577 36.7749 32.868 35.4882 30.4373C34.2015 28.0067 32.3386 25.9285 30.0625 24.3847V24.388ZM51.6132 12.61C51.1011 11.3308 50.1263 10.2912 48.8828 9.69783C47.6392 9.10446 46.2178 9.00079 44.9013 9.40742C43.5848 9.81404 42.4695 10.7012 41.7771 11.8925C41.0848 13.0838 40.8661 14.492 41.1645 15.8372L41.4895 16.8285C42.0566 18.1315 43.1078 19.1633 44.4212 19.706C45.7346 20.2487 47.2075 20.2599 48.529 19.7372C49.883 19.2008 50.9686 18.1488 51.5475 16.8125C52.1264 15.4761 52.1512 13.9646 51.6165 12.61H51.6132Z" fill="#DAFC00"/> <path d="M39.803 0.650024L33.0527 0.799524L33.4005 16.549L40.5407 38.3175L46.9562 36.205L40.1312 15.3953L39.8062 0.650024H39.803Z" fill="#DAFC00"/> </g> <defs> <clipPath id="clip0_9592_4040"> <rect width="52" height="39" fill="white"/> </clipPath> </defs> </svg>',
+            "table_icon_color" : { },
+            "table_icon_size" : 32,
+            "table_values" : [ {
+              "first_column_value" : '<p class="text-tertiary">Weight</p>',
+              "second_column_value" : '<p class="text-tertiary">109kg</p>',
+              "third_column_value" : '<p class="text-tertiary style=">89kg</p>'
+            }, {
+              "first_column_value" : '<p class="text-tertiary">Body Fat</p>',
+              "second_column_value" : '<p class="text-tertiary">32%</p>',
+              "third_column_value" : '<p class="text-tertiary" style="color:#DAFC00">22%</p>'
+            } ],
+            "third_column_title" : '<h6 class="text-tertiary">AFTER</h6>'
+          }
+        }, {
+          "after_image" : {
+            "alt" : "32",
+            "height" : 1000,
+            "loading" : "lazy",
+            "max_height" : 1000,
+            "max_width" : 1500,
+            "size_type" : "auto",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/32.jpg",
+            "width" : 1500
+          },
+          "after_text" : '<h6 class="text-tertiary">After</h6>',
+          "before_image" : {
+            "alt" : "31",
+            "height" : 1600,
+            "loading" : "disabled",
+            "max_height" : 1600,
+            "max_width" : 1068,
+            "size_type" : "auto",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/31.jpg",
+            "width" : 1068
+          },
+          "before_text" : '<h6 class="text-tertiary">Before</h6>',
+          "client_stats" : {
+            "age" : '<p class="text-tertiary">Age: 42</p>',
+            "client_name" : '<h5 class="text-tertiary">THIERY HENRY</h5>',
+            "first_column_title" : '<h6 class="text-tertiary">12 WEEKS</h6>',
+            "icon_type" : "svg",
+            "image_icon" : {
+              "alt" : "Dumbbell Icon",
+              "height" : 39,
+              "loading" : "lazy",
+              "max_height" : 39,
+              "max_width" : 52,
+              "size_type" : "auto",
+              "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/dumbbell.png",
+              "width" : 52
+            },
+            "override_icon_styles" : false,
+            "second_column_title" : '<h6 class="text-tertiary">BEFORE</h6>',
+            "svg_icon" : '<svg xmlns="http://www.w3.org/2000/svg" width="52" height="39" viewBox="0 0 52 39" fill="none"> <g clip-path="url(#clip0_9592_4040)"> <path d="M30.0625 24.388C29.8386 24.2363 29.611 24.09 29.38 23.9492L34.0893 21.3557L32.5975 16.8155L32.5585 16.6952V16.5685L32.5098 14.5047L19.8282 21.489H19.812L0 32.4285L3.25975 38.35L21.476 28.2912C22.9794 28.4138 24.4356 28.8747 25.7357 29.6396C27.0358 30.4044 28.1461 31.4534 28.9835 32.708C30.1006 34.3688 30.6959 36.3256 30.693 38.3272H37.4432C37.4462 35.577 36.7749 32.868 35.4882 30.4373C34.2015 28.0067 32.3386 25.9285 30.0625 24.3847V24.388ZM51.6132 12.61C51.1011 11.3308 50.1263 10.2912 48.8828 9.69783C47.6392 9.10446 46.2178 9.00079 44.9013 9.40742C43.5848 9.81404 42.4695 10.7012 41.7771 11.8925C41.0848 13.0838 40.8661 14.492 41.1645 15.8372L41.4895 16.8285C42.0566 18.1315 43.1078 19.1633 44.4212 19.706C45.7346 20.2487 47.2075 20.2599 48.529 19.7372C49.883 19.2008 50.9686 18.1488 51.5475 16.8125C52.1264 15.4761 52.1512 13.9646 51.6165 12.61H51.6132Z" fill="#DAFC00"/> <path d="M39.803 0.650024L33.0527 0.799524L33.4005 16.549L40.5407 38.3175L46.9562 36.205L40.1312 15.3953L39.8062 0.650024H39.803Z" fill="#DAFC00"/> </g> <defs> <clipPath id="clip0_9592_4040"> <rect width="52" height="39" fill="white"/> </clipPath> </defs> </svg>',
+            "table_icon_color" : { },
+            "table_icon_size" : 32,
+            "table_values" : [ {
+              "first_column_value" : '<p class="text-tertiary">Weight</p>',
+              "second_column_value" : '<p class="text-tertiary">99kg</p>',
+              "third_column_value" : '<p class="text-tertiary" style="color:#DAFC00">79kg</p>'
+            }, {
+              "first_column_value" : '<p class="text-tertiary">Body Fat</p>',
+              "second_column_value" : '<p class="text-tertiary">33%</p>',
+              "third_column_value" : '<p class="text-tertiary" style="color:#DAFC00">22%</p>'
+            }, {
+              "first_column_value" : '<p class="text-tertiary">Body Fat</p>',
+              "second_column_value" : '<p class="text-tertiary">33%</p>',
+              "third_column_value" : '<p class="text-tertiary" style="color:#DAFC00">22%</p>'
+            } ],
+            "third_column_title" : '<h6 class="text-tertiary">AFTER</h6>'
+          }
+        } ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+{# Transformation Slider End #}
+
+
+{# Service Highlight #}
+{% dnd_section %}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../../modules/Service Highlight",
+        offset=0,
+        width=12,
+        button_repeater=[ {
+          "button_icon_type" : "svg",
+          "button_text" : "Start Online Training",
+          "button_type" : "secondary",
+          "custom_bg_color" : {
+            "color" : "#101000",
+            "opacity" : 10
+          },
+          "custom_border_radius" : 12,
+          "custom_icon" : {
+            "name" : "Alternate Long Arrow Right",
+            "type" : "SOLID",
+            "unicode" : "f30b"
+          },
+          "custom_text_color" : {
+            "color" : "#DAFC00",
+            "opacity" : 100
+          },
+          "hide_show_border_settings" : true,
+          "hide_show_color_settings" : true,
+          "hide_show_hover_settings" : true,
+          "hover_bg_color" : {
+            "color" : "#000000",
+            "opacity" : 0
+          },
+          "hover_border_color" : {
+            "color" : "#101000",
+            "opacity" : 100
+          },
+          "hover_border_width" : 1,
+          "hover_text_color" : {
+            "color" : "#DAFC00",
+            "opacity" : 100
+          },
+          "keep_only_icon" : false,
+          "link" : {
+            "open_in_new_tab" : true,
+            "url" : {
+              "href" : "https://www.hubxpert.com/",
+              "type" : "EXTERNAL"
+            }
+          },
+          "override_styles" : false,
+          "svg_icon" : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">  <path d="M13.4804 19.9083C13.4956 19.9235 13.9597 20.0399 14.5117 20.1668C15.0639 20.2937 15.5216 20.3781 15.5289 20.3545C15.5362 20.3309 15.5933 19.9477 15.6558 19.5029C15.7813 18.6098 16.0851 17.567 16.4097 16.9148C17.4217 14.8823 19.2372 13.5364 21.4393 13.1866L22 13.0975L22 12.1997L22 11.3017L21.4918 11.2164C18.162 10.6578 15.9912 8.16812 15.5851 4.44229C15.5586 4.199 15.5269 4 15.5147 4C15.4024 4 13.5416 4.44845 13.5064 4.48397C13.481 4.50966 13.4999 4.73774 13.5486 4.99073C14.087 7.79214 15.6287 10.0717 17.6294 11.0249L18.1094 11.2535L8.24046 11.2714L2 11.2828L2 13.1L8.25651 13.1113L18.1021 13.1293L17.4963 13.4363C15.9244 14.2326 14.68 15.7947 13.9472 17.8914C13.7383 18.4888 13.4232 19.8506 13.4804 19.9083Z" fill="#101000"/></svg>',
+          "turn_on_button_icon" : false
+        } ],
+        content={
+          "text" : '<h1><span>TRAIN</span><br>ANYWHERE, ANYTIME</h1><p>Our online coaching program ensures you never miss a workout. Whether at home, traveling, or busy with work, our flexible platform lets you train anytime, anywhere. Access customized workout plans, video tutorials, and progress tracking directly from your phone or laptop to stay on top of your goals.</p>'
+        },
+        style={
+          "animation" : {
+            "enable_body_text_animation" : true,
+            "enable_heading_animation" : true,
+            "enable_section_animation" : true
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+{# Service Highlight End #}
+
+
+{% end_dnd_area %}
+
+{% endblock body %}

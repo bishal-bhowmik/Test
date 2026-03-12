@@ -1,0 +1,166 @@
+{% import '../../macros/button-macros.html' as button_macros %}
+{% set anim = module.style.animation %}
+
+{# 1. DATA & LOGIC #}
+{# Simple Color Variable - No RGB Conversion #}
+{% set overlay_color = module.background.overlay_color.color if module.background.overlay_color.color else theme.brand_colors.primary.color %}
+
+{# Layout Toggle Logic #}
+{% set is_reversed = module.background.image_position == "right" %}
+
+{% require_css %}
+<style>
+  {% scope_css %}
+    /* MAIN CONTAINER */
+    .split-module {
+        /* Simple Hex Variable */
+        --overlay-color: {{ overlay_color }};
+        display: flex;
+        width: 100%;
+        min-height: 100vh;
+        background-color: var( --overlay-color);
+        {% if module.style.background.enable %}
+        {% if module.style.background.background_type == "solid_color" %}  
+        background-color:{{ module.style.background.solid_color.css }};  
+       {% elif module.style.background.background_type == "gradient" %}   
+      background: {{ module.style.background.gradient_field.css }};  
+        {% elif module.style.background.background_type == "image" %}   
+        background-image: url('{{ module.style.background.background_image.src|escape_url }}');
+        background-size: cover;
+        background-position: center; 
+            {% if module.style.background.background_image_position  == "center" %}
+        background-position: center;
+        {% elif module.style.background.background_image_position  == "top" %}
+        background-position: top;
+        {% elif module.style.background.background_image_position  == "bottom" %}
+        background-position: bottom;
+      {% endif %}
+        {% endif %}
+       {% endif %}
+        flex-direction: {% if is_reversed %}row-reverse{% else %}row{% endif %};
+    }
+
+    /* IMAGE SECTION */
+    .image-side {
+        flex: 1;
+        position: relative;
+        background-image: url('{{ module.background.image.src }}');
+        background-size: cover;
+        background-position: center center;
+    }
+.section-title h2 {
+text-transform:uppercase;
+}
+    /* GRADIENT OVERLAY */
+    .image-overlay {
+        position: absolute;
+        top: 0; 
+        left: 0;
+        width: 100%; 
+        height: 100%;
+        
+        /* DESKTOP GRADIENT: 
+           Uses 'transparent' keyword instead of RGBA.
+           Direction flips based on layout choice.
+        */
+        background: linear-gradient(
+            {% if is_reversed %}to left{% else %}to right{% endif %}, 
+            transparent 0%, 
+            transparent 50%, 
+            {{ module.background.overlay_color}} 100% 
+        );
+    }
+
+    /* TEXT SECTION */
+    .text-side {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding: 4rem;
+        
+        /* Overlap fix */
+        z-index: 2;
+        position: relative;
+    }
+
+    .content {
+        max-width: {{ module.layout_alignment.section_max_width }}px;
+        width: 100%;
+    }
+
+    /* --- MOBILE RESPONSIVENESS --- */
+    @media (max-width: 768px) {
+        .split-module {
+            /* Force Stack: Image Top, Text Bottom */
+            flex-direction: column !important;
+        }
+
+        .image-side {
+            flex:500px;
+            height: 65vh; 
+            width: 100%;
+            background-position: top center;
+        }
+
+        .image-overlay {
+            /* Mobile Gradient: Top to Bottom */
+            background: linear-gradient(
+                to bottom, 
+                transparent 0%, 
+                transparent 60%, 
+                var(--overlay-color) 100%
+            );
+        }
+
+        .text-side {
+            width: 100%;
+            padding: 3rem 2rem;
+            box-sizing: border-box;
+            text-align: center;
+            
+            /* Pull up to cover any seam */
+            margin-top: -1px; 
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
+    }
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+
+  
+  <div class="split-module  {% if anim.enable_section_animation %}reveal-card{% endif %}" id="{{name}} ">
+    
+    <div class="image-side">
+        <div class="image-overlay"></div>
+    </div>
+
+    <div class="text-side">
+        <div class="content">
+            <div class=" section-title rich-text-anim-wrapper"
+            {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+            {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}
+            >
+                {{ module.content.text }}
+            </div>
+            
+            {% if module.button_repeater %}
+            <div class="button-container mt-40">
+                {% for item in module.button_repeater %} 
+                    {{ button_macros.render_button(item, theme) }} 
+                {% endfor %} 
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+   
+
+
+
+

@@ -1,0 +1,245 @@
+<!--
+  templateType: membership_register_page
+  isAvailableForNewContent: true
+  label: Membership Registration
+  screenshotPath: ../../Images/System-templates/membership-registration.png
+-->
+
+
+{% extends "../layouts/base.html" %}
+
+{# pageTitle is used on system templates for setting a value for the title tag #}
+{% set pageTitle = " Membership | Registration" %}
+
+
+{% block body %}
+<body>
+
+<div class='reg section'>
+    <div class='reg container'>
+        
+        <div class='text-content'>
+             {% module "content"
+                path="@hubspot/rich_text",
+                html="<h1 class='text-h3'>Create Your Gym<br>Membership Account</h1>
+                <p>Join our community and start your fitness transformation.</p>"
+             %}
+        </div>
+
+        <div class='input-box login-card'> 
+            {% member_register "fitmax_registration"
+            email_label="Email*",
+            password_confirm_label="Confirm Password*",
+            password_label="Password*",
+            submit_button_text="Submit" %}
+        </div>  
+
+    </div>
+</div>
+
+</body>
+
+
+{# Custom styles for this module #}
+<style>
+
+/* --- 1. Main Layout Structure --- */
+.reg.section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reg.container {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2.5rem; 
+}
+
+.text-content {
+    flex: 1;
+}
+
+/* --- 2. The Gray Card (Right Side) --- */
+.input-box {
+    flex: 1;
+}
+
+.login-card {
+    background-color: var(--color-bg-primary-accent-2); /* Gray background */
+    padding: 40px;
+    border-radius: var(--radius-default);
+}
+
+/* --- 3. Form Fields Structure --- */
+
+/* Wrapper for each field */
+.hs-form-field {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.hs-form-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+}
+.input-box form input{
+padding:1rem;
+ border: var(--border-width-default) solid var(--color-border-default);
+   border-radius: var(--radius-default);
+
+
+{# from global call #}
+ {% if theme.typography.body_text.font == 'primary' %}
+  font-family: var(--font-family-primary);
+  {% else %}
+  font-family: var(--font-family-secondary);
+  {% endif %}
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-body-highlight);
+  line-height: var(--line-height-secondary);
+  letter-spacing: var(--letter-spacing-secondary);
+  color: var(--color-text-secondary);
+}
+
+
+
+.input-box form input{
+  outline: none;
+  border-color: var(--color-brand-primary);
+  box-shadow: 0 0 0 3px rgba(218, 252, 0, 0.1);
+  width:-webkit-fill-available;
+}
+
+
+
+/* --- 5. Password Toggle (Default Text Link) --- */
+/* Updated class name to match your Inspect Code: .hs-register-widget-show-password */
+.hs-register-widget-show-password {
+    float: right;
+    font-size: 1rem;
+    margin-top: -30px; 
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    text-decoration: underline;
+    color: var(--color-text-primary);
+}
+
+/* --- 6. Checkbox Row (Terms & Conditions) --- */
+/* This aligns the checkbox and label side-by-side */
+.hs-form-field:has(input[type="checkbox"]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Specific fix for the GDPR paragraph provided by HubSpot */
+/* To match your image, we usually minimize this text, but I kept it visible as requested */
+.hs-form-field p {
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
+
+.hs-form-field input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.hs-form-field input[type="checkbox"] + label {
+    margin-bottom: 0;
+    font-weight: 400;
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* --- 7. Submit Button (YOUR STYLE) --- */
+.hs_submit .actions {
+    text-align: right; /* Aligns button to the right */
+    margin-top: 20px;
+}
+
+.input-box input[type="submit"] {
+   padding:0.875em;
+border:none;
+font-weight:700;
+cursor:pointer;
+width:auto;
+}
+
+.input-box form input[type="submit"]:hover{
+background-color:var(--color-bg-primary);
+ color: var(--color-text-primary);
+}
+
+/* --- 8. Hide Unwanted Login/Separator Elements --- */
+/* Keeps the form clean like the image */
+.form-separator, 
+#hs-membership-passwordless-auth-form,
+#hs-login-self-registration-link {
+    display: none !important;
+}
+
+
+
+/* --- 6. Checkbox Row (Terms & Conditions) --- */
+.hs-form-field:has(input[type="checkbox"]) {
+    display: flex;
+    flex-wrap: wrap; /* Allows the <p> to take the full top row */
+    align-items: flex-start; /* Vertically centers checkbox with text */
+    gap: 10px;
+}
+
+/* Forces the explanation text to take up 100% width (its own line) */
+.hs-form-field p {
+    flex: 0 0 100%; 
+    margin-bottom: 12px;
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+/* Resets the checkbox so it doesn't try to fill the width */
+.hs-form-field input[type="checkbox"] {
+    width: 20px !important;
+    height: 20px !important;
+    margin: 0;
+    cursor: pointer;
+    flex-shrink: 0; /* Prevents the checkbox from squishing */
+    margin-top:0.5rem;
+}
+
+/* Styles the label to sit next to the checkbox */
+.hs-form-field label[for="hs-register-widget-explicit-consent"] {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    cursor: pointer;
+    flex: 1; /* Allows text to wrap naturally if long, while staying beside box */
+}
+
+/* --- 9. Mobile Responsiveness --- */
+@media(max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+
+    .text-content, .input-box {
+        max-width: 100%;
+    }
+
+    .input-box input[type="submit"] {
+        width: 100%;
+    }
+}
+
+</style>
+{% endblock body %}

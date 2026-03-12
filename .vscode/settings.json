@@ -1,0 +1,13 @@
+{
+  "files.associations": {
+    "*html": "html",
+    "*.html": "html-hubl",
+    "*.css": "css-hubl"
+  },
+  "editor.formatOnSave": false,
+  "prettier.enable": false,
+  "vscode-pets.throwBallWithMouse": true,
+  "vscode-pets.disableEffects": false,
+  "vscode-pets.petColor": "warrior",
+  "vscode-pets.theme": "castle"
+}

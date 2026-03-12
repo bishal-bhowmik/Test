@@ -1,0 +1,11 @@
+ /********************* GSAP TEXT ANIMATION ***********************/
+.js-anim-trigger {
+    visibility: hidden; 
+    opacity: 0;
+  }
+  
+/********************* GSAP Card ANIMATION ***********************/
+/*  .gsap-card {
+    visibility: hidden; 
+  }
+ */

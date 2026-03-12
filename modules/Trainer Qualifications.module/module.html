@@ -1,0 +1,199 @@
+{% import '../../macros/global-macros.html' as global_macros %} 
+{{ global_macros.module_css(module, name) }}
+{% set anim = module.style.animation %}
+<section class="section bg-primary-accent-2 {% if anim.enable_section_animation %}reveal-card{% endif %}"  id="{{name}}">
+  <div class="container custom-grid gap-40">
+
+    <div class="image-containers {% if anim.enable_section_animation %}reveal-left{% endif %}">
+     <div class="mobile-section-title">
+        {{ module.content.section_title }}
+      </div>
+        <div class="large-image-wrapper rounded">
+        
+          <img  id="main-display-{{ name }}" src="{{ module.gallery_section.gallery_item[0].certification_gallery.src }}" alt="{{ module.gallery_section.gallery_item[0].certification_gallery.alt|escape_attr }}">
+        </div>
+        
+        <div class="bottom-images "> 
+          {% for item in module.gallery_section.gallery_item %}
+            {% if item.certification_gallery.src %} 
+              <img 
+                class="thumb-img {% if loop.first %}active{% endif %}" 
+                src="{{ item.certification_gallery.src|escape_url }}" 
+                alt="{{ item.certification_gallery.alt|escape_attr }}"
+                onclick="changeImage(this, '{{ name }}')"
+                style="cursor: pointer;"
+              >
+            {% endif %}
+          {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="details-container {% if anim.enable_section_animation %}reveal-right{% endif %}">
+      <div class="section-title pb-20 rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+        {{ module.content.section_title }}
+      </div>
+      
+      <div class="list-wrapper">
+        {% for item in module.qualification_section.qualification_item %}
+          <div class="list-items pb-20">
+            <div class="icons rounded-full">
+              {% if item.icon_type == "hubspot_icon" %} 
+                {% icon name="{{ item.hubspot_icon.name }}" style="{{ item.hubspot_icon.type }}" unicode="{{ item.hubspot_icon.unicode }}" icon_set="{{ item.hubspot_icon.icon_set }}" %} 
+              {% elif item.icon_type == "image" %}
+                <img src="{{ item.image_icon.src|escape_url }}" alt="{{ item.image_icon.alt|escape_attr }}">
+              {% elif item.icon_type == "custom_svg" %} 
+                {{ item.custom_svg }} 
+              {% endif %}
+            </div>
+            <div class="list-details">{{ item.qualification }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% require_css %}
+<style>
+    {% scope_css %}
+    .custom-grid {
+      display: grid;
+      grid-template-columns: 0.7fr 1fr;
+      align-items: flex-start;
+    }
+
+    .image-containers {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+   
+    .large-image-wrapper {
+      width: 100%;
+      height: 351px; 
+      overflow: hidden;
+      border-radius: 15px;
+    }
+
+    .large-image-wrapper img {
+      width: 100%;
+      height: 100%; 
+     object-fit:cover;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    .bottom-images {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+   
+    .thumb-img {
+      width: 100%;
+      height: 105px; 
+      object-fit: cover; 
+      border-radius: 20px;
+      border: 3px solid transparent;
+      transition: all 0.3s ease;
+      display: block;
+    }
+
+    .thumb-img.active {
+      border-color: var(--color-brand-primary);
+      transform: translateY(-2px);
+    }
+
+    .mobile-section-title{
+    display:none;
+    }
+    .section-title h2{
+      text-transform: uppercase;
+     
+    }
+
+    .list-items {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .icons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 30px;
+      height: 30px;
+      background: var(--color-brand-primary);
+    }
+
+    .icons img, .icons svg, .icons i {
+      width: 15px;
+      height: auto;
+    }
+
+    /* Responsiveness */
+    @media (max-width: 991px) {
+      .section-title { font-size: 48px; }
+      .large-image-wrapper {
+      width: 100%;
+      height: 100%; 
+      
+      }
+    }
+
+    @media (max-width: 768px) {
+    .section-title{
+    display:none;
+    }
+     .mobile-section-title{
+   display:block;
+   }
+   .mobile-section-title h2{
+   text-align:center;
+   text-transform: uppercase;
+     
+    }
+      .custom-grid {
+        grid-template-columns: 1fr;
+        
+      }
+      .large-image-wrapper {
+        height:100%; 
+      }
+      .thumb-img {
+        height: 100%;
+        border-radius: 12px;
+      }
+     
+      
+    }
+    {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+{% require_js %}
+<script>
+  function changeImage(element, moduleName) {
+    const mainImg = document.getElementById('main-display-' + moduleName);
+
+    // Smooth transition
+    mainImg.style.opacity = '0.3';
+    
+    setTimeout(() => {
+        mainImg.src = element.src;
+        mainImg.alt = element.alt;
+        mainImg.style.opacity = '1';
+    }, 150);
+
+    const thumbnails = element.parentElement.querySelectorAll('.thumb-img');
+    thumbnails.forEach(img => img.classList.remove('active'));
+    element.classList.add('active');
+  }
+</script>
+{% end_require_js %}

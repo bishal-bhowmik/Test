@@ -1,0 +1,289 @@
+/* @import url('http://example.com/example_style.css'); */
+
+/***********************************************/
+/* CSS @imports must be at the top of the file */
+/* Add them above this section                 */
+/***********************************************/
+
+/*****************************************/
+/* Start your style declarations here    */
+/*****************************************/
+
+
+.primary-button-mob{
+  display: flex;
+  height: 61px;
+  padding: 0.375em 0.375em 0.375em 1.5em;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  background: var(--light-blue);
+  color:var(--white-background2);
+}
+
+.primary-button-desk{
+  border-radius: 50px;
+  background: transparent;
+  border: 1px solid var(--light-blue);
+  color:var(--light-blue);
+  padding: 40px 70px 35px 70px;
+}
+
+
+
+/************* Animated Button-1 **********/
+      .button-container {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .animated-button {
+        position: relative;
+        padding: 1.2em 3em;
+        color: var(--light-blue);
+        text-decoration: none;
+        border: 2px solid var(--light-blue);
+        border-radius: 99px;
+        overflow: hidden;
+        transition: background-color 0.5s ease, color 0.1s ease;
+        display: flex;
+        align-items: center;
+        font-family: Helvetica Neue;
+        font-size: 1.5em;
+      }
+
+      .button-icon {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 2.9em;
+        height: 2.9em;
+        background: var(--white-background2);
+        border-radius: 50%;
+        right: -6em;
+        transition: all 0.5s ease;
+      }
+
+      .button-text {
+        transition: all 0.5s ease;
+      }
+
+      .animated-button:hover {
+        background: var(--light-blue);
+        color: var(--white-background2);
+        cursor: pointer;
+      }
+
+      .animated-button:hover .button-text {
+        transform: translateX(-2em);
+      }
+
+      .animated-button:hover .button-icon {
+        right: 0.4em;
+      }
+
+      .button-icon:hover svg path {
+        stroke: var(--white-background2);
+        fill: var(--white-background2);
+      }
+
+      .button-icon:hover {
+        rotate: 45deg;
+        transition: rotate 0.2s ease-in-out;
+        background: var(--dark-blue);
+      }
+
+      @media (max-width: 768px) {
+        .button-container {
+          justify-content: center;
+            width: 100%;
+           display: block;
+      }
+        .button-icon {
+          width: 2.6em;
+          height: 2.6em;
+        }
+        .animated-button:hover .button-icon {
+          right: 0.3em;
+        }
+        .animated-button {
+          background: var(--light-blue);
+          color: var(--white-background2);
+          cursor: pointer;
+          padding: 1.4em 3em;
+          font-size: 1.25em;
+        }
+        .animated-button:hover {
+          background: var(--dark-blue);
+          color: var(--white-background2);
+          border: 2px solid var(--dark-blue);
+          cursor: pointer;
+          transition: all 0.5s ease;
+        }
+        .button-text {
+           transform: translateX(-2em);
+        }
+
+        .button-icon {
+          right: 0.3em;
+        }
+        .button-icon:hover svg path {
+          stroke: var(--white-background2);
+          fill: var(--white-background2);
+        }
+
+        .button-icon:hover {
+          rotate: 45deg;
+          transition: rotate 0.2s ease-in-out;
+          background: var(--dark-blue);
+        }
+        .animated-button {
+          padding: 1em 3em;
+        }
+      }
+
+      @media (max-width: 376px) {
+              .animated-button {
+                font-size: 1em;
+              }
+      }
+      /************* Animated Button-1 End **********/
+
+      /************* Animated Button-2 **********/
+.button-container-2 {
+            display: flex;
+            align-items: center;
+        }
+
+        .button-container-2 a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .animated-button-2 {
+            position: relative;
+            padding: 3em 0;
+            color: var(--light-blue);
+            text-decoration: none;
+            border: 2px solid var(--light-blue);
+            border-radius: 3.2em;
+            overflow: hidden;
+            transition: background-color 0.5s ease, color 0.1s ease;
+          
+        }
+
+        .button-icon-2 {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 4.9em;
+            height: 4.9em;
+            background: var(--white-background2);
+            border-radius: 50%;
+            right: -6em;
+            transition: all 0.5s ease;
+        }
+
+        .button-text-2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            transition: all 0.5s ease;
+          font-family: Helvetica Neue;
+        font-size: 1.5em;
+        }
+
+        .animated-button-2:hover {
+            background: var(--light-blue);
+            color: var(--white-background2);
+            cursor: pointer;
+        }
+
+        .animated-button-2:hover .button-text-2 {
+            left: 2em;
+            transform: translateY(-50%);
+        }
+
+        .animated-button-2:hover .button-icon-2 {
+            right: 0.625em;
+        }
+
+        .button-icon-2:hover svg path {
+            stroke: var(--white-background2);
+            fill: var(--white-background2);
+        }
+
+        .button-icon-2:hover {
+            rotate: 45deg;
+            transition: rotate 0.2s ease-in-out;
+            background: var(--dark-blue);
+        }
+
+        @media (max-width: 768px) {
+          .button-icon-2 {
+            width: 3.6em;
+            height: 3.6em;}
+          .animated-button-2:hover .button-icon-2 {
+            right: 0.3em;
+        }
+            .animated-button-2 {
+            background: var(--light-blue);
+            color: var(--white-background2);
+            cursor: pointer;
+        }
+        .animated-button-2:hover {
+            background: var(--dark-blue);
+            color: var(--white-background2);
+            border: 2px solid var(--dark-blue);
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+       .button-text-2 {
+            left: 5%;
+            transform: translateY(-50%);
+        }
+
+        .animated-button-2:hover .button-text-2 {
+            left: 5%;
+            transform: translateY(-50%);
+        }
+
+        .button-icon-2 {
+            right: 0.3em;
+        }
+        .button-icon-2:hover svg path {
+            stroke: var(--white-background2);
+            fill: var(--white-background2);
+        }
+
+        .button-icon-2:hover {
+            rotate: 45deg;
+            transition: rotate 0.2s ease-in-out;
+            background: var(--dark-blue);
+        }
+           .animated-button-2 {
+             padding: 2em 0;}
+        }
+        /************* Animated Button-2 End **********/
+
+
+
+/*Secondary Button*/
+
+    .secondary_btn{
+    background:var(--light-blue20);
+    border:none;
+}
+  .secondary_btn:hover{
+    background: var(--light-blue);
+    color: var(--white-background2);
+    cursor: pointer;
+}

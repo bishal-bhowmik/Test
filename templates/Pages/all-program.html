@@ -1,0 +1,479 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: All Programs
+screenshotPath: ../../Images/Page-template/all-programs.jpg
+-->
+
+{# --- Connect to base.html #}
+{% extends "../layouts/base.html" %}
+
+{# --- Body element #}
+{% block body %}
+
+{# --- Area to add Drag & Drop modules #}
+{% dnd_area "body-area" label="Body", class="body-area" %}
+
+
+{# Hero Banner #}
+{% dnd_section %}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../../modules/Hero Banner",
+        offset=0,
+        width=12,
+        class_details={
+          "details" : [ '<p>Discover an extensive range of customized fitness and training programs tailored to fit your unique lifestyle, goals, and schedule. These programs are designed to help you effortlessly sustain your progress and achieve your aspirations!&nbsp;</p><h6>&nbsp;</h6>' ],
+          "enable" : true
+        },
+        layout_alignment={
+          "column_reverse" : false
+        },
+        rich_text={
+          "richtext_field" : '<h2>YOUR FITNESS&nbsp;</h2><h2>STARS HERE</h2>'
+        },
+        style={
+          "background" : {
+            "background_image" : {
+              "alt" : "Feature Image (1)",
+              "height" : 600,
+              "loading" : "lazy",
+              "max_height" : 600,
+              "max_width" : 1200,
+              "size_type" : "auto_custom_max",
+              "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Fitmax%20Theme%20images/Feature%20Image%20(1).png",
+              "width" : 1200
+            },
+            "background_overlay" : true,
+            "model" : {
+              "logo" : {
+                "src" : ""
+              }
+            },
+            "overlay_color" : {
+              "colors" : [ {
+                "color" : {
+                  "a" : 0.8,
+                  "b" : 0,
+                  "g" : 16,
+                  "r" : 16
+                }
+              }, {
+                "color" : {
+                  "a" : 0.1,
+                  "b" : 0,
+                  "g" : 16,
+                  "r" : 16
+                }
+              } ],
+              "side_or_corner" : {
+                "horizontalSide" : "RIGHT"
+              }
+            }
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+{# Hero Banner End #}
+
+
+{# Program Showcase #}
+{% dnd_section %}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../../modules/Program Showcase",
+        offset=0,
+        width=12,
+        card={
+          "programs" : [ {
+            "description" : 'Short on time but still want real results? This 3-day strength split is designed for busy professionals who want to get stronger without living in the gym.',
+            "program_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://hubspot.com",
+                "type" : "EXTERNAL"
+              }
+            },
+            "thumbnail" : {
+              "alt" : "5e09081c190dbe3c375d1edd87ce3391e1da743e",
+              "height" : 1920,
+              "loading" : "lazy",
+              "max_height" : 1333.3333333333333,
+              "max_width" : 2000,
+              "size_type" : "auto_custom_max",
+              "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/5e09081c190dbe3c375d1edd87ce3391e1da743e.webp",
+              "width" : 2880
+            },
+            "title" : '<h6>Strength Building Program</h6>'
+          }, {
+            "description" : '<p><span>Short on time but still want real results? This 3-day strength split is designed for busy professionals who want to get stronger without living in the gym.</span></p>',
+            "program_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://hubspot.com",
+                "type" : "EXTERNAL"
+              }
+            },
+            "thumbnail" : {
+              "alt" : "wsmnnjioqdeplhm7auvz",
+              "height" : 512,
+              "loading" : "lazy",
+              "max_height" : 512,
+              "max_width" : 768,
+              "size_type" : "auto",
+              "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/wsmnnjioqdeplhm7auvz.webp",
+              "width" : 768
+            },
+            "title" : '<h6><span>Muscle Building Program</span></h6>'
+          }, {
+            "description" : '<p><span>Short on time but still want real results? This 3-day strength split is designed for busy professionals who want to get stronger without living in the gym.</span></p>',
+            "program_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://hubspot.com",
+                "type" : "EXTERNAL"
+              }
+            },
+            "thumbnail" : {
+              "alt" : "Image container-2",
+              "height" : 500,
+              "loading" : "lazy",
+              "max_height" : 500,
+              "max_width" : 620,
+              "size_type" : "auto",
+              "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Image%20container-2.png",
+              "width" : 620
+            },
+            "title" : '<h6><span>Fat Loss Program</span></h6>'
+          }, {
+            "description" : '<p><span>Short on time but still want real results? This 3-day strength split is designed for busy professionals who want to get stronger without living in the gym.</span></p>',
+            "program_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://hubspot.com",
+                "type" : "EXTERNAL"
+              }
+            },
+            "thumbnail" : {
+              "alt" : "40274cef19b1dc22924d67453108d22f963cb42c",
+              "height" : 683,
+              "loading" : "lazy",
+              "max_height" : 683,
+              "max_width" : 1024,
+              "size_type" : "auto",
+              "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/40274cef19b1dc22924d67453108d22f963cb42c.png",
+              "width" : 1024
+            },
+            "title" : '<h6><span>Pilates Program</span></h6>'
+          }, {
+            "description" : '<p><span>Short on time but still want real results? This 3-day strength split is designed for busy professionals who want to get stronger without living in the gym.</span></p>',
+            "program_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://hubspot.com",
+                "type" : "EXTERNAL"
+              }
+            },
+            "thumbnail" : {
+              "alt" : "bjvqbaiqynjplajudhzw",
+              "height" : 683,
+              "loading" : "lazy",
+              "max_height" : 683,
+              "max_width" : 1024,
+              "size_type" : "auto",
+              "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/bjvqbaiqynjplajudhzw.webp",
+              "width" : 1024
+            },
+            "title" : '<h6><span>HIIIT Program</span></h6>'
+          }, {
+            "description" : '<p><span>Short on time but still want real results? This 3-day strength split is designed for busy professionals who want to get stronger without living in the gym.</span></p>',
+            "program_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://hubspot.com",
+                "type" : "EXTERNAL"
+              }
+            },
+            "thumbnail" : {
+              "alt" : "Image container",
+              "height" : 500,
+              "loading" : "lazy",
+              "max_height" : 500,
+              "max_width" : 620,
+              "size_type" : "auto",
+              "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Image%20container.png",
+              "width" : 620
+            },
+            "title" : '<h6><span>Beginner Program</span></h6>'
+          } ]
+        },
+        content={
+          "enable_label" : false
+        },
+        programs=[ {
+          "description" : 'Short on time but still want real results? This 3-day strength split is designed for busy professionals who want to get stronger without living in the gym.',
+          "program_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            }
+          },
+          "thumbnail" : {
+            "alt" : "Image container",
+            "height" : 500,
+            "loading" : "lazy",
+            "max_height" : 500,
+            "max_width" : 620,
+            "size_type" : "auto",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Image%20container.png",
+            "width" : 620
+          },
+          "title" : "Strength Building Program"
+        }, {
+          "description" : 'Short on time but still want real results? This 3-day strength split is designed for busy professionals who want to get stronger without living in the gym.',
+          "program_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            }
+          },
+          "thumbnail" : {
+            "alt" : "Image container",
+            "height" : 500,
+            "loading" : "lazy",
+            "max_height" : 500,
+            "max_width" : 620,
+            "size_type" : "auto",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Image%20container.png",
+            "width" : 620
+          },
+          "title" : "Muscle Building Program"
+        }, {
+          "description" : 'Short on time but still want real results? This 3-day strength split is designed for busy professionals who want to get stronger without living in the gym.',
+          "program_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            }
+          },
+          "thumbnail" : {
+            "alt" : "Image container",
+            "height" : 500,
+            "loading" : "lazy",
+            "max_height" : 500,
+            "max_width" : 620,
+            "size_type" : "auto",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Image%20container.png",
+            "width" : 620
+          },
+          "title" : "Fat Loss Program"
+        }, {
+          "description" : 'Short on time but still want real results? This 3-day strength split is designed for busy professionals who want to get stronger without living in the gym.',
+          "program_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            }
+          },
+          "thumbnail" : {
+            "alt" : "Image container",
+            "height" : 500,
+            "loading" : "lazy",
+            "max_height" : 500,
+            "max_width" : 620,
+            "size_type" : "auto",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Image%20container.png",
+            "width" : 620
+          },
+          "title" : "Pilates Program"
+        }, {
+          "description" : 'Short on time but still want real results? This 3-day strength split is designed for busy professionals who want to get stronger without living in the gym.',
+          "program_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            }
+          },
+          "thumbnail" : {
+            "alt" : "Image container",
+            "height" : 500,
+            "loading" : "lazy",
+            "max_height" : 500,
+            "max_width" : 620,
+            "size_type" : "auto",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Image%20container.png",
+            "width" : 620
+          },
+          "title" : "HIIIT Program"
+        }, {
+          "description" : 'Short on time but still want real results? This 3-day strength split is designed for busy professionals who want to get stronger without living in the gym.',
+          "program_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://hubspot.com",
+              "type" : "EXTERNAL"
+            }
+          },
+          "thumbnail" : {
+            "alt" : "Image container",
+            "height" : 500,
+            "loading" : "lazy",
+            "max_height" : 500,
+            "max_width" : 620,
+            "size_type" : "auto",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Image%20container.png",
+            "width" : 620
+          },
+          "title" : "Beginner Program"
+        } ],
+        style={
+          "grid_column_count" : 2,
+          "override_card_text_styles" : false,
+          "override_section_header_styles" : true
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+{# Program Showcase End #}
+
+
+
+{# BMI Calculator #}
+{% dnd_section %}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../../modules/BMI Calculator",
+        offset=0,
+        width=12,
+        content={
+          "section_title" : '<h1><span>Verify Your Health Zone</span></h1><p>&nbsp;</p>'
+        },
+        style={
+          "animation" : {
+            "enable_body_text_animation" : true,
+            "enable_heading_animation" : true,
+            "enable_section_animation" : true
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+{# BMI Calculator End #}
+
+
+
+
+{# Modern Blog Cards #}
+{% dnd_section %}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../../modules/Modern Blog Cards",
+        offset=0,
+        width=12,
+        blog_type={
+          "select_blog" : 368608708830
+        },
+        buttons={
+          "button_repeater" : [ {
+            "button_text" : "See All Blogs",
+            "link" : {
+              "url" : {
+                "content_id" : 368608708830,
+                "type" : "BLOG"
+              }
+            },
+            "turn_on_button_icon" : false
+          } ]
+        },
+        content={
+          "section_title" : '<h5><span style="color: #ffffff;">BLOG<span style="font-size: 28px; font-weight: 400;"></span></span></h5><h2><span style="color: #ffffff;">Related</span></h2><h2><span style="color: #ffffff;">Blogs</span></h2>'
+        },
+        style={
+          "animation" : {
+            "enable_body_text_animation" : true,
+            "enable_heading_animation" : true,
+            "enable_section_animation" : true
+          },
+          "background" : {
+            "background_type" : "solid_color",
+            "enable" : true,
+            "solid_color" : {
+              "color" : "#2B2B2B",
+              "opacity" : 100
+            }
+          },
+          "colors" : {
+            "category_color" : {
+              "color" : "#DAFC00",
+              "opacity" : 100
+            }
+          },
+          "font" : {
+            "button_text" : {
+              "color" : "#dafc00"
+            },
+            "category" : {
+              "color" : "#dafc00"
+            },
+            "date" : {
+              "color" : "#FFFFFF"
+            },
+            "description" : {
+              "color" : "#FFFFFF"
+            },
+            "title" : {
+              "color" : "#FFFFFF"
+            }
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+{# Modern Blog Cards End #}
+    
+
+{% end_dnd_area %}
+
+{% endblock body %}

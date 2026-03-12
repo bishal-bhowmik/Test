@@ -1,0 +1,293 @@
+{% import '../../macros/button-macros.html' as button_macros %}
+  {% import '../../macros/global-macros.html' as global_macros %} 
+  {{ global_macros.module_css(module, name) }}
+{% set anim = module.style.animation %}
+<section class="section" id="{{name}} {% if anim.enable_section_animation %}reveal-card{% endif %}">
+  <div class="container">
+    <div class="profile-column {% if anim.enable_section_animation %}reveal-left{% endif %}">
+      {% if module.layout_alignment.layout_type == 'left' %}
+      <div class="section-title rich-text-anim-wrapper"{% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>{{ module.content.section_title }}</div>
+      {% endif %}
+      <div class="sticky-wrapper">
+        <div class="image-card rounded">
+          {% if module.media_section.background_image.src %}
+          <img
+            class="profile-image"
+            src="{{ module.media_section.background_image.src|escape_url }}"
+            alt="{{ module.media_section.background_image.alt|escape_attr }}"
+            {{
+            loadingAttr
+            }}
+            {{
+            sizeAttrs
+            }}
+          />
+          {% endif %} {% if module.media_section.overlay_enable %}
+          <div class="card-overlay">
+            <div class="profile-name">
+              {{ module.media_section.overlay_text }}
+            </div>
+
+            <div class="social-icons">
+              {% for item in module.media_section.social_icon %}
+              <a
+                href="{{ item.link.url.href }}"
+                class="social-btn bg-primary rounded-half"
+                {%
+                if
+                item.link.open_in_new_tab
+                %}target="_blank"
+                rel="noopener"
+                {%
+                endif
+                %}
+              >
+                {% if item.icon_type == 'custom_svg' %} {{ item.custom_svg }} {%
+                elif item.icon_type == 'hubspot_icon'%} {% icon name="{{
+                item.hubspot_icon.name }}" style="{{ item.hubspot_icon.type }}"
+                unicode="{{ item.hubspot_icon.unicode }}" icon_set="{{
+                item.hubspot_icon.icon_set }}" %} {% elif item.icon_type ==
+                'image'%} {% if item.image_icon.src %}
+                <img
+                  src="{{ item.image_icon.src|escape_url }}"
+                  alt="{{ item.image_icon.alt|escape_attr }}"
+                  {{
+                  loadingAttr
+                  }}
+                  {{
+                  sizeAttrs
+                  }}
+                />
+                {% endif %} {% endif %}
+              </a>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="content-column {% if anim.enable_section_animation %}reveal-right{% endif %}">
+      {% if module.layout_alignment.layout_type == 'right' %}
+      <div class="section-title rich-text-anim-wrapper"{% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>{{ module.content.section_title }}</div>
+      {% endif %}
+      <div class="services-list">
+        {% for item in module.features %}
+        <div class="service-item">
+          <div class="service-icon-wrapper bg-brand-primary rounded-full">
+            {% if item.icon.icon_type == "hubspot_icon"%} {% icon name="{{
+            item.icon.hubspot_icon.name }}" style="{{
+            item.icon.hubspot_icon.type }}" unicode="{{
+            item.icon.hubspot_icon.unicode }}" icon_set="{{
+            item.icon.hubspot_icon.icon_set }}" %} {% elif item.icon.icon_type
+            == "custom_svg"%} {{ item.icon.custom_svg }} {% elif
+            item.icon.icon_type == "image" %} {% if item.icon.image_icon.src %}
+            <img
+              src="{{ item.icon.image_icon.src|escape_url }}"
+              alt="{{ item.icon.image_icon.alt|escape_attr }}"
+              {{
+              loadingAttr
+              }}
+              {{
+              sizeAttrs
+              }}
+            />
+            {% endif %} {% endif %}
+          </div>
+          <div class="service-content rich-text-anim-wrapper"{% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>{{item.feature_details}}</div>
+
+          <div class="button-group">
+            {% for item2 in item.button_repeater %} {{
+            button_macros.render_button(item2, theme) }} {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% require_css %}
+<style>
+  {% scope_css %}
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  @media (min-width: 992px) {
+    .container {
+      flex-direction: row;
+      gap: 40px;
+      align-items: stretch;
+    }
+    .profile-column {
+      flex: 0 0 50%;
+      position: relative;
+    }
+    .content-column {
+      flex: 1;
+    }
+    .sticky-wrapper {
+      position: sticky;
+      top: 40px;
+      height: fit-content;
+    }
+  }
+
+  .image-card {
+    position: relative;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .profile-image {
+    width: 100%;
+    height: auto;
+    min-height: 550px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+  }
+
+  .profile-name h4 {
+    color: var(--color-text-tertiary);
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 10px;
+  }
+
+  .social-btn {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    {% for item in module.media_section.social_icon %}
+    background-color: {{ item.icon_background.color }};
+    {% endfor %}
+  }
+
+  .social-btn svg,
+  .social-btn img {
+    width: 34px;
+    height: 34px;
+    display: block;
+    fill: var(--color-bg-secondary);
+  }
+
+  .social-btn:hover {
+    transform: translateY(-3px);
+  }
+
+  .section-title h2 {
+    text-transform: uppercase;
+  }
+
+  .section-title p {
+    margin-bottom: 40px;
+  }
+
+  .services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .service-item {
+    display: flex;
+    padding: 10px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-icon-wrapper {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    overflow: hidden;
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    {% for item in module.features %}
+    background: {{item.icon.icon_background.css}};
+    {% endfor %}
+  }
+
+  .service-icon-wrapper svg,
+  .service-icon-wrapper img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    fill: var(--color-bg-secondary);
+    flex-shrink: 0;
+    min-width: 24px;
+  }
+
+  .service-content {
+    padding-top: 5px;
+    flex-grow: 1;
+    transition: all 0.5s ease;
+  }
+
+  .button-group {
+    max-width: 0;
+    margin-left: 0;
+    height:fit-content;
+    transform: translateX(30px);
+    white-space: nowrap;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .service-item:hover .service-icon-wrapper {
+    width: 0;
+    margin-right: 0;
+    transform: translateX(-70px);
+  }
+
+  .service-item:hover .button-group {
+    max-width: 100%;
+    height:fit-content;
+    margin-left: 15px;
+    transform: translateX(-5px);
+  }
+   .service-item:hover .service-content h5, .service-item:hover .service-content h4 ,.service-item:hover .service-content h6{
+   text-decoration: underline;
+  text-decoration-color: var(--color-brand-primary);
+
+  }
+
+  @media (max-width: 768px) {
+    .section-title {
+      text-align: center;
+    }
+  }
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}

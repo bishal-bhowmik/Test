@@ -1,0 +1,74 @@
+{% import '../../macros/button-macros.html' as button_macros %}
+
+{% import '../../macros/global-macros.html' as global_macros %} 
+{{ global_macros.module_css(module, name) }}
+{% set anim = module.style.animation %}
+
+
+
+
+<section class=" section bg-primary-accent-2" id="{{name}}">
+  <div class="container gap-40">
+    <div class="left-container rich-text-anim-wrapper {% if anim.enable_section_animation %}reveal-left{% endif %}"
+    {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}
+    >
+      {{ module.content.section_title }}
+    </div>
+    <div class="meeting-container {% if anim.enable_section_animation %}reveal-right{% endif %}">
+      {% if module.meeting_link.meeting %}
+      <div class="meetings-iframe-container" 
+           data-src="{{module.meeting_link.meeting ~ '?embed=true'|escape_url }}" 
+           data-ab="{{ content.ab|escape_attr }}" 
+           data-ab-status="{{ content.abStatus|escape_attr }}" 
+           data-content-id="{{ content.id|escape_attr }}"></div>
+      <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js" data-hs-ignore="true"></script>
+      {% else %}
+      <div class="hs-meetings-placeholder">
+        <div class="hs-meetings-placeholder__inner">
+          <h3 class="hs-meetings-placeholder__title">{{ module.select_meeting_title|sanitize_html("STRIP") }}</h3>
+          <p class="hs-meetings-placeholder__description">{{ module.select_meeting_description|sanitize_html("STRIP") }}</p>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% require_css %}
+<style>
+  {% scope_css %}
+  .container{
+  display:flex;
+  
+  }
+
+  .left-container{
+  width:100%;
+  max-width: 600px;
+  }
+  .meeting-container{
+  flex:1;
+  }
+  .left-container h1 ,.left-container h2{
+  text-transform: uppercase;
+  color:var(--color-text-primary);
+  }
+  .left-container p{
+  color:var(--color-text-secondary);
+  }
+  @media (max-width: 768px) {
+  .container{
+  flex-direction:column;
+  
+  }
+  .left-container{
+  text-align:center;
+   width:100%;
+  max-width: 100%;
+  }
+  }
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}

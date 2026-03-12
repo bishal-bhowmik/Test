@@ -1,0 +1,462 @@
+{% set module_id = "bmi-calculator" %}
+{% set anim = module.style.animation %}
+  {% import '../../macros/global-macros.html' as global_macros %} 
+{{ global_macros.module_css(module, name) }}
+
+<section class="section bg-primary-accent-1 {% if anim.enable_section_animation %}reveal-card{% endif %}" id="{{name}}  ">
+<div class="container gap-40">
+  
+  <div class="{{ module_id }}__left-side flex-center flex-col {% if anim.enable_section_animation %}reveal-left{% endif %}">
+    <div class="{{ module_id }}__title rich-text-anim-wrapper"{% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+      {{ module.content.section_title }}
+    </div>
+    <div class="{{ module_id }}__image-container  {% if anim.enable_section_animation %}reveal-left{% endif %}">
+      {% if module.media_section.background_image.src %}
+        <img src="{{ module.media_section.background_image.src|escape_url }}" alt="{{ module.media_section.background_image.alt|escape_attr }}">
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="{{ module_id }}__right-side {% if anim.enable_section_animation %}reveal-right{% endif %}">
+  <div class="{{ module_id }}__subtitle mb-40 rich-text-anim-wrapper"{% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+      {{ module.content.description }}
+    </div>
+    <div class="{{ module_id }}__caculator-form rounded bg-primary-accent-2">
+      <div class="{{ module_id }}__caculator-title p-30 rich-text-anim-wrapper"{% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+        {{ module.bmi.section_title}}
+      </div>
+
+      <div class="{{ module_id }}__form">
+        <form id="bmi-calc-form">
+          
+          <label>Weight*</label>
+          <div class="{{ module_id }}__input-group">
+            <input id="weight-val" type="number" placeholder="lbs" required step="0.1">
+            <select id="weight-unit">
+              <option value="lbs">lbs</option>
+              <option value="kg">kg</option>
+            </select>
+          </div>
+
+          <label>Height*</label>
+          <div class="{{ module_id }}__input-group" id="height-row">
+            <div id="height-imperial-wrap" style="display:flex; gap:.5rem; flex:1;">
+              <input id="height-ft" type="number" placeholder="ft" min="1" required>
+              <input id="height-in" type="number" placeholder="in" min="0" max="11">
+            </div>
+            <input id="height-cm" type="number" placeholder="cm" step="0.1" style="display:none; flex:1;">
+            
+            <select id="height-unit-toggle">
+              <option value="imperial">ft & in</option>
+              <option value="cm">cm</option>
+            </select>
+          </div>
+
+          <div class="{{ module_id }}__buttons">
+            <button type="submit" class="calculate-btn">
+              {{ module.right_side.button.button_text || "Calculate" }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="{{ module_id }}__calorie-modal" id="result-modal" aria-hidden="true">
+  <div class="{{ module_id }}__calorie-modal__backdrop" id="modal-close-backdrop"></div>
+  <div class="{{ module_id }}__calorie-modal__panel rounded p-40">
+    <button class="{{ module_id }}__calorie-modal__close" id="modal-close-btn" aria-label="Close">
+      <svg viewBox="0 0 24 24" width="24" height="24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+    </button>
+    
+    <div class="{{ module_id }}__modal-grid">
+      <div class="modal-left">
+        <p class="{{ module_id }}__calorie-modal__note">
+          BMI Calculator Result
+        </p>
+        
+        <div class="{{ module_id }}__calorie-modal__header">
+          <div class="{{ module_id }}__calorie-modal__header-item">
+            <div class="{{ module_id }}__calorie-modal__label"><p>Your BMI Score</p></div>
+            <div class="{{ module_id }}__calorie-modal__value" id="bmi-result-val"><h5>--</h5></div>
+          </div>
+          <div class="{{ module_id }}__calorie-modal__divider"></div>
+          <div class="{{ module_id }}__calorie-modal__header-item">
+            <div class="{{ module_id }}__calorie-modal__label"><p>Status</p></div>
+            <div class="{{ module_id }}__calorie-modal__value" id="bmi-status-val"><h5>--</h5></div>
+          </div>
+        </div>
+
+        <table class="{{ module_id }}__calorie-modal__table">
+          <thead>
+            <tr>
+              <th>Target BMI</th>
+              <th>Target Weight (kg)</th>
+              <th>Weight to Lose (kg)</th>
+            </tr>
+          </thead>
+          <tbody id="target-tbody">
+          </tbody>
+        </table>
+      </div>
+
+      <div class="{{ module_id }}__image-container popup-image">
+          {# This image src will be updated by JS #}
+          <img id="bmi-status-image" src="" alt="Status Image" style="width: 100%; height: auto; object-fit: contain;">
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+{% require_css %}
+<style>
+{% scope_css %}
+.container {
+  display: flex;
+  align-items: flex-start;
+  
+}
+.{{ module_id }}__left-side {
+  width: 100%; 
+  }
+.{{ module_id }}__title h1 , .{{ module_id }}__title h2 {
+  text-transform: uppercase;
+    margin-bottom: 10px; 
+    color:var(--color-text-primary);
+}
+
+.{{ module_id }}__title p { 
+  color:var(--color-text-secondary); 
+  }
+
+.{{ module_id }}__image-container img { 
+    width: 100%; 
+    max-width: 450px;
+    margin-top: 30px;
+  }
+.{{ module_id }}__right-side { width: 100%; }
+
+.{{ module_id }}__caculator-form {    
+    width: 100%; 
+    overflow: hidden;
+  }
+.{{ module_id }}__caculator-title { 
+    background-color: var(--color-bg-primary); 
+    text-align: center;
+  }
+  
+.{{ module_id }}__form {  
+padding: 2rem;
+  }
+label { 
+display: block;
+  margin-bottom: 0.4rem;
+    }
+  input, select { width: 100%;
+      padding: 1rem 0.938rem; 
+      border: var(--border-width-default) solid var(--color-border-default);
+     border-radius: var(--radius-default);
+      margin-bottom: 1.5rem; 
+      background: var(--color-bg-primary); 
+      box-sizing: border-box; 
+    }
+.{{ module_id }}__input-group {
+ display: flex; 
+ align-items: center;
+  gap: 0.5rem;
+   }
+.{{ module_id }}__input-group input { 
+flex: 1;
+font-family:var( --font-family-secondary);
+  font-size:18px;
+  color:var(--color-text-primary); 
+ }
+.{{ module_id }}__input-group select { 
+width: auto; 
+flex: 0 0 auto; 
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1em;
+  padding-right: 2.5rem; 
+}
+
+
+.{{ module_id }}__input-group select {
+  cursor: pointer;
+}
+.{{ module_id }}__input-group input::placeholder,  .{{ module_id }}__input-group textarea::placeholder,.{{ module_id }}__input-group select::placeholder ,#weight-unit, #height-unit-toggle, .{{ module_id }}__input-group { 
+  font-family:var( --font-family-secondary);
+  font-size:18px;
+  color:var(--color-text-primary); 
+}
+.{{ module_id }}__buttons button { 
+font-family:var( --font-family-secondary);
+  font-size:18px;
+  color:var(--color-text-primary);
+width: 100%; 
+  padding: 0.9rem;
+ border: none; 
+ border-radius: var(--radius-default); 
+ cursor: pointer; 
+ background: var(--color-brand-primary); 
+  
+ }
+.{{ module_id }}__calorie-modal { 
+position: fixed; 
+inset: 0; z-index: 10001; 
+display: none; 
+}
+.{{ module_id }}__calorie-modal[aria-hidden="false"] {
+ display: block; 
+ animation: popUpAnimation 0.4s ease-out;
+  }
+.{{ module_id }}__calorie-modal__backdrop { 
+position: absolute; 
+inset: 0; 
+background: rgba(0,0,0,0.6);
+ }
+.{{ module_id }}__calorie-modal__panel { 
+position: fixed; 
+top: 50%; left: 50%;
+transform: translate(-50%, -50%);
+background: var(--color-bg-primary);
+
+ max-width: 1160px; 
+ width: min(1160px, 94vw); 
+  display: grid; 
+  grid-template-columns: 1.1fr 0.9fr; gap: 30px;
+  
+  }
+  .{{ module_id }}__calorie-modal__panel p {
+  color:var(--color-text-tertiary);
+  }
+.{{ module_id }}__modal-grid {
+ display: contents; 
+ }
+.{{ module_id }}__calorie-modal__header { 
+background: var(--color-bg-secondary); 
+border-radius: 16px; 
+padding: 28px 24px;
+ display: flex; 
+ align-items: center; 
+ text-align:center;
+ justify-content: center;
+ gap: 70px;
+  margin-bottom: 30px;
+   color: var(--color-text-tertiary); 
+   }
+.{{ module_id }}__calorie-modal__divider {
+ width: 1px; 
+ height: 70px;
+  background:var(--color-bg-primary);
+   }
+.{{ module_id }}__calorie-modal__label p{ 
+text-decoration: underline; 
+margin-bottom: 8px;
+ }
+
+.{{ module_id }}__calorie-modal__value { 
+font-size: 36px; 
+font-weight: 400;
+font-family:var( --font-family-primary);
+line-height:120%;
+ }
+
+.status-underweight,
+.status-normal,
+.status-overweight,
+.status-obese,
+.status-morbid  { 
+color: var( --color-text-tertiary); 
+}
+
+.{{ module_id }}__calorie-modal__note { 
+font-size: 24px; 
+font-weight: 700;
+ margin-bottom: 20px; 
+ }
+.{{ module_id }}__calorie-modal__table { 
+width: 100%;
+ border-collapse: separate; 
+ border-spacing: 0; 
+ border: var(--border-width-default) solid var(--color-border-default);
+ border-radius: var(--radius-default);
+ overflow: hidden; 
+ }
+.{{ module_id }}__calorie-modal__table th { 
+background-color: var(--color-bg-primary-accent-1);
+ padding: 20px; 
+ font-family:var( --font-family-secondary);
+ font-size: 20px; 
+ border-bottom: var(--border-width-default) solid var(--color-border-default);
+  }
+.{{ module_id }}__calorie-modal__table td {
+ padding: 20px; 
+ text-align: center;
+ border-bottom: var(--border-width-default) solid var(--color-border-default);
+ font-family:var( --font-family-secondary);
+   font-size: 20px; 
+   }
+.{{ module_id }}__calorie-modal__close { 
+position: absolute; 
+top: 20px; 
+right: 20px;
+ background: var(--color-bg-secondary); 
+ color: var( --color-text-tertiary);
+ border:none;
+  border-radius: 50%; 
+  width: 32px; height: 32px; 
+  cursor: pointer; 
+  display: flex; 
+  align-items: center;
+   justify-content: center;
+    }
+.{{ module_id }}__calorie-modal__close svg { fill: var( --color-text-tertiary); }
+@keyframes popUpAnimation { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@media (max-width: 1024px) {
+  .container { flex-direction: column; }
+  .{{ module_id }}__calorie-modal__panel { grid-template-columns: 1fr; max-height: 90vh; overflow-y: auto; }
+  .popup-image { display: none; }
+}
+@media (max-width: 768px) {
+.{{ module_id }}__title{
+text-align:center;
+}
+.{{ module_id }}__calorie-modal__header { 
+background: var(--color-bg-secondary); 
+flex-direction:column;
+gap:20px;
+   }
+.{{ module_id }}__calorie-modal__divider {
+display:none;
+}
+}
+{% end_scope_css %}
+</style>
+{% end_require_css %}
+
+{% require_js %}
+<script>
+(function() {
+const form = document.getElementById('bmi-calc-form');
+const modal = document.getElementById('result-modal');
+const unitToggle = document.getElementById('height-unit-toggle');
+const weightUnitSelect = document.getElementById('weight-unit');
+const weightInput = document.getElementById('weight-val');
+const heightCm = document.getElementById('height-cm');
+const heightFt = document.getElementById('height-ft');
+const heightIn = document.getElementById('height-in');
+const imperialWrap = document.getElementById('height-imperial-wrap');
+const bmiStatusDisplay = document.getElementById('bmi-status-val');
+const statusImage = document.getElementById('bmi-status-image');
+
+// Map images from HubSpot module fields
+const statusImages = {
+  underweight: "{{ module.pop_up.status_images.underweight.src }}",
+  normal: "{{ module.pop_up.status_images.normal.src }}",
+  overweight: "{{ module.pop_up.status_images.overweight.src }}",
+  obese: "{{ module.pop_up.status_images.obese.src }}",
+  morbid: "{{ module.pop_up.status_images.morbidly_obese.src }}"
+};
+
+weightUnitSelect.addEventListener('change', function() {
+  weightInput.placeholder = this.value;
+});
+
+unitToggle.addEventListener('change', function() {
+  const isCm = this.value === 'cm';
+  imperialWrap.style.display = isCm ? 'none' : 'flex';
+  heightCm.style.display = isCm ? 'block' : 'none';
+  if (isCm) {
+    heightCm.setAttribute('required', '');
+    heightFt.removeAttribute('required');
+  } else {
+    heightCm.removeAttribute('required');
+    heightFt.setAttribute('required', '');
+  }
+});
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  let weightKg = parseFloat(weightInput.value);
+  let heightM;
+  if (weightUnitSelect.value === 'lbs') weightKg *= 0.453592;
+  if (unitToggle.value === 'imperial') {
+    const ft = parseFloat(heightFt.value || 0);
+    const inch = parseFloat(heightIn.value || 0);
+    heightM = ((ft * 12) + inch) * 0.0254;
+  } else {
+    heightM = parseFloat(heightCm.value) / 100;
+  }
+
+  if (!heightM || heightM === 0) return;
+  const bmi = weightKg / (heightM * heightM);
+  document.getElementById('bmi-result-val').textContent = bmi.toFixed(1);
+  
+  bmiStatusDisplay.className = '{{ module_id }}__calorie-modal__value';
+  
+  let status = "";
+  let imgKey = "";
+
+  if (bmi < 18.5) {
+      status = "Underweight";
+      imgKey = "underweight";
+      bmiStatusDisplay.classList.add('status-underweight');
+  } else if (bmi < 25) {
+      status = "Normal";
+      imgKey = "normal";
+      bmiStatusDisplay.classList.add('status-normal');
+  } else if (bmi < 30) {
+      status = "Overweight";
+      imgKey = "overweight";
+      bmiStatusDisplay.classList.add('status-overweight');
+  } else if (bmi < 40) {
+      status = "Obese";
+      imgKey = "obese";
+      bmiStatusDisplay.classList.add('status-obese');
+  } else {
+      status = "Morbidly Obese";
+      imgKey = "morbid";
+      bmiStatusDisplay.classList.add('status-morbid');
+  }
+  
+  bmiStatusDisplay.textContent = status;
+  
+  // Update the image source
+  if(statusImages[imgKey]) {
+    statusImage.src = statusImages[imgKey];
+    statusImage.style.display = "block";
+  } else {
+    statusImage.style.display = "none";
+  }
+
+  const targets = [25, 23, 20];
+  const tbody = document.getElementById('target-tbody');
+  tbody.innerHTML = '';
+  targets.forEach(tBmi => {
+    const tWeight = tBmi * (heightM * heightM);
+    const toLose = weightKg - tWeight;
+    tbody.innerHTML += `<tr><td>${tBmi}</td><td>${tWeight.toFixed(1)}</td><td>${toLose > 0 ? toLose.toFixed(1) : '0.0'}</td></tr>`;
+  });
+
+  modal.setAttribute('aria-hidden', 'false');
+});
+
+document.getElementById('modal-close-btn').onclick = () => modal.setAttribute('aria-hidden', 'true');
+document.getElementById('modal-close-backdrop').onclick = () => modal.setAttribute('aria-hidden', 'true');
+})();
+</script>
+{% end_require_js %}

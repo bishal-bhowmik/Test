@@ -1,0 +1,453 @@
+{# --- 1. IMPORT MACRO HERE --- #}
+{% import '../../macros/global-macros.html' as global_macros %} 
+  {{ global_macros.module_css(module, name) }}
+
+
+{% import '../../macros/button-macros.html' as button_macros %}
+  {% set anim = module.style.animation %}
+
+
+{% require_css %}
+<style>
+  {% scope_css %}
+
+  /* --- ANIMATIONS --- */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* --- FILTER BUTTONS --- */
+  .filter-buttons-container {
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  .filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .filter-buttons .btn-primary {
+    background-color: transparent !important;
+    border: 1px solid transparent !important;
+    box-shadow: none !important;
+    transition: all 0.3s ease;
+  }
+  
+  .filter-buttons .btn-primary.active {
+    outline: 2px solid var(--button-primary-bg-color);
+  }
+
+  .filter-buttons .btn-primary:hover {
+    background-color: transparent !important;
+    opacity: 0.7;
+  }
+
+  /* Mobile Dropdown */
+  .filter-dropdown {
+    display: none;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .filter-dropdown select {
+    width: 100%;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  /* --- GALLERY GRID SYSTEM --- */
+  .gallery-grid {
+    display: grid;
+    gap: 40px;
+    width: 100%;
+  }
+
+  /* Base Gallery Block */
+  .gallery-block2 {
+    display: grid;
+    width: 100%;
+    gap: 40px;
+    opacity: 1;
+  }
+
+  /* Animation State */
+  .gallery-block2.fade-in {
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .gallery-block2.hidden {
+    display: none;
+  }
+
+  .gallery-item {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+
+  /* --- DESKTOP LAYOUTS (Min-width: 768px) --- */
+  @media (min-width: 768px) {
+    .gallery-block2 {
+      height: 600px;
+      grid-auto-rows: 1fr;
+    }
+
+    /* 2 Images: Both Landscape side by side */
+    .gallery-block2.layout-2 {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+    }
+    .gallery-block2.layout-2 .gallery-item:nth-child(1) { grid-column: 1; grid-row: 1; }
+    .gallery-block2.layout-2 .gallery-item:nth-child(2) { grid-column: 2; grid-row: 1; }
+
+    /* 3 Images: 2 Landscapes left (stacked), 1 Vertical right */
+    .gallery-block2.layout-3 {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    .gallery-block2.layout-3 .gallery-item:nth-child(1) { grid-column: 1; grid-row: 1; }
+    .gallery-block2.layout-3 .gallery-item:nth-child(2) { grid-column: 1; grid-row: 2; }
+    .gallery-block2.layout-3 .gallery-item:nth-child(3) { grid-column: 2; grid-row: 1 / 3; }
+
+    /* 4 Images: 2 Landscapes left (stacked), 2 Verticals right */
+    .gallery-block2.layout-4 {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    .gallery-block2.layout-4 .gallery-item:nth-child(1) { grid-column: 1; grid-row: 1; }
+    .gallery-block2.layout-4 .gallery-item:nth-child(2) { grid-column: 1; grid-row: 2; }
+    .gallery-block2.layout-4 .gallery-item:nth-child(3) { grid-column: 2; grid-row: 1 / 3; }
+    .gallery-block2.layout-4 .gallery-item:nth-child(4) { grid-column: 3; grid-row: 1 / 3; }
+
+    /* 5 Images: 2 Landscapes left, 1 Vertical center, 2 Squares right */
+    .gallery-block2.layout-5 {
+      grid-template-columns: 2fr 1.5fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    .gallery-block2.layout-5 .gallery-item:nth-child(1) { grid-column: 1; grid-row: 1; }
+    .gallery-block2.layout-5 .gallery-item:nth-child(2) { grid-column: 1; grid-row: 2; }
+    .gallery-block2.layout-5 .gallery-item:nth-child(3) { grid-column: 2; grid-row: 1 / 3; }
+    .gallery-block2.layout-5 .gallery-item:nth-child(4) { grid-column: 3; grid-row: 1; }
+    .gallery-block2.layout-5 .gallery-item:nth-child(5) { grid-column: 3; grid-row: 2; }
+
+    /* 6 Images: Large landscape left-top, 2 small left-bottom, tall center, 2 small right */
+    .gallery-block2.layout-6 {
+      grid-template-columns: 1fr 1fr 1.5fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    .gallery-block2.layout-6 .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1; }
+    .gallery-block2.layout-6 .gallery-item:nth-child(2) { grid-column: 1; grid-row: 2; }
+    .gallery-block2.layout-6 .gallery-item:nth-child(3) { grid-column: 2; grid-row: 2; }
+    .gallery-block2.layout-6 .gallery-item:nth-child(4) { grid-column: 3; grid-row: 1 / 3; }
+    .gallery-block2.layout-6 .gallery-item:nth-child(5) { grid-column: 4; grid-row: 1; }
+    .gallery-block2.layout-6 .gallery-item:nth-child(6) { grid-column: 4; grid-row: 2; }
+
+    /* 7 Images Desktop (Uneven Grid) */
+    .gallery-block2.layout-7 {
+      grid-template-columns: 1fr 1.25fr 1.25fr 1fr; 
+      grid-template-rows: repeat(12, 1fr); 
+    }
+    .gallery-block2.layout-7 .gallery-item:nth-child(1) { grid-column: 1; grid-row: 1 / 7; }
+    .gallery-block2.layout-7 .gallery-item:nth-child(2) { grid-column: 1; grid-row: 7 / 13; }
+    .gallery-block2.layout-7 .gallery-item:nth-child(3) { grid-column: 2 / 4; grid-row: 1 / 9; } 
+    .gallery-block2.layout-7 .gallery-item:nth-child(4) { grid-column: 2; grid-row: 9 / 13; }
+    .gallery-block2.layout-7 .gallery-item:nth-child(5) { grid-column: 3; grid-row: 9 / 13; }
+    .gallery-block2.layout-7 .gallery-item:nth-child(6) { grid-column: 4; grid-row: 1 / 7; }
+    .gallery-block2.layout-7 .gallery-item:nth-child(7) { grid-column: 4; grid-row: 7 / 13; }
+  }
+
+  /* --- MEDIUM SCREENS (900px - 1100px) --- */
+  @media (min-width: 768px) and (max-width: 1100px) {
+    .gallery-block2 { height: 450px; }
+  }
+
+  /* --- SMALLER MEDIUM SCREENS (768px - 900px) --- */
+  @media (min-width: 768px) and (max-width: 900px) {
+    .gallery-block2 { height: 350px; }
+  }
+
+  /* --- MOBILE LAYOUT (Max-width: 767px) --- */
+  @media (max-width: 767px) {
+    .filter-buttons { display: none; }
+    .filter-buttons-container { padding-bottom: 0; }
+    .filter-dropdown { display: block; }
+    
+    .gallery-grid {
+      gap: 20px;
+    }
+
+    /* Standard Mobile Grid for ALL Layouts */
+    .gallery-block2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* 2 Columns */
+      gap: 16px;
+      height: auto !important;
+      min-height: auto !important;
+      grid-auto-flow: dense;
+    }
+
+    .gallery-item {
+      width: 100%;
+      height: 200px; /* Default Square Height */
+    }
+
+    /* 1. First Item: Full Width Landscape */
+    .gallery-block2 .gallery-item:nth-child(1) {
+      grid-column: 1 / -1; /* Span all columns */
+      height: 250px;
+    }
+
+    /* 2 & 3: Natural Flow (1 col each) - No specific CSS needed */
+
+    /* 4. Fourth Item: Full Width Portrait */
+    .gallery-block2 .gallery-item:nth-child(4) {
+      grid-column: 1 / -1;
+      height: 450px;
+    }
+
+    /* 5 & 6: Natural Flow (1 col each) - No specific CSS needed */
+
+    /* 7. Seventh Item: Single Square (Full Width) */
+    .gallery-block2 .gallery-item:nth-child(7) {
+      grid-column: 1 / -1;
+      height: 250px;
+    }
+  }
+
+  /* Load More Button Container */
+  .load-more-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .load-more-container .btn-icon {
+    display: flex;
+    align-items: center;
+    line-height: 0;
+  }
+
+  .load-more-container.hidden {
+      display: none;
+  }
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+
+<section class="section" id="{{name}}">
+  <div class="container {% if anim.enable_section_animation %}reveal-card{% endif %}">
+
+    {# --- VARIABLES --- #}
+    {% set show_all_cat = module.all_category.turn_on_off_all_category %}
+    {% set all_label = module.all_category.all_category_label|default('All') %}
+
+    {# --- FILTERS --- #}
+    <div class="filter-buttons-container mb-40">
+      {# Desktop Buttons #}
+      <div class="filter-buttons">
+        
+        {# "All" Button - Only show if boolean is true #}
+        {% if show_all_cat %}
+          <button class="filter-btn btn btn-primary active" data-filter="all">{{ all_label }}</button>
+        {% endif %}
+        
+        {% for category in module.filter_categories %}
+          {# If "All" is disabled, the first category (index 0) must be active by default #}
+          <button class="filter-btn btn btn-primary {% if not show_all_cat and loop.first %}active{% endif %}" data-filter="{{ loop.index0 }}">
+            {{ category.category_name }}
+          </button>
+        {% endfor %}
+      </div>
+
+      {# Mobile Dropdown #}
+      <div class="filter-dropdown">
+        <select id="filterDropdown">
+          
+          {# "All" Option - Only show if boolean is true #}
+          {% if show_all_cat %}
+            <option value="all">{{ all_label }}</option>
+          {% endif %}
+          
+          {% for category in module.filter_categories %}
+            <option value="{{ loop.index0 }}">{{ category.category_name|striptags }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    {# --- GALLERY --- #}
+    <div class="gallery-grid" id="galleryGrid">
+      {% for category in module.filter_categories %}
+        {% set category_index = loop.index0 %}
+        
+        {% for block in category.gallery_blocks %}
+          {# Calculate layout class based on number of images (support up to 7) #}
+          {% set image_count = block.image_items|length %}
+          {% if image_count > 7 %}
+            {% set image_count = 7 %}
+          {% endif %}
+          
+          <div class="gallery-block2 layout-{{ image_count }}" 
+               data-category="{{ category_index }}">
+            
+            {% for item in block.image_items %}
+              {% if loop.index0 < 7 %}
+                <div class="gallery-item">
+                  {% if item.image.src %}
+                    <img src="{{ item.image.src }}" 
+                         alt="{{ item.image.alt }}" 
+                         loading="lazy"
+                         style="object-position: {{ item.image_alignment|default('top') }};"
+                         >
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endfor %}
+
+          </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+
+    {# --- 2. LOAD MORE (USING MACRO) --- #}
+    <div class="load-more-container mt-40">
+      {% for button in module.button_repeater %}
+         {{ button_macros.render_button(button) }}
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% require_js position="footer" %}
+<script>
+(function() {
+  // Config
+  const initialBlocks = {{ module.gallery_settings.initial_blocks|default(3) }};
+  const blocksPerLoad = {{ module.gallery_settings.blocks_per_load|default(3) }};
+  
+  // Logic: Is "All" category enabled?
+  const showAllCategory = {{ module.all_category.turn_on_off_all_category|default(true)|tojson }};
+  
+  // Elements
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const filterDropdown = document.getElementById('filterDropdown');
+  const galleryBlocks = document.querySelectorAll('.gallery-block2');
+  const loadMoreBtnContainer = document.querySelector('.load-more-container');
+  const loadMoreBtn = loadMoreBtnContainer ? loadMoreBtnContainer.querySelector('a, button') : null;
+  
+  // SET INITIAL FILTER
+  // If "All" is enabled, start with 'all'. If disabled, start with '0' (the first category).
+  let currentFilter = showAllCategory ? 'all' : '0';
+  
+  let visibleCount = initialBlocks;
+  
+  // Initialize
+  function initializeGallery() {
+    // Pass currentFilter calculated above
+    filterGallery(currentFilter, false);
+  }
+  
+  function filterGallery(category, isClick = true) {
+    currentFilter = category;
+    if (isClick) visibleCount = initialBlocks;
+    
+    let currentVisibleIndex = 0;
+    let totalMatches = 0;
+
+    galleryBlocks.forEach((block) => {
+      block.classList.remove('fade-in');
+      
+      const blockCategory = block.getAttribute('data-category');
+      const match = category === 'all' || blockCategory === String(category);
+      
+      if (match) {
+        totalMatches++;
+        if (currentVisibleIndex < visibleCount) {
+          block.classList.remove('hidden');
+          
+          if(isClick) {
+              void block.offsetWidth;
+              block.classList.add('fade-in');
+          }
+          
+          currentVisibleIndex++;
+        } else {
+          block.classList.add('hidden');
+        }
+      } else {
+        block.classList.add('hidden');
+      }
+    });
+
+    // Handle Load More Button Visibility
+    if (loadMoreBtnContainer) {
+        if (currentVisibleIndex >= totalMatches) {
+            loadMoreBtnContainer.classList.add('hidden');
+        } else {
+            loadMoreBtnContainer.classList.remove('hidden');
+        }
+    }
+  }
+  
+  function loadMore() {
+    visibleCount += blocksPerLoad;
+    filterGallery(currentFilter, false);
+  }
+  
+  // Listeners
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      filterButtons.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      filterGallery(this.getAttribute('data-filter'));
+    });
+  });
+
+  if (filterDropdown) { 
+    filterDropdown.addEventListener('change', function() {
+      filterGallery(this.value);
+    });
+  }
+
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', function(e) {
+        e.preventDefault(); 
+        loadMore();
+    });
+  }
+
+  // Initialize on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeGallery);
+  } else {
+    initializeGallery();
+  } 
+})();
+</script>
+{% end_require_js %}

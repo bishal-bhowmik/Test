@@ -1,0 +1,23 @@
+{
+  "label": "FitMax Pro",
+  "preview_path": "./templates/Pages/home-v1.html",
+  "screenshot_path": "./Images/Fitmax-pro.jpg",
+  "enable_domain_stylesheets": false,
+  "is_available_for_new_content": true,
+  "author": {
+    "name": "HubXpert",
+    "email": "team@hubxpert.com"
+  },
+  "documentation_url": "https://blog.hubxpert.com/theme-documentation/fitmaxpro-theme-documentation",
+  "example_url": "https://fitmaxpro.hubxpert.com",
+  "responsive_breakpoints": [
+    {
+      "name": "mobile",
+      "mediaQuery": "@media (max-width: 767px)",
+      "previewWidth": {
+        "value": 477
+      }
+    }
+  ],
+  "hide_all_default_modules": false
+}

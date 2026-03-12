@@ -1,0 +1,292 @@
+{% import '../../macros/global-macros.html' as global_macros %} 
+{{ global_macros.module_css(module, name) }}
+{% set anim = module.style.animation %}
+
+<section class="section counter-section-{{ name }}" id="{{ name }}">
+  <div class="container">
+    {# Wrapper to help you style the Left/Right layout (e.g., display: flex or grid) #}
+    <div class="location-layout-wrapper">
+
+      {# ============================================== #}
+      {# LEFT SIDE: LOCATION DETAILS                    #}
+      {# ============================================== #}
+      <div class="location-details-col
+        {% if anim.enable_section_animation %}reveal-left{% endif %}"> 
+
+        <div class="location-details-inner">
+          
+          {# 1. Facility Image #}
+          {% if module.location_details.image.src %}
+            <div class="location-image">
+              <img src="{{ module.location_details.image.src }}" alt="{{ module.location_details.image.alt }}" loading="lazy">
+            </div>
+          {% endif %}
+
+          <div class="location-details-content">
+            
+            {# 2. Section Title #}
+            {% if module.location_details.title %}
+              <div class="location-title rich-text-anim-wrapper"
+              {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+                {{ module.location_details.title }}
+              </div>
+            {% endif %}
+
+            {# 3. Address Block (Icon + Text) #}
+            <div class="location-address-block">
+              
+              {# Icon Logic: Check which type of icon the user selected #}
+              <div class="address-icon">
+                {% if module.location_details.icon_type == 'hubspot_icon' %}
+                  {% icon 
+                    name="{{ module.location_details.hubspot_icon.name }}", 
+                    style="{{ module.location_details.hubspot_icon.type }}", 
+                    unicode="{{ module.location_details.hubspot_icon.unicode }}" 
+                  %}
+                {% elif module.location_details.icon_type == 'custom_svg' %}
+                  {{ module.location_details.custom_svg }}
+                {% elif module.location_details.icon_type == 'image' and module.location_details.image_icon.src %}
+                  <img src="{{ module.location_details.image_icon.src }}" alt="{{ module.location_details.image_icon.alt }}">
+                {% endif %}
+              </div>
+
+              {# Address Text #}
+              {% if module.location_details.description %}
+                <div class="address-text rich-text-anim-wrapper"
+              {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}
+                >
+                  {{ module.location_details.description }}
+                </div>
+              {% endif %}
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# ============================================== #}
+      {# RIGHT SIDE: INTERACTIVE MAP                    #}
+      {# ============================================== #}
+      <div class="interactive-map-col
+       {% if anim.enable_section_animation %}reveal-right{% endif %}">
+        
+        {# 1. Map Title #}
+        {% if module.interactive_map.map_title %}
+          <div class="map-title rich-text-anim-wrapper"
+              {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+            {{ module.interactive_map.map_title }}
+          </div>
+        {% endif %}
+
+        {# 2. The Map Logic #}
+        <div class="map-embed-container">
+          
+          {# Method A: They pasted the raw iframe code #}
+          {% if module.interactive_map.map_settings.map_type == 'embed' and module.interactive_map.map_settings.embed_code %}
+            {{ module.interactive_map.map_settings.embed_code }}
+          
+          {# Method B: They typed an address #}
+          {% elif module.interactive_map.map_settings.map_type == 'address' and module.interactive_map.map_settings.map_address %}
+            
+            {# Encode the address for the URL (turns spaces into %20) #}
+            {% set encoded_address = module.interactive_map.map_settings.map_address|urlencode %}
+
+            {# Generate the secure Google Maps iframe #}
+            <iframe 
+              width="100%" 
+              height="450" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://maps.google.com/maps?q={{ encoded_address }}&t=&z=13&ie=UTF8&iwloc=&output=embed">
+            </iframe>
+
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% require_css %}
+<style>
+  {% scope_css %}
+
+  /* ========================================= */
+  /* MAIN WRAPPERS                             */
+  /* ========================================= */
+  .section {}
+  .counter-section-{{ name }} {}
+  .container {}
+
+  .location-layout-wrapper {
+    display: flex;
+    gap: 40px; 
+  }
+
+  /* ========================================= */
+  /* LEFT SIDE: LOCATION DETAILS               */
+  /* ========================================= */
+
+  /* 1. Define a quick variable to make typing easier */
+  {% set card_bg = module.style.location_card_background %}
+
+  .location-details-col {
+    {# max-width: 730px; #}
+    width: 55%;
+    border-radius: var(--radius-default);
+  }
+
+  .location-details-inner {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    padding: 30px;
+  }
+
+  /* 2. Target your location details column */
+  .counter-section-{{ name }} .location-details-col {
+    /* Base styles to ensure everything stacks neatly */
+    position: relative; 
+    overflow: hidden; /* Keeps the overlay strictly inside the column */
+
+    /* CHECK IF BACKGROUND IS ENABLED */
+    {% if card_bg.enable %}
+      
+      {# Method A: Solid Color #}
+      {% if card_bg.background_type == 'solid_color' %}
+        background-color: rgba({{ card_bg.solid_color.color|convert_rgb }}, {{ card_bg.solid_color.opacity / 100 }});
+      
+      {# Method B: Gradient #}
+      {% elif card_bg.background_type == 'gradient' %}
+        background-image: {{ card_bg.gradient_field.css }};
+      
+      {# Method C: Background Image #}
+      {% elif card_bg.background_type == 'image' and card_bg.background_image.src %}
+        background-image: url('{{ card_bg.background_image.src }}');
+        background-size: cover;
+        background-position: {{ card_bg.background_image_position }};
+        background-repeat: no-repeat;
+      {% endif %}
+
+    {% endif %}
+  }
+
+  /* 3. HANDLE THE IMAGE OVERLAY (If Image + Overlay are selected) */
+  {% if card_bg.enable and card_bg.background_type == 'image' and card_bg.background_overlay %}
+    .counter-section-{{ name }} .location-details-col::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: {{ card_bg.overlay_color.css }}; /* Prints the gradient CSS */
+      z-index: 1; /* Puts overlay above the background image */
+    }
+
+    /* Make sure the text, images, and content sit ABOVE the overlay */
+    .counter-section-{{ name }} .location-details-col > * {
+      position: relative;
+      z-index: 2;
+    }
+  {% endif %}
+
+  .location-image {
+    max-width: 335px;
+    height: 100%;
+  }
+
+  .location-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-half);
+  }
+
+  .location-title {
+    margin-bottom: 20px;
+  }
+
+  .location-address-block {
+    display: flex;
+    gap: 10px;
+  }
+
+  .address-icon {}
+
+  .address-icon img {
+    min-width: 24px;
+    height: 24px;
+  }
+
+  .address-icon svg {
+    min-width: 24px;
+    height: 24px;
+    fill: var(--color-brand-primary);
+  }
+
+  .address-text {}
+
+  /* ========================================= */
+  /* RIGHT SIDE: INTERACTIVE MAP               */
+  /* ========================================= */
+  .interactive-map-col {
+    width: 40%;
+  }
+
+  .map-title {
+    margin-bottom: 24px;
+  }
+
+  {# .map-embed-container {
+    max-width: 400px;
+    margin: 0 auto;
+  } #}
+
+  .map-embed-container iframe {
+    border-radius: 10px;
+  }
+
+  @media (max-width: 768px) {
+    .location-layout-wrapper {
+      flex-direction: column-reverse;
+      gap: 24px;
+    }
+
+    
+    .interactive-map-col {
+      width: 100%;
+    }
+
+    .map-title {
+      text-align: center;
+    }
+
+    .map-embed-container {
+      max-width: 500px;
+    }
+
+    .location-details-col {
+      width: 100%;
+    }
+
+    .location-details-inner {
+      gap: 30px;
+      flex-direction: column-reverse;
+      padding: 16px;
+    }
+
+    .location-image {
+      max-width: inherit;
+    }
+  }
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}

@@ -1,0 +1,639 @@
+<!--
+  templateType: "blog_listing"
+  label: "Blog Listing"
+  isAvailableForNewContent: true
+  screenshotPath: ../Images/Page-template/blog-index.png
+-->
+
+
+
+
+
+{% extends "../layouts/base.html" %}
+
+{% block body %}
+
+{# --- Area to add Drag & Drop modules #}
+{% dnd_area "body-area" label="Body", class="body-area" %}
+{% dnd_section %}
+  {% dnd_column offset=0,width=12 %}
+    {% dnd_row %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+{% end_dnd_area %}
+
+{# --- Best Practice: Require CSS moves the styles to the document head --- #}
+{% require_css %}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Teko:wght@500;600&display=swap');
+
+/* ========================================= */
+/* --- Header & Filters ---                  */
+/* ========================================= */
+.custom-blog-layout {
+  background-color: var(--color-bg-primary-accent-1);
+  opacity: var(--color-bg-primary-accent-1-opacity);
+}
+
+.listing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.top-title * {
+  color: var(--color-text-primary);
+}
+
+.header-right-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 15px;
+}
+
+/* =========================================
+    Topic Filters (Desktop & Mobile Dropdown)
+    ========================================= */
+
+/* Hide the default "Posts by Tag" H3 title */
+.topic-filters .hs_cos_wrapper_type_post_filter h3 {
+  display: none !important;
+}
+
+/* Hide the post count numbers e.g., (4) natively via CSS just in case */
+.topic-filters .filter-link-count {
+  display: none !important;
+}
+
+/* Desktop Design (Horizontal List) */
+.topic-filters .widget-module ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+}
+
+.topic-filters .widget-module a {
+  display: inline-block;
+  font-family: var(--font-family-button);
+  font-size: var(--font-size-button);
+  font-weight: var(--font-weight-button);
+  line-height: var(--line-height-button);
+  letter-spacing: var(--letter-spacing-button);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  padding: 20px;
+  border: 1px solid transparent; /* Invisible border prevents layout shift */
+  border-radius: 12px; /* Rounded corners */
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+/* ACTIVE STATE: Only the selected item gets the box look */
+.topic-filters .widget-module a.active {
+  border-color: var(--color-text-primary); /* Black border */
+}
+
+/* Hover state for unselected items (subtle effect) */
+.topic-filters .widget-module a:not(.active):hover {
+  color: var(--color-brand-primary-opacity);
+}
+
+/* ========================================= */
+/* --- Blog Grid ---                         */
+/* ========================================= */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+.blog-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Card Image --- */
+.card-image img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* --- Card Meta Data --- */
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--color-text-primary) !important;
+  margin-bottom: 10px;
+}
+
+.card-tag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.publish_date p {
+  margin: 0;
+}
+
+/* --- Card Typography --- */
+.card-title {
+  margin: 0 0 10px 0;
+}
+
+.card-title a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.bottom-blog-info {
+  display: flex;
+  align-items: flex-end;
+}
+
+/* --- Card Footer / Read More --- */
+.card-footer {
+  min-width: 150px;
+  margin-top: auto;
+  text-align: right;
+}
+
+.read-more {
+  /* Changed to inline-flex so the underline only spans the exact width of the text/icon, not the whole container */
+  display: inline-flex; 
+  align-items: center;
+  gap: 10px;
+
+  font-family: var(--font-family-button);
+  font-size: var(--font-size-button);
+  font-weight: var(--font-weight-button);
+  line-height: var(--line-height-button);
+  letter-spacing: var(--letter-spacing-button);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  
+  /* Required to position the custom underline correctly */
+  position: relative; 
+}
+
+/* 1. Create the custom underline */
+.read-more::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px; /* Adjust this to move the line closer or further from the text */
+  width: 100%;
+  height: 2px; /* Thickness of the line */
+  background-color: var(--color-text-primary); /* Matches your text color */
+  
+  /* 2. Set up the animation to start invisible and scale from the left */
+  transform: scaleX(0); 
+  transform-origin: left; 
+  transition: transform 0.3s ease-in-out; /* Speed of the animation */
+}
+
+/* 3. Reveal the line on hover */
+.read-more:hover::after {
+  transform: scaleX(1); 
+}
+
+/* 4. Ensure standard text-decoration stays off on hover */
+.read-more:hover {
+  text-decoration: none;
+}
+
+/* =========================================
+    Pagination Overrides (Perfect Circles Match)
+    ========================================= */
+.pagination-wrapper {
+  margin: 120px 0 0 0;
+}
+
+.pagination-wrapper .pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Common styling for all numbers and arrows */
+.pagination-wrapper .pagination__link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* 1. Force the exact size & prevent Flexbox from stretching */
+  width: 52px !important;
+  height: 52px !important;
+  flex: 0 0 52px !important; 
+  /* 2. Kill HubSpot's native padding causing the oval shape */
+  padding: 0 !important; 
+  box-sizing: border-box !important;
+  border-radius: 50% !important;
+  text-decoration: none;
+  font-family: var(--font-family-button);
+  font-size: var(--font-size-button);
+  font-weight: var(--font-weight-button);
+  line-height: var(--line-height-button);
+  letter-spacing: var(--letter-spacing-button);
+  color: var(--color-text-primary);
+  background-color: transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none !important;
+}
+
+/* Hover effect for unselected numbers */
+.pagination-wrapper .pagination__link:not(.pagination__link--active):not(.pagination__link--disabled):hover {
+    background-color: var(--color-brand-primary);
+  opacity: var(--color-brand-primary-opacity);
+}
+
+/* Active State (Solid Lime Green, No Border) */
+.pagination-wrapper .pagination__link--active {
+    background-color: var(--color-brand-primary);
+  opacity: var(--color-brand-primary-opacity);
+  color: var(--color-text-primary);
+}
+
+/* Hide the "First" and "Last" (double arrows) entirely */
+.pagination-wrapper .pagination__link--first,
+.pagination-wrapper .pagination__link--last {
+  display: none !important;
+}
+
+/* Arrow Buttons (White Circles) */
+.pagination-wrapper .pagination__link--prev,
+.pagination-wrapper .pagination__link--next {
+    background-color: var(--color-bg-primary);
+  opacity: var(--color-bg-primary-opacity);
+  margin: 0 10px;
+}
+
+/* Hide default thick HubSpot SVGs and screen-reader text */
+.pagination-wrapper .pagination__link-icon,
+.pagination-wrapper .pagination__link-text,
+.pagination-wrapper .show-for-sr--mobile {
+  display: none !important;
+}
+
+/* Inject custom sleek "Previous" Arrow */
+.pagination-wrapper .pagination__link--prev::after {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.51958 17.5597C8.50444 17.5746 8.0403 17.6884 7.48825 17.8125C6.93613 17.9366 6.47844 18.0192 6.47108 17.9961C6.46379 17.973 6.40665 17.5982 6.34419 17.1632C6.21871 16.2896 5.91489 15.2697 5.59025 14.6318C4.57834 12.6438 2.76277 11.3275 0.560742 10.9853L6.20861e-07 10.8982L6.97636e-07 10.02L7.74417e-07 9.1417L0.508237 9.0583C3.83799 8.51191 6.00883 6.07678 6.41493 2.43259C6.44143 2.19463 6.47311 2 6.48531 2C6.59761 2 8.45839 2.43861 8.49358 2.47336C8.51903 2.49849 8.5001 2.72157 8.45145 2.96901C7.913 5.70904 6.37125 7.93867 4.37056 8.87093L3.89064 9.09457L13.7595 9.11208L20 9.1232L20 10.9005L13.7435 10.9117L3.89786 10.9293L4.50375 11.2295C6.07556 12.0084 7.32001 13.5363 8.05285 15.587C8.26168 16.1713 8.57679 17.5033 8.51958 17.5597Z' fill='%23101000'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Inject custom sleek "Next" Arrow */
+.pagination-wrapper .pagination__link--next::after {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11.4804 17.5597C11.4956 17.5746 11.9597 17.6884 12.5117 17.8125C13.0639 17.9366 13.5216 18.0192 13.5289 17.9961C13.5362 17.973 13.5933 17.5982 13.6558 17.1632C13.7813 16.2896 14.0851 15.2697 14.4098 14.6318C15.4217 12.6438 17.2372 11.3275 19.4393 10.9853L20 10.8982L20 10.02L20 9.1417L19.4918 9.0583C16.162 8.51191 13.9912 6.07678 13.5851 2.43259C13.5586 2.19463 13.5269 2 13.5147 2C13.4024 2 11.5416 2.43861 11.5064 2.47336C11.481 2.49849 11.4999 2.72157 11.5486 2.96901C12.087 5.70904 13.6287 7.93867 15.6294 8.87093L16.1094 9.09457L6.24046 9.11208L1.13131e-06 9.1232L1.28669e-06 10.9005L6.25652 10.9117L16.1021 10.9293L15.4963 11.2295C13.9244 12.0084 12.68 13.5363 11.9472 15.587C11.7383 16.1713 11.4232 17.5033 11.4804 17.5597Z' fill='%23101000'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Disabled Arrow State (e.g., when on Page 1) */
+.pagination-wrapper .pagination__link--disabled {
+background-color: var(--color-bg-primary);
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+
+/* Mobile Design (Dropdown Layout) */
+@media (max-width: 768px) {
+
+
+ .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .top-title {
+  text-align: center;
+  }
+  .listing-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .header-right-actions {
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  .topic-filters {
+    width: 100%;
+  }
+
+
+
+  .topic-filters .widget-module {
+    position: relative;
+    width: 100%;
+    min-width: 250px;
+  }
+
+  /* Hide the native list by default on mobile */
+  .topic-filters .widget-module ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-bg-primary);
+    border: 1px solid var(--color-brand-secondary);
+    border-radius: 6px;
+    margin-top: 5px;
+    z-index: 100;
+    gap: 0;
+    overflow: hidden;
+  }
+
+  /* Show list when the JS toggles this class */
+  .topic-filters .widget-module.dropdown-open ul {
+    display: flex;
+  }
+
+  /* Mobile list item styling */
+  .topic-filters .widget-module li {
+    width: 100%;
+    border-bottom: 1px solid var(--color-bg-primary-accent-1);
+  }
+  
+  .topic-filters .widget-module li:last-child {
+    border-bottom: none;
+  }
+
+  .topic-filters .widget-module a {
+    display: block;
+    width: 100%;
+    padding: 14px 20px;
+    border: none; /* Override desktop border */
+    border-radius: 0;
+  }
+
+  .topic-filters .widget-module a.active {
+    background-color: var(--color-bg-primary-accent-1); /* Highlight active in dropdown */
+  }
+
+  .topic-filters .widget-module a:hover {
+    background-color:var(--color-bg-primary-accent-1);
+  }
+
+  /* The Mobile Toggle Button */
+  .mobile-filter-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    padding: 16px;
+    border: 1px solid var(--color-brand-secondary);
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: transparent;
+    user-select: none;
+    color: var(--color-text-primary);
+  }
+
+  .pagination-wrapper {
+    margin: 72px 0 0 0;
+}
+
+.pagination-wrapper .pagination {
+    gap: 6px;
+}
+
+.pagination-wrapper .pagination__link {
+
+    width: 30px !important;
+    height: 30px !important;
+    flex: 0 0 30px !important;
+   
+}
+
+
+
+}
+
+/* Hide the mobile toggle button entirely on Desktop */
+@media (min-width: 769px) {
+  .mobile-filter-toggle {
+    display: none !important;
+  }
+}
+
+</style>
+{% end_require_css %}
+
+    <div>
+      {% module "module_17715895575982" path="../../modules/Hero Banner", label="Hero Banner" %}
+    </div>
+
+
+<section class="section custom-blog-layout">
+<div class="container reveal-card">
+
+  <div class="top-area listing-header">
+    <div class="top-title">
+      {% module "Blog listing text" 
+        path="@hubspot/rich_text", 
+        label="Blog listing text",
+        html='<h2 class="main-title">LATEST BLOGS</h2>'
+      %}
+    </div>
+
+    <div class="header-right-actions">
+      <div id="blog_all_tags" class="topic-filters">
+{% module "module_17715171799993" path="../../modules/Blog Listing Post Filter", label="Blog Listing Post Filter" %}
+      </div>
+    </div>
+  </div>
+
+  <div class="blogs_area blog-grid">
+    {% for blog in contents %}
+      <article class="blog_content blog-card">
+        
+        <div class="blog_img card-image">
+          {% if blog.featured_image %}
+            <a href="{{ blog.absolute_url }}">
+              <img src="{{ blog.featured_image|escape_url }}" alt="{{ blog.name }}" loading="lazy">
+            </a>
+          {% endif %}
+          <div class="img-overlay"></div>
+        </div>
+
+        <div class="blog_info_area card-body">
+          <div class="card-meta">
+            <div class="blog_tag card-tag">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.14239 11.2152C8.99147 11.1952 8.83374 11.2037 8.67729 11.2436L6.41135 11.8213C5.78561 11.9809 5.41435 12.5927 5.58196 13.1881L5.73318 13.7265C5.81624 14.0238 5.63075 14.329 5.31848 14.4088L4.75257 14.5549C4.12682 14.7145 3.75557 15.3263 3.92318 15.9217L5.74463 22.3895C5.91237 22.9849 6.5554 23.3381 7.18118 23.1787L7.74709 23.0348C8.06032 22.9544 8.38266 23.1312 8.46651 23.4294L8.61772 23.9678C8.78546 24.5632 9.42849 24.9164 10.0543 24.7569L12.3202 24.1793C12.946 24.0197 13.3172 23.4078 13.1496 22.8124L12.0161 18.7889C11.9323 18.4912 12.1086 18.158 12.4143 18.0561C13.9041 17.5599 15.7548 17.173 17.9587 17.173C20.1627 17.173 22.0134 17.5599 23.5032 18.0562C23.8089 18.158 23.9851 18.4912 23.9013 18.7889L22.7678 22.8124C22.6002 23.4078 22.9714 24.0197 23.5972 24.1793L25.8631 24.7569C26.4889 24.9164 27.1319 24.5632 27.2997 23.9678L27.4509 23.4294C27.5347 23.1312 27.8571 22.9544 28.1703 23.0348L28.7362 23.1787C29.362 23.3381 30.005 22.9849 30.1728 22.3895L31.9942 15.9217C32.1618 15.3263 31.7906 14.7145 31.1648 14.5549L30.5989 14.4088C30.2866 14.329 30.1012 14.0238 30.1842 13.7265L30.3354 13.1881C30.503 12.5927 30.1318 11.9809 29.506 11.8213L27.2401 11.2436C26.6143 11.0841 25.9713 11.4373 25.8036 12.0327L24.812 15.5549C24.7282 15.8526 24.4148 16.005 24.1082 15.9055C22.4145 15.3555 20.3458 14.9407 17.9587 14.9407C15.5715 14.9407 13.5028 15.3555 11.8091 15.9055C11.5026 16.005 11.1892 15.8526 11.1054 15.5549L10.1138 12.0327C9.98803 11.5862 9.59515 11.2752 9.14239 11.2152Z" fill="#101000"/>
+              </svg>
+              <span class="text-body-highlight" style="color: var(--color-text-primary) !important;">
+                {% if blog.topic_list %}
+                  {{ blog.topic_list[0].name }}
+                {% else %}
+                  Fitness
+                {% endif %}                
+              </span>
+            </div>
+
+            <div class="publish_date card-date">
+              <p class="text-body-highlight" style="color: var(--color-text-primary) !important;">
+                {{ blog.publish_date | datetimeformat('%b %d, %Y') }}
+              </p>
+            </div>
+          </div>
+
+          <div class="blog_info">
+            <div class="blog_name card-title">
+              <h6><a href="{{ blog.absolute_url }}">{{ blog.name }}</a></h6>
+            </div>
+          </div>
+
+          <div class="bottom-blog-info">
+            <div class="blog-des card-excerpt">
+              <p class="font-secondary">{{ blog.post_list_content|striptags|truncatehtml(180, '...', false) }}</p>
+            </div>
+
+            <div class="blog_links card-footer">
+              <a href="{{ blog.absolute_url }}" class="read-more">
+                <span>Read More</span>
+                <span>
+                  <svg width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.4804 15.9083C11.4956 15.9235 11.9597 16.0399 12.5117 16.1668C13.0639 16.2937 13.5216 16.3781 13.5289 16.3545C13.5362 16.3309 13.5933 15.9477 13.6558 15.5029C13.7813 14.6098 14.0851 13.567 14.4097 12.9148C15.4217 10.8823 17.2372 9.53642 19.4393 9.18663L20 9.09753L20 8.19965L20 7.30171L19.4918 7.21643C16.162 6.65781 13.9912 4.16812 13.5851 0.442291C13.5586 0.198998 13.5269 4.58181e-06 13.5147 4.58284e-06C13.4024 4.59231e-06 11.5416 0.448446 11.5064 0.483971C11.481 0.509659 11.4999 0.737739 11.5486 0.990726C12.087 3.79214 13.6287 6.07172 15.6294 7.02487L16.1094 7.25351L6.24046 7.27142L-7.65022e-07 7.28279L-6.11846e-07 9.09996L6.25651 9.11133L16.1021 9.12931L15.4963 9.43629C13.9244 10.2326 12.68 11.7947 11.9472 13.8914C11.7383 14.4888 11.4232 15.8506 11.4804 15.9083Z" fill="#4C4C40"/>
+                  </svg>
+                </span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+
+  <div class="blog_pagination pagination-wrapper">
+    {% module "module_17714138456752" path="../../modules/Blog Listing pagination", label="Blog Listing pagination" %}
+  </div>
+
+</div>
+</section>
+
+{# --- JavaScript to handle "All" Button, Active States & Mobile Dropdown --- #}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const widgetModules = document.querySelectorAll('.topic-filters .widget-module');
+  
+  widgetModules.forEach(module => {
+    const ul = module.querySelector('ul');
+    if (!ul) return; 
+
+    const links = ul.querySelectorAll('a');
+    let baseBlogUrl = '';
+
+    // 1. Clean up texts (remove the numbers) and find the base blog URL
+    links.forEach(link => {
+      let span = link.querySelector('span.filter-link-count');
+      if (span) link.removeChild(span); 
+      link.textContent = link.textContent.trim(); 
+
+      // Extract the base URL by stripping "/tag/..." from the href
+      if (link.href.includes('/tag/')) {
+        baseBlogUrl = link.href.split('/tag/')[0];
+      }
+    });
+
+    // 2. Ensure an "All" button exists
+    // Check if any link already points to the root (meaning it lacks '/tag/')
+    let allLink = Array.from(links).find(link => !link.href.includes('/tag/'));
+
+    if (!allLink && baseBlogUrl) {
+      // If "All" doesn't exist, create it dynamically
+      let allLi = document.createElement('li');
+      allLink = document.createElement('a');
+      allLink.href = baseBlogUrl;
+      allLink.textContent = 'All';
+      allLi.appendChild(allLink);
+      ul.insertBefore(allLi, ul.firstChild);
+    } else if (allLink) {
+      // If it does exist, ensure the text simply reads "All"
+      allLink.textContent = 'All';
+    }
+
+    // 3. Determine which tag is currently active
+    let currentUrl = window.location.href.split('?')[0]; // Ignore ?page=2 etc.
+    let anyActive = false;
+    
+    ul.querySelectorAll('a').forEach(link => {
+      if (link.href === currentUrl) {
+        link.classList.add('active');
+        anyActive = true;
+      } else {
+        link.classList.remove('active');
+      }
+    });
+
+    // If no specific tag is active, "All" must be the active one
+    if (!anyActive && allLink) {
+      allLink.classList.add('active');
+    }
+
+    // 4. Create the Mobile Dropdown Toggle Button
+    const toggleBtn = document.createElement('div');
+    toggleBtn.className = 'mobile-filter-toggle';
+    
+    const activeElement = ul.querySelector('a.active');
+    let activeText = activeElement ? activeElement.textContent.trim() : 'Topics';
+    
+    toggleBtn.innerHTML = `
+      <span>${activeText}</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    `;
+
+    module.insertBefore(toggleBtn, ul);
+
+    // 5. Dropdown open/close logic
+    toggleBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      module.classList.toggle('dropdown-open');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!module.contains(e.target)) {
+        module.classList.remove('dropdown-open');
+      }
+    });
+  });
+});
+</script>
+
+{% endblock body %}

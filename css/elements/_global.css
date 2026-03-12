@@ -1,0 +1,832 @@
+
+/*
+* ============================================================================
+* FITMAX THEME - TAILWIND-STYLE STYLESHEET
+* ============================================================================
+* 
+* This stylesheet contains all theme-level design tokens and utility classes.
+* Values are dynamically generated from fields.json configuration.
+* 
+* ============================================================================
+*/
+
+/* ============================================================================
+1. CSS CUSTOM PROPERTIES (DESIGN TOKENS)
+============================================================================ */
+
+:root {
+  /* Brand Colors */
+  --color-brand-primary: {{ theme.brand_colors.primary.color }};
+  --color-brand-primary-opacity: {{ theme.brand_colors.primary.opacity }}%;
+  --color-brand-secondary: {{ theme.brand_colors.secondary.color }};
+  --color-brand-secondary-opacity: {{ theme.brand_colors.secondary.opacity }}%;
+
+  /* Background Colors */
+  --color-bg-primary: {{ theme.bg_colors.primary.color }};
+  --color-bg-primary-opacity: {{ theme.bg_colors.primary.opacity }}%;
+  --color-bg-secondary: {{ theme.bg_colors.secondary.color }};
+  --color-bg-secondary-opacity: {{ theme.bg_colors.secondary.opacity }}%;
+  --color-bg-primary-accent-1: {{ theme.bg_colors.primaryAccent.color }};
+  --color-bg-primary-accent-1-opacity: {{ theme.bg_colors.primaryAccent.opacity }}%;
+  --color-bg-primary-accent-2: {{ theme.bg_colors.primaryAccent2.color }};
+  --color-bg-primary-accent-2-opacity: {{ theme.bg_colors.primaryAccent2.opacity }}%;
+  --color-bg-secondary-accent: {{ theme.bg_colors.secondaryAccent.color }};
+  --color-bg-secondary-accent-opacity: {{ theme.bg_colors.secondaryAccent.opacity }}%;
+  --color-bg-gradient: {{ theme.bg_colors.gradient.css }};
+
+  /* Text Colors */
+  --color-text-primary: {{ theme.typography.text_colors.primary_color.color }};
+  --color-text-primary-opacity: {{ theme.typography.text_colors.primary_color.opacity }}%;
+  --color-text-secondary: {{ theme.typography.text_colors.secondary_color.color }};
+  --color-text-secondary-opacity: {{ theme.typography.text_colors.secondary_color.opacity }}%;
+  --color-text-tertiary: {{ theme.typography.text_colors.tertiary_color.color }};
+  --color-text-tertiary-opacity: {{ theme.typography.text_colors.tertiary_color.opacity }}%;
+
+  /* Border Colors */
+  --color-border-default: {{ theme.general_view.borders.border_color.color }};
+  --border-width-default: {{ theme.general_view.borders.border_width }}px;
+
+  /* Typography - Font Families */
+  --font-family-primary: '{{ theme.typography.fonts.primary.font.font }}', {{ theme.typography.fonts.primary.font.fallback }};
+  --font-family-secondary: '{{ theme.typography.fonts.secondary.font.font }}', {{ theme.typography.fonts.secondary.font.fallback }};
+  --font-family-button: '{{ theme.buttons.primary.text.font.font }}', {{ theme.buttons.primary.text.font.fallback }};
+  --font-family-button-secondary: '{{ theme.buttons.secondary.text.font.font }}', {{ theme.buttons.secondary.text.font.fallback }};
+
+  /* Typography - Line Heights */
+  --line-height-primary: {{ theme.typography.fonts.primary.line_height / 100 }};
+  --line-height-secondary: {{ theme.typography.fonts.secondary.line_height / 100 }};
+  --line-height-button: {{ theme.buttons.primary.text.line_height / 100 }};
+    --line-height-button-secondary: {{ theme.buttons.secondary.text.line_height / 100 }};
+
+
+  /* Typography - Letter Spacing */
+  --letter-spacing-primary: {{ theme.typography.fonts.primary.letter_spacing }}%;
+  --letter-spacing-secondary: {{ theme.typography.fonts.secondary.letter_spacing }}%;
+  --letter-spacing-button: {{ theme.buttons.primary.text.letter_spacing }}%;
+    --letter-spacing-button-secondary: {{ theme.buttons.secondary.text.letter_spacing }}%;
+
+
+  /* Heading Sizes - Desktop (with clamp for fluid scaling) */
+  --font-size-h1-min: {{ theme.typography.headings.mobile.h1.font_style.size }}px;
+  --font-size-h1-max: {{ theme.typography.headings.desktop.h1.font_style.size }}px;
+  --font-size-h1: clamp(var(--font-size-h1-min), 8vw + 1rem, var(--font-size-h1-max));
+  --font-weight-h1: {{ theme.typography.headings.desktop.h1.font_style.styles['font-weight'] }};
+
+  --font-size-h2-min: {{ theme.typography.headings.mobile.h2.font_style.size }}px;
+  --font-size-h2-max: {{ theme.typography.headings.desktop.h2.font_style.size }}px;
+  --font-size-h2: clamp(var(--font-size-h2-min), 8vw + 1rem, var(--font-size-h2-max));
+  --font-weight-h2: {{ theme.typography.headings.desktop.h2.font_style.styles['font-weight'] }};
+
+  --font-size-h3-min: {{ theme.typography.headings.mobile.h3.font_style.size }}px;
+  --font-size-h3-max: {{ theme.typography.headings.desktop.h3.font_style.size }}px;
+  --font-size-h3: clamp(var(--font-size-h3-min), 3vw + 1rem, var(--font-size-h3-max));
+  --font-weight-h3: {{ theme.typography.headings.desktop.h3.font_style.styles['font-weight'] }};
+
+  --font-size-h4-min: {{ theme.typography.headings.mobile.h4.font_style.size }}px;
+  --font-size-h4-max: {{ theme.typography.headings.desktop.h4.font_style.size }}px;
+  --font-size-h4: clamp(var(--font-size-h4-min), 1.5vw + 1rem, var(--font-size-h4-max));
+  --font-weight-h4: {{ theme.typography.headings.desktop.h4.font_style.styles['font-weight'] }};
+
+  --font-size-h5-min: {{ theme.typography.headings.mobile.h5.font_style.size }}px;
+  --font-size-h5-max: {{ theme.typography.headings.desktop.h5.font_style.size }}px;
+  --font-size-h5: clamp(var(--font-size-h5-min), 1.25vw + 1rem, var(--font-size-h5-max));
+  --font-weight-h5: {{ theme.typography.headings.desktop.h5.font_style.styles['font-weight'] }};
+
+  --font-size-h6-min: {{ theme.typography.headings.mobile.h6.font_style.size }}px;
+  --font-size-h6-max: {{ theme.typography.headings.desktop.h6.font_style.size }}px;
+  --font-size-h6: clamp(var(--font-size-h6-min), 1vw + 1rem, var(--font-size-h6-max));
+  --font-weight-h6: {{ theme.typography.headings.desktop.h6.font_style.styles['font-weight'] }};
+
+  /* Body Text Sizes */
+  --font-size-body-min: {{ theme.typography.body_text.mobile_font_size.size }}px;
+  --font-size-body-max: {{ theme.typography.body_text.desk_font_size.size }}px;
+  --font-size-body: clamp(var(--font-size-body-min), 0.5vw + 0.875rem, var(--font-size-body-max));
+  --font-weight-body: {{ theme.typography.body_text.desk_font_size.styles['font-weight'] }};
+  --font-weight-body-highlight: 600;
+
+
+  /* Button Text Sizes */
+  --font-size-button-min: {{ theme.buttons.primary.text.mobile_font_size.size }}px;
+  --font-size-button-max: {{ theme.buttons.primary.text.desk_font_size.size }}px;
+  --font-size-button: clamp(var(--font-size-button-min), 0.5vw + 0.875rem, var(--font-size-button-max));
+  
+  --font-size-button-secondary-min: {{ theme.buttons.secondary.text.body_font.size }}px;
+  --font-size-button-secondary-max: {{ theme.buttons.secondary.text.heading_font.size }}px;
+  --font-size-button-secondary: clamp(var(--font-size-button-secondary-min), 0.5vw + 0.875rem, var(--font-size-button-secondary-max));
+  
+  --font-weight-button: {{ theme.buttons.primary.text.desk_font_size.styles['font-weight'] }};
+  --font-weight-button-secondary: {{ theme.buttons.secondary.text.desk_font_size.styles['font-weight'] }};
+
+
+  /* Spacing - Maximum Content Width */
+  --max-width-content: {{ theme.spacing.max_width }}px;
+
+  /* Spacing - Section Padding */
+  --spacing-section-vertical-min: {{ theme.spacing.mobile_padding.vertical }}px;
+  --spacing-section-vertical-max: {{ theme.spacing.desktop_padding.vertical }}px;
+  --spacing-section-vertical: clamp(var(--spacing-section-vertical-min), 4vw, var(--spacing-section-vertical-max));
+
+  --spacing-section-horizontal-min: {{ theme.spacing.mobile_padding.horizontal }}px;
+  --spacing-section-horizontal-max: {{ theme.spacing.desktop_padding.horizontal }}px;
+  --spacing-section-horizontal: clamp(var(--spacing-section-horizontal-min), 2vw, var(--spacing-section-horizontal-max));
+
+  /* Button Padding - Primary */
+  --button-primary-padding-horizontal-min: {{ theme.buttons.primary.padding.mobile_padding.horizontal }}px;
+  --button-primary-padding-horizontal-max: {{ theme.buttons.primary.padding.desktop_padding.horizontal }}px;
+  --button-primary-padding-horizontal: clamp(var(--button-primary-padding-horizontal-min), 2vw, var(--button-primary-padding-horizontal-max));
+
+  --button-primary-padding-vertical-min: {{ theme.buttons.primary.padding.mobile_padding.vertical }}px;
+  --button-primary-padding-vertical-max: {{ theme.buttons.primary.padding.desktop_padding.vertical }}px;
+  --button-primary-padding-vertical: clamp(var(--button-primary-padding-vertical-min), 1vw, var(--button-primary-padding-vertical-max));
+
+  /* Button Padding - Secondary */
+  --button-secondary-padding-horizontal-min: {{ theme.buttons.secondary.padding.mobile_padding.horizontal }}px;
+  --button-secondary-padding-horizontal-max: {{ theme.buttons.secondary.padding.desktop_padding.horizontal }}px;
+  --button-secondary-padding-horizontal: clamp(var(--button-secondary-padding-horizontal-min), 2vw, var(--button-secondary-padding-horizontal-max));
+
+  --button-secondary-padding-vertical-min: {{ theme.buttons.secondary.padding.mobile_padding.vertical }}px;
+  --button-secondary-padding-vertical-max: {{ theme.buttons.secondary.padding.desktop_padding.vertical }}px;
+  --button-secondary-padding-vertical: clamp(var(--button-secondary-padding-vertical-min), 1vw, var(--button-secondary-padding-vertical-max));
+
+  /* Button Colors - Primary */
+  --button-primary-text-color: {{ theme.buttons.primary.text.text_color.color }};
+  --button-primary-text-hover-color: {{ theme.buttons.primary.text.text_hover_color.color }};
+  --button-primary-bg-color: {{ theme.buttons.primary.bg.background_color.color }};
+  --button-box-shadow-color: {{ theme.buttons.primary.bg.background_color.color }}40;
+  --button-primary-bg-hover-color: {{ theme.buttons.primary.bg.hover_background_color.color }};
+
+  /* Button Colors - Secondary */
+  --button-secondary-text-color: {{ theme.buttons.secondary.text.text_color.color }};
+  --button-secondary-text-hover-color: {{ theme.buttons.secondary.text.text_hover_color.color }};
+  --button-secondary-bg-color: {{ theme.buttons.secondary.bg.background_color.color }};
+  --button-secondary-bg-hover-color: {{ theme.buttons.secondary.bg.hover_background_color.color }};
+
+  /* Border Radius */
+  --radius-default-min: {{ theme.general_view.corners.mobile_radius }}px;
+  --radius-default-max: {{ theme.general_view.corners.desktop_radius }}px;
+  --radius-default: clamp(var(--radius-default-min), 1vw, var(--radius-default-max));
+  --radius-half: calc(var(--radius-default) / 2);
+
+  --radius-button-primary: {{ theme.buttons.primary.corner.border_radius }}px;
+  --radius-button-secondary: {{ theme.buttons.secondary.corner.border_radius }}px;
+
+  /* Form Styles */
+  --form-bg-color: {{ theme.forms.background.color.color }};
+  --form-field-bg: {{ theme.forms.fields.colors.color.color }};
+  --form-field-padding: {{ theme.forms.fields.padding }}px;
+  --form-label-color: {{ theme.forms.fields.colors.form_label.color }};
+  --form-placeholder-color: {{ theme.forms.fields.colors.placeholder.color }};
+  --form-label-font-size: {{ theme.forms.labels.font_style.font.size }}em;
+  --form-label-font-weight: {{ theme.forms.labels.font_style.font.variant }};
+  --form-label-line-height: {{ theme.forms.labels.font_style.line_height / 100 }};
+  --form-label-letter-spacing: {{ theme.forms.labels.font_style.letter_spacing }}%;
+}
+
+/* ============================================================================
+2. TYPOGRAPHY UTILITIES
+============================================================================ */
+
+/* Heading Base Styles */
+h1, h2, h3, h4, h5, h6,
+.text-h1,
+.text-h2,
+.text-h3,
+.text-h4,
+.text-h5,
+.text-h6 {
+  {% if theme.typography.headings.desktop.h1.font == 'primary' %}
+  font-family: var(--font-family-primary);
+  {% else %}
+  font-family: var(--font-family-secondary);
+  {% endif %}
+  line-height: var(--line-height-primary);
+  letter-spacing: var(--letter-spacing-primary);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+h1, .text-h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-h1);
+}
+
+h2, .text-h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-h2);
+}
+
+h3, .text-h3 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-h3);
+}
+
+h4, .text-h4 {
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-h4);
+}
+
+h5, .text-h5 {
+  font-size: var(--font-size-h5);
+  font-weight: var(--font-weight-h5);
+}
+
+h6, .text-h6 {
+  font-size: var(--font-size-h6);
+  font-weight: var(--font-weight-h6);
+}
+
+/* Body Text Styles */
+body, p,
+.text-body {
+  {% if theme.typography.body_text.font == 'primary' %}
+  font-family: var(--font-family-primary);
+  {% else %}
+  font-family: var(--font-family-secondary);
+  {% endif %}
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-body);
+  line-height: var(--line-height-secondary);
+  letter-spacing: var(--letter-spacing-secondary);
+  color: var(--color-text-secondary);
+}
+strong{
+  {% if theme.typography.body_text.font == 'primary' %}
+  font-family: var(--font-family-primary);
+  {% else %}
+  font-family: var(--font-family-secondary);
+  {% endif %}
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-body-highlight);
+  line-height: var(--line-height-secondary);
+  letter-spacing: var(--letter-spacing-secondary);
+  color: var(--color-text-secondary);
+}
+.text-body-highlight {
+  {% if theme.typography.body_text.font == 'primary' %}
+  font-family: var(--font-family-primary);
+  {% else %}
+  font-family: var(--font-family-secondary);
+  {% endif %}
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-body-highlight);
+  line-height: var(--line-height-secondary);
+  letter-spacing: var(--letter-spacing-secondary);
+  color: var(--color-text-secondary);
+}
+
+/* Font Family Utilities */
+.font-primary {
+  font-family: var(--font-family-primary);
+}
+
+.font-secondary {
+  font-family: var(--font-family-secondary);
+}
+
+/* Text Color Utilities */
+.text-primary {
+  color: var(--color-text-primary);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-tertiary {
+  color: var(--color-text-tertiary);
+}
+
+/* ============================================================================
+3. COLOR UTILITIES
+============================================================================ */
+
+/* Background Color Utilities */
+.bg-primary {
+  background-color: var(--color-bg-primary);
+  opacity: var(--color-bg-primary-opacity);
+}
+
+.bg-secondary {
+  background-color: var(--color-bg-secondary);
+  opacity: var(--color-bg-secondary-opacity);
+}
+
+.bg-primary-accent-1 {
+  background-color: var(--color-bg-primary-accent-1);
+  opacity: var(--color-bg-primary-accent-1-opacity);
+}
+
+.bg-primary-accent-2 {
+  background-color: var(--color-bg-primary-accent-2);
+  opacity: var(--color-bg-primary-accent-2-opacity);
+}
+
+.bg-secondary-accent {
+  background-color: var(--color-bg-secondary-accent);
+  opacity: var(--color-bg-secondary-accent-opacity);
+}
+
+.bg-brand-primary {
+  background-color: var(--color-brand-primary);
+  opacity: var(--color-brand-primary-opacity);
+}
+
+.bg-brand-secondary {
+  background-color: var(--color-brand-secondary);
+  opacity: var(--color-brand-secondary-opacity);
+}
+
+.bg-gradient {
+  background: var(--color-bg-gradient);
+}
+
+/* ============================================================================
+  BUTTON COMPONENTS
+============================================================================ */
+
+/* Button Container Layout */
+.button-container,.button-group {
+  display: flex;
+  gap: clamp(12px, 1vw, 16px);
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.btn:hover,
+.btn:focus {
+  box-shadow: 0px 5px 20px 0px var(--button-box-shadow-color);
+  outline: 2px solid var(--button-primary-bg-color);
+  background-color: var(--button-primary-bg-hover-color);
+  color: var(--button-primary-text-hover-color);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Primary Button */
+.btn-primary {
+  font-family: var(--font-family-button);
+  font-size: var(--font-size-button);
+  font-weight: var(--font-weight-button);
+  line-height: var(--line-height-button);
+  letter-spacing: var(--letter-spacing-button);
+  background-color: var(--button-primary-bg-color);
+  color: var(--button-primary-text-color);
+  border-radius: var(--radius-button-primary);
+  padding: var(--button-primary-padding-vertical) var(--button-primary-padding-horizontal);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  font-family: var(--font-family-button-secondary);
+  font-size: var(--font-size-button-secondary);
+  font-weight: var(--font-weight-button-secondary);
+  line-height: var(--line-height-button-secondary);
+  letter-spacing: var(--letter-spacing-button-secondary);
+  background-color: var(--button-secondary-bg-color);
+  color: var(--button-secondary-text-color);
+  border-radius: var(--radius-button-secondary);
+  padding: var(--button-secondary-padding-vertical) var(--button-secondary-padding-horizontal);
+}
+
+
+@media (max-width: 425px) {
+  .btn-secondary,
+  .btn-primary {
+    width: 100%;
+    display: block;
+  }
+}
+
+/* ============================================================================
+5. LAYOUT & SPACING UTILITIES
+============================================================================ */
+
+/* Container */
+.container {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+}
+.section {
+    padding: var(--spacing-section-vertical) 0;
+  }
+/* Section Spacing */
+@media (max-width: {{ theme.spacing.max_width }}px) {
+  .section {
+    padding: var(--spacing-section-vertical) var(--spacing-section-horizontal);
+  }
+}
+
+
+/* ============================================================================
+6. BORDER & CORNER UTILITIES
+============================================================================ */
+
+/* Border Utilities */
+.border {
+  border: var(--border-width-default) solid var(--color-border-default);
+}
+
+.border-t {
+  border-top: var(--border-width-default) solid var(--color-border-default);
+}
+
+.border-r {
+  border-right: var(--border-width-default) solid var(--color-border-default);
+}
+
+.border-b {
+  border-bottom: var(--border-width-default) solid var(--color-border-default);
+}
+
+.border-l {
+  border-left: var(--border-width-default) solid var(--color-border-default);
+}
+
+/* Corner Radius Utilities */
+.rounded {
+  border-radius: var(--radius-default);
+}
+
+.rounded-half {
+  border-radius: var(--radius-half);
+}
+
+.rounded-full {
+  border-radius: 50%;
+}
+
+.rounded-none {
+  border-radius: 0;
+}
+
+/* ============================================================================
+7. FORM COMPONENTS
+============================================================================ */
+
+/* Form Container */
+.form {
+  background-color: var(--form-bg-color);
+  border-radius: var(--radius-default);
+  padding: clamp(24px, 3vw, 40px);
+}
+
+/* Form Field Base */
+.form-field {
+  margin-bottom: clamp(16px, 2vw, 24px);
+}
+
+/* Form Label */
+.form-label {
+  display: block;
+  font-family: var(--font-family-secondary);
+  font-size: var(--form-label-font-size);
+  font-weight: var(--form-label-font-weight);
+  line-height: var(--form-label-line-height);
+  letter-spacing: var(--form-label-letter-spacing);
+  color: var(--form-label-color);
+  margin-bottom: 8px;
+}
+
+/* Form Input, Textarea, Select */
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-body);
+  background-color: var(--form-field-bg);
+  color: var(--color-text-primary);
+  border: var(--border-width-default) solid var(--color-border-default);
+  border-radius: var(--radius-button-primary);
+  padding: var(--form-field-padding);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--form-placeholder-color);
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--color-brand-primary);
+  box-shadow: 0 0 0 3px rgba(218, 252, 0, 0.1);
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Form Error State */
+.form-field-error .form-input,
+.form-field-error .form-textarea,
+.form-field-error .form-select {
+  border-color: #dc3545;
+}
+
+.form-error {
+  display: block;
+  color: #dc3545;
+  font-size: 0.875em;
+  margin-top: 4px;
+}
+
+/* ============================================================================
+8. UTILITY CLASSES
+============================================================================ */
+
+/* Display Utilities */
+.hidden {
+  display: none !important;
+}
+
+.block {
+  display: block !important;
+}
+
+@media (max-width: 767px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .hidden-desktop {
+    display: none !important;
+  }
+}
+
+/* Text Alignment */
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Responsive Text Alignment */
+@media (max-width: 767px) {
+  .text-center-mobile {
+    text-align: center;
+  }
+}
+
+/* Width Utilities */
+.w-full {
+  width: 100%;
+}
+
+.max-w-content {
+  max-width: var(--max-width-content);
+}
+
+/* Flex Utilities */
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.align-start {
+  align-items: start;
+}
+.align-center {
+  align-items: center;
+}
+.align-end {
+  align-items: end;
+}
+.justify-start {
+  justify-content: start;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-end {
+  justify-content: end;
+}
+.justify-between {
+  justify-content:  space-between;
+}
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* ============================================================================
+RESPONSIVE SPACING UTILITIES WITH CLAMP
+============================================================================ */
+
+/* ----------------------------------------------------------------------------
+PADDING UTILITIES - 80px Desktop / 48px Mobile
+---------------------------------------------------------------------------- */
+.p-80 { padding: clamp(48px, 4vw, 80px); }
+.pt-80 { padding-top: clamp(48px, 4vw, 80px); }
+.pr-80 { padding-right: clamp(48px, 4vw, 80px); }
+.pb-80 { padding-bottom: clamp(48px, 4vw, 80px); }
+.pl-80 { padding-left: clamp(48px, 4vw, 80px); }
+.px-80 { padding-left: clamp(48px, 4vw, 80px); padding-right: clamp(48px, 4vw, 80px); }
+.py-80 { padding-top: clamp(48px, 4vw, 80px); padding-bottom: clamp(48px, 4vw, 80px); }
+
+/* ----------------------------------------------------------------------------
+PADDING UTILITIES - 40px Desktop / 24px Mobile
+---------------------------------------------------------------------------- */
+.p-40 { padding: clamp(24px, 2vw, 40px); }
+.pt-40 { padding-top: clamp(24px, 2vw, 40px); }
+.pr-40 { padding-right: clamp(24px, 2vw, 40px); }
+.pb-40 { padding-bottom: clamp(24px, 2vw, 40px); }
+.pl-40 { padding-left: clamp(24px, 2vw, 40px); }
+.px-40 { padding-left: clamp(24px, 2vw, 40px); padding-right: clamp(24px, 2vw, 40px); }
+.py-40 { padding-top: clamp(24px, 2vw, 40px); padding-bottom: clamp(24px, 2vw, 40px); }
+
+/* ----------------------------------------------------------------------------
+PADDING UTILITIES - 30px Desktop / 16px Mobile
+---------------------------------------------------------------------------- */
+.p-30 { padding: clamp(16px, 1.5vw, 30px); }
+.pt-30 { padding-top: clamp(16px, 1.5vw, 30px); }
+.pr-30 { padding-right: clamp(16px, 1.5vw, 30px); }
+.pb-30 { padding-bottom: clamp(16px, 1.5vw, 30px); }
+.pl-30 { padding-left: clamp(16px, 1.5vw, 30px); }
+.px-30 { padding-left: clamp(16px, 1.5vw, 30px); padding-right: clamp(16px, 1.5vw, 30px); }
+.py-30 { padding-top: clamp(16px, 1.5vw, 30px); padding-bottom: clamp(16px, 1.5vw, 30px); }
+
+/* ----------------------------------------------------------------------------
+PADDING UTILITIES - 20px Desktop / 12px Mobile
+---------------------------------------------------------------------------- */
+.p-20 { padding: clamp(12px, 1vw, 20px); }
+.pt-20 { padding-top: clamp(12px, 1vw, 20px); }
+.pr-20 { padding-right: clamp(12px, 1vw, 20px); }
+.pb-20 { padding-bottom: clamp(12px, 1vw, 20px); }
+.pl-20 { padding-left: clamp(12px, 1vw, 20px); }
+.px-20 { padding-left: clamp(12px, 1vw, 20px); padding-right: clamp(12px, 1vw, 20px); }
+.py-20 { padding-top: clamp(12px, 1vw, 20px); padding-bottom: clamp(12px, 1vw, 20px); }
+
+/* ----------------------------------------------------------------------------
+PADDING UTILITIES - 10px Desktop / 6px Mobile
+---------------------------------------------------------------------------- */
+.p-10 { padding: clamp(6px, 0.5vw, 10px); }
+.pt-10 { padding-top: clamp(6px, 0.5vw, 10px); }
+.pr-10 { padding-right: clamp(6px, 0.5vw, 10px); }
+.pb-10 { padding-bottom: clamp(6px, 0.5vw, 10px); }
+.pl-10 { padding-left: clamp(6px, 0.5vw, 10px); }
+.px-10 { padding-left: clamp(6px, 0.5vw, 10px); padding-right: clamp(6px, 0.5vw, 10px); }
+.py-10 { padding-top: clamp(6px, 0.5vw, 10px); padding-bottom: clamp(6px, 0.5vw, 10px); }
+
+/* ----------------------------------------------------------------------------
+PADDING UTILITIES - 4px
+---------------------------------------------------------------------------- */
+.p-4 { padding: 4px; }
+.pt-4 { padding-top: 4px; }
+.pr-4 { padding-right: 4px; }
+.pb-4 { padding-bottom: 4px; }
+.pl-4 { padding-left: 4px; }
+.px-4 { padding-left: 4px; padding-right:4px;}
+.py-4 { padding-top: 4px; padding-bottom:4px;}
+
+/* ----------------------------------------------------------------------------
+MARGIN UTILITIES - 80px Desktop / 48px Mobile
+---------------------------------------------------------------------------- */
+.m-80 { margin: clamp(48px, 4vw, 80px); }
+.mt-80 { margin-top: clamp(48px, 4vw, 80px); }
+.mr-80 { margin-right: clamp(48px, 4vw, 80px); }
+.mb-80 { margin-bottom: clamp(48px, 4vw, 80px); }
+.ml-80 { margin-left: clamp(48px, 4vw, 80px); }
+.mx-80 { margin-left: clamp(48px, 4vw, 80px); margin-right: clamp(48px, 4vw, 80px); }
+.my-80 { margin-top: clamp(48px, 4vw, 80px); margin-bottom: clamp(48px, 4vw, 80px); }
+
+/* ----------------------------------------------------------------------------
+MARGIN UTILITIES - 40px Desktop / 24px Mobile
+---------------------------------------------------------------------------- */
+.m-40 { margin: clamp(24px, 2vw, 40px); }
+.mt-40 { margin-top: clamp(24px, 2vw, 40px); }
+.mr-40 { margin-right: clamp(24px, 2vw, 40px); }
+.mb-40 { margin-bottom: clamp(24px, 2vw, 40px); }
+.ml-40 { margin-left: clamp(24px, 2vw, 40px); }
+.mx-40 { margin-left: clamp(24px, 2vw, 40px); margin-right: clamp(24px, 2vw, 40px); }
+.my-40 { margin-top: clamp(24px, 2vw, 40px); margin-bottom: clamp(24px, 2vw, 40px); }
+
+/* ----------------------------------------------------------------------------
+MARGIN UTILITIES - 30px Desktop / 16px Mobile
+---------------------------------------------------------------------------- */
+.m-30 { margin: clamp(16px, 1.5vw, 30px); }
+.mt-30 { margin-top: clamp(16px, 1.5vw, 30px); }
+.mr-30 { margin-right: clamp(16px, 1.5vw, 30px); }
+.mb-30 { margin-bottom: clamp(16px, 1.5vw, 30px); }
+.ml-30 { margin-left: clamp(16px, 1.5vw, 30px); }
+.mx-30 { margin-left: clamp(16px, 1.5vw, 30px); margin-right: clamp(16px, 1.5vw, 30px); }
+.my-30 { margin-top: clamp(16px, 1.5vw, 30px); margin-bottom: clamp(16px, 1.5vw, 30px); }
+
+/* ----------------------------------------------------------------------------
+MARGIN UTILITIES - 20px Desktop / 12px Mobile
+---------------------------------------------------------------------------- */
+.m-20 { margin: clamp(12px, 1vw, 20px); }
+.mt-20 { margin-top: clamp(12px, 1vw, 20px); }
+.mr-20 { margin-right: clamp(12px, 1vw, 20px); }
+.mb-20 { margin-bottom: clamp(12px, 1vw, 20px); }
+.ml-20 { margin-left: clamp(12px, 1vw, 20px); }
+.mx-20 { margin-left: clamp(12px, 1vw, 20px); margin-right: clamp(12px, 1vw, 20px); }
+.my-20 { margin-top: clamp(12px, 1vw, 20px); margin-bottom: clamp(12px, 1vw, 20px); }
+
+/* ----------------------------------------------------------------------------
+MARGIN UTILITIES - 10px Desktop / 6px Mobile
+---------------------------------------------------------------------------- */
+.m-10 { margin: clamp(6px, 0.5vw, 10px); }
+.mt-10 { margin-top: clamp(6px, 0.5vw, 10px); }
+.mr-10 { margin-right: clamp(6px, 0.5vw, 10px); }
+.mb-10 { margin-bottom: clamp(6px, 0.5vw, 10px); }
+.ml-10 { margin-left: clamp(6px, 0.5vw, 10px); }
+.mx-10 { margin-left: clamp(6px, 0.5vw, 10px); margin-right: clamp(6px, 0.5vw, 10px); }
+.my-10 { margin-top: clamp(6px, 0.5vw, 10px); margin-bottom: clamp(6px, 0.5vw, 10px); }
+
+/* ----------------------------------------------------------------------------
+GAP UTILITIES
+---------------------------------------------------------------------------- */
+.gap-80 { gap: clamp(48px, 4vw, 80px); }
+.gap-x-80 { row-gap: clamp(48px, 4vw, 80px); }
+.gap-y-80 { column-gap: clamp(48px, 4vw, 80px); }
+
+.gap-40 { gap: clamp(24px, 2vw, 40px); }
+.gap-x-40 { row-gap: clamp(24px, 2vw, 40px); }
+.gap-y-40 { column-gap: clamp(24px, 2vw, 40px); }
+
+.gap-30 { gap: clamp(16px, 1.5vw, 30px); }
+.gap-x-30 { row-gap: clamp(16px, 1.5vw, 30px); }
+.gap-y-30 { column-gap: clamp(16px, 1.5vw, 30px); }
+
+.gap-20 { gap: clamp(12px, 1vw, 20px); }
+.gap-x-20 { row-gap: clamp(12px, 1vw, 20px); }
+.gap-y-20 { column-gap: clamp(12px, 1vw, 20px); }
+
+.gap-10 { gap: clamp(6px, 0.5vw, 10px); }
+.gap-x-10 { row-gap: clamp(6px, 0.5vw, 10px); }
+.gap-y-10 { column-gap: clamp(6px, 0.5vw, 10px); }
+
+/* ----------------------------------------------------------------------------
+MARGIN AUTO UTILITIES
+---------------------------------------------------------------------------- */
+.m-auto { margin: auto; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.my-auto { margin-top: auto; margin-bottom: auto; }
+.mt-auto { margin-top: auto; }
+.mr-auto { margin-right: auto; }
+.mb-auto { margin-bottom: auto; }
+.ml-auto { margin-left: auto; }
+
+/* ----------------------------------------------------------------------------
+ZERO SPACING UTILITIES
+---------------------------------------------------------------------------- */
+.p-0 { padding: 0; }
+.pt-0 { padding-top: 0; }
+.pr-0 { padding-right: 0; }
+.pb-0 { padding-bottom: 0; }
+.pl-0 { padding-left: 0; }
+.px-0 { padding-left: 0; padding-right: 0; }
+.py-0 { padding-top: 0; padding-bottom: 0; }
+
+.m-0 { margin: 0; }
+.mt-0 { margin-top: 0; }
+.mr-0 { margin-right: 0; }
+.mb-0 { margin-bottom: 0; }
+.ml-0 { margin-left: 0; }
+.mx-0 { margin-left: 0; margin-right: 0; }
+.my-0 { margin-top: 0; margin-bottom: 0; }
+
+.gap-0 { gap: 0; }
+
+/* ============================================================================
+END OF GLOBAL STYLESHEET
+============================================================================ */

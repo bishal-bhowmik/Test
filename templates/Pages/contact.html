@@ -1,0 +1,95 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: Contact Page
+screenshotPath: ../../Images/Page-template/contact.jpg
+-->
+
+
+{# --- Connect to base.html #}
+{% extends "../layouts/base.html" %}
+
+{# --- Body element #}
+{% block body %}
+
+{# --- Area to add Drag & Drop modules #}
+{% dnd_area "body-area" label="Body", class="body-area" %}
+
+
+
+
+{# Contact Us Hero #}
+{% dnd_section %}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../../modules/Contact Us Hero",
+        offset=0,
+        width=12,
+        content={
+          "section_label" : "<h5>CONTACT&nbsp;</h5><br><h1>Get in Touch</h1>"
+        },
+        form_section={
+          "contact_form" : {
+            "form_id" : "",
+            "form_type" : "HUBSPOT"
+          }
+        },
+        style={
+          "animation" : {
+            "enable_body_text_animation" : false,
+            "enable_heading_animation" : false,
+            "enable_section_animation" : true
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+{# Contact Us Hero End #}
+
+
+{# Contact Us Location #}
+{% dnd_section
+  full_width=false
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../../modules/Contact Us Location",
+        offset=0,
+        width=12,
+        interactive_map={
+          "map_title" : "<h2>OUR GYM LOCATION</h2>"
+        },
+        location_details={
+          "image" : {
+            "alt" : "jepbqmdkejjnmebculul",
+            "height" : 4096,
+            "loading" : "disabled",
+            "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/jepbqmdkejjnmebculul.webp",
+            "width" : 2731
+          }
+        },
+        style={ }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+{# Contact Us Location End #}
+
+
+    
+
+
+{% end_dnd_area %}
+
+{% endblock body %}

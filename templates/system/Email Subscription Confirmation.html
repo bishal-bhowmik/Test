@@ -1,0 +1,124 @@
+<!--
+    templateType: email_subscriptions_confirmation_page
+    isAvailableForNewContent: true
+    label: Email Subscription Confirmation 
+    screenshotPath: ../../Images/System-templates/email-subscription-confirmation.png
+-->
+
+{% extends "../layouts/base.html" %}
+{# pageTitle is used on system templates for setting a value for the title tag #}
+{% set pageTitle = "Email Subscription Confirmation" %}
+
+
+{% block body %}
+
+<body>
+
+<div class='email section'> 
+  <div class='email container flex gap-40 flex-between'>
+
+  <div class='text-content'>
+ {% module "content"
+        path="@hubspot/rich_text",
+        html="<div class='title'>
+             <h1 class='text-h3'>Welcome to the Fit Family!</h1>
+           </div>
+          <div class='sub-title'>
+          <p>Expect training tips, exclusive gym deals, and weekly motivation right in your inbox. Let’s crush every goal together.</p>
+          </div>"
+      %}
+
+  
+          
+  </div>
+
+    <!--  Form start    -->
+    <div class = 'email-block'>
+      {% email_subscriptions_confirmation "email_subscriptions_confirmation"
+  label="Subscriptions Update Confirmation",
+  header="{{ module.header }}",
+  header_heading_level="{{ module.header_heading_level }}",
+  subheader_text="{{ module.subheader_text }}",
+  email_heading_level="{{ module.email_heading_level }}",
+  unsubscribe_all_success="{{ module.unsubscribe_all_success }}",
+  subscription_update_success="{{ module.subscription_update_success }}",
+  manage_preferences_button="{{ module.manage_preferences_button_text }}",
+  manage_preferences_return_disclaimer="{{ module.manage_preferences_return_disclaimer }}" %}
+
+
+    </div>
+
+
+</div>
+</div>
+
+  {{ standard_footer_includes }}
+</body>
+
+
+
+<style>
+
+:root{
+/* Border Colors */
+  --color-border-default: {{ theme.general_view.borders.border_color.color }};
+  --border-width-default: {{ theme.general_view.borders.border_width }}px;
+}
+
+{# hide default text from this module #}
+
+.page-header{
+display:none;
+}
+
+.email.section{
+padding:5em 0;
+}
+.email.container{
+max-width:1440px;
+width:90%;
+margin:0 auto;
+align-items:flex-start;
+}
+
+  #hs-subscriptions-unsubscribe-survey-options > :not(:last-child){
+    padding:1rem;
+    border:var(--border-width-default) solid var(--color-border-default);
+    border-radius:12px;
+    margin-bottom:1rem;
+    width:100%
+}
+
+#hs-subscriptions-other-option-input{
+width:100%;
+ border:var(--border-width-default) solid var(--color-border-default);
+    border-radius:12px;
+     margin-bottom:1rem;
+         font-family: inherit;
+    font-size: inherit
+}
+
+.item{
+margin-bottom:1rem;
+}
+
+.text-content , .email-block{
+flex:1;
+}
+
+
+@media(max-width:768px){
+.flex{
+flex-direction:column;
+}
+.title,.sub-title{
+text-align:center;
+}
+}
+
+
+
+</style>
+
+
+{% endblock body %}

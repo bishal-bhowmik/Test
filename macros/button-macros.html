@@ -1,0 +1,281 @@
+<!--
+  templateType: "page"
+  isAvailableForNewContent: false
+-->
+{% macro render_button(button_data, theme) %} 
+{# ======================================== 
+   EXTRACT BUTTON DATA 
+   ======================================== #} 
+{% set btn_text = button_data.button_text|default("Button", true) %} 
+{% set btn_type = button_data.button_type|default("primary", true) %} 
+
+{# ======================================== 
+   EXTRACT ICON DATA 
+   ======================================== #} 
+{% set icon_enabled = button_data.turn_on_button_icon|default(false) %} 
+{% set icon_type = button_data.button_icon_type|default("svg", true) %} 
+{% set svg_icon = button_data.svg_icon|default("", true) %} 
+{% set custom_icon = button_data.custom_icon %} 
+{% set keep_only_icon = button_data.keep_only_icon|default(false) %} 
+{% set button_icon_image = button_data.button_icon_image %} 
+
+{# ======================================== 
+   HANDLE LINK GENERATION (All Types) 
+   ======================================== #} 
+{% if button_data.link.url.href %} 
+  {% if button_data.link.url.type is equalto "CALL_TO_ACTION" %} 
+    {% set btn_href = button_data.link.url.href %} 
+  {% elif button_data.link.url.type is equalto "EMAIL_ADDRESS" %} 
+    {% set btn_href = "mailto:" + button_data.link.url.href %} 
+  {% else %} 
+    {% set btn_href = button_data.link.url.href|escape_url %} 
+  {% endif %} 
+  {% set btn_target = button_data.link.open_in_new_tab ? '_blank' : '' %} 
+  {% set btn_rel = button_data.link.rel ? button_data.link.rel|escape_attr : '' %} 
+{% else %} 
+  {% set btn_href = "javascript:void(0);" %} 
+  {% set btn_target = '' %} 
+  {% set btn_rel = '' %} 
+{% endif %} 
+
+{# Generate unique ID #} 
+{% set unique_id = "btn-" ~ range(10000, 99999) | random %} 
+
+{# ======================================== 
+   DETERMINE TEXT COLOR FOR ICON 
+   ======================================== #} 
+{% if icon_type != "image" %}
+  {% set icon_color = "" %} 
+  {% set icon_color_rgba = "" %} 
+  
+  {# If override_styles is enabled and custom_text_color is set #} 
+  {% if button_data.override_styles and button_data.custom_text_color.color %} 
+    {% set icon_color = button_data.custom_text_color.color %} 
+    {% if button_data.custom_text_color.rgba %} 
+      {% set icon_color_rgba = button_data.custom_text_color.rgba %} 
+    {% else %} 
+      {% set icon_color_rgba = "rgba(" ~ (button_data.custom_text_color.color | convert_rgb) ~ ", " ~ (button_data.custom_text_color.opacity|default(100) / 100) ~ ")" %} 
+    {% endif %} 
+  {% else %} 
+    {# Use theme default based on button type #} 
+    {% if btn_type == "primary" %} 
+      {% set icon_color = theme.buttons.primary.text.text_color.color %} 
+      {% set icon_color_rgba = "rgba(" ~ (theme.buttons.primary.text.text_color.color | convert_rgb) ~ ", " ~ (theme.buttons.primary.text.text_color.opacity|default(100) / 100) ~ ")" %} 
+    {% else %} 
+      {% set icon_color = theme.buttons.secondary.text.text_color.color %} 
+      {% set icon_color_rgba = "rgba(" ~ (theme.buttons.secondary.text.text_color.color | convert_rgb) ~ ", " ~ (theme.buttons.secondary.text.text_color.opacity|default(100) / 100) ~ ")" %} 
+    {% endif %} 
+  {% endif %} 
+  
+  {# Determine hover text color for icon #} 
+  {% set icon_hover_color = "" %} 
+  {% set icon_hover_color_rgba = "" %} 
+  
+  {# First priority: custom hover text color if set #} 
+  {% if button_data.override_styles and button_data.hover_text_color.color %} 
+    {% set icon_hover_color = button_data.hover_text_color.color %} 
+    {% if button_data.hover_text_color.rgba %} 
+      {% set icon_hover_color_rgba = button_data.hover_text_color.rgba %} 
+    {% else %} 
+      {% set icon_hover_color_rgba = "rgba(" ~ (button_data.hover_text_color.color | convert_rgb) ~ ", " ~ (button_data.hover_text_color.opacity|default(100) / 100) ~ ")" %} 
+    {% endif %} 
+  {# Second priority: if custom text color is set but no hover color, use the custom text color for hover too #} 
+  {% elif button_data.override_styles and button_data.custom_text_color.color %} 
+    {% set icon_hover_color = button_data.custom_text_color.color %} 
+    {% set icon_hover_color_rgba = icon_color_rgba %} 
+  {# Default: use theme hover colors #} 
+  {% else %} 
+    {% if btn_type == "primary" %} 
+      {% set icon_hover_color = theme.buttons.primary.text.text_hover_color.color %} 
+      {% set icon_hover_color_rgba = "rgba(" ~ (theme.buttons.primary.text.text_hover_color.color | convert_rgb) ~ ", " ~ (theme.buttons.primary.text.text_hover_color.opacity|default(100) / 100) ~ ")" %} 
+    {% else %} 
+      {% set icon_hover_color = theme.buttons.secondary.text.text_hover_color.color %} 
+      {% set icon_hover_color_rgba = "rgba(" ~ (theme.buttons.secondary.text.text_hover_color.color | convert_rgb) ~ ", " ~ (theme.buttons.secondary.text.text_hover_color.opacity|default(100) / 100) ~ ")" %} 
+    {% endif %} 
+  {% endif %} 
+{% endif %} {# End icon_type != "image" check #}
+
+{# ======================================== 
+   BUILD CUSTOM STYLE OVERRIDES
+   Only if override_styles is enabled
+   ======================================== #} 
+{% set style_overrides = [] %} 
+{% set has_hover = false %} 
+
+{% if button_data.override_styles %} 
+  {# Text Color Override #} 
+  {% if button_data.custom_text_color.color %} 
+    {% do style_overrides.append("color: " ~ button_data.custom_text_color.color ~ " !important") %} 
+  {% endif %} 
+  
+  {# Background Color Override #} 
+  {% if button_data.custom_bg_color.color %} 
+    {% do style_overrides.append("background-color: " ~ button_data.custom_bg_color.color ~ " !important") %} 
+  {% endif %} 
+  
+  {# Font Settings Override #} 
+  {% if button_data.button_font.css %} 
+    {% do style_overrides.append(button_data.button_font.css) %} 
+  {% endif %} 
+  
+  {# Border Radius Override #} 
+  {% if button_data.custom_border_radius %} 
+    {% do style_overrides.append("border-radius: " ~ button_data.custom_border_radius ~ "px !important") %} 
+  {% endif %} 
+  
+  {# Padding Overrides #} 
+  {% if button_data.padding_vertical %} 
+    {% do style_overrides.append("padding-top: " ~ button_data.padding_vertical ~ "px !important") %} 
+    {% do style_overrides.append("padding-bottom: " ~ button_data.padding_vertical ~ "px !important") %} 
+  {% endif %} 
+  
+  {% if button_data.padding_horizontal %} 
+    {% do style_overrides.append("padding-left: " ~ button_data.padding_horizontal ~ "px !important") %} 
+    {% do style_overrides.append("padding-right: " ~ button_data.padding_horizontal ~ "px !important") %} 
+  {% endif %} 
+  
+  {# Check for hover overrides #} 
+  {% set has_hover = button_data.hover_text_color.color or button_data.hover_bg_color.color or button_data.hover_border_color.color or button_data.hover_border_width %} 
+{% endif %} 
+
+{# ======================================== 
+   MAP BUTTON TYPE TO CSS CLASS 
+   ======================================== #} 
+{% set btn_class = "btn btn-" ~ btn_type %} 
+
+{# Add icon-only class if applicable #} 
+{% if icon_enabled and keep_only_icon %} 
+  {% set btn_class = btn_class ~ " btn-icon-only" %} 
+{% endif %} 
+
+{# ======================================== 
+   GENERATE INLINE STYLES FOR OVERRIDES
+   Only if override_styles is enabled AND has custom values
+   ======================================== #} 
+{% if button_data.override_styles and (style_overrides|length > 0 or has_hover) or icon_enabled %}
+<style>
+  {# Normal State Overrides #}
+  {% if style_overrides|length > 0 %}
+    #{{ unique_id }} {
+      {{ style_overrides|join('; ') }};
+    }
+  {% endif %}
+
+  {# Icon Styles - Normal State #}
+  {% if icon_enabled %}
+    #{{ unique_id }} {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #{{ unique_id }} .btn-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      {% if not keep_only_icon %}
+      margin-left: 10px;
+      {% endif %}
+    }
+
+    #{{ unique_id }} .btn-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: {{ icon_color_rgba }} !important;
+      transition: fill 0.3s ease;
+    }
+
+    #{{ unique_id }} .btn-icon svg path {
+      fill: {{ icon_color_rgba }} !important;
+      transition: fill 0.3s ease;
+    }
+
+    #{{ unique_id }} .btn-icon i {
+      font-size: 24px;
+      color: {{ icon_color }} !important;
+      line-height: 1;
+      transition: color 0.3s ease;
+    }
+
+    #{{ unique_id }} .btn-icon img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      display: block;
+      transition: none;
+    }
+
+    {% if keep_only_icon %}
+    #{{ unique_id }}.btn-icon-only {
+      padding: var(--button-{{ btn_type }}-padding-vertical);
+      width: auto;
+      aspect-ratio: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #{{ unique_id }}.btn-icon-only .btn-icon {
+      margin-left: 0;
+    }
+    {% endif %}
+  {% endif %}
+
+  {# Hover State Overrides #}
+  {% if has_hover or icon_enabled %}
+    #{{ unique_id }}:hover {
+      {% if button_data.hover_bg_color.color %}
+        background-color: {{ button_data.hover_bg_color.color }} !important;
+      {% endif %}
+      {% if button_data.hover_text_color.color %}
+        color: {{ button_data.hover_text_color.color }} !important;
+      {% endif %}
+      {% if button_data.hover_border_color.color %}
+        outline-color: {{ button_data.hover_border_color.color }} !important;
+      {% endif %}
+      {% if button_data.hover_border_width %}
+        outline-width: {{ button_data.hover_border_width }}px !important;
+      {% endif %}
+    }
+
+    {% if icon_enabled and icon_type != "image" %}
+    #{{ unique_id }}:hover .btn-icon svg,
+    #{{ unique_id }}:hover .btn-icon svg path {
+      fill: {{ icon_hover_color_rgba }} !important;
+    }
+
+    #{{ unique_id }}:hover .btn-icon i {
+      color: {{ icon_hover_color }} !important;
+    }
+    {% endif %}
+  {% endif %}
+</style>
+{% endif %} 
+
+{# ======================================== 
+   RENDER BUTTON HTML 
+   ======================================== #}
+<a href="{{ btn_href }}" id="{{ unique_id }}" class="{{ btn_class }}" target="{{ btn_target }}" {% if btn_rel %}rel="{{ btn_rel }}"{% endif %}>
+  {# Button Text (hidden if keep_only_icon is true) #} 
+  {% if not keep_only_icon %}
+  <span class="btn-text">{{ btn_text }}</span>
+  {% endif %} 
+  
+  {# Button Icon #} 
+  {% if icon_enabled %}
+  <span class="btn-icon">
+    {% if icon_type == "svg" and svg_icon %} 
+      {{ svg_icon|safe }} 
+    {% elif icon_type == "custom" and custom_icon %} 
+      {% icon name="{{ custom_icon.name }}" style="{{ custom_icon.type }}" unicode="{{ custom_icon.unicode }}" icon_set="fontawesome-5.14.0" %} 
+    {% elif icon_type == "image" and button_icon_image %}
+      <img src="{{ button_icon_image.src }}" alt="{{ button_icon_image.alt|default('Button icon', true) }}" width="24" height="24" />
+    {% endif %}
+  </span>
+  {% endif %}
+</a>
+
+{% endmacro %}

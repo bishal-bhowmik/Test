@@ -1,0 +1,159 @@
+<!--
+  templateType: section
+  label: FAQ
+  isAvailableForNewContent: true
+  screenshotPath: ../Images/sections/faq.png
+  description: "A two-column layout featuring clickable category tabs on the left and an interactive, expanding text accordion on the right."
+-->
+
+
+{% dnd_section %}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/FAQ",
+        offset=0,
+        width=12,
+        content={
+          "section_title" : "<h2 style=\"text-align: center;\">&nbsp;<span>Common Questions</span></h2>"
+        },
+        faq={
+          "category_items" : [ {
+            "category_title" : "<span>Training & Workouts</span>",
+            "custom_svg" : "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d=\"M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-105.4 105.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z\"/></svg>",
+            "hubspot_icon" : {
+              "name" : "arrow-right",
+              "type" : "SOLID",
+              "unicode" : "f061"
+            },
+            "icon_type" : "image",
+            "image_icon" : {
+              "alt" : "Image Icon",
+              "loading" : "disabled",
+              "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/raw_assets/public/Publishable_Theme/Publishable/FitMax_Theme/Images/icon%20(1).svg"
+            },
+            "questions" : {
+              "question_items" : [ {
+                "question_description" : "<p><span>Most sessions last between 45–60 minutes, depending on the program type, intensity, and your personal goals. Shorter express workouts may also be available for busy schedules.</span></p>",
+                "question_text" : "<p><span>How long are training sessions?</span></p>"
+              }, {
+                "question_description" : "<p><span>No. Training every day isn’t necessary for progress. Most people see excellent results with 3–5 sessions per week, allowing time for recovery, which is when your body actually rebuilds and gets stronger.</span></p>",
+                "question_text" : "<p><span>Do I need to train every day?</span></p>"
+              }, {
+                "question_description" : "<p><span>Yes. Programs are tailored to all fitness levels, including complete beginners. Coaches adjust exercises, intensity, and pacing so you can build strength and confidence safely.</span></p>",
+                "question_text" : "<p><span>Do you offer beginner-friendly programs?</span></p>"
+              }, {
+                "question_description" : "<p><span>Absolutely. Every plan is customized based on your goals, whether that’s fat loss, muscle building, endurance, strength, or overall fitness improvement.</span></p>",
+                "question_text" : "<p><span>Will you design workouts for specific goals like fat loss or muscle gain?</span></p>"
+              }, {
+                "question_description" : "<p><span>Yes. We can create effective bodyweight-based routines that require little to no equipment, making it easy to stay consistent no matter where you train.</span></p>",
+                "question_text" : "<p><span>Can I do workouts at home without equipment?</span></p>"
+              } ]
+            }
+          }, {
+            "category_title" : "<span>Nutrition &amp; Meal Plans</span>",
+            "custom_svg" : "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d=\"M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-105.4 105.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z\"/></svg>",
+            "hubspot_icon" : {
+              "name" : "arrow-right",
+              "type" : "SOLID",
+              "unicode" : "f061"
+            },
+            "icon_type" : "image",
+            "image_icon" : {
+              "alt" : "Image Icon",
+              "loading" : "disabled",
+              "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/raw_assets/public/Publishable_Theme/Publishable/FitMax_Theme/Images/icon%20(1).svg"
+            },
+            "questions" : {
+              "question_items" : [ {
+                "question_description" : "Not strict—consistent and balanced eating works better long term.",
+                "question_text" : "<p><strong>Do I need a strict diet to get results?</strong></p>"
+              }, {
+                "question_description" : "Yes, plans can be tailored based on goals, preferences, and dietary restrictions.",
+                "question_text" : "<p><strong>Will you provide a personalized meal plan?</strong></p>"
+              }, {
+                "question_description" : "<p>Yes. Moderation and portion control are key.</p>",
+                "question_text" : "<p><strong>Can I still eat my favorite foods?</strong><br><br></p>"
+              }, {
+                "question_description" : "A light meal or snack 1–2 hours before training helps performance.",
+                "question_text" : "<p>Should I eat before workouts?</p>"
+              }, {
+                "question_description" : "Not always. Supplements help only if your regular diet lacks enough protein.",
+                "question_text" : "<p><strong>Is protein supplementation necessary?</strong></p>"
+              } ]
+            }
+          }, {
+            "category_title" : "<span>Coaching &amp; Support</span>",
+            "custom_svg" : "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d=\"M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-105.4 105.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z\"/></svg>",
+            "hubspot_icon" : {
+              "name" : "arrow-right",
+              "type" : "SOLID",
+              "unicode" : "f061"
+            },
+            "icon_type" : "image",
+            "image_icon" : {
+              "alt" : "Image Icon",
+              "loading" : "disabled",
+              "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/raw_assets/public/Publishable_Theme/Publishable/FitMax_Theme/Images/icon%20(1).svg"
+            },
+            "questions" : {
+              "question_items" : [ {
+                "question_description" : "<p>Memberships may include coaching options or upgrades for dedicated trainers.</p>",
+                "question_text" : "<p>Will I get a personal trainer?</p>"
+              }, {
+                "question_description" : "<p>Yes, progress tracking is usually done through measurements, strength logs, or assessments.</p>",
+                "question_text" : "<p>Do trainers track my progress?</p>"
+              }, {
+                "question_description" : "<p>You can reschedule depending on trainer availability.</p>",
+                "question_text" : "<p>What if I miss a session?</p>"
+              }, {
+                "question_description" : "<p>Trainers are available during gym hours for guidance and support.</p>",
+                "question_text" : "<p>Can I ask trainers questions anytime?</p>"
+              } ]
+            }
+          }, {
+            "category_title" : "<span>Pricing &amp; Memberships</span>",
+            "custom_svg" : "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d=\"M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-105.4 105.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z\"/></svg>",
+            "hubspot_icon" : {
+              "name" : "arrow-right",
+              "type" : "SOLID",
+              "unicode" : "f061"
+            },
+            "icon_type" : "image",
+            "image_icon" : {
+              "alt" : "Image Icon",
+              "loading" : "disabled",
+              "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/raw_assets/public/Publishable_Theme/Publishable/FitMax_Theme/Images/icon%20(1).svg"
+            },
+            "questions" : {
+              "question_items" : [ {
+                "question_description" : "<p>Options typically include monthly, quarterly, and yearly plans.</p>",
+                "question_text" : "<p>What membership plans do you offer?</p>"
+              }, {
+                "question_description" : "<p>Many gyms offer a trial day or short trial period for new members.</p>",
+                "question_text" : "<p>Is there a free trial available?</p>"
+              }, {
+                "question_description" : "<p>This depends on the membership type; flexible plans often have no fees.</p>",
+                "question_text" : "<p>Are there cancellation fees?</p>"
+              }, {
+                "question_description" : "<p>Yes, many gyms provide discounted rates for multiple members.</p>",
+                "question_text" : "<p>Do you offer family or group discounts?</p>"
+              } ]
+            }
+          } ]
+        },
+        style={
+          "animation" : {
+            "enable_body_text_animation" : true,
+            "enable_heading_animation" : true,
+            "enable_section_animation" : true
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

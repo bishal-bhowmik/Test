@@ -1,0 +1,704 @@
+[
+  {
+    "label": "Location Details",
+    "name": "location_details",
+    "type": "group",
+    "expanded": true,
+    "children": [
+      {
+        "label": "Location Image",
+        "name": "image",
+        "default": {
+          "src": "../../Images/location.jpg",
+          "alt": "Location Image"
+        },
+        "type": "image"
+      },
+      {
+        "label": "Section Title",
+        "name": "title",
+        "default": "<h3>New South </br>Wales</h3>",
+        "type": "richtext"
+      },
+      {
+        "label": "Full Address",
+        "name": "description",
+        "default": "42 Glenbrook Street, Parramatta NSW 2150, Australia",
+        "type": "richtext"
+      },
+      {
+        "label": "Icon Type",
+        "name": "icon_type",
+        "choices": [
+          [
+            "hubspot_icon",
+            "Hubspot Icon"
+          ],
+          [
+            "custom_svg",
+            "Custom SVG"
+          ],
+          [
+            "image",
+            "Image Icon"
+          ]
+        ],
+        "default": "image",
+        "help_text": "The image icon will not contain the global color",
+        "type": "choice"
+      },
+      {
+        "label": "Hubspot Icon",
+        "name": "hubspot_icon",
+        "default": {
+          "name": "star",
+          "type": "SOLID",
+          "unicode": "f005"
+        },
+        "visibility": {
+          "controlling_field_path": "location_details.icon_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "hubspot_icon"
+        },
+        "type": "icon"
+      },
+      {
+        "label": "Custom SVG",
+        "name": "custom_svg",
+        "default": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M14.19 0H5.81C2.17 0 0 2.17 0 5.81V14.18C0 17.83 2.17 20 5.81 20H14.18C17.82 20 19.99 17.83 19.99 14.19V5.81C20 2.17 17.83 0 14.19 0ZM15.35 7.05L13.01 14.59C12.45 16.38 9.94 16.41 9.35 14.63L8.65 12.56C8.46 11.99 8.01 11.53 7.44 11.35L5.36 10.65C3.6 10.06 3.62 7.53 5.41 6.99L12.95 4.64C14.43 4.19 15.82 5.58 15.35 7.05Z\" fill=\"#DAFC00\"/>\n</svg>",
+        "visibility": {
+          "controlling_field_path": "location_details.icon_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "custom_svg"
+        },
+        "type": "text"
+      },
+      {
+        "label": "Image Icon",
+        "name": "image_icon",
+        "default": {
+          "src": "../../Images/Vector.svg",
+          "alt": "Image Icon"
+        },
+        "visibility": {
+          "controlling_field_path": "location_details.icon_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "image"
+        },
+        "type": "image"
+      }
+    ]
+  },
+  {
+    "label": "Interactive Map",
+    "name": "interactive_map",
+    "type": "group",
+    "expanded": true,
+    "children": [
+      {
+        "label": "Map Title",
+        "name": "map_title",
+        "default": "<h2>Our Gym Location</h2>",
+        "type": "richtext"
+      },
+      {
+        "label": "Map Settings",
+        "name": "map_settings",
+        "type": "group",
+        "expanded": true,
+        "children": [
+          {
+            "label": "How do you want to add the map?",
+            "name": "map_type",
+            "choices": [
+              [
+                "embed",
+                "Paste Embed Code (HTML)"
+              ],
+              [
+                "address",
+                "Type an Address (Auto-generates map)"
+              ]
+            ],
+            "default": "address",
+            "type": "choice"
+          },
+          {
+            "label": "Map Embed Code",
+            "name": "embed_code",
+            "visibility": {
+              "controlling_field_path": "interactive_map.map_settings.map_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "embed"
+            },
+            "type": "text"
+          },
+          {
+            "label": "Location Address",
+            "name": "map_address",
+            "default": "New South Wales, Australia",
+            "visibility": {
+              "controlling_field_path": "interactive_map.map_settings.map_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "address"
+            },
+            "type": "text"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Style",
+    "name": "style",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "label": "Background",
+        "name": "background",
+        "type": "group",
+        "children": [
+          {
+            "label": "Enable",
+            "name": "enable",
+            "default": false,
+            "display": "toggle",
+            "type": "boolean"
+          },
+          {
+            "label": "Background Type",
+            "name": "background_type",
+            "default": "image",
+            "display": "select",
+            "choices": [
+              [
+                "image",
+                "Image"
+              ],
+              [
+                "gradient",
+                "Gradient"
+              ],
+              [
+                "solid_color",
+                "Solid Color"
+              ]
+            ],
+            "visibility": {
+              "controlling_field_path": "style.background.enable",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            },
+            "type": "choice"
+          },
+          {
+            "label": "Background Image Position",
+            "name": "background_image_position",
+            "default": "center",
+            "display": "select",
+            "choices": [
+              [
+                "top",
+                "Top"
+              ],
+              [
+                "center",
+                "Center"
+              ],
+              [
+                "bottom",
+                "Bottom"
+              ]
+            ],
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "style.background.background_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "image"
+                },
+                {
+                  "controlling_field_path": "style.background.enable",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            "type": "choice"
+          },
+          {
+            "label": "Background Overlay",
+            "name": "background_overlay",
+            "default": false,
+            "display": "toggle",
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "style.background.background_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "image"
+                },
+                {
+                  "controlling_field_path": "style.background.enable",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            "type": "boolean"
+          },
+          {
+            "label": "Gradient",
+            "name": "gradient_field",
+            "default": {
+              "side_or_corner": {
+                "horizontalSide": "RIGHT",
+                "verticalSide": null
+              },
+              "colors": [
+                {
+                  "color": {
+                    "r": 25,
+                    "g": 35,
+                    "b": 23,
+                    "a": 1
+                  }
+                },
+                {
+                  "color": {
+                    "r": 218,
+                    "g": 252,
+                    "b": 0,
+                    "a": 1
+                  }
+                }
+              ]
+            },
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "style.background.background_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "gradient"
+                },
+                {
+                  "controlling_field_path": "style.background.enable",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            "type": "gradient"
+          },
+          {
+            "label": "Overlay Color",
+            "name": "overlay_color",
+            "default": {
+              "side_or_corner": {
+                "horizontalSide": "LEFT",
+                "verticalSide": null
+              },
+              "colors": [
+                {
+                  "color": {
+                    "r": 16,
+                    "g": 16,
+                    "b": 0,
+                    "a": 0.8
+                  }
+                },
+                {
+                  "color": {
+                    "r": 255,
+                    "g": 255,
+                    "b": 255,
+                    "a": 0
+                  }
+                }
+              ]
+            },
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "style.background.background_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "image"
+                },
+                {
+                  "controlling_field_path": "style.background.enable",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                },
+                {
+                  "controlling_field_path": "style.background.background_overlay",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            "type": "gradient"
+          },
+          {
+            "label": "Solid Color",
+            "name": "solid_color",
+            "default": {
+              "color": "#17270B",
+              "opacity": 100
+            },
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "style.background.background_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "solid_color"
+                },
+                {
+                  "controlling_field_path": "style.background.enable",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            "type": "color"
+          },
+          {
+            "label": "Background Image",
+            "name": "background_image",
+            "default": {
+              "size_type": "auto_custom_max",
+              "src": "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Main%20Content.png",
+              "alt": "Main Content",
+              "loading": "lazy"
+            },
+            "responsive": false,
+            "resizable": false,
+            "show_loading": false,
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "style.background.background_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "image"
+                },
+                {
+                  "controlling_field_path": "style.background.enable",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            "type": "image"
+          }
+        ]
+      },
+      {
+        "label": "Animation",
+        "name": "animation",
+        "type": "group",
+        "children": [
+          {
+            "label": "Enable Heading Animation",
+            "name": "enable_heading_animation",
+            "default": false,
+            "display": "toggle",
+            "type": "boolean"
+          },
+          {
+            "label": "Enable Body Text Animation",
+            "name": "enable_body_text_animation",
+            "default": false,
+            "display": "toggle",
+            "type": "boolean"
+          },
+          {
+            "label": "Enable Section Animation",
+            "name": "enable_section_animation",
+            "default": false,
+            "display": "toggle",
+            "type": "boolean"
+          }
+        ]
+      },
+      {
+        "label": "Location Card Background",
+        "name": "location_card_background",
+        "type": "group",
+        "children": [
+          {
+            "label": "Enable Card Background",
+            "name": "enable",
+            "default": false,
+            "display": "toggle",
+            "type": "boolean"
+          },
+          {
+            "label": "Background Type",
+            "name": "background_type",
+            "default": "image",
+            "display": "select",
+            "choices": [
+              [
+                "image",
+                "Image"
+              ],
+              [
+                "gradient",
+                "Gradient"
+              ],
+              [
+                "solid_color",
+                "Solid Color"
+              ]
+            ],
+            "visibility": {
+              "controlling_field_path": "style.location_card_background.enable",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            },
+            "type": "choice"
+          },
+          {
+            "label": "Background Image Position",
+            "name": "background_image_position",
+            "default": "center",
+            "display": "select",
+            "choices": [
+              [
+                "top",
+                "Top"
+              ],
+              [
+                "center",
+                "Center"
+              ],
+              [
+                "bottom",
+                "Bottom"
+              ]
+            ],
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "style.location_card_background.background_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "image"
+                },
+                {
+                  "controlling_field_path": "style.location_card_background.enable",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            "type": "choice"
+          },
+          {
+            "label": "Background Overlay",
+            "name": "background_overlay",
+            "default": false,
+            "display": "toggle",
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "style.location_card_background.background_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "image"
+                },
+                {
+                  "controlling_field_path": "style.location_card_background.enable",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            "type": "boolean"
+          },
+          {
+            "label": "Gradient",
+            "name": "gradient_field",
+            "default": {
+              "side_or_corner": {
+                "horizontalSide": "RIGHT",
+                "verticalSide": null
+              },
+              "colors": [
+                {
+                  "color": {
+                    "r": 25,
+                    "g": 35,
+                    "b": 23,
+                    "a": 1
+                  }
+                },
+                {
+                  "color": {
+                    "r": 218,
+                    "g": 252,
+                    "b": 0,
+                    "a": 1
+                  }
+                }
+              ]
+            },
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "style.location_card_background.background_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "gradient"
+                },
+                {
+                  "controlling_field_path": "style.location_card_background.enable",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            "type": "gradient"
+          },
+          {
+            "label": "Overlay Color",
+            "name": "overlay_color",
+            "default": {
+              "side_or_corner": {
+                "horizontalSide": "LEFT",
+                "verticalSide": null
+              },
+              "colors": [
+                {
+                  "color": {
+                    "r": 16,
+                    "g": 16,
+                    "b": 0,
+                    "a": 0.8
+                  }
+                },
+                {
+                  "color": {
+                    "r": 255,
+                    "g": 255,
+                    "b": 255,
+                    "a": 0
+                  }
+                }
+              ]
+            },
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "style.location_card_background.background_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "image"
+                },
+                {
+                  "controlling_field_path": "style.location_card_background.enable",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                },
+                {
+                  "controlling_field_path": "style.location_card_background.background_overlay",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            "type": "gradient"
+          },
+          {
+            "label": "Solid Color",
+            "name": "solid_color",
+            "default": {
+              "color": "#17270B",
+              "opacity": 100
+            },
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "style.location_card_background.background_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "solid_color"
+                },
+                {
+                  "controlling_field_path": "style.location_card_background.enable",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            "type": "color"
+          },
+          {
+            "label": "Background Image",
+            "name": "background_image",
+            "default": {
+              "size_type": "auto_custom_max",
+              "src": "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Main%20Content.png",
+              "alt": "Main Content",
+              "loading": "lazy"
+            },
+            "responsive": false,
+            "resizable": false,
+            "show_loading": false,
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "style.location_card_background.background_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "image"
+                },
+                {
+                  "controlling_field_path": "style.location_card_background.enable",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            "type": "image"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Layout",
+    "name": "layout_alignment",
+    "type": "group",
+    "tab": "CONTENT",
+    "children": [
+      {
+        "label": "Section Max Width",
+        "name": "section_max_width",
+        "default": 1280,
+        "display": "text",
+        "step": 1,
+        "suffix": "px",
+        "type": "number"
+      }
+    ]
+  }
+]

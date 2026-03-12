@@ -1,0 +1,14 @@
+{
+  "label": "Blog Listing Pagination",
+  "host_template_types": [
+    "BLOG_LISTING"
+  ],
+
+  "icon": "https://242549800.fs1.hubspotusercontent-na2.net/hubfs/242549800/Blog%20Listing%20Pagination.svg",
+  
+  "smart_type": "NOT_SMART",
+  "master_language": "en",
+  "categories": [
+    "blog"
+  ]
+}

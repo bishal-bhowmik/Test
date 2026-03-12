@@ -1,0 +1,281 @@
+
+
+
+<!-- ================= -->
+<!-- ====== CSS ====== -->
+<!-- ================= -->
+{% require_css %}
+<style>
+  {% scope_css %}
+  
+  {% set bg = module.style.background_settings %}
+{% set bg_style = "" %} {# Initialize as empty #}
+
+{% if bg.override_background %}
+  {% if bg.background_type == 'color' %}
+    {% set bg_style = "background-color: rgba({{ bg.background_color.color|convert_rgb }}, {{ bg.background_color.opacity / 100 }}); background-image: none;" %}
+  {% elif bg.background_type == 'gradient' %}
+    {% set bg_style = "background: {{ bg.background_gradient.css }};" %}
+  {% elif bg.background_type == 'image' and bg.background_image.src %}
+    {% set bg_style = "background-image: url('{{ bg.background_image.src }}'); background-size: cover; background-position: center; background-repeat: no-repeat;" %}
+  {% endif %}
+{% endif %}
+
+
+  .section{
+   max-width: {{ module.layout.section_max_width}}px;
+   border-top: var(--border-width-default) solid var(--color-border-default);
+   {% if module.style.background_settings.background_type == 'color' %}
+   background: {{ module.style.background_settings.background_color.color }};
+   {% elif module.style.background_settings.background_type == 'gradient' %}
+   background: {{ module.style.background_settings.background_gradient.css }};
+   {% elif module.style.background_settings.background_type == 'image' %}
+    background: url('{{ module.style.background_settings.background_image.src }}');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+     {% endif %}
+  
+  }
+
+  .container{
+     display:flex;
+     flex-direction:column;
+    width: {{ module.layout.content_max_width}}px;
+   
+  }
+
+  .footer-top{
+     border-bottom: var(--border-width-default) solid var(--color-border-default); 
+    text-align: center;
+  }
+
+  .top-content h6{
+   color: var(--color-text-primary);
+ }
+
+  .hs-form-field label{
+    display:none;
+  }
+
+{% if not module.content.form_alignment_column %}
+    form {
+       display: flex;
+       align-items: center;
+       gap: 20px;
+    }
+  {% else %}
+     .hs-form .hs_submit .actions {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+  {% endif %}
+
+  .footer-bottom{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    {% if not module.show_contact_section %}
+    grid-template-columns: repeat(2,1fr);
+    {% endif %}
+  }
+
+  .footer-middle-container {
+     align-items:flex-start;
+  }
+
+  .footer-column {
+    flex: 1; /* Forces the columns to share the available space equally */
+    min-width: max-content; /* Prevents the column from shrinking smaller than its longest unbroken word/phrase */
+  }
+
+  /* Optional but recommended: Stop the title itself from wrapping */
+  
+
+  .footer-column ul{
+    padding:0;
+  }
+
+  .footer-column li{
+    list-style:none;
+  }
+
+  .footer-right{
+    {% if not module.show_contact_section %}
+    display:none;
+    {% endif %}
+  }
+
+.footer-links a {
+    text-decoration: none;
+    display: inline-block;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: {{ module.style.text_colors.links_hover_color.color }};
+    border-bottom: 1px solid currentColor;
+   
+}
+
+  .footer-bottom h6{
+   color: {{ module.style.text_colors.text_color.color }};
+}
+
+  .footer-links a {
+     color: {{ module.style.text_colors.links_color.color }};
+}
+
+  /********** Responsive Font size starts here *****************/
+
+  @media (max-width: 768px) { 
+    .footer-bottom{
+     display:flex;
+     flex-direction:column;
+     justify-content:center;
+     align-items: center;
+     gap:24px;
+  }
+
+    .footer-left{
+     align-items: center;
+    text-align: center;
+   }
+
+    .footer-column{
+     align-items:center;
+     text-align:center;
+    width:100%;   
+    min-width:100%;
+    }
+.footer-middle{
+  width:100%;
+}
+  
+
+    .footer-middle-container{
+     display:flex;
+     flex-direction:column;
+     gap: 24px;
+     justify-content:center;
+     align-items:center;
+    width:100%;
+  }
+
+    .footer-right-inner {
+     align-items:center;
+     text-align:center;
+   }
+
+    .form-section {width:100%;}
+    
+    form{
+     flex-direction:column;
+     gap:0px;
+   }
+   
+    form .hs-form-field{
+     width:100%;
+   }
+
+    form .hs_submit {
+     width:100%;
+  }
+}
+
+
+  /************************************************************/
+
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+
+<section class="section bg-primary">
+  <div class="container gap-40">
+   <div class="footer-top flex-col justify-center align-center gap-20 pb-40">
+      <div class="top-content">
+        <div class="mb-10">
+            {{ module.content.title }}
+        </div>  
+           {% inline_rich_text field="content.subtitle" value="{{ module.content.subtitle }}" %}
+     </div>
+      <div class="form-section">
+      {% if module.content.subscription_form.form_id %}
+        {% form
+	form_to_use="{{ module.content.subscription_form.form_id }}"
+	response_response_type="{{ module.content.subscription_form.response_type }}"
+	response_message="{{ module.content.subscription_form.message }}"
+	response_redirect_id="{{ module.content.subscription_form.redirect_id }}"
+	response_redirect_url="{{module.content.subscription_form.redirect_url}}"
+	gotowebinar_webinar_key="{{ module.content.subscription_form.gotowebinar_webinar_key }}"
+%}
+{% else %}
+<div> </div>
+{% endif %}
+     </div>
+    </div>
+
+   <div class="footer-bottom gap-20">
+        
+    <!--     Left Section Of The Footer -->
+
+    <div class="footer-left flex flex-col gap-10">
+      <div class="logo">
+        <img src="{{ module.brand_identity.logo.src|escape_url }}" alt="{{ module.brand_identity.logo.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+      </div>
+      <div class="footer-para text-secondary">
+        {{ module.brand_identity.footer_paragraph }}
+      </div>
+    </div>
+
+
+    <!--         Middle Section Of The Footer -->
+
+
+    <div class="footer-middle">
+      <div class="footer-middle-container flex gap-40 flex-between">
+        {% for item in module.footer_middle %}
+        <div class="footer-column flex flex-col gap-10">
+          <h6 class="footer-column-title text-primary">
+            {{ item.link_title }}
+          </h6>
+          <ul class="footer-links flex-col gap-10">
+            {% for item2 in item.links %}
+            <li>
+              <a class="text-primary"
+                 href="{{ (item2.link_field.url.href) }}">
+                {{ item2.link_label }}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!--      Right Section Of The Footer -->
+
+    <div class="footer-right flex-col gap-20">
+      {% for item in module.footer_right_section %}
+      <div class="footer-right-inner flex-col gap-10">
+        <div class="text-primary">
+          <h6>
+            {{ item.right_side_title }}
+          </h6>
+        </div>        
+        <div class="address-info text-primary">
+          {{ item.information }}
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+    </div>
+
+  </div>
+
+</section>

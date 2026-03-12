@@ -1,0 +1,286 @@
+{% import '../../macros/button-macros.html' as button_macros %}
+ {% set anim = module.style.animation %} 
+  {% import '../../macros/global-macros.html' as global_macros %} 
+  {{ global_macros.module_css(module, name) }}
+
+{% require_css %}
+<style>
+  {% scope_css %}
+
+  /********** Responsive Font size starts here *****************/
+
+/*   card css */
+
+    .section {
+      {% if module.style.background.enable %}
+        {% if module.style.background.background_type == 'color' %}
+          background: {{ module.style.background.color.css }};
+        {% elif module.style.background.background_type == 'gradient' %}
+          background: {{ module.style.background.gradient.css }};
+        {% elif module.style.background.background_type == 'image' and module.style.background.background_image.src %}
+          background-image: url('{{ module.style.background.background_image.src }}');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        {% endif %}
+      {% endif %}
+    }
+
+ .container{
+  max-width:{{ module.layout_settings.section_max_width ~ "px" }};
+}
+
+.card-container {
+  
+  display: flex;
+  justify-content:flex-start;
+{% if module.layout_settings.enable_horizontal_alignment %}
+    {% if module.layout_settings.horizontal_alignment == "left" %}
+      justify-content: flex-start;
+    {% elif module.layout_settings.horizontal_alignment == "center" %}
+      justify-content: center;
+    {% elif module.layout_settings.horizontal_alignment == "right" %}
+      justify-content: flex-end;
+    {% elif module.layout_settings.horizontal_alignment == "space_between" %}
+      justify-content: space-between;
+    {% elif module.layout_settings.horizontal_alignment == "space_evenly" %}
+      justify-content: space-evenly;
+    {% elif module.layout_settings.horizontal_alignment == "space_around" %}
+      justify-content: space-around;
+    {% endif %}
+  {% endif %}
+
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 100%; 
+  margin: 0 auto;
+
+    row-gap: {{ module.layout_settings.horizontal_gap ~ "px"}};
+  column-gap: ; {{ module.layout_settings.vertical_gap  ~ "px"}};
+}
+
+.fitness-card {
+  flex:1;
+  min-width:290px;
+  max-width: 290px;
+  {% if module.layout_settings.enable_max_width %}
+	max-width: {{ module.layout_settings.max_width ~ "px" }};
+  {% endif %}
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  {% if module.layout_settings.card_alignment == "left" %}
+  align-items:flex-start;
+  {% elif module.layout_settings.card_alignment == "center" %}
+  align-items:center;
+  {% elif module.layout_settings.card_alignment == "right" %}
+  align-items:flex-end;
+  {% endif %}
+  transition: all 0.3s ease;
+  transition: all {{ module.style.hover_effects.transition_time ~ "s"}} ease;
+}
+
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5; /* Keeps the card shape consistent */
+  overflow: hidden;
+/*   align-items: center; */
+  justify-content: center;
+  {% if module.style.border.enable %}
+  border: {{ module.style.border.width ~"px" }} solid {{ module.style.border.border_color.css }};
+  {% endif %}
+  {% if module.style.border_radius.enable %}
+  border-radius: {{ module.style.border_radius.value ~ "px" }}
+  {% endif %}
+
+}
+
+.card-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* The Gradient Overlay (Hidden by default) */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #DAFC00 0%, rgba(218, 252, 0, 0) 50.16%);
+  {% if  module.style.hover_effects.overlay.overlay_type == "color" %}
+  background: {{ module.style.hover_effects.overlay.color.css }};
+  {% elif  module.style.hover_effects.overlay.overlay_type == "gradient" %}
+  background: {{ module.style.hover_effects.overlay.gradient_field.css }};
+  {% elif  module.style.hover_effects.overlay.overlay_type == "image" %}
+  background-image: url('{{ module.style.hover_effects.overlay.image_field.src }}');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  {% endif %}
+  opacity: 0;
+  transition: all 0.3s ease;
+  transition: all {{ module.style.hover_effects.transition_time ~ "s" }} ease;
+}
+
+/* The Arrow Button */
+.arrow-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  transition: all {{ module.style.hover_effects.transition_time ~ "s" }} ease;
+  
+}
+
+/* Title Styling */
+.card-title {
+  border-bottom: 2px solid transparent;
+  display: inline-block;
+  transition: all 0.3s ease;
+  transition: all {{ module.style.hover_effects.transition_time ~ "s" }} ease;
+}
+
+/* --- Hover States --- */
+
+  .fitness-card:hover {
+  transition: all 0.3s ease;
+  transition: all {{ module.style.hover_effects.transition_time ~ "s" }} ease;
+  {% set transform_styles = "" %}
+  {% if module.style.hover_effects.scale.enable %}
+    {% set transform_styles = transform_styles ~ " scale(" ~ module.style.hover_effects.scale.number_field ~ ")" %}
+  {% endif %}
+  
+  {% if module.style.hover_effects.offset_y.enable %}
+    {% set transform_styles = transform_styles ~ " translateY(" ~ module.style.hover_effects.offset_y.value ~ "px)" %}
+  {% endif %}
+
+  {# Only output the property if at least one effect is active #}
+  {% if transform_styles %}
+    transform: {{ transform_styles }};
+  {% endif %}
+}
+
+.fitness-card:hover .overlay {
+  opacity: 1;
+}
+
+.fitness-card:hover .arrow-btn {
+  opacity: 1;
+  transition: all 0.3s ease;
+  transition: all {{ module.style.hover_effects.transition_time ~ "s" }} ease;
+}
+
+.fitness-card:hover .card-title {
+  border-bottom: 3px solid {{ theme.brand_colors.primary.color }};
+}
+
+  @media (max-width: 768px) { 
+
+  .section-header{
+    text-align:center;    
+   }
+  .fitness-card {
+    flex: 1 1 100%; 
+    max-width: 100%; 
+    min-width: 0;
+  }
+
+  .fitness-card .overlay {
+      opacity: 1;
+    }
+
+   
+    .fitness-card .arrow-btn {
+      opacity: 1;
+    }
+
+ 
+    .fitness-card .card-title {
+      border-bottom: 3px solid {{ theme.brand_colors.primary.color }};
+    }
+}
+
+  /************************************************************/
+
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<section class="section bg-primary-accent-1 {% if anim.enable_section_animation %}reveal-card{% endif %}">
+  <div class="container flex flex-col gap-40">
+    <div class="section-header">
+      <div class="section-label rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+        <h5>
+          {{ module.content.section_label }}
+        </h5>
+      </div>
+      <div class="section-title rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+        {{ module.content.section_title }}
+      </div>
+    </div>
+   <div class="card-container gap-40 {% if anim.enable_section_animation %}reveal-left{% endif %}">
+  {% for item in module.cards.card %}
+    
+    {# 1. MAP CHOICE OPTIONS TO CSS DIRECTIONS #}
+    {% set dir_choice = item.overwrite_styles.background.gradient_direction %}
+    {% if dir_choice == "bottom_to_top" %}{% set css_dir = "to top" %}
+    {% elif dir_choice == "top_to_bottom" %}{% set css_dir = "to bottom" %}
+    {% elif dir_choice == "right_to_left" %}{% set css_dir = "to left" %}
+    {% elif dir_choice == "left_to_right" %}{% set css_dir = "to right" %}
+    {% elif dir_choice == "top_left_to_bottom_right" %}{% set css_dir = "to bottom right" %}
+    {% elif dir_choice == "top_right_to_bottom_left" %}{% set css_dir = "to bottom left" %}
+    {% else %}{% set css_dir = "to bottom" %}{% endif %}
+
+    {# 2. CALCULATE BACKGROUND STYLE #}
+    {% set custom_bg_style = "" %}
+    
+    {% if item.overwrite_styles.overwrite_background %}
+      {% if item.overwrite_styles.background.type == 'color' %}
+        {% set color = item.overwrite_styles.background.color_field.color %}
+        {% set opacity = item.overwrite_styles.background.color_field.opacity / 100 %}
+        {% set custom_bg_style = "background: rgba(" ~ color|convert_rgb ~ ", " ~ opacity ~ ");" %}
+        
+      {% elif item.overwrite_styles.background.type == 'gradient' %}
+        {% set c1 = item.overwrite_styles.background.gradient_1.color %}
+        {% set o1 = item.overwrite_styles.background.gradient_1.opacity / 100 %}
+        {% set c2 = item.overwrite_styles.background.gradient_2.color %}
+        {% set o2 = item.overwrite_styles.background.gradient_2.opacity / 100 %}
+        {# Use the css_dir variable we mapped above #}
+        {% set custom_bg_style = "background: linear-gradient(" ~ css_dir ~ ", rgba(" ~ c1|convert_rgb ~ ", " ~ o1 ~ ") 0%, rgba(" ~ c2|convert_rgb ~ ", " ~ o2 ~ ") 100%);" %}
+      {% endif %}
+    {% endif %}
+
+    <div class="fitness-card">
+      <div class="image-wrapper flex flex-col flex-center rounded" style="{{ custom_bg_style }}">
+        {% if not item.overwrite_styles.overwrite_background and item.card_image.src %}
+           <img src="{{ item.card_image.src|escape_url }}" class="card-main-img" alt="{{ item.card_image.alt|escape_attr }}">
+        {% endif %}
+        
+        <div class="overlay"></div>
+        
+
+         <div class="button-container arrow-btn ">
+              {% for item2 in item.button_repeater %} {{ button_macros.render_button(item2, theme) }} {% endfor %}
+          </div>
+ 
+      </div>      
+
+      <div class="card-title mt-10">
+        {% inline_rich_text field="content" value="{{ item.content }}" %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+  </div>
+</section>

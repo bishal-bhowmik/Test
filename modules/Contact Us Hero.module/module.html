@@ -1,0 +1,81 @@
+{% import '../../macros/button-macros.html' as button_macros %}
+{% import '../../macros/global-macros.html' as global_macros %} 
+{{ global_macros.module_css(module, name) }}
+{% set anim = module.style.animation %}
+
+<section class="section" id="counter-section-{{ name }}" id="{{ name }}">
+
+<div class="container">
+
+  {# --- LEFT SIDE: CONTENT --- #}
+  <div class="contact-us-left-side 
+  {% if anim.enable_section_animation %}reveal-left{% endif %}"> 
+
+  <div class="rich-text-anim-wrapper" 
+
+{% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+
+{# The user just types normally in here #}
+{{ module.content.section_label }}
+
+</div>
+</div>
+
+  
+
+
+
+  {# --- RIGHT SIDE: FORM --- #}
+<div class="contact-us-right-side
+ {% if anim.enable_section_animation %}reveal-right{% endif %}"
+>
+{% if module.form_section.contact_form.form_id %}
+  {% form
+    form_to_use="{{ module.form_section.contact_form.form_id }}",
+    response_response_type="{{ module.form_section.contact_form.response_type }}",
+    response_message="{{ module.form_section.contact_form.message }}",
+    response_redirect_id="{{ module.form_section.contact_form.redirect_id }}",
+    response_redirect_url="{{ module.form_section.contact_form.redirect_url }}"
+  %}
+{% else %}
+  <p>No form selected. Please choose a form in the module settings.</p>
+{% endif %}
+</div>
+
+
+</div>
+</section>
+
+{% require_css %}
+<style>
+{% scope_css %}
+
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+
+  .contact-us-right-side {
+      padding: 30px;
+      background-color: var(--color-border-default);
+      border-radius: 20px;
+  }
+
+@media (max-width: 767px) {
+  .container {
+   grid-template-columns: repeat(1, 1fr);
+    gap: 24px;
+  }
+
+  .contact-us-right-side {
+      padding: 16px;
+      border-radius: 12px;
+  }
+
+}
+
+{% end_scope_css %}
+</style>
+{% end_require_css %}

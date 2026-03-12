@@ -1,0 +1,367 @@
+{% import '../../macros/button-macros.html' as button_macros %}
+{% set anim = module.style.animation %}
+  {% require_css
+%}
+<style>
+  {% scope_css %}
+
+  section{
+    background: var(--color-bg-gradient);
+   {% if module.style.background.background_type == "color" %}
+   background: {{ module.style.background.background_color.css }}
+   {% elif module.style.background.background_type == "gradient" %}
+   background: {{ module.style.background.background_gradient.css }}
+     {% elif module.style.background.background_type == "image" and module.style.background.background_image.src %}
+    background-image: url('{{ module.style.background.background_image.src }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  {% endif %}
+  }
+
+  .container{
+    max-width: {{ module.layout_alignment.section_max_width ~ "px"}};
+  }
+
+  .badge{
+  
+    background: var(--color-bg-gradient);
+
+  }
+
+  .header-section *{
+    color: var(--color-text-tertiary);
+  }
+
+   .plan-name *{
+     color: var(--color-text-tertiary);
+   }
+
+  .badge *{
+  color: var(--color-brand-primary);
+  }
+
+  .card-title *{
+     color: var(--color-text-tertiary);
+  }
+
+  .pricing *{
+    color: var(--color-text-tertiary);
+  }
+
+  .highlights-title-text *{
+    color: var(--color-text-tertiary);
+  }
+
+
+
+  .card-logo img{
+    max-width: 80px;
+    height:auto;
+  }
+
+  hr {
+    width: 100%;
+    border-color: var(--color-text-tertiary);
+  }
+
+  .button-container a{
+   width:100%;
+  }
+
+  .feature-title *{
+    color: var(--color-text-tertiary);
+  }
+
+  .feature-text *{
+    color: var(--color-text-tertiary);
+  }
+
+  .feature-bullet svg{
+    width:24px; 
+
+  }
+.feature-bullet{
+margin-top:4px;
+}
+  .feature-bullet img{
+     max-width:24px;
+
+  }
+
+
+  .plan-name{
+    text-align:center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: transparent;
+    {% if module.style.filter_buttons_style.inactive_button_type == 'transparent' %}
+    border: none;
+    background: transparent;
+    {% elif module.style.filter_buttons_style.inactive_button_type == 'outline' %}
+    border:var(--border-width-default) solid var(--color-brand-secondary);
+    border:var(--border-width-default) solid {{ module.style.filter_buttons_style.button_background_outline_color.color }};
+    background:transparent;
+    {% endif %}
+  }
+
+  .plan-name.active{
+    border:var(--border-width-default) solid var(--color-border-default);
+    {% if module.style.filter_buttons_style.overwrite_active_button_styles %}
+    {% if module.style.filter_buttons_style.active_button_type == 'outline' %}
+    background: transparent;
+    border: var(--border-width-default) solid {{ module.style.filter_buttons_style.button_background_outline_color.color }};
+    {% else %}
+    background-color: {{ module.style.filter_buttons_style.button_background_outline_color.color }};
+    border-color: {{ module.style.filter_buttons_style.button_background_outline_color.color }};
+    {% endif %}
+    {% endif %}
+  }
+
+    .pricing-cards{
+        display: none;
+    }
+
+    .pricing-card {
+        box-sizing: border-box;
+        max-width: 400px;
+        max-width: {{ module.layout_alignment.card_max_width ~ "px"}};
+        {% if module.style.padding.enable_card_padding %}
+          padding-top: {{ module.style.padding.card_padding.top_padding ~ "px" }};
+          padding-bottom: {{ module.style.padding.card_padding.bottom_padding ~ "px" }};
+          padding-left: {{ module.style.padding.card_padding.left_padding ~ "px"}};
+          padding-right: {{ module.style.padding.card_padding.right_padding ~ "px" }};
+        {% endif %}
+
+    }
+
+    .plan-buttons{
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+     .description *{
+      color: var(--color-text-tertiary);
+     }
+
+       .highlight-icon svg{
+   display:flex;
+   width: 24px;
+}
+
+  .highlight-icon img{
+    max-width:24px;
+  }
+
+    .pricing-cards.active{
+        display: flex;
+        row-gap: clamp(24px, 2vw, 40px);
+        column-gap: clamp(24px, 2vw, 40px);
+        flex-wrap: wrap;
+        justify-content:center;
+    }
+
+    @media(max-width:768px){
+      .pricing-card{
+        max-width: none;
+        width: 100%;
+      }
+    }
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<section class="section bg-gradient {% if anim.enable_section_animation %}reveal-card{% endif %}">
+  <div class="container flex-col gap-40 justify-center align-center">
+    <div class="header-section rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+      {{ module.content.header}}
+    </div>
+
+    <!-- Plan Name Buttons -->
+    <div class="plan-buttons flex gap-10">
+      {% for item in module.pricing_plans %}
+      <button
+        class="plan-name rounded-half p-20 {% if loop.first %}active{% endif %}"
+        data-plan-index="{{ loop.index0 }}">
+       {{ item.plan_name }}
+      </button>
+      {% endfor %}
+    </div>
+
+    <!-- Pricing Cards Container -->
+    <div class="pricing-wrapper  {% if anim.enable_section_animation %}reveal-left{% endif %}">
+      {% for item in module.pricing_plans %}
+      <div
+        class="pricing-cards {% if loop.first %}active{% endif %}"
+        data-plan-index="{{ loop.index0 }}">
+        {% for item2 in item.pricing_card %}
+        <div
+          {%
+          if
+          item2.overwrite_styles.overwrite_background
+          %}
+          style="   
+
+    {% if item2.overwrite_styles.background_options.background_type == 'color' %}
+      background-color: {{ item2.overwrite_styles.background_options.background_color.css }};
+    {% elif item2.overwrite_styles.background_options.background_type == 'gradient' %}
+      background: linear-gradient(
+        {{ item2.overwrite_styles.background_options.gradient_direction }}, 
+        {{ item2.overwrite_styles.background_options.gradient_color_1.css }}, 
+        {{ item2.overwrite_styles.background_options.gradient_color_2.css }}
+      );
+    {% elif item2.overwrite_styles.background_options.background_type == 'image' %}
+      background-image: url('{{ item2.overwrite_styles.background_options.background_image.src }}');
+      background-size: cover;
+      background-position: center;
+    {% endif %}
+  "
+          {%
+          endif
+          %}
+          class="pricing-card p-30 bg-secondary rounded flex-col gap-40">
+          <div class="card-header flex justify-between align-start">
+            <div class="card-logo">
+              {% if item2.card_header.card_logo_type == 'image' and
+              item2.card_header.card_logo_image.src %}
+              <img
+                src="{{ item2.card_header.card_logo_image.src|escape_url }}"
+                alt="{{ item2.card_header.card_logo_image.alt|escape_attr }}"
+                {{
+                loadingAttr
+                }}
+                {{
+                sizeAttrs
+                }} />
+              {% elif item2.card_header.card_logo_type == 'svg' %} {{
+              item2.card_header.custom_svg_code }} {% endif %}
+            </div>
+            {% if item2.card_header.show_discount_badge %}
+            <div class="badge rounded py-10 px-20">
+              {% inline_rich_text field="card_header.discount" value="{{
+              item2.card_header.discount }}" %}
+            </div>
+            {% endif %}
+          </div>
+          <div class="plan-details flex-col">
+            <div class="card-title mb-4 ">
+            {{item2.card_header.card_title }}
+            </div>
+            <div class="pricing flex align-end">
+              <div class="price">
+                {% inline_rich_text field="pricing.price" value="{{
+                item2.pricing.price }}" %}
+              </div>
+              <div class="price-suffix">
+                {% inline_rich_text field="pricing.price_suffix" value="{{
+                item2.pricing.price_suffix }}" %}
+              </div>
+            </div>
+          </div>
+                    <div class="button-container">
+              {% for item in item2.button_repeater %} {{ button_macros.render_button(item, theme) }} {% endfor %}
+          </div>
+          <div class="highlights flex-col gap-10">
+            <div class="highlights-title flex gap-10 align-center">
+              <div class="highlights-title-text">{{ item2.highlight_section.highlight_label }}</div>
+              <div class="highlight-icon">
+                {% if item2.highlight_section.highlight_icon_type == "image" %}
+                <img
+                  src="{{ item2.highlight_section.highlight_icon.src|escape_url }}"
+                  alt="{{ item2.highlight_section.highlight_icon.alt|escape_attr }}"
+                  {{ loadingAttr }} {{ sizeAttrs }}>
+
+                {% elif item2.highlight_section.highlight_icon_type ==
+                "hubspot_icon" %}
+                {% icon
+                name="{{ item2.highlight_section.hubspot_icon.name }}",
+                style="{{ item2.highlight_section.hubspot_icon.type }}",
+                unicode="{{ item2.highlight_section.hubspot_icon.unicode }}"
+                %}
+
+                {% elif item2.highlight_section.highlight_icon_type ==
+                "custom_svg" %}
+                {{ item2.highlight_section.custom_svg_code }}
+                {% endif %}
+              </div>
+            </div>
+            <div class="description " >
+             {{ item2.highlight_section.description }}
+            </div>
+          </div>
+          <hr />
+          <div class="features-section flex-col gap-20">
+            <div class="feature-title">
+             {{ item2.features_section.feature_title }}
+            </div>
+            {% for item3 in item2.features_section.features %}
+            <div class="features flex flex-start  gap-10">
+              <div class="feature-bullet ">
+                {% if item3.feature_icon_type == "image" %}
+                <img
+                  src="{{ item3.feature_icon.src|escape_url }}"
+                  alt="{{ item3.feature_icon.alt|escape_attr }}"
+                  {{
+                  loadingAttr
+                  }}
+                  {{
+                  sizeAttrs
+                  }} />
+                      {% elif item3.feature_icon_type == "hubspot_icon" %}
+      {% icon 
+        name="{{ item3.hubspot_icon.name }}", 
+        style="{{ item3.hubspot_icon.type }}", 
+        unicode="{{ item3.hubspot_icon.unicode }}" 
+      %}
+      {% elif item3.feature_icon_type == "custom_svg" %}
+      {{ item3.custom_svg_code }}
+    {% endif %}
+                  
+              </div>
+              <div class="feature-text">
+               {{item3.feature_name }}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <div></div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% require_js %}
+<script>
+  (function () {
+    const planButtons = document.querySelectorAll(".plan-name");
+    const pricingCards = document.querySelectorAll(".pricing-cards");
+
+    planButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const planIndex = this.getAttribute("data-plan-index");
+
+        // Remove active class from all buttons
+        planButtons.forEach((btn) => btn.classList.remove("active"));
+
+        // Add active class to clicked button
+        this.classList.add("active");
+
+        // Hide all pricing cards
+        pricingCards.forEach((cards) => cards.classList.remove("active"));
+
+        // Show selected pricing cards
+        const selectedCards = document.querySelector(
+          `.pricing-cards[data-plan-index="${planIndex}"]`
+        );
+        if (selectedCards) {
+          selectedCards.classList.add("active");
+        }
+      });
+    });
+  })();
+</script>
+{% end_require_js %}

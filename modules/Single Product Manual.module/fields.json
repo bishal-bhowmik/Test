@@ -1,0 +1,2893 @@
+[ {
+  "id" : "d9ea02f7-68de-3287-3010-56adfb9002aa",
+  "name" : "content",
+  "label" : "Content",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "fd5f1862-331d-23a9-c61b-fa155dd3eb60",
+    "name" : "quantity_title",
+    "label" : "Quantity Title",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p>Quantity</p>"
+  }, {
+    "id" : "15d324ae-6f4c-5a6d-c781-3c03611ea36b",
+    "name" : "product_description_title",
+    "label" : "Product Description Title",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p><span>Product Description</span></p>"
+  }, {
+    "id" : "80b35ee2-124e-7e87-511a-c259c3e9ceb8",
+    "name" : "short_description_title",
+    "label" : "Short Description Title",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<div>Description</div>"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "quantity_title" : "<p>Quantity</p>",
+    "product_description_title" : "<p><span>Product Description</span></p>",
+    "short_description_title" : "<div>Description</div>"
+  }
+}, {
+  "id" : "7a2f8b1c-3e4d-5a6c-7c8d-9e0f1a2b3c4d",
+  "name" : "button_repeater",
+  "label" : "Card Buttons",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 4,
+    "sorting_label_field" : null,
+    "default" : 1
+  },
+  "children" : [ {
+    "id" : "b1a2c3d4-e5y6-4a5b-8c9d-0e1f2a3b4c5d",
+    "name" : "button_text",
+    "label" : "Button Label",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_repeater.keep_only_icon",
+      "controlling_value_regex" : "false",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Buy Now"
+  }, {
+    "id" : "c2d3e4f5-a6b7-4c9d-9e0f-1a2b3c4d5e6f",
+    "name" : "link",
+    "label" : "Button Link",
+    "required" : false,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG" ],
+    "show_advanced_rel_options" : false,
+    "type" : "link",
+    "display_width" : null,
+    "default" : {
+      "url" : {
+        "type" : "EXTERNAL",
+        "href" : "https://www.google.com"
+      }
+    }
+  }, {
+    "id" : "d3e4f5a6-b7c8-4d9e-0f3a-2b3c4d5e6f7a",
+    "name" : "button_type",
+    "label" : "Button Variant",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_repeater.keep_only_icon",
+      "controlling_value_regex" : "false",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "primary", "Primary Button" ], [ "secondary", "Secondary Button" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "primary"
+  }, {
+    "id" : "71b7f52a-0193-af03-6d77-bb3bdac0d9a7",
+    "name" : "turn_on_button_icon",
+    "label" : "Turn on Button Icon",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "ca40b4a8-7f25-5095-e485-c99cda4b9cb2",
+    "name" : "button_icon_type",
+    "label" : "Button Icon Type",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_repeater.turn_on_button_icon",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "svg", "SVG Icon" ], [ "custom", "Custom Icon" ], [ "image", "Image Icon" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "svg"
+  }, {
+    "id" : "60fd7eea-4ea0-989b-9824-eaa1e20b3ec8",
+    "name" : "svg_icon",
+    "label" : "SVG Icon",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.turn_on_button_icon",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.button_icon_type",
+        "controlling_value_regex" : "svg",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"36\" height=\"36\" viewBox=\"0 0 36 36\" fill=\"none\">  <path d=\"M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z\" fill=\"#101000\"/></svg>"
+  }, {
+    "id" : "140837f5-543f-209e-07f0-d68cc17a8d14",
+    "name" : "custom_icon",
+    "label" : "Custom Icon",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.turn_on_button_icon",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.button_icon_type",
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "icon_set" : "fontawesome-5.14.0",
+    "type" : "icon",
+    "display_width" : null,
+    "default" : {
+      "name" : "Alternate Long Arrow Right",
+      "unicode" : "f30b",
+      "type" : "SOLID"
+    }
+  }, {
+    "id" : "a1b2c3d4-e5f6-7g8h-9i0j-k1l2m3n4o5p6",
+    "name" : "button_icon_image",
+    "label" : "Button Icon Image",
+    "help_text" : "⚠️ CAUTION: When using image icons, icon colors cannot be changed. The image will display as-is.",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.turn_on_button_icon",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.button_icon_type",
+        "controlling_value_regex" : "image",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+      "alt" : "Arrow right icon",
+      "width" : 24,
+      "height" : 24
+    }
+  }, {
+    "id" : "75e93451-e4c0-0d39-899d-1f68d311ef15",
+    "name" : "keep_only_icon",
+    "label" : "Keep Only Icon",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_repeater.turn_on_button_icon",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "125086c4-306e-7faf-5b9a-621986ad91e6",
+    "name" : "override_styles",
+    "label" : "Override Styles",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "22068aae-1f25-8c79-c758-985e1ba57dd8",
+    "name" : "hide_show_color_settings",
+    "label" : "Show/Hide Color Settings",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_repeater.override_styles",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "e4f5a6b7-c8d9-4e0u-1a2b-3c4d5e6f7a8b",
+    "name" : "custom_text_color",
+    "label" : "Text Color",
+    "help_text" : "Leave empty to use theme default",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.hide_show_color_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : null,
+      "opacity" : null,
+      "rgb" : null,
+      "rgba" : null,
+      "hex" : null
+    }
+  }, 
+  {
+    "id" : "f5a6b7c8-d9e0-7f1a-2b3c-4d5e6f7a8b9c",
+    "name" : "custom_bg_color",
+    "label" : "Background Color",
+    "help_text" : "Leave empty to use theme default",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.hide_show_color_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : null,
+      "opacity" : null,
+      "rgb" : null,
+      "rgba" : null,
+      "hex" : null
+    }
+  }, {
+    "id" : "5baa9224-fedd-a86f-14dc-1107dcd5422c",
+    "name" : "hide_show_hover_settings",
+    "label" : "Show/Hide Hover Settings",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_repeater.override_styles",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "h7i8j9k0-l1m2-7n3o-4p5q-6r7s8t9u0v1w",
+    "name" : "hover_bg_color",
+    "label" : "Hover Background Color",
+    "help_text" : "Leave empty to use theme default",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.hide_show_hover_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : null,
+      "opacity" : null,
+      "rgb" : null,
+      "rgba" : null,
+      "hex" : null
+    }
+  }, {
+    "id" : "g6h7i8j9-k0l1-4m2n-3o8i-5q6r7s8t9u0v",
+    "name" : "hover_text_color",
+    "label" : "Hover Text Color",
+    "help_text" : "Leave empty to use theme default",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.hide_show_hover_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : null,
+      "opacity" : null,
+      "rgb" : null,
+      "rgba" : null,
+      "hex" : null
+    }
+  }, {
+    "id" : "f2f8f533-5a53-43ca-aeb9-e5d6b2c1a78f",
+    "name" : "hide_show_border_settings",
+    "label" : "Show/Hide Border Settings",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_repeater.override_styles",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "k0l1m2n3-o4p5-4q6u-7s8t-9u0v1w2x3y4z",
+    "name" : "custom_border_radius",
+    "label" : "Border Radius",
+    "help_text" : "In pixels - Leave empty to use theme default",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.hide_show_border_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "display" : "slider",
+    "step" : 1,
+    "suffix" : "px",
+    "type" : "number",
+    "display_width" : null
+  }, {
+    "id" : "i8j9k0l1-m2k3-4o4p-5q6r-7s8t9u0v1w2x",
+    "name" : "hover_border_color",
+    "label" : "Hover Border Color",
+    "help_text" : "Leave empty to use theme default",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.hide_show_border_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : null,
+      "opacity" : null,
+      "rgb" : null,
+      "rgba" : null,
+      "hex" : null
+    }
+  }, {
+    "id" : "l1m2n3o4-p5q6-4r7s-8t0u-0v1w2x3y4z5a",
+    "name" : "hover_border_width",
+    "label" : "Hover Border Width",
+    "help_text" : "In pixels - Leave empty to use theme default (2px)",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.hide_show_border_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "display" : "text",
+    "step" : 1,
+    "suffix" : "px",
+    "type" : "number",
+    "display_width" : null
+  }, {
+    "id" : "04868614-368f-a789b-7a6a-e978ab1a74af",
+    "name" : "hide_show_font_settings",
+    "label" : "Show/Hide Font Settings",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_repeater.override_styles",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "a6b7c8d9-e0f1-4a2b-3c9d-5e6f7a8b9c0d",
+    "name" : "button_font",
+    "label" : "Font Settings",
+    "help_text" : "Leave empty to use theme default",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.hide_show_font_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "load_external_fonts" : true,
+    "type" : "font",
+    "display_width" : null,
+    "default" : {
+      "font" : null,
+      "font_set" : "DEFAULT",
+      "styles" : null,
+      "size" : null,
+      "size_unit" : null,
+      "color" : null,
+      "variant" : null,
+      "fallback" : null,
+      "style" : null
+    }
+  }, {
+    "id" : "25bc4e21-7c5e-ad0d-5673-f80a53629c91",
+    "name" : "hide_show_padding_settings",
+    "label" : "Show/Hide Padding Settings",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_repeater.override_styles",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "n3o4p5q6-r7s8-4t9u-0v1w-2p3y4z5a6b7c",
+    "name" : "padding_vertical",
+    "label" : "Vertical Padding",
+    "help_text" : "In pixels - Leave empty to use theme default",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.hide_show_padding_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "display" : "text",
+    "step" : 1,
+    "suffix" : "px",
+    "type" : "number",
+    "display_width" : null
+  }, {
+    "id" : "o4p5q6r7-s8t9-4u6v-1w2x-3y4z5a6b7c8d",
+    "name" : "padding_horizontal",
+    "label" : "Horizontal Padding",
+    "help_text" : "In pixels - Leave empty to use theme default",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.hide_show_padding_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "display" : "text",
+    "step" : 1,
+    "suffix" : "px",
+    "type" : "number",
+    "display_width" : null
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "button_text" : "Buy Now",
+    "link" : {
+      "url" : {
+        "type" : "EXTERNAL",
+        "href" : "https://www.google.com"
+      }
+    },
+    "button_type" : "primary",
+    "turn_on_button_icon" : false,
+    "button_icon_type" : "svg",
+    "svg_icon" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"36\" height=\"36\" viewBox=\"0 0 36 36\" fill=\"none\">  <path d=\"M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z\" fill=\"#101000\"/></svg>",
+    "custom_icon" : {
+      "name" : "Alternate Long Arrow Right",
+      "unicode" : "f30b",
+      "type" : "SOLID"
+    },
+    "button_icon_image" : {
+      "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+      "alt" : "Arrow right icon",
+      "width" : 24,
+      "height" : 24
+    },
+    "keep_only_icon" : false,
+    "override_styles" : false,
+    "hide_show_color_settings" : false,
+    "custom_text_color" : {
+      "color" : null,
+      "opacity" : null,
+      "rgb" : null,
+      "rgba" : null,
+      "hex" : null
+    },
+    "custom_bg_color" : {
+      "color" : null,
+      "opacity" : null,
+      "rgb" : null,
+      "rgba" : null,
+      "hex" : null
+    },
+    "hide_show_hover_settings" : false,
+    "hover_bg_color" : {
+      "color" : null,
+      "opacity" : null,
+      "rgb" : null,
+      "rgba" : null,
+      "hex" : null
+    },
+    "hover_text_color" : {
+      "color" : null,
+      "opacity" : null,
+      "rgb" : null,
+      "rgba" : null,
+      "hex" : null
+    },
+    "hide_show_border_settings" : false,
+    "hover_border_color" : {
+      "color" : null,
+      "opacity" : null,
+      "rgb" : null,
+      "rgba" : null,
+      "hex" : null
+    },
+    "hide_show_font_settings" : false,
+    "button_font" : {
+      "font" : null,
+      "font_set" : "DEFAULT",
+      "styles" : null,
+      "size" : null,
+      "size_unit" : null,
+      "color" : null,
+      "variant" : null,
+      "fallback" : null,
+      "style" : null
+    },
+    "hide_show_padding_settings" : false
+  } ]
+}, {
+  "id" : "2e265d49-54f8-f617-2b59-71be7e8e9253",
+  "name" : "product_information",
+  "label" : "Product Information",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "2eeab6ae-9b17-d240-9794-bedcd83d70ad",
+    "name" : "product_image",
+    "label" : "Product Image",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "size_type" : "auto_custom_max",
+      "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/c70a65175488603464d8c1d9dcd23761d22ff9a4-1.png",
+      "alt" : "c70a65175488603464d8c1d9dcd23761d22ff9a4-1",
+      "loading" : "lazy",
+      "width" : 4096,
+      "height" : 4096,
+      "max_width" : 2000,
+      "max_height" : 2000
+    }
+  }, {
+    "id" : "ce0766f0-2960-36b6-5558-e8a6310b244c",
+    "name" : "product_thumbnails",
+    "label" : "Product Thumbnails",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "a394d008-ec0b-24b6-4d13-72831db4bcd9",
+      "name" : "thumbnail_image",
+      "label" : "Thumbnail Image",
+      "required" : false,
+      "locked" : false,
+      "occurrence" : {
+        "min" : 1,
+        "max" : null,
+        "sorting_label_field" : null,
+        "default" : 1
+      },
+      "responsive" : true,
+      "resizable" : true,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : [ {
+        "size_type" : "auto",
+        "src" : "",
+        "alt" : null,
+        "loading" : "lazy"
+      } ]
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "thumbnail_image" : [ {
+        "size_type" : "auto",
+        "src" : "",
+        "alt" : null,
+        "loading" : "lazy"
+      } ]
+    }
+  }, {
+    "id" : "d1a7477d-a211-d344-1c71-89d74c4aa715",
+    "name" : "product_sku",
+    "label" : "Product SKU",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p><span>FMX-BIKE-001</span></p>"
+  }, {
+    "id" : "6d03dfc9-49c3-6aa6-d574-8e94e8d22e4c",
+    "name" : "product_title",
+    "label" : "Product Title",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<h4><span>FitPro Exercise Bike</span></h4>"
+  }, {
+    "id" : "f3a7572e-3bc3-3e82-7a2d-314b960a9916",
+    "name" : "price",
+    "label" : "Price",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<h5><span>$299.99</span></h5>"
+  }, {
+    "id" : "e18b6041-0a70-4744-f121-2a369109f5f6",
+    "name" : "description",
+    "label" : "Description",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p>FitPro Exercise Bike is a durable, compact indoor cycling bike designed for effective cardio and endurance training at home or in professional gym environments.<br><br>Featuring smooth resistance control, an ergonomic seat, and a sturdy steel frame, it provides a stable and comfortable riding experience for users of all fitness levels.</p>"
+  }, {
+    "id" : "46e80dbe-3346-be78-4c09-9704ee2f38a6",
+    "name" : "pricing_model",
+    "label" : "Pricing Model",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p><span>One-time purchase</span></p>"
+  }, {
+    "id" : "dbc23240-0864-f3d8-5c56-b93fb394a502",
+    "name" : "product_category",
+    "label" : "Product Category",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p><span>Inventory</span></p>"
+  }, {
+    "id" : "1e38f25a-162e-c0f1-3a9b-a73c7c9744fb",
+    "name" : "terms",
+    "label" : "Terms",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p><span>Terms Length: Product is returnable within <strong>30 days.</strong></span></p>"
+  }, {
+    "id" : "337d50eb-7a32-27c2-6503-a38c7bce687f",
+    "name" : "status",
+    "label" : "Status",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "4b412d22-e2a0-9367-0c73-43497b1a3925",
+      "name" : "status",
+      "label" : "Status",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "display_width" : null,
+      "default" : "<p>Available</p>"
+    }, {
+      "id" : "262147db-8cf4-b811-c8cc-6a490685def5",
+      "name" : "status_color",
+      "label" : "Status Color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }, {
+      "id" : "4f6de8d6-89e9-79c0-c70d-b67ea96132a1",
+      "name" : "status_background_color",
+      "label" : "Status Background Color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : null,
+        "opacity" : null
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "status" : "<p>Available</p>",
+      "status_color" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "status_background_color" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }
+  }, {
+    "id" : "a56448e2-6635-a37b-bf2c-b5a6360d23d9",
+    "name" : "product_type",
+    "label" : "Product Type",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p>Inverntory</p>\n<p>&nbsp;</p>"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "product_image" : {
+      "size_type" : "auto_custom_max",
+      "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/c70a65175488603464d8c1d9dcd23761d22ff9a4-1.png",
+      "alt" : "c70a65175488603464d8c1d9dcd23761d22ff9a4-1",
+      "loading" : "lazy",
+      "width" : 4096,
+      "height" : 4096,
+      "max_width" : 2000,
+      "max_height" : 2000
+    },
+    "product_thumbnails" : {
+      "thumbnail_image" : [ {
+        "size_type" : "auto",
+        "src" : "",
+        "alt" : null,
+        "loading" : "lazy"
+      } ]
+    },
+    "product_sku" : "<p><span>FMX-BIKE-001</span></p>",
+    "product_title" : "<h4><span>FitPro Exercise Bike</span></h4>",
+    "price" : "<h5><span>$299.99</span></h5>",
+    "description" : "<p><span>FitPro Exercise Bike is a durable, compact indoor cycling bike designed for effective cardio and endurance training at home or in professional gym environments.<br><br>Featuring smooth resistance control, an ergonomic seat, and a sturdy steel frame, it provides a stable and comfortable riding experience for users of all fitness levels.</span></p>",
+    "pricing_model" : "<p><span>One-time purchase</span></p>",
+    "product_category" : "<p><span>Inventory</span></p>",
+    "terms" : "<p><span>Terms Length: Product is returnable within <strong>30 days.</strong></span></p>",
+    "status" : {
+      "status" : "<p>Available</p>",
+      "status_color" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "status_background_color" : {
+        "color" : null,
+        "opacity" : null
+      }
+    },
+    "product_type" : "<p>Inverntory</p>\n<p>&nbsp;</p>"
+  }
+}, {
+  "id" : "70040fdf-e7cd-0aa4-749b-d6d68194697d",
+  "name" : "quantity_settings",
+  "label" : "Quantity Settings",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "68078b06-b0c3-8a7d-54c0-ae26e2268bd6",
+    "name" : "reduction_button",
+    "label" : "Decrease Button",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "d7c1ef94-f56c-a2d2-cddd-704f23480f65",
+      "name" : "override_style",
+      "label" : "Override Styles",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "637d0631-787b-9826-9abc-8e1023015555",
+      "name" : "icon_type",
+      "label" : "Icon Type",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "quantity_settings.reduction_button.override_style",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "icon", "Hubspot Icon" ], [ "custom", "Custom SVG" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : ""
+    }, {
+      "id" : "1e93382f-b826-57c7-eab6-a3a5d5f33397",
+      "name" : "hubspot_icon",
+      "label" : "Hubspot Icon",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "quantity_settings.reduction_button.icon_type",
+        "controlling_value_regex" : "icon",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "icon_set" : "fontawesome-5.14.0",
+      "type" : "icon",
+      "display_width" : null,
+      "default" : { }
+    }, {
+      "id" : "c4476999-1d1b-bfc1-b3b6-fcc751ace75f",
+      "name" : "svg_code",
+      "label" : "SVG Code",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "quantity_settings.reduction_button.icon_type",
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null
+    }, {
+      "id" : "9322169a-6615-826a-5e3f-460a92ee2590",
+      "name" : "background_color",
+      "label" : "Background Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "quantity_settings.reduction_button.override_style",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }, {
+      "id" : "5fc662ba-1c22-4457-b549-77e2e481cf36",
+      "name" : "icon_color",
+      "label" : "Icon Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "quantity_settings.reduction_button.override_style",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : null,
+        "opacity" : null
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "override_style" : false,
+      "icon_type" : "",
+      "hubspot_icon" : { },
+      "background_color" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "icon_color" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }
+  }, {
+    "id" : "a4592edd-90b6-fb59-1dc8-d51569867491",
+    "name" : "increment_button",
+    "label" : "Increment Button",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "466a9b20-2dbe-05b9-0e7a-bc62c4ee2b3f",
+      "name" : "override_style",
+      "label" : "Override Styles",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "7479965d-2be1-2621-28eb-c77e4e296102",
+      "name" : "icon_type",
+      "label" : "Icon Type",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "quantity_settings.increment_button.override_style",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "icon", "Hubspot Icon" ], [ "custom", "Custom SVG" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : ""
+    }, {
+      "id" : "7e1ff0d1-dbc6-4976-e720-fb0ed893929b",
+      "name" : "hubspot_icon",
+      "label" : "Hubspot Icon",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "quantity_settings.increment_button.icon_type",
+        "controlling_value_regex" : "icon",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "icon_set" : "fontawesome-5.14.0",
+      "type" : "icon",
+      "display_width" : null,
+      "default" : { }
+    }, {
+      "id" : "f5858540-1526-a351-10a1-37ea693e28fe",
+      "name" : "svg_code",
+      "label" : "SVG Code",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "quantity_settings.increment_button.icon_type",
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null
+    }, {
+      "id" : "816eb824-1e98-c6c2-6c5f-9f7cde9075f9",
+      "name" : "background_color",
+      "label" : "Background Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "quantity_settings.increment_button.override_style",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }, {
+      "id" : "15a20880-5385-2495-d0bf-7712b9b58505",
+      "name" : "icon_color",
+      "label" : "Icon Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "quantity_settings.increment_button.override_style",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : null,
+        "opacity" : null
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "override_style" : false,
+      "icon_type" : "",
+      "hubspot_icon" : { },
+      "background_color" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "icon_color" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "reduction_button" : {
+      "override_style" : false,
+      "icon_type" : "",
+      "hubspot_icon" : { },
+      "background_color" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "icon_color" : {
+        "color" : null,
+        "opacity" : null
+      }
+    },
+    "increment_button" : {
+      "override_style" : false,
+      "icon_type" : "",
+      "hubspot_icon" : { },
+      "background_color" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "icon_color" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }
+  }
+}, {
+  "id" : "75bb849e-6bf3-c95c-7c76-3dcfec5e2d50",
+  "name" : "product_category_icons",
+  "label" : "Product Category Icons",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "d0056956-92a2-1f6a-6c11-1b4310d66b24",
+    "name" : "pricing_model",
+    "label" : "Pricing Model",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "9a758f70-cfe7-6c98-43d0-c1106ee4bbce",
+      "name" : "icon_type",
+      "label" : "Icon Type",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "icon", "Hubspot Icon" ], [ "custom", "Custom SVG" ], [ "image", "Image" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null
+    }, {
+      "id" : "784618f3-64fd-1a6a-2d57-d31aec4e631c",
+      "name" : "image_field_1",
+      "label" : "Image",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "product_category_icons.pricing_model.icon_type",
+        "controlling_value_regex" : "image",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "responsive" : true,
+      "resizable" : true,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/timer-01-1.svg",
+        "alt" : "timer-01-1",
+        "loading" : "lazy",
+        "width" : 24,
+        "height" : 24,
+        "max_width" : 24,
+        "max_height" : 24
+      }
+    }, {
+      "id" : "fd89ad60-0cd6-3ec7-5c04-d2f3396e36e8",
+      "name" : "hubspot_icon",
+      "label" : "Hubspot Icon",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "product_category_icons.pricing_model.icon_type",
+        "controlling_value_regex" : "icon",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "icon_set" : "fontawesome-5.14.0",
+      "type" : "icon",
+      "display_width" : null,
+      "default" : { }
+    }, {
+      "id" : "0168fca5-4b2e-2215-1a4b-a7e00f1e5dad",
+      "name" : "custom_svg",
+      "label" : "Custom SVG",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "product_category_icons.pricing_model.icon_type",
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "image_field_1" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/timer-01-1.svg",
+        "alt" : "timer-01-1",
+        "loading" : "lazy",
+        "width" : 24,
+        "height" : 24,
+        "max_width" : 24,
+        "max_height" : 24
+      },
+      "hubspot_icon" : { }
+    }
+  }, {
+    "id" : "f84aaa44-2c53-75e6-4daf-af61d6eae939",
+    "name" : "product_type",
+    "label" : "Product Type",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "3887e3a3-f999-2d36-2878-df958f9571ee",
+      "name" : "icon_type",
+      "label" : "Icon Type",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "icon", "Hubspot Icon" ], [ "custom", "Custom SVG" ], [ "image", "Image" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null
+    }, {
+      "id" : "9e95b658-804a-a5dd-2fe7-44cbc03bf5de",
+      "name" : "hubspot_icon",
+      "label" : "Hubspot Icon",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "product_category_icons.product_type.icon_type",
+        "controlling_value_regex" : "icon",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "icon_set" : "fontawesome-5.14.0",
+      "type" : "icon",
+      "display_width" : null,
+      "default" : { }
+    }, {
+      "id" : "8ecef8f7-0847-0a6b-266f-3e50f3af3f83",
+      "name" : "custom_svg",
+      "label" : "Custom SVG",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "product_category_icons.product_type.icon_type",
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null
+    }, {
+      "id" : "7149264a-ad8a-b3c3-f58b-d1b1ea9cbc11",
+      "name" : "image_field",
+      "label" : "Image",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "product_category_icons.product_type.icon_type",
+        "controlling_value_regex" : "image",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "responsive" : true,
+      "resizable" : true,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/filter-1.svg",
+        "alt" : "filter-1",
+        "loading" : "lazy",
+        "width" : 24,
+        "height" : 24,
+        "max_width" : 24,
+        "max_height" : 24
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "hubspot_icon" : { },
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/filter-1.svg",
+        "alt" : "filter-1",
+        "loading" : "lazy",
+        "width" : 24,
+        "height" : 24,
+        "max_width" : 24,
+        "max_height" : 24
+      }
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "pricing_model" : {
+      "image_field_1" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/timer-01-1.svg",
+        "alt" : "timer-01-1",
+        "loading" : "lazy",
+        "width" : 24,
+        "height" : 24,
+        "max_width" : 24,
+        "max_height" : 24
+      },
+      "hubspot_icon" : { }
+    },
+    "product_type" : {
+      "hubspot_icon" : { },
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/filter-1.svg",
+        "alt" : "filter-1",
+        "loading" : "lazy",
+        "width" : 24,
+        "height" : 24,
+        "max_width" : 24,
+        "max_height" : 24
+      }
+    }
+  }
+}, {
+  "id" : "755ae123-c5d6-3f4a-c8ff-1dc9f5f6d2cd",
+  "name" : "similar_products",
+  "label" : "Similar Products",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "d9f7b97a-8dfe-d8e4-4b1f-440015ab5d3d",
+    "name" : "similar_products_title",
+    "label" : "Similar Products Title",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<h6>Similar Products</h6>"
+  }, {
+    "id" : "aae78dc0-8961-ed5c-b09f-e32f547b0c4a",
+    "name" : "products",
+    "label" : "Products",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : 0,
+      "max" : null,
+      "sorting_label_field" : null,
+      "default" : 1
+    },
+    "children" : [ {
+      "id" : "188f53f6-aa07-8136-b347-4d75eb785f2e",
+      "name" : "product_image",
+      "label" : "Product Image",
+      "required" : false,
+      "locked" : false,
+      "responsive" : true,
+      "resizable" : true,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "size_type" : "auto",
+        "src" : "",
+        "alt" : null,
+        "loading" : "lazy"
+      }
+    }, {
+      "id" : "e1f5f9a3-c232-2fd4-8374-3cfa90d545e0",
+      "name" : "product_title",
+      "label" : "Product Title",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "display_width" : null,
+      "default" : "<span>PowerMax Pre Formula</span>"
+    }, {
+      "id" : "3552e81f-05a4-d16f-7e25-411d6e58b008",
+      "name" : "price",
+      "label" : "Price",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "display_width" : null,
+      "default" : "299.99"
+    }, {
+      "id" : "7k2f8b1c-3e4d-5a6c-7c8d-9e0f1a2b3c4d",
+      "name" : "button_repeater",
+      "label" : "Card Buttons",
+      "required" : false,
+      "locked" : false,
+      "occurrence" : {
+        "min" : null,
+        "max" : 4,
+        "sorting_label_field" : null,
+        "default" : 1
+      },
+      "children" : [ {
+        "id" : "bka2c3d4-e5y6-4a5b-8c9d-0e1f2a3b4c5d",
+        "name" : "button_text",
+        "label" : "Button Label",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "similar_products.products.button_repeater.keep_only_icon",
+          "controlling_value_regex" : "false",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null,
+        "default" : "View Product"
+      }, {
+        "id" : "ckd3e4f5-a6b7-4c9d-9e0f-1a2b3c4d5e6f",
+        "name" : "link",
+        "label" : "Button Link",
+        "required" : false,
+        "locked" : false,
+        "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG" ],
+        "show_advanced_rel_options" : false,
+        "type" : "link",
+        "display_width" : null,
+        "default" : {
+          "url" : {
+            "type" : "EXTERNAL",
+            "href" : "https://www.google.com"
+          }
+        }
+      }, {
+        "id" : "dke4f5a6-b7c8-4d9e-0f3a-2b3c4d5e6f7a",
+        "name" : "button_type",
+        "label" : "Button Variant",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "similar_products.products.button_repeater.keep_only_icon",
+          "controlling_value_regex" : "false",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display" : "select",
+        "choices" : [ [ "primary", "Primary Button" ], [ "secondary", "Secondary Button" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "primary"
+      }, {
+        "id" : "7kb7f52a-0193-af03-6d77-bb3bdac0d9a7",
+        "name" : "turn_on_button_icon",
+        "label" : "Turn on Button Icon",
+        "required" : false,
+        "locked" : false,
+        "display" : "toggle",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "ck40b4a8-7f25-5095-e485-c99cda4b9cb2",
+        "name" : "button_icon_type",
+        "label" : "Button Icon Type",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "similar_products.products.button_repeater.turn_on_button_icon",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display" : "select",
+        "choices" : [ [ "svg", "SVG Icon" ], [ "custom", "Custom Icon" ], [ "image", "Image Icon" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "svg"
+      }, {
+        "id" : "6kfd7eea-4ea0-989b-9824-eaa1e20b3ec8",
+        "name" : "svg_icon",
+        "label" : "SVG Icon",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "similar_products.products.button_repeater.turn_on_button_icon",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "similar_products.products.button_repeater.button_icon_type",
+            "controlling_value_regex" : "svg",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null,
+        "default" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"36\" height=\"36\" viewBox=\"0 0 36 36\" fill=\"none\">  <path d=\"M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z\" fill=\"#101000\"/></svg>"
+      }, {
+        "id" : "1k0837f5-543f-209e-07f0-d68cc17a8d14",
+        "name" : "custom_icon",
+        "label" : "Custom Icon",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "similar_products.products.button_repeater.turn_on_button_icon",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "similar_products.products.button_repeater.button_icon_type",
+            "controlling_value_regex" : "custom",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "icon_set" : "fontawesome-5.14.0",
+        "type" : "icon",
+        "display_width" : null,
+        "default" : {
+          "name" : "Alternate Long Arrow Right",
+          "unicode" : "f30b",
+          "type" : "SOLID"
+        }
+      }, {
+        "id" : "akb2c3d4-e5f6-7g8h-9i0j-k1l2m3n4o5p6",
+        "name" : "button_icon_image",
+        "label" : "Button Icon Image",
+        "help_text" : "⚠️ CAUTION: When using image icons, icon colors cannot be changed. The image will display as-is.",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "similar_products.products.button_repeater.turn_on_button_icon",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "similar_products.products.button_repeater.button_icon_type",
+            "controlling_value_regex" : "image",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "responsive" : true,
+        "resizable" : true,
+        "show_loading" : false,
+        "type" : "image",
+        "display_width" : null,
+        "default" : {
+          "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+          "alt" : "Arrow right icon",
+          "width" : 24,
+          "height" : 24
+        }
+      }, {
+        "id" : "7ke93451-e4c0-0d39-899d-1f68d311ef15",
+        "name" : "keep_only_icon",
+        "label" : "Keep Only Icon",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "similar_products.products.button_repeater.turn_on_button_icon",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "1k5086c4-306e-7faf-5b9a-621986ad91e6",
+        "name" : "override_styles",
+        "label" : "Override Styles",
+        "required" : false,
+        "locked" : false,
+        "display" : "toggle",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "2k068aae-1f25-8c79-c758-985e1ba57dd8",
+        "name" : "hide_show_color_settings",
+        "label" : "Show/Hide Color Settings",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "similar_products.products.button_repeater.override_styles",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "ekf5a6b7-c8d9-4e0u-1a2b-3c4d5e6f7a8b",
+        "name" : "custom_text_color",
+        "label" : "Text Color",
+        "help_text" : "Leave empty to use theme default",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "similar_products.products.button_repeater.override_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "similar_products.products.button_repeater.hide_show_color_settings",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        }
+      }, {
+        "id" : "fka6b7c8-d9e0-7f1a-2b3c-4d5e6f7a8b9c",
+        "name" : "custom_bg_color",
+        "label" : "Background Color",
+        "help_text" : "Leave empty to use theme default",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "similar_products.products.button_repeater.override_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "similar_products.products.button_repeater.hide_show_color_settings",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        }
+      }, {
+        "id" : "5kaa9224-fedd-a86f-14dc-1107dcd5422c",
+        "name" : "hide_show_hover_settings",
+        "label" : "Show/Hide Hover Settings",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "similar_products.products.button_repeater.override_styles",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "hki8j9k0-l1m2-7n3o-4p5q-6r7s8t9u0v1w",
+        "name" : "hover_bg_color",
+        "label" : "Hover Background Color",
+        "help_text" : "Leave empty to use theme default",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "similar_products.products.button_repeater.override_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "similar_products.products.button_repeater.hide_show_hover_settings",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        }
+      }, {
+        "id" : "gkh7i8j9-k0l1-4m2n-3o8i-5q6r7s8t9u0v",
+        "name" : "hover_text_color",
+        "label" : "Hover Text Color",
+        "help_text" : "Leave empty to use theme default",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "similar_products.products.button_repeater.override_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "similar_products.products.button_repeater.hide_show_hover_settings",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        }
+      }, {
+        "id" : "fkf8f533-5a53-43ca-aeb9-e5d6b2c1a78f",
+        "name" : "hide_show_border_settings",
+        "label" : "Show/Hide Border Settings",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "similar_products.products.button_repeater.override_styles",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "kkl1m2n3-o4p5-4q6u-7s8t-9u0v1w2x3y4z",
+        "name" : "custom_border_radius",
+        "label" : "Border Radius",
+        "help_text" : "In pixels - Leave empty to use theme default",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "similar_products.products.button_repeater.override_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "similar_products.products.button_repeater.hide_show_border_settings",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "display" : "slider",
+        "step" : 1,
+        "suffix" : "px",
+        "type" : "number",
+        "display_width" : null
+      }, {
+        "id" : "ikj9k0l1-m2k3-4o4p-5q6r-7s8t9u0v1w2x",
+        "name" : "hover_border_color",
+        "label" : "Hover Border Color",
+        "help_text" : "Leave empty to use theme default",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "similar_products.products.button_repeater.override_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "similar_products.products.button_repeater.hide_show_border_settings",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        }
+      }, {
+        "id" : "lkm2n3o4-p5q6-4r7s-8t0u-0v1w2x3y4z5a",
+        "name" : "hover_border_width",
+        "label" : "Hover Border Width",
+        "help_text" : "In pixels - Leave empty to use theme default (2px)",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "similar_products.products.button_repeater.override_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "similar_products.products.button_repeater.hide_show_border_settings",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "display" : "text",
+        "step" : 1,
+        "suffix" : "px",
+        "type" : "number",
+        "display_width" : null
+      }, {
+        "id" : "0k868614-368f-a789b-7a6a-e978ab1a74af",
+        "name" : "hide_show_font_settings",
+        "label" : "Show/Hide Font Settings",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "button_repeater.override_styles",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "akb7c8d9-e0f1-4a2b-3c9d-5e6f7a8b9c0d",
+        "name" : "button_font",
+        "label" : "Font Settings",
+        "help_text" : "Leave empty to use theme default",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "button_repeater.override_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "button_repeater.hide_show_font_settings",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "load_external_fonts" : true,
+        "type" : "font",
+        "display_width" : null,
+        "default" : {
+          "font" : null,
+          "font_set" : "DEFAULT",
+          "styles" : null,
+          "size" : null,
+          "size_unit" : null,
+          "color" : null,
+          "variant" : null,
+          "fallback" : null,
+          "style" : null
+        }
+      }, {
+        "id" : "2kbc4e21-7c5e-ad0d-5673-f80a53629c91",
+        "name" : "hide_show_padding_settings",
+        "label" : "Show/Hide Padding Settings",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "button_repeater.override_styles",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "nko4p5q6-r7s8-4t9u-0v1w-2p3y4z5a6b7c",
+        "name" : "padding_vertical",
+        "label" : "Vertical Padding",
+        "help_text" : "In pixels - Leave empty to use theme default",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "button_repeater.override_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "button_repeater.hide_show_padding_settings",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "display" : "text",
+        "step" : 1,
+        "suffix" : "px",
+        "type" : "number",
+        "display_width" : null
+      }, {
+        "id" : "okp5q6r7-s8t9-4u6v-1w2x-3y4z5a6b7c8d",
+        "name" : "padding_horizontal",
+        "label" : "Horizontal Padding",
+        "help_text" : "In pixels - Leave empty to use theme default",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "button_repeater.override_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "button_repeater.hide_show_padding_settings",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "display" : "text",
+        "step" : 1,
+        "suffix" : "px",
+        "type" : "number",
+        "display_width" : null
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : [ {
+        "button_text" : "View Product",
+        "link" : {
+          "url" : {
+            "type" : "EXTERNAL",
+            "href" : "https://www.google.com"
+          }
+        },
+        "button_type" : "primary",
+        "turn_on_button_icon" : false,
+        "button_icon_type" : "svg",
+        "svg_icon" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"36\" height=\"36\" viewBox=\"0 0 36 36\" fill=\"none\">  <path d=\"M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z\" fill=\"#101000\"/></svg>",
+        "custom_icon" : {
+          "name" : "Alternate Long Arrow Right",
+          "unicode" : "f30b",
+          "type" : "SOLID"
+        },
+        "button_icon_image" : {
+          "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+          "alt" : "Arrow right icon",
+          "width" : 24,
+          "height" : 24
+        },
+        "keep_only_icon" : false,
+        "override_styles" : false,
+        "hide_show_color_settings" : false,
+        "custom_text_color" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        },
+        "custom_bg_color" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        },
+        "hide_show_hover_settings" : false,
+        "hover_bg_color" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        },
+        "hover_text_color" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        },
+        "hide_show_border_settings" : false,
+        "hover_border_color" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        },
+        "hide_show_font_settings" : false,
+        "button_font" : {
+          "font" : null,
+          "font_set" : "DEFAULT",
+          "styles" : null,
+          "size" : null,
+          "size_unit" : null,
+          "color" : null,
+          "variant" : null,
+          "fallback" : null,
+          "style" : null
+        },
+        "hide_show_padding_settings" : false
+      } ]
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ {
+      "product_image" : {
+        "size_type" : "auto",
+        "src" : "",
+        "alt" : null,
+        "loading" : "lazy"
+      },
+      "product_title" : "<span>PowerMax Pre Formula</span>",
+      "price" : "299.99",
+      "button_repeater" : [ {
+        "button_text" : "View Product",
+        "link" : {
+          "url" : {
+            "type" : "EXTERNAL",
+            "href" : "https://www.google.com"
+          }
+        },
+        "button_type" : "primary",
+        "turn_on_button_icon" : false,
+        "button_icon_type" : "svg",
+        "svg_icon" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"36\" height=\"36\" viewBox=\"0 0 36 36\" fill=\"none\">  <path d=\"M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z\" fill=\"#101000\"/></svg>",
+        "custom_icon" : {
+          "name" : "Alternate Long Arrow Right",
+          "unicode" : "f30b",
+          "type" : "SOLID"
+        },
+        "button_icon_image" : {
+          "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+          "alt" : "Arrow right icon",
+          "width" : 24,
+          "height" : 24
+        },
+        "keep_only_icon" : false,
+        "override_styles" : false,
+        "hide_show_color_settings" : false,
+        "custom_text_color" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        },
+        "custom_bg_color" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        },
+        "hide_show_hover_settings" : false,
+        "hover_bg_color" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        },
+        "hover_text_color" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        },
+        "hide_show_border_settings" : false,
+        "hover_border_color" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        },
+        "hide_show_font_settings" : false,
+        "button_font" : {
+          "font" : null,
+          "font_set" : "DEFAULT",
+          "styles" : null,
+          "size" : null,
+          "size_unit" : null,
+          "color" : null,
+          "variant" : null,
+          "fallback" : null,
+          "style" : null
+        },
+        "hide_show_padding_settings" : false
+      } ]
+    } ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "similar_products_title" : "<h6>Similar Products</h6>",
+    "products" : [ {
+      "product_image" : {
+        "size_type" : "auto",
+        "src" : "",
+        "alt" : null,
+        "loading" : "lazy"
+      },
+      "product_title" : "<span>PowerMax Pre Formula</span>",
+      "price" : "299.99",
+      "button_repeater" : [ {
+        "button_text" : "View Product",
+        "link" : {
+          "url" : {
+            "type" : "EXTERNAL",
+            "href" : "https://www.google.com"
+          }
+        },
+        "button_type" : "primary",
+        "turn_on_button_icon" : false,
+        "button_icon_type" : "svg",
+        "svg_icon" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"36\" height=\"36\" viewBox=\"0 0 36 36\" fill=\"none\">  <path d=\"M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z\" fill=\"#101000\"/></svg>",
+        "custom_icon" : {
+          "name" : "Alternate Long Arrow Right",
+          "unicode" : "f30b",
+          "type" : "SOLID"
+        },
+        "button_icon_image" : {
+          "src" : "https://242549284.fs1.hubspotusercontent-na2.net/hubfs/242549284/arrow-right.png",
+          "alt" : "Arrow right icon",
+          "width" : 24,
+          "height" : 24
+        },
+        "keep_only_icon" : false,
+        "override_styles" : false,
+        "hide_show_color_settings" : false,
+        "custom_text_color" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        },
+        "custom_bg_color" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        },
+        "hide_show_hover_settings" : false,
+        "hover_bg_color" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        },
+        "hover_text_color" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        },
+        "hide_show_border_settings" : false,
+        "hover_border_color" : {
+          "color" : null,
+          "opacity" : null,
+          "rgb" : null,
+          "rgba" : null,
+          "hex" : null
+        },
+        "hide_show_font_settings" : false,
+        "button_font" : {
+          "font" : null,
+          "font_set" : "DEFAULT",
+          "styles" : null,
+          "size" : null,
+          "size_unit" : null,
+          "color" : null,
+          "variant" : null,
+          "fallback" : null,
+          "style" : null
+        },
+        "hide_show_padding_settings" : false
+      } ]
+    } ]
+  }
+}, {
+  "id" : "d2a0229a-d759-79bb-eaaa-ba6e0b94591d",
+  "name" : "specification_table",
+  "label" : "Specification Table",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "c42e343f-e255-fcf6-9107-8bf081e28d69",
+    "name" : "specifications",
+    "label" : "Specifications",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : 1,
+      "max" : null,
+      "sorting_label_field" : null,
+      "default" : 1
+    },
+    "children" : [ {
+      "id" : "72857c55-6c6a-1af6-bdd1-43d48a311971",
+      "name" : "specification_label",
+      "label" : "Specification Label",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "display_width" : null,
+      "default" : "<p>Product Name</p>"
+    }, {
+      "id" : "3a1e9a33-fc8e-1c68-9db5-bb1d3c0d9693",
+      "name" : "value",
+      "label" : "Value",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "display_width" : null,
+      "default" : "<p>FitPro Exercise Bike</p>"
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ {
+      "specification_label" : "<p>Product Name</p>",
+      "value" : "<p>FitPro Exercise Bike</p>"
+    } ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "specifications" : [ {
+      "specification_label" : "<p>Product Name</p>",
+      "value" : "<p>FitPro Exercise Bike</p>"
+    } ]
+  }
+}, {
+  "id" : "e7c8e49e-a664-7262-0903-6ae239e18752",
+  "name" : "field_group",
+  "label" : "Table Tab Title",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "aa793efc-5323-575b-1888-4d5b0881a621",
+    "name" : "table_description_title",
+    "label" : "Table Description Title",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<div>Product Description</div>"
+  }, {
+    "id" : "295471f3-8a5e-236e-a87f-0842d2419edd",
+    "name" : "table_specification_title",
+    "label" : "Table Specification Title",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p>Specifications</p>"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "table_description_title" : "<div>Product Description</div>",
+    "table_specification_title" : "<p>Specifications</p>"
+  }
+}, {
+  "id" : "dea9123c-0243-246a-0a0a-5c1eec4e0836",
+  "name" : "style",
+  "label" : "Style",
+  "required" : false,
+  "locked" : false,
+  "children" : [ 
+    {
+    "id" : "9d05edfa-e41b-b417-a0d6-c475fc61a5ef",
+    "name" : "background",
+    "label" : "Background",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "2e682c26-8653-aed8-45a2-12adf33ac4b0",
+      "name" : "overwrite_style",
+      "label" : "Overwrite Style",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "01f61d79-50d9-14ce-b553-65dc5c0efe3d",
+      "name" : "background_type",
+      "label" : "Background Type",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.background.overwrite_style",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "color", "Color" ], [ "gradient", "Gradient" ], [ "image", "Image" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null
+    }, {
+      "id" : "951b8970-f6f5-d9cb-0abe-50b1dda453ce",
+      "name" : "color",
+      "label" : "Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.background.background_type",
+        "controlling_value_regex" : "color",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }, {
+      "id" : "6494c661-f24a-5eb4-b90f-e5633f498762",
+      "name" : "image_field_2",
+      "label" : "Background Image",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.background.background_type",
+        "controlling_value_regex" : "image",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "responsive" : true,
+      "resizable" : true,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "size_type" : "auto",
+        "src" : "",
+        "alt" : null,
+        "loading" : "lazy"
+      }
+    }, {
+      "id" : "14908a98-8f96-fdb0-a401-a9fb82fb4fcf",
+      "name" : "gradient_field",
+      "label" : "Gradient",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.background.background_type",
+        "controlling_value_regex" : "gradient",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "gradient",
+      "display_width" : null,
+      "default" : { }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "overwrite_style" : false,
+      "color" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "image_field_2" : {
+        "size_type" : "auto",
+        "src" : "",
+        "alt" : null,
+        "loading" : "lazy"
+      },
+      "gradient_field" : { }
+    }
+  }, 
+  {
+    "id" : "e49ec2d5-dc41-b939-45b1-c51ed612b890",
+    "name" : "similar_products",
+    "label" : "Similar Products",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "06feff98-686c-5ada-7a81-ca6808085233",
+      "name" : "background_color",
+      "label" : "Background Color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : null,
+        "opacity" : null
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_color" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "background" : {
+      "overwrite_style" : false,
+      "color" : {
+        "color" : null,
+        "opacity" : null
+      },
+      "image_field_2" : {
+        "size_type" : "auto",
+        "src" : "",
+        "alt" : null,
+        "loading" : "lazy"
+      },
+      "gradient_field" : { }
+    },
+    "similar_products" : {
+      "background_color" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }
+  }
+}, {
+  "id" : "13963c61-1b38-210e-2c61-a4cff755788a",
+  "name" : "layout_and_alignment",
+  "label" : "Layout and Alignment",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "b62771af-4eb1-74c8-c81e-dd13762e1fe2",
+    "name" : "section_max_width",
+    "label" : "Section Max Width",
+    "required" : false,
+    "locked" : false,
+    "display" : "text",
+    "step" : 1280,
+    "suffix" : "px",
+    "type" : "number",
+    "display_width" : null
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : { }
+} ]

@@ -1,0 +1,90 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: false
+  label: Base
+-->
+<!-- Begin partial -->
+<!doctype html>
+{# --- Add language --- #}
+<html lang="{{ html_lang }}" {{ html_lang_dir }}>
+  <head>
+    <meta charset="UTF-8" />
+    <!--     <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+
+    {# --- Page Fav Icon --- #}
+    {% if brand_settings.primaryFavicon.src %}
+    <link rel="shortcut icon" href="{{ brand_settings.primaryFavicon.src }}" />
+    {% endif %}
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Poppins:wght@500&display=swap" as="style">
+    <link rel="preload" href="https://fonts.cdnfonts.com/css/helvetica-neue-5" as="style">
+    {# --- Page Title --- #}
+    {% if page_meta.html_title or pageTitle %}
+    <title>{{ page_meta.html_title or pageTitle }}</title>
+    {% endif %}
+
+    {# --- Page Meta Description --- #}
+    {% if page_meta.meta_description %}
+    <meta name="description" content="{{ page_meta.meta_description }}">
+    {% endif %}
+
+    {# --- Add .css files from Theme Folder --- #}
+    {{ require_css(get_asset_url("../../css/main.css")) }}
+
+    {# --- Templates requiring specific style sheets --- #}
+    {% if template_css %}
+    {{ require_css(get_asset_url(template_css)) }}
+    {% endif %}
+
+    {# --- Most probably code from Advance section for Header --- #}
+    {{ standard_header_includes }}
+
+    <!--     <link rel="preload" href="https://hubxpert.com/hubfs/Background%20Image%20%281%29.webp" as="image"> -->
+  </head>
+  <body>
+    <div class="body-wrapper {{ builtin_body_classes }}">
+
+      {# --- Adding Header Global #}
+      {% block header %}
+      {% global_partial path="../partials/header.html" %}
+      {% endblock header %}
+
+      <main id="main-content" class="body-wrapper-container">
+        {% block body %}
+        {% endblock body %}
+      </main>
+
+      {% block footer %}
+      {% global_partial path="../partials/footer.html" %}
+      {% endblock footer %}
+
+    </div>
+
+    {# --- Only for JQuery --- #}
+    {% if not site_settings.include_jquery %}
+    {{ require_js("https://code.jquery.com/jquery-3.6.0.min.js", "footer") }}
+    {% endif %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    {# --- Add .js files from Theme Folder --- #}
+    {{ require_js(get_asset_url("../../js/main.js")) }}
+
+    {# --- Add .js files from External sources --- #}
+    {# {{ require_js("https://cdnjs.cloudflare.com/ajax/libs/fetch/3.6.20/fetch.min.js") }} #}
+
+    {# --- Templates requiring specific Java Scripts --- #}
+    {% if template_js %}
+    {{ require_js(get_asset_url(template_js)) }}
+    {% endif %}
+
+    {# --- Most probably code from Advance section for Footer --- #}
+    {{ standard_footer_includes }}
+
+
+
+
+
+  </body>
+
+</html>
+<!-- End partial -->

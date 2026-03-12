@@ -1,0 +1,87 @@
+{% import '../../macros/button-macros.html' as button_macros %}
+
+{% import '../../macros/global-macros.html' as global_macros %} 
+{{ global_macros.module_css(module, name) }}
+{% set anim = module.style.animation %}
+
+
+<section class=" section bg-primary-accent-2" id="{{name}}">
+  <div class="container gap-40
+  {% if anim.enable_section_animation %}reveal-card{% endif %}
+  ">
+    <div class="left-container rich-text-anim-wrapper"
+    
+    {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}
+
+    >
+      {{ module.content.section_title }}
+    </div>
+    <div class="image-container">
+    {% if module.media_section.background_image.src %}
+      <img src="{{ module.media_section.background_image.src|escape_url }}" alt="{{ module.media_section.background_image.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+    {% endif %}
+    </div>
+    <div class="button-group">
+          {% for item in module.button.button_repeater %} {{
+          button_macros.render_button(item, theme) }} {% endfor %}
+        </div>
+  </div>
+</section>
+
+{% require_css %}
+<style>
+  {% scope_css %}
+  .container{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align:center;
+  align-items:center;
+  }
+
+  .left-container{
+  width:100%;
+  max-width: 700px;
+  }
+  .image-container{
+  width:100%;
+  height:100%;
+  
+  }
+  .image-container img{
+  width:100%;
+  max-width:500px;
+  height:100%;
+  
+  }
+  .left-container h1 ,.left-container h2{
+  text-transform: uppercase;
+  color:var(--color-text-primary);
+  }
+  .left-container h5{
+  padding-bottom:10px;
+  }
+  .left-container p{
+  color:var(--color-text-secondary);
+  }
+  @media (max-width: 768px) {
+  .container{
+  flex-direction:column;
+  
+  }
+  .button-group {
+     width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+  .left-container{
+  text-align:center;
+   width:100%;
+  max-width: 100%;
+  }
+  }
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}

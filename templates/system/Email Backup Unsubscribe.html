@@ -1,0 +1,85 @@
+<!--
+    templateType: email_backup_unsubscribe_page
+    isAvailableForNewContent: true
+    label: Email Backup Unsubscribe
+    screenshotPath: ../../Images/System-templates/email-backup-unsubscribe.png 
+-->
+
+{% extends "../layouts/base.html" %}
+{# pageTitle is used on system templates for setting a value for the title tag #}
+{% set pageTitle = "Email Backup Unsubscribe" %}
+
+   {% import '../../macros/button-macros.html' as button_macros %}
+
+{# Creating home buttone here  #}
+  {% set home_btn = {
+  "button_text" : "Back To Hompage",
+  "button_type" : "primary",
+  "link":{
+        "url" :{
+            "href" :"/",
+            "type":"External"
+       },
+    "open_in_new_tab":false,
+    "rel":""
+
+     }
+  } %}
+
+
+
+{% block body %}
+
+    <div class='section'>
+<div class='inner-container'>
+<div class='image'>
+  <img src='https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Fitmax%20Theme%20images/Gym-themed%20404%20error%20illustration%2c%20no%20background%20color%2c%20cartoon_vector%20style%2c%20using%20main%20color%20%23DAFC00%20and%20dark%20color%20%23101000.%20Show%20a%20confused%20person%20in%20gym%20clothes%20holding%20a%20dumbbell%20or%20yoga%20mat%2c%20standing%20among%20sca%201.png' alt='email-backup'/>
+</div>
+
+<div class='text-center pt-40 pb-10'>
+
+  {% module "Email unsubscribe backup" 
+  path="@hubspot/rich_text", 
+  label="Email unsubscribe backup",
+  html ="<h1 class='text-h3'>You’re Nearly Unsubscribed<h1/>
+       <p>If you ever want to rejoin the fit-fam, we’ll welcome you back with open arms (and protein shakes).<p/>"
+  %}
+
+</div>
+
+<div class="text-center mt-40 ">
+      {{ button_macros.render_button(home_btn, theme) }}
+    </div>
+
+<div class='container-inner' style='text-align:center; padding-top:2em; display:none;'>
+  {% module "backup_unsubscribe"
+	      extra_classes="backup-unsubscribe",
+	      path="@hubspot/email_simple_subscription" %}
+</div>
+</div>
+</div>
+
+<style>
+
+
+  .image{
+  max-width:700px;
+  margin:0 auto;
+} 
+
+  .image img {
+    width: 100%;
+  }
+
+  
+
+  .btn-wrapper{
+    text-align:center;
+    padding-top:1em;
+    padding-bottom:4em;
+  }
+
+
+</style>
+
+{% endblock body %}

@@ -1,0 +1,1566 @@
+[
+  {
+    "label": "Brand colors",
+    "name": "brand_colors",
+    "type": "group",
+    "children": [
+      {
+        "label": "Primary color",
+        "name": "primary",
+        "type": "color",
+        "inherited_value": {
+          "property_value_paths": {
+            "color": "brand_settings.primaryColor"
+          }
+        },
+        "default": {
+          "color": "#DAFC00",
+          "opacity": 100
+        },
+        "help_text": "Primary Color will be used for Headings."
+      },
+      {
+        "label": "Secondary color",
+        "name": "secondary",
+        "type": "color",
+
+        "inherited_value": {
+          "property_value_paths": {
+            "color": "brand_settings.colors[1]"
+          }
+        },
+        "default": {
+          "color": "#101000",
+          "opacity": 100
+        },
+        "help_text": "Secondary Color will be used for Buttons, Icons, Link Hover and tagline."
+      }
+    ]
+  },
+  {
+    "label": "Background colors",
+    "name": "bg_colors",
+    "type": "group",
+    "children": [
+      {
+        "label": "Primary Background",
+        "name": "primary",
+        "type": "color",
+
+        "default": {
+          "color": "#FFFFFF",
+          "opacity": 100
+        },
+        "help_text": "Full theme default background."
+      },
+      {
+        "label": "Secondary Background",
+        "name": "secondary",
+        "type": "color",
+
+        "default": {
+          "color": "#101000",
+          "opacity": 100
+        },
+        "help_text": "High contrast section background."
+      },
+      {
+        "label": "Primary Accent Background - 1",
+        "name": "primaryAccent",
+        "type": "color",
+
+        "default": {
+          "color": "#F6F6F2",
+          "opacity": 100
+        },
+        "help_text": "Light contrast section/Card background on the primary background."
+      },
+      {
+        "label": "Primary Accent Background - 2",
+        "name": "primaryAccent2",
+        "type": "color",
+
+        "default": {
+          "color": "#E7EBEE",
+          "opacity": 100
+        },
+        "help_text": "Light contrast section/Card background on the primary background."
+      },
+      {
+        "label": "Secondary Accent Background",
+        "name": "secondaryAccent",
+        "type": "color",
+
+        "default": {
+          "color": "#2B2B2B",
+          "opacity": 100
+        },
+        "help_text": "Dark contrast section/Card background on the secondary background."
+      },
+      {
+        "label": "Gradient",
+        "name": "gradient",
+        "type": "gradient",
+        "default": {
+          "side_or_corner": {
+            "verticalSide": "TOP",
+            "horizontalSide": null
+          },
+          "colors": [
+            {
+              "color": {
+                "r": 25,
+                "g": 35,
+                "b": 23,
+                "a": 1
+              }
+            },
+            {
+              "color": {
+                "r": 23,
+                "g": 39,
+                "b": 11,
+                "a": 1
+              }
+            }
+          ]
+        },
+        "help_text": "Full theme default background."
+      }
+    ]
+  },
+  {
+    "label": "Typography",
+    "name": "typography",
+    "type": "group",
+    "children": [
+      {
+        "label": "Fonts",
+        "name": "fonts",
+        "type": "group",
+        "children": [
+          {
+            "label": "Primary",
+            "name": "primary",
+            "type": "group",
+            "children": [
+              {
+                "label": "Font",
+                "name": "font",
+                "type": "font",
+                "visibility": {
+                  "hidden_subfields": {
+                    "size": true,
+                    "styles": true,
+                    "color": true
+                  }
+                },
+                "default": {
+                  "fallback": "sans-serif",
+                  "font": "Fjalla One",
+                  "font_set": "GOOGLE"
+                }
+              },
+              {
+                "label": "Line height",
+                "name": "line_height",
+                "type": "number",
+                "display": "slider",
+                "min": 10,
+                "max": 200,
+                "step": 10,
+                "suffix": "%",
+                "default": 120
+              },
+              {
+                "label": "Letter spacing",
+                "name": "letter_spacing",
+                "type": "number",
+                "display": "slider",
+                "min": 0,
+                "max": 10,
+                "step": 1,
+                "suffix": "%",
+                "default": 0
+              }
+            ]
+          },
+          {
+            "label": "Secondary",
+            "name": "secondary",
+            "type": "group",
+            "children": [
+              {
+                "label": "Font",
+                "name": "font",
+                "type": "font",
+                "visibility": {
+                  "hidden_subfields": {
+                    "size": true,
+                    "styles": true,
+                    "color": true
+                  }
+                },
+                "default": {
+                  "fallback": "sans-serif",
+                  "font": "Lexend",
+                  "font_set": "GOOGLE"
+                }
+              },
+              {
+                "label": "Line height",
+                "name": "line_height",
+                "type": "number",
+                "display": "slider",
+                "min": 10,
+                "max": 200,
+                "step": 10,
+                "suffix": "%",
+                "default": 150
+              },
+              {
+                "label": "Letter spacing",
+                "name": "letter_spacing",
+                "type": "number",
+                "display": "slider",
+                "min": 0,
+                "max": 10,
+                "step": 1,
+                "suffix": "%",
+                "default": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Colors",
+        "name": "text_colors",
+        "type": "group",
+        "children": [
+          {
+            "label": "Primary color",
+            "name": "primary_color",
+            "type": "color",
+
+            "inherited_value": {
+              "property_value_paths": {
+                "color": "theme.bg_colors.secondary.color"
+              }
+            },
+            "default": {
+              "color": "#101000",
+              "opacity": 100
+            },
+            "help_text": "Primary Color will be used for Headings."
+          },
+          {
+            "label": "Secondary color",
+            "name": "secondary_color",
+            "type": "color",
+
+            "default": {
+              "color": "#4C4C40",
+              "opacity": 100
+            },
+            "help_text": "Secondary Color will be used for Body."
+          },
+          {
+            "label": "Tertiary color",
+            "name": "tertiary_color",
+            "type": "color",
+
+            "default": {
+              "color": "#FFFFFF",
+              "opacity": 100
+            },
+            "help_text": "Tertiary Color will be used for contrast text of primary."
+          }
+        ]
+      },
+      {
+        "label": "Headings (H1 > H6)",
+        "name": "headings",
+        "type": "group",
+        "children": [
+          {
+            "label": "Desktop",
+            "name": "desktop",
+            "type": "group",
+            "children": [
+              {
+                "label": "H1",
+                "name": "h1",
+                "type": "group",
+                "children": [
+                  {
+                    "label": "Font",
+                    "name": "font",
+                    "type": "choice",
+                    "choices": [
+                      ["primary", "Primary font"],
+                      ["secondary", "Secondary font"]
+                    ],
+                    "required": true,
+                    "default": "primary"
+                  },
+                  {
+                    "label": "Font style",
+                    "name": "font_style",
+                    "type": "font",
+                    "visibility": {
+                      "hidden_subfields": {
+                        "font": true,
+                        "color": true,
+                        "styles": false
+                      }
+                    },
+                    "default": {
+                      "size": 120,
+                      "size_unit": "px",
+                      "styles": {
+                        "font-weight": "400"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "H2",
+                "name": "h2",
+                "type": "group",
+                "children": [
+                  {
+                    "label": "Font",
+                    "name": "font",
+                    "type": "choice",
+                    "choices": [
+                      ["primary", "Primary font"],
+                      ["secondary", "Secondary font"]
+                    ],
+                    "default": "primary",
+                    "required": true
+                  },
+                  {
+                    "label": "Font style",
+                    "name": "font_style",
+                    "type": "font",
+                    "visibility": {
+                      "hidden_subfields": {
+                        "font": true,
+                        "color": true
+                      }
+                    },
+
+                    "default": {
+                      "size": 100,
+                      "size_unit": "px",
+                      "styles": {
+                        "font-weight": "400"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "H3",
+                "name": "h3",
+                "type": "group",
+                "children": [
+                  {
+                    "label": "Font",
+                    "name": "font",
+                    "type": "choice",
+                    "choices": [
+                      ["primary", "Primary font"],
+                      ["secondary", "Secondary font"]
+                    ],
+                    "default": "primary",
+                    "required": true
+                  },
+                  {
+                    "label": "Font style",
+                    "name": "font_style",
+                    "type": "font",
+                    "visibility": {
+                      "hidden_subfields": {
+                        "font": true,
+                        "color": true
+                      }
+                    },
+
+                    "default": {
+                      "size": 60,
+                      "size_unit": "px",
+                      "styles": {
+                        "font-weight": "400"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "H4",
+                "name": "h4",
+                "type": "group",
+                "children": [
+                  {
+                    "label": "Font",
+                    "name": "font",
+                    "type": "choice",
+                    "choices": [
+                      ["primary", "Primary font"],
+                      ["secondary", "Secondary font"]
+                    ],
+                    "default": "primary",
+                    "required": true
+                  },
+                  {
+                    "label": "Font style",
+                    "name": "font_style",
+                    "type": "font",
+                    "visibility": {
+                      "hidden_subfields": {
+                        "font": true,
+                        "color": true
+                      }
+                    },
+
+                    "default": {
+                      "size": 52,
+                      "size_unit": "px",
+                      "styles": {
+                        "font-weight": "400"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "H5",
+                "name": "h5",
+                "type": "group",
+                "children": [
+                  {
+                    "label": "Font",
+                    "name": "font",
+                    "type": "choice",
+                    "choices": [
+                      ["primary", "Primary font"],
+                      ["secondary", "Secondary font"]
+                    ],
+                    "default": "primary",
+                    "required": true
+                  },
+                  {
+                    "label": "Font style",
+                    "name": "font_style",
+                    "type": "font",
+                    "visibility": {
+                      "hidden_subfields": {
+                        "font": true,
+                        "color": true
+                      }
+                    },
+
+                    "default": {
+                      "size": 44,
+                      "size_unit": "px",
+                      "styles": {
+                        "font-weight": "400"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "H6",
+                "name": "h6",
+                "type": "group",
+                "children": [
+                  {
+                    "label": "Font",
+                    "name": "font",
+                    "type": "choice",
+                    "choices": [
+                      ["primary", "Primary font"],
+                      ["secondary", "Secondary font"]
+                    ],
+                    "default": "primary",
+                    "required": true
+                  },
+                  {
+                    "label": "Font style",
+                    "name": "font_style",
+                    "type": "font",
+                    "visibility": {
+                      "hidden_subfields": {
+                        "font": true,
+                        "color": true
+                      }
+                    },
+
+                    "default": {
+                      "size": 36,
+                      "size_unit": "px",
+                      "styles": {
+                        "font-weight": "400"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "label": "Mobile",
+            "name": "mobile",
+            "type": "group",
+            "children": [
+              {
+                "label": "H1",
+                "name": "h1",
+                "type": "group",
+                "children": [
+                  {
+                    "label": "Font",
+                    "name": "font",
+                    "type": "choice",
+                    "choices": [
+                      ["primary", "Primary font"],
+                      ["secondary", "Secondary font"]
+                    ],
+                    "required": true,
+                    "default": "primary"
+                  },
+                  {
+                    "label": "Font style",
+                    "name": "font_style",
+                    "type": "font",
+                    "visibility": {
+                      "hidden_subfields": {
+                        "font": true,
+                        "color": true,
+                        "styles": false
+                      }
+                    },
+                    "default": {
+                      "size": 44,
+                      "size_unit": "px",
+                      "styles": {
+                        "font-weight": "400"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "H2",
+                "name": "h2",
+                "type": "group",
+                "children": [
+                  {
+                    "label": "Font",
+                    "name": "font",
+                    "type": "choice",
+                    "choices": [
+                      ["primary", "Primary font"],
+                      ["secondary", "Secondary font"]
+                    ],
+                    "default": "primary",
+                    "required": true
+                  },
+                  {
+                    "label": "Font style",
+                    "name": "font_style",
+                    "type": "font",
+                    "visibility": {
+                      "hidden_subfields": {
+                        "font": true,
+                        "color": true
+                      }
+                    },
+
+                    "default": {
+                      "size": 40,
+                      "size_unit": "px",
+                      "styles": {
+                        "font-weight": "400"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "H3",
+                "name": "h3",
+                "type": "group",
+                "children": [
+                  {
+                    "label": "Font",
+                    "name": "font",
+                    "type": "choice",
+                    "choices": [
+                      ["primary", "Primary font"],
+                      ["secondary", "Secondary font"]
+                    ],
+                    "default": "primary",
+                    "required": true
+                  },
+                  {
+                    "label": "Font style",
+                    "name": "font_style",
+                    "type": "font",
+                    "visibility": {
+                      "hidden_subfields": {
+                        "font": true,
+                        "color": true
+                      }
+                    },
+
+                    "default": {
+                      "size": 36,
+                      "size_unit": "px",
+                      "styles": {
+                        "font-weight": "400"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "H4",
+                "name": "h4",
+                "type": "group",
+                "children": [
+                  {
+                    "label": "Font",
+                    "name": "font",
+                    "type": "choice",
+                    "choices": [
+                      ["primary", "Primary font"],
+                      ["secondary", "Secondary font"]
+                    ],
+                    "default": "primary",
+                    "required": true
+                  },
+                  {
+                    "label": "Font style",
+                    "name": "font_style",
+                    "type": "font",
+                    "visibility": {
+                      "hidden_subfields": {
+                        "font": true,
+                        "color": true
+                      }
+                    },
+
+                    "default": {
+                      "size": 32,
+                      "size_unit": "px",
+                      "styles": {
+                        "font-weight": "400"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "H5",
+                "name": "h5",
+                "type": "group",
+                "children": [
+                  {
+                    "label": "Font",
+                    "name": "font",
+                    "type": "choice",
+                    "choices": [
+                      ["primary", "Primary font"],
+                      ["secondary", "Secondary font"]
+                    ],
+                    "default": "primary",
+                    "required": true
+                  },
+                  {
+                    "label": "Font style",
+                    "name": "font_style",
+                    "type": "font",
+                    "visibility": {
+                      "hidden_subfields": {
+                        "font": true,
+                        "color": true
+                      }
+                    },
+
+                    "default": {
+                      "size": 28,
+                      "size_unit": "px",
+                      "styles": {
+                        "font-weight": "400"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "H6",
+                "name": "h6",
+                "type": "group",
+                "children": [
+                  {
+                    "label": "Font",
+                    "name": "font",
+                    "type": "choice",
+                    "choices": [
+                      ["primary", "Primary font"],
+                      ["secondary", "Secondary font"]
+                    ],
+                    "default": "primary",
+                    "required": true
+                  },
+                  {
+                    "label": "Font style",
+                    "name": "font_style",
+                    "type": "font",
+                    "visibility": {
+                      "hidden_subfields": {
+                        "font": true,
+                        "color": true
+                      }
+                    },
+
+                    "default": {
+                      "size": 24,
+                      "size_unit": "px",
+                      "styles": {
+                        "font-weight": "400"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "label": "Body",
+        "name": "body_text",
+        "type": "group",
+        "children": [
+          {
+            "label": "Font",
+            "name": "font",
+            "type": "choice",
+            "choices": [
+              ["primary", "Primary font"],
+              ["secondary", "Secondary font"]
+            ],
+            "required": true,
+            "default": "secondary"
+          },
+          {
+            "label": "Desktop Font size",
+            "name": "desk_font_size",
+            "type": "font",
+            "visibility": {
+              "hidden_subfields": {
+                "font": true,
+                "color": true,
+                "styles": true
+              }
+            },
+            "default": {
+              "size": 20,
+              "size_unit": "px",
+              "styles": {
+                "font-weight": "300"
+              }
+            }
+          },
+          {
+            "label": "Mobile Font size",
+            "name": "mobile_font_size",
+            "type": "font",
+            "visibility": {
+              "hidden_subfields": {
+                "font": true,
+                "color": true,
+                "styles": true
+              }
+            },
+            "default": {
+              "size": 16,
+              "size_unit": "px",
+              "styles": {
+                "font-weight": "300"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Buttons",
+    "name": "buttons",
+    "type": "group",
+    "children": [
+      {
+        "label": "Primary Button",
+        "name": "primary",
+        "type": "group",
+        "children": [
+          {
+            "label": "Font",
+            "name": "text",
+            "type": "group",
+            "children": [
+              {
+                "label": "Font",
+                "name": "font",
+                "type": "font",
+                "visibility": {
+                  "hidden_subfields": {
+                    "size": true,
+                    "styles": true,
+                    "color": true
+                  }
+                },
+                "default": {
+                  "fallback": "sans-serif",
+                  "font": "Lexend Deca",
+                  "font_set": "GOOGLE"
+                }
+              },
+              {
+                "label": "Desktop Font size",
+                "name": "desk_font_size",
+                "type": "font",
+                "visibility": {
+                  "hidden_subfields": {
+                    "font": true,
+                    "color": true,
+                    "styles": true
+                  }
+                },
+                "default": {
+                  "size": 20,
+                  "size_unit": "px",
+                  "styles": {
+                    "font-weight": "300"
+                  }
+                }
+              },
+              {
+                "label": "Mobile Font size",
+                "name": "mobile_font_size",
+                "type": "font",
+                "visibility": {
+                  "hidden_subfields": {
+                    "font": true,
+                    "color": true,
+                    "styles": true
+                  }
+                },
+                "default": {
+                  "size": 16,
+                  "size_unit": "px",
+                  "styles": {
+                    "font-weight": "300"
+                  }
+                }
+              },
+              {
+                "label": "Line height",
+                "name": "line_height",
+                "type": "number",
+                "display": "slider",
+                "min": 10,
+                "max": 200,
+                "step": 10,
+                "suffix": "%",
+                "default": 100
+              },
+              {
+                "label": "Letter spacing",
+                "name": "letter_spacing",
+                "type": "number",
+                "display": "slider",
+                "min": 0,
+                "max": 10,
+                "step": 1,
+                "suffix": "%",
+                "default": 0
+              },
+              {
+                "label": "Text color",
+                "name": "text_color",
+                "type": "color",
+
+                "inherited_value": {
+                  "property_value_paths": {
+                    "color": "theme.typography.text_colors.primary_color.color"
+                  }
+                },
+                "default": {
+                  "color": "#ffffff",
+                  "opacity": 100
+                }
+              },
+              {
+                "label": "Text Hover color",
+                "name": "text_hover_color",
+                "type": "color",
+
+                "inherited_value": {
+                  "property_value_paths": {
+                    "color": "theme.typography.text_colors.primary_color.color"
+                  }
+                },
+                "default": {
+                  "color": "#ffffff",
+                  "opacity": 100
+                }
+              }
+            ]
+          },
+          {
+            "label": "Background",
+            "name": "bg",
+            "type": "group",
+            "children": [
+              {
+                "label": "Background color",
+                "name": "background_color",
+                "type": "color",
+                "inherited_value": {
+                  "property_value_paths": {
+                    "color": "theme.brand_colors.primary.color"
+                  }
+                },
+                "default": {
+                  "opacity": 100
+                }
+              },
+              {
+                "label": "Hover Background color",
+                "name": "hover_background_color",
+                "type": "color",
+                "inherited_value": {
+                  "property_value_paths": {
+                    "color": "theme.bg_colors.primary.color"
+                  }
+                },
+                "default": {
+                  "opacity": 100
+                }
+              }
+            ]
+          },
+          {
+            "label": "Padding",
+            "name": "padding",
+            "type": "group",
+            "children": [
+              {
+                "label": "Desktop Padding",
+                "name": "desktop_padding",
+                "type": "group",
+                "children": [
+                  {
+                    "label": "Horizontal padding",
+                    "name": "horizontal",
+                    "type": "number",
+                    "display": "slider",
+                    "max": 100,
+                    "min": 0,
+                    "suffix": "px",
+                    "default": 40
+                  },
+                  {
+                    "label": "Vertical padding",
+                    "name": "vertical",
+                    "type": "number",
+                    "display": "slider",
+                    "max": 100,
+                    "min": 0,
+                    "suffix": "px",
+                    "default": 20
+                  }
+                ]
+              },
+              {
+                "label": "Mobile Padding",
+                "name": "mobile_padding",
+                "type": "group",
+                "children": [
+                  {
+                    "label": "Horizontal padding",
+                    "name": "horizontal",
+                    "type": "number",
+                    "display": "slider",
+                    "max": 100,
+                    "min": 0,
+                    "suffix": "px",
+                    "default": 24
+                  },
+                  {
+                    "label": "Vertical padding",
+                    "name": "vertical",
+                    "type": "number",
+                    "display": "slider",
+                    "max": 100,
+                    "min": 0,
+                    "suffix": "px",
+                    "default": 16
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "label": "Corner",
+            "name": "corner",
+            "type": "group",
+            "children": [
+              {
+                "label": "Corner radius",
+                "name": "border_radius",
+                "type": "number",
+                "display": "slider",
+                "max": 40,
+                "min": 0,
+                "suffix": "px",
+                "default": 6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Secondary Button",
+        "name": "secondary",
+        "type": "group",
+        "children": [
+          {
+            "label": "Font",
+            "name": "text",
+            "type": "group",
+            "children": [
+              {
+                "label": "Font",
+                "name": "font",
+                "type": "font",
+                "visibility": {
+                  "hidden_subfields": {
+                    "size": true,
+                    "styles": true,
+                    "color": true
+                  }
+                },
+                "default": {
+                  "fallback": "sans-serif",
+                  "font": "Lexend Deca",
+                  "font_set": "GOOGLE"
+                }
+              },
+              {
+                "label": "Desktop Font size",
+                "name": "heading_font",
+                "type": "font",
+                "visibility": {
+                  "hidden_subfields": {
+                    "font": true,
+                    "color": true,
+                    "styles": true
+                  }
+                },
+                "default": {
+                  "size": 20,
+                  "size_unit": "px",
+                  "styles": {
+                    "font-weight": "300"
+                  }
+                }
+              },
+              {
+                "label": "Mobile Font size",
+                "name": "body_font",
+                "type": "font",
+                "visibility": {
+                  "hidden_subfields": {
+                    "font": true,
+                    "color": true,
+                    "styles": true
+                  }
+                },
+                "default": {
+                  "size": 16,
+                  "size_unit": "px",
+                  "styles": {
+                    "font-weight": "300"
+                  }
+                }
+              },
+              {
+                "label": "Line height",
+                "name": "line_height",
+                "type": "number",
+                "display": "slider",
+                "min": 10,
+                "max": 200,
+                "step": 10,
+                "suffix": "%",
+                "default": 100
+              },
+              {
+                "label": "Letter spacing",
+                "name": "letter_spacing",
+                "type": "number",
+                "display": "slider",
+                "min": 0,
+                "max": 10,
+                "step": 1,
+                "suffix": "%",
+                "default": 0
+              },
+              {
+                "label": "Text color",
+                "name": "text_color",
+                "type": "color",
+                "visibility": {
+                  "hidden_subfields": {
+                    "opacity": true
+                  }
+                },
+                "inherited_value": {
+                  "property_value_paths": {
+                    "color": "theme.brand_colors.primary.color"
+                  }
+                },
+                "default": {
+                  "color": "#ffffff"
+                }
+              },
+              {
+                "label": "Text Hover color",
+                "name": "text_hover_color",
+                "type": "color",
+                "visibility": {
+                  "hidden_subfields": {
+                    "opacity": true
+                  }
+                },
+                "inherited_value": {
+                  "property_value_paths": {
+                    "color": "theme.typography.text_colors.primary_color.color"
+                  }
+                },
+                "default": {
+                  "color": "#ffffff"
+                }
+              }
+            ]
+          },
+          {
+            "label": "Background",
+            "name": "bg",
+            "type": "group",
+            "children": [
+              {
+                "label": "Background color",
+                "name": "background_color",
+                "type": "color",
+                "inherited_value": {
+                  "property_value_paths": {
+                    "color": "theme.bg_colors.secondary.color"
+                  }
+                },
+                "default": {
+                  "opacity": 100
+                }
+              },
+              {
+                "label": "Hover Background color",
+                "name": "hover_background_color",
+                "type": "color",
+                "inherited_value": {
+                  "property_value_paths": {
+                    "color": "theme.bg_colors.primary.color"
+                  }
+                },
+                "default": {
+                  "opacity": 100
+                }
+              }
+            ]
+          },
+          {
+            "label": "Padding",
+            "name": "padding",
+            "type": "group",
+            "children": [
+              {
+                "label": "Desktop Padding",
+                "name": "desktop_padding",
+                "type": "group",
+                "children": [
+                  {
+                    "label": "Horizontal padding",
+                    "name": "horizontal",
+                    "type": "number",
+                    "display": "slider",
+                    "max": 100,
+                    "min": 0,
+                    "suffix": "px",
+                    "default": 40
+                  },
+                  {
+                    "label": "Vertical padding",
+                    "name": "vertical",
+                    "type": "number",
+                    "display": "slider",
+                    "max": 100,
+                    "min": 0,
+                    "suffix": "px",
+                    "default": 20
+                  }
+                ]
+              },
+              {
+                "label": "Mobile Padding",
+                "name": "mobile_padding",
+                "type": "group",
+                "children": [
+                  {
+                    "label": "Horizontal padding",
+                    "name": "horizontal",
+                    "type": "number",
+                    "display": "slider",
+                    "max": 100,
+                    "min": 0,
+                    "suffix": "px",
+                    "default": 24
+                  },
+                  {
+                    "label": "Vertical padding",
+                    "name": "vertical",
+                    "type": "number",
+                    "display": "slider",
+                    "max": 100,
+                    "min": 0,
+                    "suffix": "px",
+                    "default": 16
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "label": "Corner",
+            "name": "corner",
+            "type": "group",
+            "children": [
+              {
+                "label": "Corner radius",
+                "name": "border_radius",
+                "type": "number",
+                "display": "slider",
+                "max": 40,
+                "min": 0,
+                "suffix": "px",
+                "default": 6
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    "label": "General view",
+    "name": "general_view",
+    "type": "group",
+    "children": [
+      {
+        "label": "Borders",
+        "name": "borders",
+        "type": "group",
+        "children": [
+          {
+            "label": "Border color",
+            "name": "border_color",
+            "type": "color",
+            "visibility": {
+              "hidden_subfields": {
+                "opacity": true
+              }
+            },
+            "default": {
+              "color": "#E7E8E3"
+            }
+          },
+          {
+            "label": "Border width",
+            "name": "border_width",
+            "type": "number",
+            "display": "slider",
+            "max": 10,
+            "min": 1,
+            "suffix": "px",
+            "default": 1
+          }
+        ]
+      },
+      {
+        "label": "Corners",
+        "name": "corners",
+        "type": "group",
+        "children": [
+          {
+            "label": "Desktop Corner radius",
+            "name": "desktop_radius",
+            "type": "number",
+            "min": 0,
+            "max": 40,
+            "suffix": "px",
+            "default": 20
+          },
+          {
+            "label": "Mobile Corner radius",
+            "name": "mobile_radius",
+            "type": "number",
+            "min": 0,
+            "max": 40,
+            "suffix": "px",
+            "default": 12
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Spacing",
+    "name": "spacing",
+    "type": "group",
+    "children": [
+      {
+        "label": "Maximum content width",
+        "name": "max_width",
+        "type": "number",
+        "display": "slider",
+        "max": 2500,
+        "min": 900,
+        "suffix": "px",
+        "default": 1280
+      },
+      {
+        "label": "Desktop Padding",
+        "name": "desktop_padding",
+        "type": "group",
+        "children": [
+          {
+            "label": "Section Vertical Padding",
+            "name": "vertical",
+            "type": "number",
+            "display": "slider",
+            "max": 100,
+            "min": 0,
+            "suffix": "px",
+            "default": 80
+          },
+          {
+            "label": "Section Horizontal Padding",
+            "name": "horizontal",
+            "type": "number",
+            "display": "slider",
+            "max": 100,
+            "min": 0,
+            "suffix": "px",
+            "default": 80
+          }
+        ]
+      },
+      {
+        "label": "Mobile Padding",
+        "name": "mobile_padding",
+        "type": "group",
+        "children": [
+          {
+            "label": "Section Vertical Padding",
+            "name": "vertical",
+            "type": "number",
+            "display": "slider",
+            "max": 100,
+            "min": 0,
+            "suffix": "px",
+            "default": 48
+          },
+          {
+            "label": "Section Horizontal Padding",
+            "name": "horizontal",
+            "type": "number",
+            "display": "slider",
+            "max": 100,
+            "min": 0,
+            "suffix": "px",
+            "default": 16
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Forms",
+    "name": "forms",
+    "type": "group",
+    "children": [
+      {
+        "label": "Background",
+        "name": "background",
+        "type": "group",
+        "children": [
+          {
+            "label": "Background color",
+            "name": "color",
+            "type": "color",
+            "inherited_value": {
+              "property_value_paths": {
+                "color": "theme.bg_colors.primaryAccent2.color"
+              }
+            },
+            "default": {
+              "opacity": 100
+            }
+          }
+        ]
+      },
+      {
+        "label": "Fields",
+        "name": "fields",
+        "type": "group",
+        "children": [
+          {
+            "label": "Colors",
+            "name": "colors",
+            "type": "group",
+            "children": [
+              {
+                "label": "Background",
+                "name": "color",
+                "type": "color",
+                "inherited_value": {
+                  "property_value_paths": {
+                    "color": "theme.bg_colors.primary.color"
+                  }
+                },
+                "default": {
+                  "opacity": 100
+                }
+              },
+              {
+                "label": "Label",
+                "name": "form_label",
+                "type": "color",
+                "inherited_value": {
+                  "property_value_paths": {
+                    "color": "theme.typography.text_colors.primary_color.color"
+                  }
+                },
+                "default": {
+                  "opacity": 100
+                }
+              },
+              {
+                "label": "Placeholder",
+                "name": "placeholder",
+                "type": "color",
+                "inherited_value": {
+                  "property_value_paths": {
+                    "color": "theme.typography.text_colors.secondary_color.color"
+                  }
+                },
+                "default": {
+                  "opacity": 100
+                }
+              }
+            ]
+          },
+          {
+            "label": "Padding",
+            "name": "padding",
+            "type": "number",
+            "display": "slider",
+            "max": 40,
+            "min": 0,
+            "suffix": "px",
+            "default": 16
+          }
+        ]
+      },
+      {
+        "label": "Labels",
+        "name": "labels",
+        "type": "group",
+        "children": [
+          {
+            "label": "Font style",
+            "name": "font_style",
+            "type": "group",
+            "children": [
+              {
+                "label": "Font",
+                "name": "font",
+                "type": "font",
+                "visibility": {
+                  "hidden_subfields": {
+                    "styles": true
+                  }
+                },
+                "inherited_value": {
+                  "property_value_paths": {
+                    "color": "theme.typography.text_colors.primary_color.color"
+                  }
+                },
+
+                "default": {
+                  "fallback": "sans-serif",
+                  "font": "Jost",
+                  "font_set": "GOOGLE",
+                  "size": 1.125,
+                  "size_unit": "em",
+                  "variant": "600"
+                }
+              },
+              {
+                "label": "Line height",
+                "name": "line_height",
+                "type": "number",
+                "display": "slider",
+                "min": 10,
+                "max": 200,
+                "step": 10,
+                "suffix": "%",
+                "default": 120
+              },
+              {
+                "label": "Letter spacing",
+                "name": "letter_spacing",
+                "type": "number",
+                "display": "slider",
+                "min": 0,
+                "max": 10,
+                "step": 1,
+                "suffix": "%",
+                "default": 0
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

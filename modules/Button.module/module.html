@@ -1,0 +1,7 @@
+{% import '../../macros/button-macros.html' as button_macros %}
+
+<section class="button-container">
+  {% for item in module.button_repeater %} {{ button_macros.render_button(item,
+  theme) }} {% endfor %}
+</section>
+

@@ -1,0 +1,371 @@
+{% import '../../macros/button-macros.html' as button_macros %}
+  {% import '../../macros/global-macros.html' as global_macros %} 
+  {{ global_macros.module_css(module, name) }}
+{% set anim = module.style.animation %}
+
+<section class="section  {% if anim.enable_section_animation %}reveal-card{% endif %}" id="{{name}}">
+  <div class="container gap-40">
+    <div class="top-container gap-40">
+      <div class="header-container gap-30 {% if anim.enable_section_animation %}reveal-left{% endif %}">
+        <div class="section-label rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>{{ module.content.section_label }}</div>
+
+        <div class="avatar-container gap-20">
+          <div class="avatar-items">
+            <div class="avatar-image-container ">
+              {% for item in
+              module.trainers_section.trainers_avartar.avartar_item %}
+              <div class="avatar-image rounded-full">
+                {% if item.trainer_image.src %}
+                <img
+                  class="rounded-full"
+                  src="{{ item.trainer_image.src|escape_url }}"
+                  alt="{{ item.trainer_image.alt|escape_attr }}"
+                  {{
+                  loadingAttr
+                  }}
+                  {{
+                  sizeAttrs
+                  }}
+                />
+                {% endif %}
+              </div>
+              {% endfor %}
+            </div>
+            <div class="avatar-counter rounded-full js-counter-number">
+              {{ module.trainers_section.trainer_count }}
+            </div>
+          </div>
+          <div class="avatar-title">
+            {{ module.trainers_section.trainer_title }}
+          </div>
+        </div>
+      </div>
+
+      <div class="top-feature-image {% if anim.enable_section_animation %}reveal-right{% endif %}">
+        {% if module.media_section.feature_image.src %}
+        <img
+          class="rounded"
+          src="{{ module.media_section.feature_image.src|escape_url }}"
+          alt="{{ module.media_section.feature_image.alt|escape_attr }}"
+          {{
+          loadingAttr
+          }}
+          {{
+          sizeAttrs
+          }}
+        />
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="bottom-container gap-40">
+      <div class="left-image ">
+        <div class="image-wrapper {% if anim.enable_section_animation %}reveal-left{% endif %}">
+          {% if module.media_section.left_image.src %}
+          <img
+            src="{{ module.media_section.left_image.src|escape_url }}"
+            alt="{{ module.media_section.left_image.alt|escape_attr }}"
+            {{
+            loadingAttr
+            }}
+            {{
+            sizeAttrs
+            }}
+          />
+          {% endif %}
+          <div class="card-overlay p-20 rounded-half bg-brand-primary">
+            <div class="badge-value js-counter-number">
+              {{ module.overlay_badge.badge_value }}
+            </div>
+            <div class="badge-label">
+              {{ module.overlay_badge.badge_label }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-image {% if anim.enable_section_animation %}reveal-right{% endif %}">
+        {% if module.media_section.right_image.src %}
+        <img
+          src="{{ module.media_section.right_image.src|escape_url }}"
+          alt="{{ module.media_section.right_image.alt|escape_attr }}"
+          {{
+          loadingAttr
+          }}
+          {{
+          sizeAttrs
+          }}
+        />
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% require_css %}
+<style>
+        {% scope_css %}
+       .section {
+    padding-bottom:0;
+    {% if module.style.padding.enable %}
+      --padding-top: clamp({{ module.style.padding.mobile.top_padding|default(48) }}px, 4vw , {{ module.style.padding.desktop.top_padding|default(80) }}px);
+      --padding-left: clamp({{ module.style.padding.mobile.left_padding|default(16) }}px, 4vw , {{ module.style.padding.desktop.left_padding|default(80) }}px);
+      --padding-right: clamp({{ module.style.padding.mobile.right_padding|default(16) }}px, 4vw , {{ module.style.padding.desktop.right_padding|default(80) }}px);
+      --padding-bottom: clamp({{ module.style.padding.mobile.bottom_padding|default(48) }}px, 4vw , {{ module.style.padding.desktop.bottom_padding|default(0) }}px);
+      padding-top: var(--padding-top);
+      padding-bottom: var(--padding-bottom);
+      padding-left: var(--padding-left);
+      padding-right: var(--padding-right);
+    {% endif %}
+
+  }
+        .container {
+     
+          display: flex;
+          flex-direction: column;
+
+        }
+
+        .top-container {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          align-items: stretch;
+        }
+
+        .header-container {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+        }
+
+        /* Typography */
+        .section-label h3, .section-label h1 {
+          text-transform: uppercase;
+          color: var(--color-text-primary);
+        }
+
+        .avatar-container {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+
+        }
+
+        .avatar-items {
+          display: flex;
+          align-items: center;
+          margin-bottom: 8px;
+        }
+
+        .avatar-image-container {
+          display: flex;
+          align-items: center;
+        }
+
+        .avatar-image {
+          width: 60px;
+          height: 60px;
+          border: 3px solid var(--color-border-default);
+          overflow: hidden;
+          margin-left: -15px;
+          background: var(--color-border-default);
+        }
+
+        .avatar-image:first-child { margin-left: 0; }
+
+        .avatar-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+
+        }
+
+        .avatar-counter {
+          background: var(--color-border-default);
+
+          padding: 14px 18px;
+          margin-left: -18px;
+        }
+
+        .avatar-title h6{
+          color:var(--color-text-primary);
+        }
+
+        .top-feature-image {
+          width: 100%;
+          height: 427px;
+        }
+
+        .top-feature-image img {
+          height: 100%;
+          width: 100%;
+          max-height: 427px;
+          object-fit: cover;
+          object-position: top;
+
+        }
+
+        .bottom-container {
+          display: grid;
+          grid-template-columns: 1.1fr 0.9fr;
+
+        }
+
+        .bottom-container .left-image,
+        .bottom-container .right-image,
+        .bottom-container .image-wrapper {
+          height: 350px;
+        }
+
+        .bottom-container img {
+          height: 350px;
+          width: 100%;
+          object-fit: cover;
+          object-position: top;
+          border-radius: 20px 20px 0 0;
+        }
+
+        .image-wrapper { position: relative; }
+
+        .card-overlay {
+          text-align:center;
+          position: absolute;
+          bottom: 25px;
+          left: 25px;
+          min-width: 150px;
+          z-index: 2;
+        }
+
+        .badge-value h3{
+           color: var(--color-text-primary);
+        }
+
+        .badge-label p{
+          color: var(--color-text-secondary);
+
+        }
+
+        @media (max-width: 767px) {
+          .section { padding-bottom: 48px !important; }
+          .section-label{
+          text-align:center;
+          }
+          .top-container, .bottom-container {
+            grid-template-columns: 1fr;
+
+          }
+          .top-feature-image { height: 300px; }
+          .top-feature-image img { max-height: 300px; }
+
+          .bottom-container .left-image,
+          .bottom-container .right-image,
+          .bottom-container .image-wrapper,
+          .bottom-container img {
+            height: 330px;
+          }
+
+          .card-overlay {
+          left: 50% !important;
+          top: 50% !important;
+          bottom: auto !important;
+          transform: translate(-50%, -50%);
+          min-width: 120px;
+        }
+
+          .left-image{
+          order:2;
+          }
+          .right-image{
+          order:1;
+          }
+          .bottom-container img {
+          border-radius: 12px;
+        }
+
+        }
+        @media (max-width: 425px) {
+      .avatar-image{
+    margin-left: -38px;
+      }
+      .avatar-counter {
+      background: var(--color-border-default);
+      padding: 17px 22px;
+      margin-left: -41px;
+  }
+        }
+
+         @media (max-width: 320px) {
+         .avatar-container {
+         display:flex;
+         flex-direction:column;
+         }
+
+         }
+        {% end_scope_css %}
+</style>
+{% end_require_css %} {% require_js %}
+<script>
+  (function () {
+    const ANIMATION_DURATION = 2000;
+    const easeOutQuad = (t) => t * (2 - t);
+
+    const animateCounter = (element) => {
+      const textContent = element.textContent.trim();
+      const match = textContent.match(/(\d[\d,\.]*)/);
+      if (!match) return;
+
+      const numberString = match[0];
+      const suffix = textContent.replace(numberString, "");
+      const isFloat = numberString.includes(".");
+      const targetValue = parseFloat(numberString.replace(/,/g, ""));
+      const startValue = 0;
+      const wrapperTag =
+        element.querySelector("h1, h2, h3, h4, h5, h6, p, span") || element;
+
+      let startTime = null;
+      const step = (timestamp) => {
+        if (!startTime) startTime = timestamp;
+        const progress = timestamp - startTime;
+        const percentage = Math.min(progress / ANIMATION_DURATION, 1);
+        const ease = easeOutQuad(percentage);
+        let currentNumber = startValue + (targetValue - startValue) * ease;
+        let formattedNumber = isFloat
+          ? currentNumber.toFixed(1)
+          : Math.floor(currentNumber).toLocaleString("en-US");
+        wrapperTag.textContent = formattedNumber + suffix;
+        if (progress < ANIMATION_DURATION) {
+          window.requestAnimationFrame(step);
+        } else {
+          wrapperTag.textContent = numberString + suffix;
+        }
+      };
+      window.requestAnimationFrame(step);
+    };
+
+    const observerOptions = { threshold: 0.2 };
+    const observerCallback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const section = entry.target;
+          const counters = section.querySelectorAll(".js-counter-number");
+          counters.forEach((counter) => {
+            if (!counter.hasAttribute("data-animated")) {
+              animateCounter(counter);
+              counter.setAttribute("data-animated", "true");
+            }
+          });
+          observer.unobserve(section);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions,
+    );
+    const sectionId = document.getElementById("{{ name }}");
+    if (sectionId) observer.observe(sectionId);
+  })();
+</script>
+{% end_require_js %}

@@ -1,0 +1,89 @@
+[
+  {
+    "label": "Similar Posts / Navigation Menu",
+    "name": "similar_or_navigation",
+    "display": "toggle",
+    "default": false,
+    "type": "boolean"
+  },
+  {
+    "label": "Title",
+    "name": "title",
+    "default": "<h5>Relevant Contents</h5>",
+    "type": "richtext"
+  },
+  {
+    "label": "Automatically Generate Anchors",
+    "name": "automatically_generate_anchors",
+    "display": "toggle",
+    "default": false,
+    "help_text": "When enabled, the module will automatically generate parent anchors for all H2, H5 titles and add the following H6 titles as children of the last H5 title.",
+    "visibility": {
+      "controlling_field": "similar_or_navigation",
+      "operator": "EQUAL",
+      "controlling_value_regex": "true"
+    },
+    "type": "boolean"
+  },
+  {
+    "label": "Anchors",
+    "name": "anchors_group",
+    "type": "group",
+    "visibility": {
+      "controlling_field": "automatically_generate_anchors",
+      "controlling_value_regex": "false",
+      "operator": "EQUAL"
+    },
+    "children": [
+      {
+        "label": "Anchors",
+        "name": "anchors",
+        "type": "group",
+        "occurrence": {
+          "min": 0
+        },
+        "visibility": {
+          "controlling_field": "similar_or_navigation",
+          "controlling_value_regex": "true",
+          "operator": "EQUAL"
+        },
+        "children": [
+          {
+            "label": "Anchor Text",
+            "name": "anchor_text",
+            "type": "text"
+          },
+          {
+            "label": "Anchor Link",
+            "name": "anchor_link",
+            "default": "#",
+            "inlineHelpText": "To link to a section on your page, the anchor must begin with a \"#\" character.",
+            "type": "text"
+          },
+          {
+            "label": "Child Anchors",
+            "name": "child_anchors",
+            "type": "group",
+            "occurrence": {
+              "min": 0
+            },
+            "children": [
+              {
+                "label": "Anchor Text",
+                "name": "anchor_text",
+                "type": "text"
+              },
+              {
+                "label": "Anchor Link",
+                "name": "anchor_link",
+                "default": "#",
+                "inlineHelpText": "To link to a section on your page, the anchor must begin with a \"#\" character.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

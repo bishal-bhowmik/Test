@@ -1,0 +1,107 @@
+[
+  {
+    "label": "System Settings (Locked)",
+    "name": "system_hidden_toggle",
+    "type": "boolean",
+    "display": "checkbox",
+    "default": false,
+    "locked": true
+  },
+  {
+    "label": "Show numbers",
+    "name": "show_numbers",
+    "id": "show_numbers",
+    "type": "boolean",
+    "default": true,
+    "visibility": {
+      "controlling_field": "system_hidden_toggle",
+      "controlling_value_regex": "true",
+      "operator": "EQUAL"
+    }
+  },
+  {
+    "label": "Show first and last links",
+    "name": "show_first_and_last_links",
+    "id": "show_first_and_last_links",
+    "type": "boolean",
+    "default": true,
+    "visibility": {
+      "controlling_field": "system_hidden_toggle",
+      "controlling_value_regex": "true",
+      "operator": "EQUAL"
+    }
+  },
+  {
+    "label": "First label",
+    "name": "first_label",
+    "type": "text",
+    "visibility": {
+      "controlling_field": "system_hidden_toggle",
+      "controlling_value_regex": "true",
+      "operator": "EQUAL"
+    }
+  },
+  {
+    "label": "Last label",
+    "name": "last_label",
+    "type": "text",
+    "visibility": {
+      "controlling_field": "system_hidden_toggle",
+      "controlling_value_regex": "true",
+      "operator": "EQUAL"
+    }
+  },
+  {
+    "label": "Show previous and next links",
+    "name": "show_previous_and_next_links",
+    "id": "show_previous_and_next_links",
+    "type": "boolean",
+    "default": true,
+    "visibility": {
+      "controlling_field": "system_hidden_toggle",
+      "controlling_value_regex": "true",
+      "operator": "EQUAL"
+    }
+  },
+  {
+    "label": "Previous label",
+    "name": "previous_label",
+    "type": "text",
+    "visibility": {
+      "controlling_field": "system_hidden_toggle",
+      "controlling_value_regex": "true",
+      "operator": "EQUAL"
+    }
+  },
+  {
+    "label": "Next label",
+    "name": "next_label",
+    "type": "text",
+    "visibility": {
+      "controlling_field": "system_hidden_toggle",
+      "controlling_value_regex": "true",
+      "operator": "EQUAL"
+    }
+  },
+  {
+    "label": "Default text",
+    "name": "default_text",
+    "type": "group",
+    "visibility": {
+      "controlling_field": "system_hidden_toggle",
+      "controlling_value_regex": "true",
+      "operator": "EQUAL"
+    }
+  },
+  {
+    "label": "Styles",
+    "name": "styles",
+    "type": "group",
+    "tab": "STYLE",
+    "visibility": {
+      "controlling_field": "system_hidden_toggle",
+      "controlling_value_regex": "true",
+      "operator": "EQUAL"
+    }
+  }
+]
