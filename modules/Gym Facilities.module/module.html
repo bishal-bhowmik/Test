@@ -1,0 +1,356 @@
+{% import '../../macros/button-macros.html' as button_macros %}
+
+{% set anim = module.style.animation %}
+{% require_css %}
+<style>
+  {% scope_css %}
+
+
+  section{
+      {% if module.style.background.background_type== "color"%}
+  background: {{ module.style.background.background_color.css }};
+    {% elif  module.style.background.background_type== "gradient" %}
+  background: {{ module.style.background.gradient_field.css }};
+    {% elif  module.style.background.background_type == "image" %}
+     background-image: url('{{ module.style.background.background_image.src }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    {% endif %}
+}
+
+  .container{
+   max-width: {{ module.layout_and_alignment.section_max_width ~ "px" }};
+}
+
+
+  .header-section .section-title *{
+    color: var(--color-text-tertiary);
+  }
+
+  .section-title {
+    max-width:72%;
+  }
+
+  /* Left Navigation */
+  .gym-nav {
+    flex: 0 0 30%;
+  }
+
+  .gym-nav-item {
+    cursor: pointer;
+    border-left: 2px solid var(--color-brand-primary); /* Default border color */
+    transition: all 0.3s ease;
+  }
+
+  .gym-nav-item.is-active {
+    background-color: var(--color-bg-primary);
+    background:{{ module.active_tab_customization.background_color.css }};
+    color: var(--color-text-primary);
+    border-radius: var(--radius-half);
+    border-left:none;
+  }
+
+
+  .gym-nav-item.is-active .nav-text *{
+    color: var(--color-text-primary);
+  }
+
+  .nav-text *{
+    font-family: var(--font-family-button);
+    font-size: var(--font-size-button);
+    font-weight: var(--font-weight-button);
+    color:var(--color-text-tertiary);
+  }
+
+
+
+  .gym-nav-item .nav-arrow {
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .gym-nav-item.is-active .nav-arrow {
+    opacity: 1;
+  }
+
+  .nav-arrow svg{
+   display:block;
+   width:24px;
+  }
+
+     .nav-arrow img{
+   display:block;
+   width:24px;
+  }
+
+  .gym-footer-text *{
+    color: var(--color-text-tertiary);
+  }
+
+  /* Right Image Side */
+  .gym-image-display {
+    flex: 1;
+    position: relative;
+    min-height: 450px;
+  }
+
+  .gym-image-wrapper {
+    display: none; /* Hide all by default */
+    width: 100%;
+  }
+
+  .gym-image-wrapper.is-active {
+    display: block; /* Show only active */
+    animation: fadeIn 0.5s ease;
+  }
+
+  .gym-image-wrapper img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-half);
+    object-fit: cover;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .mob-only-dropdown {
+  display: none;
+  width: 100%;
+  background-color: var(--color-bg-primary);
+  color: var(--text-primary); /* Black text for contrast */
+  border-radius: var(--radius-half);
+  border: none;
+  font-family: var(--font-family-button);
+  font-weight: var(--font-weight-button);
+  appearance: none; 
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 20px center;
+  background-size: 16px;
+}
+
+  .gym-nav-select-wrapper{
+    display:none;
+  }
+
+  .foot-mob{
+
+   display:none;
+}
+  .desk-hide{
+   display:none;
+ }
+
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .section-title{
+    max-width:100%;
+   }
+    .header-section{
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        text-align:center;
+    }
+    .mob-hide{ 
+     display:none;
+  }
+    .gym-area-container{
+     flex-direction:column;
+   }
+    .gym-container { flex-direction: column; }
+    .gym-nav { width: 100%; }
+       .mob-only-dropdown {
+    display: block;
+  }
+  
+  .desktop-only-tabs {
+    display: none;
+  }
+    .gym-nav-select-wrapper{
+     display:block;
+  }
+   
+    .foot-desk{
+    display:none;
+}
+
+    .foot-mob{
+    display:block;
+    text-align:center;
+  }
+
+    .gym-image-display{
+     min-height: auto;
+ }
+
+    .desk-hide{
+
+    display:flex;
+     }
+
+    .desk-hide a{
+    width:100%;
+  }
+  
+  }
+
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+
+
+<section class="section bg-secondary {% if anim.enable_section_animation %}reveal-card{% endif %}">
+  <div class="container flex-col gap-40">
+    <div class="header-section flex align-end justify-between {% if anim.enable_section_animation %}reveal-left{% endif %}">
+      <div class="section-title flex-col gap-40">
+        <div class="primary-title rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+          {{ module.content.title }}
+        </div>
+        <div class="sub-title mt-40 rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+          {{ module.content.sub_title }}
+        </div>
+      </div>
+      <section class="button-container mob-hide">
+        {% for item in module.button_repeater %}
+        {{ button_macros.render_button(item, theme) }}
+        {% endfor %}
+      </section>
+    </div>
+    <div class="gym-area-container flex gap-40">
+
+
+      <div class="gym-nav flex-col justify-between">
+  
+  <div class="gym-nav-select-wrapper mb-10">
+    <select id="gym-area-select" class="mob-only-dropdown p-20">
+      {% for item in module.gym_areas %}
+        <option value="area-{{ loop.index }}" {% if loop.first %}selected{% endif %}>
+          {{ item.area_name|striptags }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="location-tabs desktop-only-tabs {% if anim.enable_section_animation %}reveal-left{% endif %}">
+    {% for item in module.gym_areas %}
+      <div class="gym-nav-item flex justify-between align-center mb-10 p-20 {% if loop.first %}is-active{% endif %}" data-target="area-{{ loop.index }}">
+        <span class="nav-text rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>{{ item.area_name }}</span>
+        <span class="nav-arrow">
+            {% if module.active_tab_customization.override_style %}
+              
+              {% set icon_choice = module.active_tab_customization.active_icon.icon_type %}
+
+              {# 1. Image Option #}
+              {% if icon_choice == 'image' %}
+                	<img src="{{ module.active_tab_customization.active_icon.image_field.src|escape_url }}" alt="{{ module.active_tab_customization.active_icon.image_field.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+
+              {# 2. HubSpot Icon Option #}
+              {% elif icon_choice == 'icon' %}
+                {% icon
+                  name="{{ module.active_tab_customization.active_icon.hubspot_icon.name }}"
+                  style="{{ module.active_tab_customization.active_icon.hubspot_icon.type }}"
+                  unicode="{{ module.active_tab_customization.active_icon.hubspot_icon.unicode }}"
+                  icon_set="{{ module.active_tab_customization.active_icon.hubspot_icon.icon_set }}"
+                %}
+
+              {# 3. Custom SVG Option #}
+              {% elif icon_choice == 'custom' %}
+                {{ module.active_tab_customization.active_icon.custom_svg }}
+              {% endif %}
+
+              {% else %}
+              {# Default Fallback Arrow #}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M13.4804 19.9083C13.4956 19.9235 13.9597 20.0399 14.5117 20.1668C15.0639 20.2937 15.5216 20.3781 15.5289 20.3545C15.5362 20.3309 15.5933 19.9477 15.6558 19.5029C15.7813 18.6098 16.0851 17.567 16.4097 16.9148C17.4217 14.8823 19.2372 13.5364 21.4393 13.1866L22 13.0975L22 12.1997L22 11.3017L21.4918 11.2164C18.162 10.6578 15.9912 8.16812 15.5851 4.44229C15.5586 4.199 15.5269 4 15.5147 4C15.4024 4 13.5416 4.44845 13.5064 4.48397C13.481 4.50966 13.4999 4.73774 13.5486 4.99073C14.087 7.79214 15.6287 10.0717 17.6294 11.0249L18.1094 11.2535L8.24046 11.2714L2 11.2828L2 13.1L8.25651 13.1113L18.1021 13.1293L17.4963 13.4363C15.9244 14.2326 14.68 15.7947 13.9472 17.8914C13.7383 18.4888 13.4232 19.8506 13.4804 19.9083Z" fill="#101000"/></svg>
+             {% endif %}
+          </span>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="gym-footer-text foot-desk">
+    {{ module.content.footer_text }}
+  </div>
+</div>
+
+      <div class="gym-image-display {% if anim.enable_section_animation %}reveal-right{% endif %}">
+        {% for item in module.gym_areas %}
+        <div class="gym-image-wrapper {% if loop.first %}is-active{% endif %}" id="area-{{ loop.index }}">
+          {% if item.area_image.src %}
+          <img src="{{ item.area_image.src }}" alt="{{ item.area_image.alt }}" loading="lazy">
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="gym-footer-text foot-mob mt-24 rich-text-anim-wrapper"{% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+    {{ module.content.footer_text }}
+  </div>
+
+      <section class="button-container desk-hide">
+        {% for item in module.button_repeater %}
+        {{ button_macros.render_button(item, theme) }}
+        {% endfor %}
+      </section>
+    
+
+    </div>
+  </div>
+</section>
+
+
+<script>
+(function() {
+  const navItems = document.querySelectorAll('.gym-nav-item');
+  const imageWrappers = document.querySelectorAll('.gym-image-wrapper');
+  const mobileSelect = document.getElementById('gym-area-select');
+
+  /**
+   * Central function to update the active area
+   * @param {string} targetId - e.g., 'area-1'
+   */
+  function updateActiveArea(targetId) {
+    // 1. Update Images
+    imageWrappers.forEach(img => {
+      img.classList.toggle('is-active', img.id === targetId);
+    });
+
+    // 2. Update Desktop Nav Items
+    navItems.forEach(nav => {
+      nav.classList.toggle('is-active', nav.getAttribute('data-target') === targetId);
+    });
+
+    // 3. Update Mobile Select Value (so it stays in sync if you resize)
+    if (mobileSelect && mobileSelect.value !== targetId) {
+      mobileSelect.value = targetId;
+    }
+  }
+
+  // Event: Desktop Click
+  navItems.forEach(item => {
+    item.addEventListener('click', function() {
+      const targetId = this.getAttribute('data-target');
+      updateActiveArea(targetId);
+    });
+  });
+
+  // Event: Mobile Dropdown Change
+  if (mobileSelect) {
+    mobileSelect.addEventListener('change', function() {
+      // The value of the option is the targetId (e.g., 'area-1')
+      updateActiveArea(this.value);
+    });
+  }
+})();
+</script>

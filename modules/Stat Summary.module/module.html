@@ -1,0 +1,631 @@
+{% import '../../macros/button-macros.html' as button_macros %}
+{% set anim = module.style.animation %}
+<section class="hero-container ">
+  <div class='bg-image '>
+    {% if module.background_video.enable %}
+    {% if module.background_video.file_field %}
+    <div class="video-wrapper">
+      <video id="myVideo-{{ unique_id }}-{{ loop.index0 }}" src="{{ module.background_video.file_field }}" autoplay muted loop playsinline>
+      </video>
+    </div>
+    {% endif %}
+    {% endif %}
+  </div>
+
+  {% if module.style.background.background_overlay or module.background_video.enable and  module.background_video.overlay_enable  %}
+  <div class="overlay"></div>
+  {% endif %}
+
+  <div class="hero-container-inner">
+    <div class="hero {% if anim.enable_section_animation %}reveal-card{% endif %} ">
+      <div class="hero-content  {% if anim.enable_section_animation %}reveal-left{% endif %}">
+
+        <div class="text-content rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+          {{ module.rich_text.richtext_field }}
+        </div>
+        {% if module.buttons.enable %}
+        <div class="button-group">
+          {% for item in module.button %}
+          {{ button_macros.render_button(item, theme) }}
+          {% endfor %}
+        </div>
+        {% endif %}
+     
+
+      </div>
+      {% if module.style.background.model.model_enable %}
+      
+      <div class="right-logo {% if anim.enable_section_animation %}reveal-right{% endif %}">
+        {% if module.style.background.model.logo.src %}
+        <img src="{{ module.style.background.model.logo.src|escape_url }}" alt="{{ module.style.background.model.logo.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+        {% endif %}
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+
+</section>
+
+{% require_css %}
+<style>
+  {% scope_css %}
+
+  .hero-container {
+   
+    position: relative;
+    width: 100%;
+    overflow:hidden;
+    min-height:{{ module.layout_alignment.height.desktop_height }}vh;
+  }
+
+  .bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    z-index: 1;
+    {% if not module.background_video.enable %}
+    {% if module.style.background.backgroud_type == "image" %}
+    background-image: url('{{ module.style.background.background_image.src|escape_url }}');
+      background-size: cover;
+      background-position: center;
+      {% elif module.style.background.backgroud_type == "solid_color" %} 
+      background-color: var(--color-brand-secondary);
+      background: {{ module.style.background.solid_color.css }};
+      {% elif module.style.background.backgroud_type == "gradient" %}
+      background: {{ module.style.background.gradient_field.css }};
+      {% endif %}
+      {% endif %}
+      }
+
+
+  .video-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+
+  .video-wrapper video, 
+  .video-wrapper iframe,
+  .video-wrapper .hs-video-widget {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    {% if module.style.background.backgroud_type == "image" %}
+    background: {{ module.style.background.overlay_color.css }}; 
+    {% endif %}
+    {% if module.background_video.enable %}
+    background-color: {{ module.background_video.overlay_color.css}};  
+    {% endif %}
+    z-index: 2; 
+    pointer-events: none; 
+  }
+
+  .hero-container-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3; 
+  }
+
+  .hero {
+    display: flex;
+    gap:300px;
+    justify-content: space-between;
+    {% if module.layout_alignment.column_reverse %}
+    flex-direction:row-reverse;
+    {% endif %}  
+
+
+    height: 100%;
+    width: 100%;
+    max-width:var(--max-width-content);
+    max-width: {{ module.layout_alignment.section_max_width }}px;
+    margin: 0 auto;
+
+
+     padding-top: clamp({{ module.style.padding.mobile.top_padding|default(48) }}px, 4vw , {{ module.style.padding.desktop.top_padding|default(80) }}px);
+    padding-left: clamp({{ module.style.padding.mobile.left_padding|default(0) }}px, 4vw , {{ module.style.padding.desktop.left_padding|default(0) }}px);
+    padding-right: clamp({{ module.style.padding.mobile.right_padding|default(0) }}px, 4vw , {{ module.style.padding.desktop.right_padding|default(0) }}px);
+    padding-bottom: clamp({{ module.style.padding.mobile.bottom_padding|default(48) }}px, 4vw , {{ module.style.padding.desktop.bottom_padding|default(80) }}px);
+
+
+    box-sizing: border-box;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    {% if  module.layout_alignment.content_alignment == "left-bottom" %}
+    align-items: end;
+    justify-content: flex-end;
+    {% elif  module.layout_alignment.content_alignment == "right-bottom" %}
+    align-items: end;
+    text-align:right;
+    justify-content: flex-end;
+    {% elif  module.layout_alignment.content_alignment == "center-bottom" %}
+    align-items: end;
+    justify-content: center;
+    {% elif  module.layout_alignment.content_alignment == "top-left" %}
+    align-items: start;
+    justify-content: flex-start;
+    {% elif  module.layout_alignment.content_alignment == "right-top" %}
+    align-items: start;
+    text-align:right;
+    justify-content: flex-start;
+
+    {% endif %}
+    {% if  module.layout_alignment.content_alignment == "left" %}
+
+    justify-content: center;
+    {% elif  module.layout_alignment.content_alignment == "right" %}
+    text-align:right;
+    justify-content: flex-end;
+    {% elif  module.layout_alignment.content_alignment == "center" %}
+    justify-content: center;
+    {% endif %}
+    {% if  module.layout_alignment.content_alignment == "center" or module.layout_alignment.content_alignment == "center-top" or module.layout_alignment.content_alignment == "center-bottom" %}
+    text-align: center;
+    {% endif %}
+    gap: 2.5rem;
+    max-width: {{ module.layout_alignment.content_max_width }}px;
+
+    width: 100%;
+    border-radius: 8px;
+  }
+
+
+  .right-logo {
+    flex-shrink: 0; 
+    max-width: 50%; 
+    position: relative;
+    z-index: 1;
+  }
+
+ .right-logo::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100%;
+    height: 100%;
+    background-image: url('{{  module.style.background.model.model_overlay_image.src}}');
+    background-size: 150%;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
+    
+   
+    transform: scale(1.5); 
+}
+
+  .right-logo img {
+    max-width: 100%; 
+    height: auto;
+    display: block;
+    position: relative;
+  }
+
+  .text-content h1,h2,h3,h4,h5,h6 {
+    color: var( --color-text-primary);
+   
+  }
+  .text-content h1 {
+    font-size: 120px; 
+    text-transform: uppercase;
+  }
+  .text-content h2 {  
+    font-size: 100px;  
+  }
+  .text-content h5 {
+    font-size: 36px; 
+  }
+
+  .text-content p {
+    color: var(--color-text-tertiary);
+    font-family: "Fjalla One", sans-serif;
+    font-weight: 300;
+    font-size: 1.25rem; 
+    line-height: 150%;
+    letter-spacing: 0;
+    text-decoration: none;
+    text-transform: none;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 15px;
+
+    {% if  module.layout_alignment.content_alignment == "center" or module.layout_alignment.content_alignment == "center-top" or module.layout_alignment.content_alignment == "center-bottom" %}
+    justify-content:center;
+    align-items: center;
+    {% endif %}
+  }
+
+  .faq-search-wrapper {
+    position: relative;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    z-index:99;
+  }
+
+  .hs-search-field {
+    background: #fff;
+    padding: 0.938rem 1.188rem;
+    border-radius: 0.75rem; 
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+
+  .hs-search-field {
+    border-radius: 0.75rem; 
+  }
+
+  .hs-search-field.active {
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 14px 44px rgba(0, 0, 0, 0.12);
+  }
+
+  .hs-search-field__bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+  }
+
+  .search-icon-left {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    pointer-events: none; 
+    z-index: 2;
+  }
+
+
+  .cross-icon-right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    z-index: 2;
+    padding: 5px; 
+  }
+
+  .hs-search-field__input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: "Lexend", sans-serif;
+    font-weight: 400;
+    color: #000;
+    font-size: 18px;
+    padding: 0 2.5rem 0 2.188rem; 
+
+    width: 100%;
+  }
+
+  .results-header{
+    font-family: "Lexend", sans-serif;
+    font-weight: 300;
+    color:#C3C3C3;
+    padding:0.625rem 1.875rem;
+    font-size: 16px;
+  }
+  .hs-search-field__input::placeholder {
+    color: var(--color-text-secondary);
+    font-family: "Lexend", sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+  }
+
+
+  .hs-search-field__suggestions {
+    background: var(--color-bg-primary);
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    border-radius: 0 0 12px 12px; 
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    opacity: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .hs-search-field__suggestions.active {
+    max-height:100px;
+    opacity: 1;
+    padding: 10px 0;
+    border-top: 1px solid #f0f0f0;
+    overflow-y: auto;
+  }
+
+  .hs-search-field__suggestions li {
+    border-bottom: 1px solid #f0f0f0; 
+  }
+
+  .hs-search-field__suggestions li a {
+    display: block; 
+    padding: 15px 30px;
+    font-family: "Lexend", sans-serif;
+    font-size: 16px;
+    color: #191919;
+    text-decoration: none; 
+    transition: background 0.2s;
+  }
+
+  .hs-search-field__suggestions li a:hover {
+    background-color: #f8f8f8;
+  }
+
+  .loading-container {
+    display: flex;            
+    align-items: center;       
+    justify-content: center;   
+    gap: 12px;                 
+    padding: 20px;
+  }
+
+  .loading-spinner {
+    display: block;
+    width: 25px;
+    height: 25px;
+    border: 3px solid #f0f0f0;
+    border-radius: 50%;
+    border-top-color: var( --color-brand-secondary); 
+    animation: spin 1s ease-in-out infinite;
+  }
+
+
+  .loading-text {
+    font-family: "Lexend", sans-serif;
+    font-size: 16px;
+    color:  var( --color-text-secondary);
+    font-weight: 500;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+  
+  @media (max-width: 1200px) {
+   .hero{
+    gap:80px;
+    }
+  }
+  @media (max-width: 1080px) {
+    .right-logo{
+      flex-shrink: 0;
+      max-width: 50%;
+
+    }
+    .hero{
+    gap:40px;
+    padding-left: clamp({{ module.style.padding.mobile.left_padding|default(16) }}px, 4vw , {{ module.style.padding.desktop.left_padding|default(16) }}px);
+    padding-right: clamp({{ module.style.padding.mobile.right_padding|default(16) }}px, 4vw , {{ module.style.padding.desktop.right_padding|default(16) }}px);
+   }
+
+  }
+  @media (max-width: 820px) {
+    .hero-container {
+      min-height: {{ module.layout_alignment.height.mobile }}vh;
+    }
+
+    .hero-container-inner {
+      position: relative;
+
+    }
+
+    .hero-content {
+      margin: 0 auto;
+    }
+    .hero{   
+      flex-direction:column;
+      padding-left:16px;
+      padding-right:16px;
+      gap:0;
+    }
+
+    .right-logo{
+      flex-shrink: 0;
+      max-width: 100%;
+      position: absolute;
+      right:0;
+      left: 159px;
+      top: 300px;
+    }
+
+    .button-group {
+      width: 100%;
+      justify-content: center;
+    }
+    .text-content{
+      text-align:center;
+    }
+    .text-content h1 {
+      font-size: 44px; 
+      text-transform: uppercase;
+    }
+    .text-content h2 {  
+      font-size: 40px;  
+    }
+    .text-content h3,h4 {
+      font-size: 24px; 
+    }
+    .text-content h4,h5 {
+      font-size: 24px; 
+    }
+    .text-content h6 {
+      font-size: 22px; 
+    }
+    .text-content p {
+      color: var(--color-text-tertiary);
+      font-family: "Lexend", sans-serif;
+      font-weight: 300;
+      font-size: 16px; 
+      line-height: 150%;
+      letter-spacing: 0;
+      text-decoration: none;
+      text-transform: none;
+    }
+
+    .faq-search-wrapper { width: 100%; }
+
+    .hs-search-field__input { font-size: 16px; }
+  }
+
+  @media (max-width: 540px) {
+    .right-logo{
+      flex-shrink: 0;
+      max-width: 100%;
+      position: absolute;
+      right:0;
+      left:0;
+      top: 436px;
+    }
+
+  }
+  @media (max-width: 425px) {
+
+    .hero-container{
+      min-height:{{ module.layout_alignment.height.mobile }}vh;
+    }
+  }
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+
+{% require_js %}
+<script>
+  (function() {
+    const uid = "{{ name }}"; 
+
+    const searchInput = document.querySelector("#search-input-" + uid);
+    const clearBtn = document.querySelector("#clear-btn-" + uid);
+    const suggestionsList = document.querySelector("#suggestions-list-" + uid);
+    const searchFieldContainer = searchInput.closest('.hs-search-field');
+
+    let searchTimeout;
+
+    function toggleIcons() {
+      if (searchInput.value.trim().length > 0) {
+        clearBtn.style.display = 'flex';
+      } else {
+        clearBtn.style.display = 'none';
+      }
+    }
+
+    function hideSuggestions() {
+      suggestionsList.classList.remove('active');
+      searchFieldContainer.classList.remove('active');
+    }
+
+    function clearSearch() {
+      searchInput.value = '';
+      searchInput.focus();
+      toggleIcons();
+      hideSuggestions();
+    }
+
+    function performLiveSearch(term) {
+      suggestionsList.classList.add('active');
+      searchFieldContainer.classList.add('active');
+
+      suggestionsList.innerHTML = '<div class="loading-container"><div class="loading-spinner"></div><span class="loading-text">Loading...</span></div>';
+
+      const searchUrl = `/_hcms/search?term=${encodeURIComponent(term)}&limit=5&type=SITE_PAGE&type=BLOG_POST`;
+
+      fetch(searchUrl)
+        .then(response => response.json())
+        .then(data => {
+        suggestionsList.innerHTML = ''; 
+
+        if (data.results && data.results.length > 0) {
+
+          const header = document.createElement('li');
+          header.className = 'results-header'; 
+          header.textContent = data.results.length + " Results";
+          suggestionsList.appendChild(header);
+
+          data.results.forEach(result => {
+            const li = document.createElement('li');
+            li.innerHTML = `<a href="${result.url}">${result.title}</a>`;
+            suggestionsList.appendChild(li);
+          });
+
+        } else {
+          suggestionsList.innerHTML = '<li><a style="cursor:default; color:#999;">No results found</a></li>';
+        }
+      })
+        .catch(err => {
+        console.error(err);
+        suggestionsList.innerHTML = '<li><a style="cursor:default; color:#999;">Error loading results</a></li>';
+      });
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', function() {
+        const term = this.value.trim();
+        toggleIcons();
+        clearTimeout(searchTimeout);
+
+        if (term.length > 0) {
+          searchTimeout = setTimeout(() => {
+            performLiveSearch(term);
+          }, 400); 
+        } else {
+          hideSuggestions();
+        }
+      });
+
+      document.addEventListener('click', function(e) {
+        if (!searchFieldContainer.contains(e.target)) {
+          hideSuggestions();
+        }
+      });
+    }
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', function() {
+        clearSearch();
+      });
+    }
+
+  })();
+</script>
+{% end_require_js %}

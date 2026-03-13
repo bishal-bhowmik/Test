@@ -1,0 +1,590 @@
+[ {
+  "id" : "section_title",
+  "name" : "section_title",
+  "label" : "Section Title",
+  "required" : false,
+  "locked" : false,
+  "display_width" : null,
+  "type" : "richtext",
+  "default" : "<h5>REAL STORIES</h5><h1>CLIENTS TESTIMONIALS</h1>"
+}, {
+  "id" : "testimonial_items",
+  "name" : "testimonial_items",
+  "label" : "Testimonial Items",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : null,
+    "sorting_label_field" : "author_info",
+    "default" : 3
+  },
+  "children" : [ {
+    "id" : "testimonial_items.testimonial_video",
+    "name" : "testimonial_video",
+    "label" : "Testimonial Video",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "testimonial_items.testimonial_video.video_source_type",
+      "name" : "video_source_type",
+      "label" : "Video Source Type",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "video_file", "Video File" ], [ "embed", "Embed" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "display_width" : null,
+      "type" : "choice",
+      "default" : "video_file"
+    }, {
+      "id" : "testimonial_items.testimonial_video.video_aspect_ratio",
+      "name" : "video_aspect_ratio",
+      "label" : "Aspect Ratio",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "vertical", "Vertical (9:16)" ], [ "landscape", "Landscape (16:9)" ], [ "square", "Square (1:1)" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "display_width" : null,
+      "type" : "choice",
+      "default" : "vertical"
+    }, {
+      "id" : "testimonial_items.testimonial_video.embed_field",
+      "name" : "embed_field",
+      "label" : "Embed",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "testimonial_items.testimonial_video.video_source_type",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "embed",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "supported_source_types" : [ "oembed" ],
+      "supported_oembed_types" : [ "photo", "video", "link", "rich" ],
+      "resizable" : true,
+      "show_preview" : true,
+      "supported_media_bridge_providers" : [ ],
+      "display_width" : null,
+      "type" : "embed",
+      "default" : {
+        "source_type" : "oembed",
+        "oembed_url" : "https://youtu.be/Sc7LUjbKBHw?si=JNFwQBcFdhqx8D6P",
+        "oembed_response" : {
+          "type" : "video",
+          "version" : "1.0",
+          "html" : "<iframe width=\"200\" height=\"113\" src=\"https://www.youtube.com/embed/Sc7LUjbKBHw?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen title=\"a Cinematic Fitness Video...SONY FX6\"></iframe>",
+          "title" : "a Cinematic Fitness Video...SONY FX6",
+          "author_name" : "Liam Fox Films",
+          "author_url" : "https://www.youtube.com/@liamfoxfilms",
+          "provider_name" : "YouTube",
+          "provider_url" : "https://www.youtube.com/",
+          "thumbnail_url" : "https://i.ytimg.com/vi/Sc7LUjbKBHw/hqdefault.jpg",
+          "thumbnail_width" : "480",
+          "thumbnail_height" : "360",
+          "height" : "113",
+          "width" : "200"
+        },
+        "width" : 200,
+        "height" : 113,
+        "size_type" : "auto",
+        "max_width" : 200,
+        "max_height" : 113,
+        "embed_html" : "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/GsPvopOOyBs?si=UAKe7YZhgK37mGrI\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+      }
+    }, {
+      "id" : "testimonial_items.testimonial_video.video_file_media",
+      "name" : "video_file_media",
+      "label" : "Video File",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "testimonial_items.testimonial_video.video_source_type",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "video_file",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "resizable" : true,
+      "show_preview" : true,
+      "show_advanced_options" : false,
+      "display_width" : null,
+      "type" : "videoplayer",
+      "default" : {
+        "player_id" : 304268633846,
+        "height" : 1280,
+        "width" : 720,
+        "player_type" : "hsvideo2"
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : true,
+    "group_occurrence_meta" : null,
+    "display_width" : null,
+    "type" : "group"
+  }, {
+    "id" : "testimonial_items.author_image",
+    "name" : "author_image",
+    "label" : "Author Image",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "display_width" : null,
+    "type" : "image",
+    "default" : {
+      "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/raw_assets/public/Publishable_Theme/Publishable/FitMax_Theme/Images/testimonial%201.png",
+      "alt" : "Author",
+      "size_type" : null,
+      "width" : null,
+      "height" : null,
+      "max_width" : null,
+      "max_height" : null,
+      "loading" : "disabled"
+    }
+  }, {
+    "id" : "testimonial_items.author_info",
+    "name" : "author_info",
+    "label" : "Author Info",
+    "required" : false,
+    "locked" : false,
+    "display_width" : null,
+    "type" : "richtext",
+    "default" : "<h6>Zaire Siphron</h6><p>Fitness Enthusiast</p>"
+  }, {
+    "id" : "testimonial_items.testimonial_text",
+    "name" : "testimonial_text",
+    "label" : "Testimonial Text",
+    "required" : false,
+    "locked" : false,
+    "display_width" : null,
+    "type" : "richtext",
+    "default" : "<p>\"Starting my fitness adventure, I struggled to lift myself off the ground. Eight months later, I've lost 20 pounds and my self-esteem is through the roof.\"</p>"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "display_width" : null,
+  "type" : "group",
+  "default" : [ {
+    "testimonial_video" : {
+      "video_source_type" : "video_file",
+      "video_aspect_ratio" : "vertical",
+      "video_file_media" : {
+        "player_id" : 304268633846,
+        "height" : 1280,
+        "width" : 720,
+        "player_type" : "hsvideo2"
+      }
+    },
+    "author_image" : {
+      "src" : "../../Images/testimonial 1.png",
+      "alt" : "Zaire Siphron"
+    },
+    "author_info" : "<h6>Zaire Siphron</h6><p>Fitness Enthusiast</p>",
+    "testimonial_text" : "<p>\"Starting my fitness adventure, I struggled to lift myself off the ground. Eight months later, I've lost 20 pounds and my self-esteem is through the roof.\"</p>"
+  }, {
+    "testimonial_video" : {
+      "video_source_type" : "video_file",
+      "video_aspect_ratio" : "vertical",
+      "video_file_media" : {
+        "player_id" : 304268633846,
+        "height" : 1280,
+        "width" : 720,
+        "player_type" : "hsvideo2"
+      }
+    },
+    "author_image" : {
+      "src" : "../../Images/testimonial 2.png",
+      "alt" : "Corey Bergson"
+    },
+    "author_info" : "<h6>Corey Bergson</h6><p>Fitness Enthusiast</p>",
+    "testimonial_text" : "<p>\"At the beginning of my fitness journey, I couldn't even manage my own weight. Now, after 8 months, I've dropped 20 pounds and my confidence is soaring.\"</p>"
+  }, {
+    "testimonial_video" : {
+      "video_source_type" : "video_file",
+      "video_aspect_ratio" : "vertical",
+      "video_file_media" : {
+        "player_id" : 304268633846,
+        "height" : 1280,
+        "width" : 720,
+        "player_type" : "hsvideo2"
+      }
+    },
+    "author_image" : {
+      "src" : "../../Images/testimonial 3.png",
+      "alt" : "Ryan Botosh"
+    },
+    "author_info" : "<h6>Ryan Botosh</h6><p>Fitness Enthusiast</p>",
+    "testimonial_text" : "<p>\"When I embarked on my fitness journey, I couldn't even lift my own body. Fast forward 8 months, I've lost 20 pounds and my confidence has soared.\"</p>"
+  } ]
+}, {
+  "id" : "style",
+  "name" : "style",
+  "label" : "Style",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "style.background",
+    "name" : "background",
+    "label" : "Background",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "style.background.enable",
+      "name" : "enable",
+      "label" : "Enable",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "display_width" : null,
+      "type" : "boolean",
+      "default" : false
+    }, {
+      "id" : "style.background.background_type",
+      "name" : "background_type",
+      "label" : "Background Type",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.background.enable",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "image", "Image" ], [ "gradient", "Gradient" ], [ "solid_color", "Solid Color" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "display_width" : null,
+      "type" : "choice",
+      "default" : "image"
+    }, {
+      "id" : "style.background.background_image_position",
+      "name" : "background_image_position",
+      "label" : "Background Image Position",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_type",
+          "controlling_value_regex" : "image",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.enable",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "display" : "select",
+      "choices" : [ [ "top", "Top" ], [ "center", "Center" ], [ "bottom", "Bottom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "display_width" : null,
+      "type" : "choice",
+      "default" : "center"
+    }, {
+      "id" : "style.background.background_overlay",
+      "name" : "background_overlay",
+      "label" : "Background Overlay",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_type",
+          "controlling_value_regex" : "image",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.enable",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "display" : "toggle",
+      "display_width" : null,
+      "type" : "boolean",
+      "default" : false
+    }, {
+      "id" : "style.background.gradient_field",
+      "name" : "gradient_field",
+      "label" : "Gradient",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_type",
+          "controlling_value_regex" : "gradient",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.enable",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "display_width" : null,
+      "type" : "gradient",
+      "default" : {
+        "side_or_corner" : {
+          "horizontalSide" : "RIGHT",
+          "verticalSide" : null
+        },
+        "colors" : [ {
+          "color" : {
+            "r" : 25,
+            "g" : 35,
+            "b" : 23,
+            "a" : 1
+          }
+        }, {
+          "color" : {
+            "r" : 218,
+            "g" : 252,
+            "b" : 0,
+            "a" : 1
+          }
+        } ]
+      }
+    }, {
+      "id" : "style.background.overlay_color",
+      "name" : "overlay_color",
+      "label" : "Overlay Color",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_type",
+          "controlling_value_regex" : "image",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.enable",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_overlay",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "display_width" : null,
+      "type" : "gradient",
+      "default" : {
+        "side_or_corner" : {
+          "horizontalSide" : "LEFT",
+          "verticalSide" : null
+        },
+        "colors" : [ {
+          "color" : {
+            "r" : 16,
+            "g" : 16,
+            "b" : 0,
+            "a" : 0.8
+          }
+        }, {
+          "color" : {
+            "r" : 255,
+            "g" : 255,
+            "b" : 255,
+            "a" : 0
+          }
+        } ]
+      }
+    }, {
+      "id" : "style.background.solid_color",
+      "name" : "solid_color",
+      "label" : "Solid Color",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_type",
+          "controlling_value_regex" : "solid_color",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.enable",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "display_width" : null,
+      "type" : "color",
+      "default" : {
+        "color" : "#17270B",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "style.background.background_image",
+      "name" : "background_image",
+      "label" : "Background Image",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_type",
+          "controlling_value_regex" : "image",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.enable",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "responsive" : false,
+      "resizable" : false,
+      "show_loading" : false,
+      "display_width" : null,
+      "type" : "image",
+      "default" : {
+        "size_type" : "auto_custom_max",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Main%20Content.png",
+        "alt" : "Main Content",
+        "loading" : "lazy"
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "display_width" : null,
+    "type" : "group"
+  }, {
+    "id" : "style.animation",
+    "name" : "animation",
+    "label" : "Animation",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "style.animation.enable_heading_animation",
+      "name" : "enable_heading_animation",
+      "label" : "Enable Heading Animation",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "display_width" : null,
+      "type" : "boolean",
+      "default" : false
+    }, {
+      "id" : "style.animation.enable_body_text_animation",
+      "name" : "enable_body_text_animation",
+      "label" : "Enable Body Text Animation",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "display_width" : null,
+      "type" : "boolean",
+      "default" : false
+    }, {
+      "id" : "style.animation.enable_section_animation",
+      "name" : "enable_section_animation",
+      "label" : "Enable Section Animation",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "display_width" : null,
+      "type" : "boolean",
+      "default" : false
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "display_width" : null,
+    "type" : "group"
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "display_width" : null,
+  "type" : "group"
+}, {
+  "id" : "layout_alignment",
+  "name" : "layout_alignment",
+  "label" : "Layout",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "layout_alignment.section_max_width",
+    "name" : "section_max_width",
+    "label" : "Section Max Width",
+    "required" : false,
+    "locked" : false,
+    "display" : "text",
+    "step" : 1,
+    "suffix" : "px",
+    "display_width" : null,
+    "type" : "number",
+    "default" : 1280
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "display_width" : null,
+  "type" : "group"
+} ]

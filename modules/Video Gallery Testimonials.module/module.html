@@ -1,0 +1,318 @@
+{% import '../../macros/global-macros.html' as global_macros %} 
+  {{ global_macros.module_css(module, name) }}
+
+  {% set anim = module.style.animation %}
+
+
+
+{# --- MACRO: Render HubSpot Video --- #}
+{% macro render_background_video(video) %}
+  {% if video.background_video_file.player_id %}
+    {% video_player "embed_player"
+      player_id={{ video.background_video_file.player_id }}
+      type={{ video.background_video_file.player_type || 'scriptV4' }}
+      full_width={{ video.background_video_file.size_type == 'auto_full_width' }}
+      conversion_asset={{ video.background_video_file.conversion_asset|tojson|safe }}
+      autoplay=False
+      hidden_controls=False
+      loop=False
+      muted=False
+      play_button_color="#ffffff"
+    %}
+  {% endif %}
+{% endmacro %}
+
+{% require_css %}
+<style>
+  {% scope_css %}
+
+  /* --- LAYOUT STYLING --- */
+  .testimonial-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .testimonial-column {
+    width: calc(33.333% - 27px); 
+    min-width: 320px;
+    display: flex;
+    flex-direction: column; 
+  }
+
+  .testimonial-column.reverse-layout {
+    flex-direction: column-reverse;
+  }
+
+  /* --- CARD & TEXT STYLING --- */
+  .author-avatar {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%; 
+    flex-shrink: 0;
+  }
+
+  .testimonial-card-bg {
+    background-color: #fff;
+    box-shadow: 0px 4px 20px rgba(0,0,0,0.05);
+    flex-grow: 1; 
+  }
+
+  /* =========================================
+     VIDEO CONTAINER
+     ========================================= */
+  .video-container {
+    width: 100%;
+    overflow: hidden; 
+    position: relative; 
+    background-color: #000;
+    z-index: 1;
+  }
+
+  /* -----------------------------------------
+     1. HUBSPOT NATIVE PLAYER OVERRIDES
+     ----------------------------------------- */
+  .video-container .hs_cos_wrapper_type_video,
+  .video-container .hs-video-widget,
+  .video-container .hs-video-container,
+  .video-container .hs-video-wrapper,
+  .video-container .video-js {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .video-container .vjs-tech {
+    object-fit: cover !important;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    position: absolute !important;
+  }
+  
+  .video-container .vjs-poster {
+      background-size: cover !important; 
+  }
+
+  /* -----------------------------------------
+     2. OEMBED / EMBED CONTAINER STYLES
+     ----------------------------------------- */
+  
+  /* Make sure the OEmbed container fills the parent video-container */
+  .video-container .oembed_container,
+  .video-container .embed_container {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  /* Override the snippet's padding hack to strictly follow the module's Aspect Ratio */
+  .video-container .iframe_wrapper {
+    width: 100%;
+    height: 100%; /* Fills the aspect ratio set on .video-container */
+    padding-bottom: 0 !important; /* Disabling the snippet's 16:9 hack */
+    padding-top: 0 !important;
+    position: relative;
+  }
+  
+  .video-container .iframe_wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 1024px) {
+    .testimonial-column {
+      width: calc(50% - 20px); 
+    }
+  }
+
+  @media (max-width: 768px) {
+    .testimonial-column {
+      min-width: unset;
+      width: 100%; 
+    }
+    .testimonial-column.reverse-layout {
+      flex-direction: column;
+    }
+  }
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+
+{# --- MAIN MODULE HTML --- #}
+<section id="{{name}}"  class="section bg-primary-accent-1">
+  <div class="container {% if anim.enable_section_animation %}reveal-card{% endif %}">
+    
+    <div class="section-title mb-40 rich-text-anim-wrapper"
+    {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+    {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}
+    >
+      {{ module.section_title }}
+    </div>
+
+    <div class="testimonial-grid gap-40">
+      
+      {% for item in module.testimonial_items %}
+        
+        {# --- DETERMINE ASPECT RATIO --- #}
+        {% set ratio_style = "aspect-ratio: 9 / 16;" %}
+        {% if item.testimonial_video.video_aspect_ratio == 'landscape' %}
+           {% set ratio_style = "aspect-ratio: 16 / 9;" %}
+        {% elif item.testimonial_video.video_aspect_ratio == 'square' %}
+           {% set ratio_style = "aspect-ratio: 1 / 1;" %}
+        {% endif %}
+
+        <div class="testimonial-column gap-40 {% if loop.index is even %}reverse-layout{% endif %}">
+            
+          {# --- 1. VIDEO BLOCK --- #}
+          <div class="video-container rounded w-full relative" style="{{ ratio_style }}">
+            
+            {% if item.testimonial_video.video_source_type == 'embed' %}
+              
+              {# --- OEMBED LOGIC --- #}
+              {% set embedField = item.testimonial_video.embed_field %}
+              
+              {% if embedField.source_type == "oembed" %}
+                  {% set oembedResponse = embedField.oembed_response %}
+                  
+                  <div class="oembed_container {% if embedField.size_type == 'auto_full_width' %} oembed_container--full-size{% endif %}" id="oembed_container-{{ item.id }}-{{ loop.index }}">
+                    <div class="iframe_wrapper"
+                      data-embed-response-html="{{ oembedResponse.html|escape_attr }}"
+                      data-embed-response-width="{{ oembedResponse.width|escape_attr }}"
+                      data-embed-response-height="{{ oembedResponse.height|escape_attr }}"
+                      data-embed-url="{{ embedField.oembed_url|escape_attr }}"
+                      {% unless embedField.size_type == "auto_full_width" || embedField.size_type == "exact" %}
+                      data-max-height="{% if embedField.size_type == "auto_custom_max" %}{{ embedField.max_height|escape_attr }}{% endif %}"
+                      data-max-width="{% if embedField.size_type == "auto_custom_max" %}{{ embedField.max_width|escape_attr }}{% endif %}"
+                      {% endunless %}
+                      {% if embedField.size_type == "exact" %}
+                      data-height="{{ embedField.height|escape_attr }}"
+                      data-width="{{ embedField.width|escape_attr }}"
+                      {% endif %}
+                      >
+                    </div>
+                  </div>
+
+              {% else %}
+                  {# Fallback for standard Embed code if Oembed fails or old data exists #}
+                  <div class="embed_container">
+                    <div class="iframe_wrapper">
+                      {{ embedField.embed_html }}
+                    </div>
+                  </div>
+              {% endif %}
+
+            {% else %}
+               
+               {# --- HUBSPOT VIDEO --- #}
+               {% if item.testimonial_video.video_file_media.player_id %}
+                 {% set video_data = {'background_video_file': item.testimonial_video.video_file_media} %}
+                 {{ render_background_video(video_data) }}
+               {% endif %}
+            
+            {% endif %}
+          </div>
+
+          {# --- 2. TEXT CARD BLOCK --- #}
+          <div class="testimonial-card-bg rounded p-30 flex flex-col gap-20">
+            <div class="flex flex-center justify-start gap-20">
+              {% if item.author_image.src %}
+                <img src="{{ item.author_image.src }}" alt="{{ item.author_image.alt }}" class="author-avatar" loading="lazy">
+              {% endif %}
+              <div class="author-info rich-text-anim-wrapper"
+              {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+              {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}
+              >
+                {{ item.author_info }}
+              </div>
+            </div>
+            <div class="testimonial-text rich-text-anim-wrapper"
+          {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+          {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}
+            >
+              {{ item.testimonial_text }}
+            </div>
+          </div>
+
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+{# --- OEMBED LOADER SCRIPT --- #}
+{% require_js position="footer" %}
+<script>
+(function() {
+  function loadEmbedField(oembedContainer) {
+    const iframeWrapper = oembedContainer.querySelector('.iframe_wrapper');
+    if (!iframeWrapper) return;
+    
+    const url = iframeWrapper.dataset.embedUrl;
+    if (!url) return;
+
+    function setIframe(data) {
+      let { maxHeight, maxWidth, height, width } = iframeWrapper.dataset;
+      
+      // Note: We ignore height/width here to allow CSS aspect-ratio to control sizing
+      // But we still set max values if present in data attributes
+      
+      const el = document.createElement('div');
+      el.innerHTML = data.html;
+      const iframe = el.firstChild;
+      iframeWrapper.appendChild(iframe);
+      
+      // Ensure iframe fills wrapper
+      iframe.style.width = "100%";
+      iframe.style.height = "100%";
+    }
+
+    const embedResponse = {
+      html: iframeWrapper.dataset.embedResponseHtml,
+      width: iframeWrapper.dataset.embedResponseWidth,
+      height: iframeWrapper.dataset.embedResponseHeight
+    };
+
+    if (embedResponse.html) {
+      setIframe(embedResponse);
+      return;
+    }
+
+    const request = new XMLHttpRequest();
+    const requestUrl = "/_hcms/oembed?url=" + encodeURIComponent(url) + "&autoplay=0";
+    request.open('GET', requestUrl, true);
+    request.onload = function() {
+      if (request.status >= 200 && request.status < 400) {
+        const data = JSON.parse(request.responseText);
+        setIframe(data);
+      } else {
+        console.error('Server reached, error retrieving results.');
+      }
+    };
+    request.onerror = function() {
+      console.error('Could not reach the server.');
+    };
+    request.send();
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var oEmbedContainers = document.getElementsByClassName('oembed_container');
+    Array.prototype.forEach.call(oEmbedContainers, loadEmbedField)
+  });
+})();
+</script>
+{% end_require_js %}

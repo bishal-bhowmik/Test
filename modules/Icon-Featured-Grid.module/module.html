@@ -1,0 +1,239 @@
+{% import '../../macros/button-macros.html' as button_macros %}
+{% import '../../macros/global-macros.html' as global_macros %} 
+{{ global_macros.module_css(module, name) }}
+{% set anim = module.style.animation %}
+
+
+
+<section class="section bg-secondary {% if anim.enable_section_animation %}reveal-card{% endif %}" id="{{name}}">
+  <div class="container ">
+   
+    <div class="section-title pb-40 rich-text-anim-wrapper"
+      {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}
+
+    >
+     {{ module.content.section_title }}
+    </div>
+    
+    <div class="bottom-container">
+      <div class="content-column">
+        <div class="services-list gap-40">
+          {% for item in module.features %}
+          <div class="service-item">
+            <div class="service-icon-wrapper  mb-20 bg-brand-primary rounded-full">
+              {% if item.icon.icon_type == "hubspot_icon"%} 
+                {% icon name="{{ item.icon.hubspot_icon.name }}" style="{{ item.icon.hubspot_icon.type }}" unicode="{{ item.icon.hubspot_icon.unicode }}" icon_set="{{ item.icon.hubspot_icon.icon_set }}" %} 
+              {% elif item.icon.icon_type == "custom_svg"%} 
+                {{ item.icon.custom_svg }} 
+              {% elif item.icon.icon_type == "image" %} 
+                {% if item.icon.image_icon.src %}
+                  <img src="{{ item.icon.image_icon.src|escape_url }}" alt="{{ item.icon.image_icon.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }} />
+                {% endif %} 
+              {% endif %}
+            </div>
+            <div class="service-content rich-text-anim-wrapper"
+              {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}
+
+            >{{item.feature_details}}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+{% if module.media_section.enable %}
+	 <div class="profile-column">
+        <div class="image-card">
+          <img
+            class="profile-image"
+            src="{{ module.media_section.background_image.src|escape_url }}"
+            alt="{{ module.media_section.background_image.alt|escape_attr }}"
+            {{ loadingAttr }}
+            {{ sizeAttrs }}
+          />
+        </div>
+      </div>
+{% endif %}
+     
+    </div>
+  </div>
+</section>
+
+{% require_css %}
+<style>
+  {% scope_css %}
+
+  .section{
+   position: relative;
+    overflow: hidden;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .section-title h2 {
+    text-transform: uppercase;
+     {% if !module.media_section.enable %}
+	  text-align:center;
+{% endif %}
+  }
+
+  .bottom-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .content-column {
+    flex: 2;
+  }
+
+  .profile-column {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+ 
+  .services-list {
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr);
+   
+  }
+
+  .service-item {
+    display: flex;
+    flex-direction: column; 
+    {% if !module.media_section.enable %}
+	  flex-direction: row; 
+    gap:20px;
+{% endif %}
+    position: relative;
+  }
+
+ 
+  .service-icon-wrapper {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    {% for item in module.features %}
+      background: {{item.icon.icon_background.css}};
+    {% endfor %}
+  }
+
+  .service-icon-wrapper svg,
+  .service-icon-wrapper img {
+    width: 30px;
+    
+    object-fit: contain;
+  }
+
+  
+  .service-content {
+    flex-grow: 1;
+  }
+.service-content h5{
+margin-bottom:10px;
+}
+  .service-content h5, .section-title h2 {  
+    color:var(--color-text-tertiary);
+  }
+
+  .service-content p {
+  color:var(--color-text-tertiary);
+  }
+
+  .service-content p strong{
+  color:var(--color-text-primary);
+  }
+  .image-card {
+   position: absolute;
+    right: 0;
+    bottom: 0; 
+    width: 600px;
+    z-index: 1;
+  }
+
+  .profile-image {
+   width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  @media (max-width: 992px) {
+  .service-icon-wrapper {
+    width: 36px;
+    height: 36px;  
+    }
+  .service-icon-wrapper svg,
+  .service-icon-wrapper img {
+    width: 20px;
+  }
+  .section {
+    {% if module.media_section.enable %}
+	  padding-bottom: 0 !important;
+{% endif %}
+  }
+
+  .container {
+   
+    {% if module.media_section.enable %}
+	  padding-bottom: 0 !important;
+{% endif %} 
+    flex-direction: column;
+    align-items: center; 
+    
+     {% if !module.media_section.enable %}
+	   text-align: left; 
+{% endif %}  
+  }
+
+  .bottom-container {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .services-list {
+    grid-template-columns: 1fr; 
+   
+  }
+
+  .service-item {
+    align-items: center; 
+     {% if !module.media_section.enable %}
+	   align-items: start;
+     gap:16px;
+{% endif %}
+  }
+
+
+  .image-card {
+    position: relative; 
+    width: 100%;        
+    right: auto;
+    bottom: 0;
+    margin-top: 0;
+  
+  }
+
+  .profile-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  .section-title{
+  text-align:center;
+  }
+}
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}

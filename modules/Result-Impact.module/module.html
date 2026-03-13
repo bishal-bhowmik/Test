@@ -1,0 +1,356 @@
+{% import '../../macros/button-macros.html' as button_macros %}
+  {% import '../../macros/global-macros.html' as global_macros %} 
+  {{ global_macros.module_css(module, name) }}
+{% set anim = module.style.animation %}
+<section class="section  bg-secondary"  id="{{name}}">
+<div class="container {% if anim.enable_section_animation %}reveal-card{% endif %} ">
+<div class="section-label text-tertiary pb-40 rich-text-anim-wrapper"{% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>{{ module.content.section_title }}</div>
+
+<div class="media-card rounded-half">
+{# 1. IMAGE TYPE #}
+{% if module.media_section.media_type == "image" %}
+<div class="image-wrapper">
+{% if module.media_section.background_image.src %}
+<img
+  src="{{ module.media_section.background_image.src|escape_url }}"
+  alt="{{ module.media_section.background_image.alt|escape_attr }}"
+  loading="lazy"
+  class="media-cover"
+/>
+{% endif %}
+</div>
+
+{# 2. VIDEO TYPE #}
+{% elif module.media_section.media_type == "video" %}
+<div class="video-wrapper {% if anim.enable_section_animation %}reveal-left{% endif %}">
+{% if module.media_section.video.player_id %} 
+{% video_player "embed_player"
+  player_id={{ module.media_section.video.player_id }} 
+  type={{ module.media_section.video.player_type || 'scriptV4' }} 
+  full_width={{ module.media_section.video.size_type == 'auto_full_width' }},
+  conversion_asset={{ module.media_section.video.conversion_asset|tojson|safe }} 
+  autoplay={{ module.media_section.video.autoplay }} 
+  hidden_controls={{ module.media_section.video.hide_controls }} 
+  loop={{ module.media_section.video.loop_video }} 
+  muted={{ module.media_section.video.mute_by_default }} 
+%} 
+{% endif %}
+</div>
+
+{# 3. EMBED TYPE #}
+{% elif module.media_section.media_type == "embed" %} 
+<div class="embed-wrapper-styled">
+{% if module.media_section.embed_code.source_type == "oembed" %}
+{% set oembedResponse = module.media_section.embed_code.oembed_response  %}
+<div class="oembed_container {% if module.media_section.embed_code.size_type == 'auto_full_width' %} oembed_container--full-size{% endif %}" id="oembed_container-{{name|escape_attr}}">
+  <div class="iframe_wrapper"
+    data-embed-response-html="{{ oembedResponse.html|escape_attr }}"
+    data-embed-response-width="{{ oembedResponse.width|escape_attr }}"
+    data-embed-response-height="{{ oembedResponse.height|escape_attr }}"
+    data-embed-url="{{ module.media_section.embed_code.oembed_url|escape_attr }}"
+    {% unless module.media_section.embed_code.size_type == "auto_full_width" || module.media_section.embed_code.size_type == "exact" %}
+    data-max-height="{% if module.media_section.embed_code.size_type == "auto_custom_max" %}{{ module.media_section.embed_code.max_height|escape_attr }}{% endif %}"
+    data-max-width="{% if module.media_section.embed_code.size_type == "auto_custom_max" %}{{ module.media_section.embed_code.max_width|escape_attr }}{% endif %}"
+    {% endunless %}
+    {% if module.media_section.embed_code.size_type == "exact" %}
+    data-height="{{ module.media_section.embed_code.height|escape_attr }}"
+    data-width="{{ module.media_section.embed_code.width|escape_attr }}"
+    {% endif %}
+    >
+  </div>
+</div>
+
+{% require_css %}
+  <style>
+    .oembed_container { display: inline-block; height: 100%; position: relative; width: 100%; }
+    .oembed_container .iframe_wrapper > * { height: 100%; left: 0; margin: 0 auto; position: absolute; right: 0; top: 0; width: 100%; }
+    .iframe_wrapper { height: 0; padding-bottom: 56.25%; padding-top: 25px; position: relative; }
+  </style>
+{% end_require_css %}
+
+{# Embed Script (kept inline as requested) #}
+{% require_js %}
+  <script>
+    function loadEmbedField(oembedContainer) {
+      const iframeWrapper = oembedContainer.querySelector('.iframe_wrapper');
+      if (!iframeWrapper) return;
+      const url = iframeWrapper.dataset.embedUrl;
+      if (!url) return;
+
+      function setIframe(data) {
+        let { maxHeight, maxWidth, height, width } = iframeWrapper.dataset;
+        maxHeight = maxHeight !== undefined && !maxHeight ? data.height : maxHeight;
+        maxWidth = maxWidth !== undefined && !maxWidth ? data.width : maxWidth;
+        height = height !== undefined && !height ? data.height : height;
+        width = width !== undefined && !width ? data.width : width;
+        const el = document.createElement('div');
+        el.innerHTML = data.html;
+        const iframe = el.firstChild;
+        iframeWrapper.appendChild(iframe);
+        if (maxHeight) { const val = maxHeight.toString(10) + "px"; oembedContainer.style.maxHeight = val; iframe.style.maxHeight = val; }
+        if (maxWidth) { const val = maxWidth.toString(10) + "px"; oembedContainer.style.maxWidth = val; iframe.style.maxWidth = val; }
+        if (height) { const val = height.toString(10) + "px"; oembedContainer.style.height = val; iframe.style.height = val; }
+        if (width) { const val = width.toString(10) + "px"; oembedContainer.style.width = val; iframe.style.width = val; }
+      }
+
+      const embedResponse = {
+        html: iframeWrapper.dataset.embedResponseHtml,
+        width: iframeWrapper.dataset.embedResponseWidth,
+        height: iframeWrapper.dataset.embedResponseHeight
+      };
+
+      if (embedResponse.html) { setIframe(embedResponse); return; }
+
+      const request = new XMLHttpRequest();
+      const requestUrl = "/_hcms/oembed?url=" + encodeURIComponent(url) + "&autoplay=0";
+      request.open('GET', requestUrl, true);
+      request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+          const data = JSON.parse(request.responseText);
+          setIframe(data);
+        } else { console.error('Server reached, error retrieving results.'); }
+      };
+      request.onerror = function() { console.error('Could not reach the server.'); };
+      request.send();
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      var oEmbedContainers = document.getElementsByClassName('oembed_container');
+      Array.prototype.forEach.call(oEmbedContainers, loadEmbedField)
+    });
+  </script>
+{% end_require_js %}
+
+{% else %}
+<div id="embed_container" class="embed_container">
+  <div class="iframe_wrapper">{{ module.media_section.embed_code.embed_html }}</div>
+</div>
+{% require_css %}
+  <style>
+    .iframe_wrapper { height: 0; padding-bottom: 56.25%; padding-top: 25px; position: relative; }
+    .embed_container { display: inline-block; height: 100%; position: relative; width: 100%; }
+    .embed_container iframe { left: 0; max-height: 100%; max-width: 100%; position: absolute; right: 0; top: 0; }
+  </style>
+{% end_require_css %}
+{% endif %}
+</div>
+{% endif %}
+</div>
+
+{# 4. COUNTER STATS LOOP #}
+<div class="stats-row pt-40 {% if anim.enable_section_animation %}reveal-right{% endif %}">
+{% for item in module.counter_stats.counter_items %}
+<div class="stat-item ">
+<div class="stat-icon-wrapper">
+{% if item.icon_type == 'hubspot_icon' %} 
+  {% icon name="{{ item.hubspot_icon.name }}" style="{{ item.hubspot_icon.type }}" unicode="{{ item.hubspot_icon.unicode }}" icon_set="{{ item.hubspot_icon.icon_set }}" %} 
+{% elif item.icon_type == 'custom_svg' %} 
+  {{ item.custom_svg }} 
+{% elif item.icon_type == 'image' %}
+  <img src="{{ item.image_icon.src }}" alt="{{ item.image_icon.alt }}" width="40" height="40" />
+{% endif %}
+</div>
+<div class="stat-details">
+{# Added 'js-counter-number' class here for targeting #}
+<div class="stat-number text-tertiary js-counter-number">{{ item.feature_title }}</div>
+<div class="stat-label text-tertiary">{{ item.feature_description }}</div>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+</section>
+
+{# --- STYLES --- #}
+{% require_css %}
+<style>
+{% scope_css %}
+
+.container {
+
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+}
+
+.section-label {
+text-align: center;
+text-transform: uppercase;
+}
+.section-label h2{ color:white; }
+
+.media-card {
+position: relative;
+width: 100%;
+overflow: hidden;
+}
+
+.image-wrapper {
+position: relative;
+width: 100%;
+aspect-ratio: 16/9;
+}
+
+.media-cover {
+width: 100%;
+object-fit: cover;
+display: block; 
+}
+
+.video-wrapper, .embed-wrapper-styled {
+width: 100%;
+display: block;
+}
+
+.stats-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* Items wrap korbe 4ta por */
+  justify-content: flex-start;
+  align-items: stretch;
+  width: 100%;
+}
+
+.stat-item {
+  flex: 0 0 25%; /* Fixed 4 items per row */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding: 20px 15px;
+  justify-content:space-between;
+  box-sizing: border-box;
+  border-right: 1px solid var(--color-border-default, #eee);
+  margin-bottom: 40px;
+}
+.stat-item:nth-child(4n), 
+.stat-item:last-child {
+  border-right: none !important;
+}
+.stat-number h2,.stat-number h5, .stat-label p {
+color:var(--color-text-tertiary);
+}
+
+.stat-icon-wrapper {
+margin-bottom: 15px;
+display: flex;
+justify-content: center;
+}
+.stat-icon-wrapper svg{ fill:var(--color-text-tertiary); }
+.stat-icon-wrapper svg, .stat-icon-wrapper img {
+width: 60px;
+height: 60px;
+stroke: currentColor;
+stroke-width: 1.5;
+}
+
+
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+.stats-row {
+flex-wrap: wrap;
+gap: 30px 0;
+}
+.stat-label { padding-bottom: 16px; }
+.stat-item {
+flex: 0 0 100%;
+flex-direction:row;
+margin-bottom: 0px;
+justify-content: flex-start;
+gap:12px;
+text-align:left;
+border-right: none !important;
+border-bottom: var(--border-width-default) solid var(--color-border-default);
+}
+}
+{% end_scope_css %}
+</style>
+{% end_require_css %}
+
+{# --- JAVASCRIPT FOR COUNTER ANIMATION --- #}
+{% require_js %}
+<script>
+(function() {
+
+
+const ANIMATION_DURATION = 2000;
+const easeOutQuad = t => t * (2 - t);
+const animateCounter = (element) => {
+const originalHTML = element.innerHTML;
+const textContent = element.textContent || element.innerText;
+const match = textContent.match(/(\d[\d,\.]*)/);
+
+if (!match) return; 
+
+const numberString = match[0];
+const isFloat = numberString.includes('.');
+const targetValue = parseFloat(numberString.replace(/,/g, ''));
+const startValue = 0;
+
+let startTime = null;
+
+const step = (timestamp) => {
+if (!startTime) startTime = timestamp;
+const progress = timestamp - startTime;
+const percentage = Math.min(progress / ANIMATION_DURATION, 1);
+const ease = easeOutQuad(percentage);
+let currentNumber = startValue + (targetValue - startValue) * ease;
+let formattedNumber;
+if (isFloat) {
+formattedNumber = currentNumber.toFixed(1); // Adjust decimals if needed
+} else {
+formattedNumber = Math.floor(currentNumber).toLocaleString('en-US');
+}
+element.innerHTML = originalHTML.replace(numberString, formattedNumber);
+
+if (progress < ANIMATION_DURATION) {
+window.requestAnimationFrame(step);
+} else {
+element.innerHTML = originalHTML.replace(numberString, numberString); 
+}
+};
+
+window.requestAnimationFrame(step);
+};
+
+
+const observerOptions = {
+root: null,
+rootMargin: '0px',
+threshold: 0.2 
+};
+
+const observerCallback = (entries, observer) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const section = entry.target;
+const counters = section.querySelectorAll('.js-counter-number');
+
+counters.forEach(counter => {
+
+if (!counter.hasAttribute('data-animated')) {
+animateCounter(counter);
+counter.setAttribute('data-animated', 'true');
+}
+});
+
+
+observer.unobserve(section);
+}
+});
+};
+
+const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+
+const sectionId = document.getElementById("{{name}}");
+if (sectionId) {
+observer.observe(sectionId);
+}
+
+})();
+</script>
+{% end_require_js %}
+

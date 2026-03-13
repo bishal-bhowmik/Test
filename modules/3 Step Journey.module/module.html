@@ -1,0 +1,207 @@
+{% import '../../macros/button-macros.html' as button_macros %}
+
+{% import '../../macros/global-macros.html' as global_macros %} 
+{{ global_macros.module_css(module, name) }}
+
+{% set anim = module.style.animation %}
+
+<section class=" section bg-primary-accent-2 {% if anim.enable_section_animation %}reveal-card{% endif %}" id="{{name}}" id="{{name}}">
+  <div class="container ">
+  <div class="title  rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+      {{ module.content.title }}
+    </div>
+  <div class="container-wrapper gap-40">
+   
+  <div class="details-container p-30 rounded {% if anim.enable_section_animation %}reveal-left{% endif %}">
+  <div class="left-container rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+      {{ module.content.section_title }}
+    </div>
+    <div class="left-list">
+     {% if module.qualification_section.list_display  == "on_card" %}
+    {% for item in module.qualification_section.qualification_item %}
+          <div class="fm-list-item gap-20 pb-20">
+            <div class="fm-icon-circle rounded-full">
+              {% if item.icon_type == "hubspot_icon" %} 
+                {% icon name="{{ item.hubspot_icon.name }}" style="{{ item.hubspot_icon.type }}" unicode="{{ item.hubspot_icon.unicode }}" icon_set="{{ item.hubspot_icon.icon_set }}" %} 
+              {% elif item.icon_type == "image" %}
+                <img src="{{ item.image_icon.src|escape_url }}" alt="{{ item.image_icon.alt|escape_attr }}">
+              {% elif item.icon_type == "custom_svg" %} 
+                {{ item.custom_svg }} 
+              {% endif %}
+            </div>
+            <div class="fm-list-text">{{ item.qualification }}</div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    <div class="button-group mt-20">
+      {% for item in module.button.button_repeater %} {{
+      button_macros.render_button(item, theme) }} {% endfor %}
+     </div>
+    
+    </div>
+  </div>
+    
+   <div class="images rounded {% if anim.enable_section_animation %}reveal-right{% endif %}">
+    <div class="image-container ">
+    {% if module.media_section.background_image.src %}
+      <img src="{{ module.media_section.background_image.src|escape_url }}" alt="{{ module.media_section.background_image.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+    {% endif %}
+    </div>
+     {% if module.qualification_section.list_display  == "overlay_image" %}
+    <div class="fm-list-wrapper rounded">
+    <div class="mb-20">{{ module.qualification_section.overlay_title }}</div>
+        {% for item in module.qualification_section.qualification_item %}
+          <div class="fm-list-item gap-20 pb-20">
+            <div class="fm-icon-circle rounded-full">
+              {% if item.icon_type == "hubspot_icon" %} 
+                {% icon name="{{ item.hubspot_icon.name }}" style="{{ item.hubspot_icon.type }}" unicode="{{ item.hubspot_icon.unicode }}" icon_set="{{ item.hubspot_icon.icon_set }}" %} 
+              {% elif item.icon_type == "image" %}
+                <img src="{{ item.image_icon.src|escape_url }}" alt="{{ item.image_icon.alt|escape_attr }}">
+              {% elif item.icon_type == "custom_svg" %} 
+                {{ item.custom_svg }} 
+              {% endif %}
+            </div>
+            <div class="fm-list-text">{{ item.qualification }}</div>
+          </div>
+        {% endfor %}
+      </div>
+       {% endif %}
+   </div>
+    
+  
+  </div>
+  </div>
+</section>
+
+{% require_css %}
+<style>
+  {% scope_css %}
+  /* Layout */
+  .container-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch; 
+    justify-content: center;
+    
+  }
+
+  
+  .details-container {
+    flex: 1;
+    background-color: var(--color-brand-primary);  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 686px; 
+  }
+
+  .left-container h4 ,.left-container p{
+    color: var(--color-text-primary);
+  }
+
+  .title h2{
+  text-transform:uppercase;
+  }
+  .images {
+    flex: 1.8;
+    position: relative; 
+    overflow: hidden;
+    min-height: 686px; 
+  }
+
+  .image-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    min-height: 686px; 
+  
+    object-fit: cover; 
+    display: block;
+  }
+
+  
+  .fm-list-wrapper {
+    position: absolute;
+    bottom:  30px;
+    right:  30px;
+    background: var(--color-bg-primary);
+    padding: clamp(16px, 1.5vw, 30px);
+    z-index: 2;
+    max-width:460px;
+  }
+
+  .fm-list-wrapper h3 {
+    margin: 0 0 25px 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: #000;
+  }
+
+  .fm-list-item {
+    display: flex;
+    align-items: center; 
+   
+  }
+
+  .fm-icon-circle {
+    width: 30px;
+    height: 30px;
+    background-color: var(--color-brand-primary);
+    background-color:{{ module.style.icon_background.css}}; 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+    flex-shrink: 0;
+  }
+
+ 
+  .fm-icon-circle svg, 
+  .fm-icon-circle img {
+    width: 14px;
+    height: 14px;
+  }
+
+  .fm-list-text {
+    font-size: 18px;
+    color: #333;
+    font-weight: 500;
+  }
+
+ 
+  @media (max-width: 768px) {
+  .title h2{
+  text-align:center;
+  }
+    .container-wrapper {
+      flex-direction: column;
+    }
+    .left-container p{
+    padding-bottom:20px;
+     }
+  
+    .details-container {
+      min-height: auto; 
+    }
+    .fm-list-wrapper {
+    max-width:100%;
+    position: absolute;
+    bottom:  30px;
+    right:  0px;
+    left:0;
+    background: var(--color-bg-primary);
+   padding: clamp(16px, 1.5vw, 30px);
+     
+    z-index: 2;
+  }
+  }
+  {% end_scope_css %}
+</style>
+{% end_require_css %}

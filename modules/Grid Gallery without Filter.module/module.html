@@ -1,0 +1,262 @@
+{# --- 1. IMPORT MACRO HERE --- #}
+{% import '../../macros/global-macros.html' as global_macros %} 
+  {{ global_macros.module_css(module, name) }}
+{% set anim = module.style.animation %}
+
+
+{% import '../../macros/button-macros.html' as button_macros %}
+
+{% require_css %}
+<style>
+  {% scope_css %}
+  
+  
+  .top-section{
+    display: flex;
+justify-content: space-between;
+align-items: flex-end;
+flex: 1 0 0;
+align-self: stretch;
+    
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* --- GALLERY GRID SYSTEM --- */
+  .gallery-grid {
+    display: grid;
+    gap: 40px;
+    width: 100%;
+  }
+
+  /* Base Gallery Block */
+  .gallery-block {
+    display: grid;
+    width: 100%;
+    gap: 40px;
+    opacity: 1;
+  }
+
+  /* Animation State */
+  .gallery-block.fade-in {
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .gallery-item {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+
+  /* --- DESKTOP LAYOUTS (Min-width: 768px) --- */
+  @media (min-width: 768px) {
+    .gallery-block {
+      height: 600px;
+      grid-auto-rows: 1fr;
+    }
+
+    /* 2 Images: Both Landscape side by side */
+    .gallery-block.layout-2 {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+    }
+    .gallery-block.layout-2 .gallery-item:nth-child(1) { grid-column: 1; grid-row: 1; }
+    .gallery-block.layout-2 .gallery-item:nth-child(2) { grid-column: 2; grid-row: 1; }
+
+    /* 3 Images: 2 Landscapes left (stacked), 1 Vertical right */
+    .gallery-block.layout-3 {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    .gallery-block.layout-3 .gallery-item:nth-child(1) { grid-column: 1; grid-row: 1; }
+    .gallery-block.layout-3 .gallery-item:nth-child(2) { grid-column: 1; grid-row: 2; }
+    .gallery-block.layout-3 .gallery-item:nth-child(3) { grid-column: 2; grid-row: 1 / 3; }
+
+    /* 4 Images: 2 Landscapes left (stacked), 2 Verticals right */
+    .gallery-block.layout-4 {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    .gallery-block.layout-4 .gallery-item:nth-child(1) { grid-column: 1; grid-row: 1; }
+    .gallery-block.layout-4 .gallery-item:nth-child(2) { grid-column: 1; grid-row: 2; }
+    .gallery-block.layout-4 .gallery-item:nth-child(3) { grid-column: 2; grid-row: 1 / 3; }
+    .gallery-block.layout-4 .gallery-item:nth-child(4) { grid-column: 3; grid-row: 1 / 3; }
+
+    /* 5 Images: 2 Landscapes left, 1 Vertical center, 2 Squares right */
+    .gallery-block.layout-5 {
+      grid-template-columns: 2fr 1.5fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    .gallery-block.layout-5 .gallery-item:nth-child(1) { grid-column: 1; grid-row: 1; }
+    .gallery-block.layout-5 .gallery-item:nth-child(2) { grid-column: 1; grid-row: 2; }
+    .gallery-block.layout-5 .gallery-item:nth-child(3) { grid-column: 2; grid-row: 1 / 3; }
+    .gallery-block.layout-5 .gallery-item:nth-child(4) { grid-column: 3; grid-row: 1; }
+    .gallery-block.layout-5 .gallery-item:nth-child(5) { grid-column: 3; grid-row: 2; }
+
+    /* 6 Images: Large landscape left-top, 2 small left-bottom, tall center, 2 small right */
+    .gallery-block.layout-6 {
+      grid-template-columns: 1fr 1fr 1.5fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    .gallery-block.layout-6 .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1; }
+    .gallery-block.layout-6 .gallery-item:nth-child(2) { grid-column: 1; grid-row: 2; }
+    .gallery-block.layout-6 .gallery-item:nth-child(3) { grid-column: 2; grid-row: 2; }
+    .gallery-block.layout-6 .gallery-item:nth-child(4) { grid-column: 3; grid-row: 1 / 3; }
+    .gallery-block.layout-6 .gallery-item:nth-child(5) { grid-column: 4; grid-row: 1; }
+    .gallery-block.layout-6 .gallery-item:nth-child(6) { grid-column: 4; grid-row: 2; }
+
+    /* 7 Images Desktop (Uneven Grid) */
+    .gallery-block.layout-7 {
+      grid-template-columns: 1fr 1.25fr 1.25fr 1fr; 
+      grid-template-rows: repeat(12, 1fr); 
+    }
+    .gallery-block.layout-7 .gallery-item:nth-child(1) { grid-column: 1; grid-row: 1 / 7; }
+    .gallery-block.layout-7 .gallery-item:nth-child(2) { grid-column: 1; grid-row: 7 / 13; }
+    .gallery-block.layout-7 .gallery-item:nth-child(3) { grid-column: 2 / 4; grid-row: 1 / 9; } 
+    .gallery-block.layout-7 .gallery-item:nth-child(4) { grid-column: 2; grid-row: 9 / 13; }
+    .gallery-block.layout-7 .gallery-item:nth-child(5) { grid-column: 3; grid-row: 9 / 13; }
+    .gallery-block.layout-7 .gallery-item:nth-child(6) { grid-column: 4; grid-row: 1 / 7; }
+    .gallery-block.layout-7 .gallery-item:nth-child(7) { grid-column: 4; grid-row: 7 / 13; }
+  }
+
+  /* --- MEDIUM SCREENS (900px - 1100px) --- */
+  @media (min-width: 768px) and (max-width: 1100px) {
+    .gallery-block { height: 450px; }
+  }
+
+  /* --- SMALLER MEDIUM SCREENS (768px - 900px) --- */
+  @media (min-width: 768px) and (max-width: 900px) {
+    .gallery-block { height: 350px; }
+  }
+
+  /* --- MOBILE LAYOUT (Max-width: 767px) --- */
+  @media (max-width: 767px) {
+    .gallery-grid {
+      gap: 20px;
+    }
+
+    .button-container{
+        width: auto;
+    align-self: normal;
+    }
+    
+      .top-section{
+     flex-direction: column;   
+    }
+
+    /* Standard Mobile Grid for ALL Layouts */
+    .gallery-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* 2 Columns */
+      gap: 16px;
+      height: auto !important;
+      min-height: auto !important;
+      grid-auto-flow: dense;
+    }
+
+    .gallery-item {
+      width: 100%;
+      height: 200px; /* Default Square Height */
+    }
+
+    /* 1. First Item: Full Width Landscape */
+    .gallery-block .gallery-item:nth-child(1) {
+      grid-column: 1 / -1; /* Span all columns */
+      height: 250px;
+    }
+
+    /* 2 & 3: Natural Flow (1 col each) - No specific CSS needed */
+
+    /* 4. Fourth Item: Full Width Portrait */
+    .gallery-block .gallery-item:nth-child(4) {
+      grid-column: 1 / -1;
+      height: 450px;
+    }
+
+    /* 5 & 6: Natural Flow (1 col each) - No specific CSS needed */
+
+    /* 7. Seventh Item: Single Square (Full Width) */
+    .gallery-block .gallery-item:nth-child(7) {
+      grid-column: 1 / -1;
+      height: 250px;
+    }
+  }
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+
+<section class="section" id="{{name}}">
+  <div class="container {% if anim.enable_section_animation %}reveal-card{% endif %}">
+    
+    <div class="top-section mb-40 gap-40">
+      <div class="section-title rich-text-anim-wrapper"
+       {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}
+      >
+      {{ module.section_title }}
+    </div>
+
+    <div class="button-container">
+ {% for item in module.button_repeater %} 
+            {{ button_macros.render_button(item, theme) }} 
+            {% endfor %}
+    </div>
+      
+
+    </div>
+    
+
+    {# --- GALLERY --- #}
+    <div class="gallery-grid" id="galleryGrid2">
+      {% for category in module.filter_categories %}
+        {% for block in category.gallery_blocks %}
+          {# Calculate layout class based on number of images (support up to 7) #}
+          {% set image_count = block.image_items|length %}
+          {% if image_count > 7 %}
+            {% set image_count = 7 %}
+          {% endif %}
+          
+          <div class="gallery-block layout-{{ image_count }}">
+            
+            {% for item in block.image_items %}
+              {% if loop.index0 < 7 %}
+                <div class="gallery-item">
+                  {% if item.image.src %}
+                    <img src="{{ item.image.src }}" 
+                         alt="{{ item.image.alt }}" 
+                         loading="lazy"
+                         style="object-position: {{ item.image_alignment|default('top') }};"
+                         >
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endfor %}
+
+          </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+
+  </div>
+</section>

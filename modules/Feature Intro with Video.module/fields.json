@@ -1,0 +1,1168 @@
+[ {
+  "id" : "0cd3040a-4d91-5ed2-c706-ac2d0da6573d",
+  "name" : "style",
+  "label" : "Style",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "c10dc48f-a88e-631a-7390-34e2788bfd4d",
+    "name" : "background",
+    "label" : "Background",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "a1e4aedf-699e-000e-b926-1c46f8d1b699",
+      "name" : "backgroud_type",
+      "label" : "Backgroud Type",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "gradient", "Gradient" ], [ "solid_color", "Solid Color" ], [ "image", "Image" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "display_width" : null,
+      "type" : "choice",
+      "default" : "solid_color"
+    }, {
+      "id" : "d6273473-9b64-16b7-066c-852a1a95bfa8",
+      "name" : "gradient_field",
+      "label" : "Gradient",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.background.backgroud_type",
+        "controlling_value_regex" : "gradient",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display_width" : null,
+      "type" : "gradient",
+      "default" : {
+        "side_or_corner" : {
+          "horizontalSide" : "RIGHT",
+          "verticalSide" : null
+        },
+        "colors" : [ {
+          "color" : {
+            "r" : 25,
+            "g" : 35,
+            "b" : 23,
+            "a" : 1
+          }
+        }, {
+          "color" : {
+            "r" : 218,
+            "g" : 252,
+            "b" : 0,
+            "a" : 1
+          }
+        } ]
+      }
+    }, {
+      "id" : "78488ae4-7895-cbdc-5107-b1b2f7571ba6",
+      "name" : "solid_color",
+      "label" : "Solid Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.background.backgroud_type",
+        "controlling_value_regex" : "solid_color",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display_width" : null,
+      "type" : "color",
+      "default" : {
+        "color" : "#E7EBEE",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "28991f7c-1ac3-aa0b-1cb3-88a4e5e50ef5",
+      "name" : "background_image_position",
+      "label" : "Background Image Position",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.background.backgroud_type",
+        "controlling_value_regex" : "image",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "top", "Top" ], [ "center", "Center" ], [ "bottom", "Bottom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "display_width" : null,
+      "type" : "choice",
+      "default" : "center"
+    }, {
+      "id" : "ae5363d9-527d-927f-2b83-27278f852fbf",
+      "name" : "background_image",
+      "label" : "Background Image",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.background.backgroud_type",
+        "controlling_value_regex" : "image",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "responsive" : true,
+      "resizable" : true,
+      "show_loading" : false,
+      "display_width" : null,
+      "type" : "image",
+      "default" : {
+        "size_type" : "auto_custom_max",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Main%20Content.png",
+        "alt" : "Main Content",
+        "loading" : "lazy",
+        "width" : 1440,
+        "height" : 900,
+        "max_width" : 1440,
+        "max_height" : 900
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "display_width" : null,
+    "type" : "group",
+    "default" : {
+      "backgroud_type" : "solid_color",
+      "gradient_field" : {
+        "side_or_corner" : {
+          "horizontalSide" : "RIGHT",
+          "verticalSide" : null
+        },
+        "colors" : [ {
+          "color" : {
+            "r" : 25,
+            "g" : 35,
+            "b" : 23,
+            "a" : 1
+          }
+        }, {
+          "color" : {
+            "r" : 218,
+            "g" : 252,
+            "b" : 0,
+            "a" : 1
+          }
+        } ]
+      },
+      "solid_color" : {
+        "color" : "#E7EBEE",
+        "opacity" : 100
+      },
+      "background_image_position" : "center",
+      "background_image" : {
+        "size_type" : "auto_custom_max",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Main%20Content.png",
+        "alt" : "Main Content",
+        "loading" : "lazy",
+        "width" : 1440,
+        "height" : 900,
+        "max_width" : 1440,
+        "max_height" : 900
+      }
+    }
+  }, {
+    "id" : "style.animation",
+    "name" : "animation",
+    "label" : "Animation",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "style.animation.enable_heading_animation",
+      "name" : "enable_heading_animation",
+      "label" : "Enable Heading Animation",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "display_width" : null,
+      "type" : "boolean",
+      "default" : false
+    }, {
+      "id" : "style.animation.enable_body_text_animation",
+      "name" : "enable_body_text_animation",
+      "label" : "Enable Body Text Animation",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "display_width" : null,
+      "type" : "boolean",
+      "default" : false
+    }, {
+      "id" : "style.animation.enable_section_animation",
+      "name" : "enable_section_animation",
+      "label" : "Enable Section Animation",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "display_width" : null,
+      "type" : "boolean",
+      "default" : false
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "display_width" : null,
+    "type" : "group",
+    "default" : {
+      "enable_heading_animation" : false,
+      "enable_body_text_animation" : false,
+      "enable_section_animation" : false
+    }
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "display_width" : null,
+  "type" : "group",
+  "default" : {
+    "background" : {
+      "backgroud_type" : "solid_color",
+      "gradient_field" : {
+        "side_or_corner" : {
+          "horizontalSide" : "RIGHT",
+          "verticalSide" : null
+        },
+        "colors" : [ {
+          "color" : {
+            "r" : 25,
+            "g" : 35,
+            "b" : 23,
+            "a" : 1
+          }
+        }, {
+          "color" : {
+            "r" : 218,
+            "g" : 252,
+            "b" : 0,
+            "a" : 1
+          }
+        } ]
+      },
+      "solid_color" : {
+        "color" : "#E7EBEE",
+        "opacity" : 100
+      },
+      "background_image_position" : "center",
+      "background_image" : {
+        "size_type" : "auto_custom_max",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Main%20Content.png",
+        "alt" : "Main Content",
+        "loading" : "lazy",
+        "width" : 1440,
+        "height" : 900,
+        "max_width" : 1440,
+        "max_height" : 900
+      }
+    },
+    "animation" : {
+      "enable_heading_animation" : false,
+      "enable_body_text_animation" : false,
+      "enable_section_animation" : false
+    }
+  }
+}, {
+  "id" : "7a49db47-c67e-9d63-8ac4-4aa82dcef7e2",
+  "name" : "content",
+  "label" : "Content",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "f8f81e33-b2dd-6f79-7915-a53b82490edd",
+    "name" : "richtext_field",
+    "label" : "Rich text",
+    "required" : false,
+    "locked" : false,
+    "display_width" : null,
+    "type" : "richtext",
+    "default" : "<h5>LOOKING FOR</h5>\n<h2>coaches?</h2>\n<p>Are you searching for the perfect gym coaches to help you achieve your fitness goals? Look no further! Our experienced trainers are here to guide you through personalized workout plans, nutrition advice, and motivation to keep you on track.</p>"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "display_width" : null,
+  "type" : "group",
+  "default" : {
+    "richtext_field" : "<h5>LOOKING FOR</h5>\n<h2>coaches?</h2>\n<p>Are you searching for the perfect gym coaches to help you achieve your fitness goals? Look no further! Our experienced trainers are here to guide you through personalized workout plans, nutrition advice, and motivation to keep you on track.</p>"
+  }
+}, {
+  "id" : "5c45520f-4c54-186c-6156-8b3980a19882",
+  "name" : "media_section",
+  "label" : "Media Section",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "1dfc820c-72f0-9599-1a7c-f474e5dba4f9",
+    "name" : "select_media",
+    "label" : "Select Media",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : 2,
+      "sorting_label_field" : null,
+      "default" : 2
+    },
+    "children" : [ {
+      "id" : "eedb7ca2-0239-70e0-37d1-d8fe6bad0d54",
+      "name" : "media_type",
+      "label" : "Media Type",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "image", "Image" ], [ "video", "Video" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "display_width" : null,
+      "type" : "choice",
+      "default" : "image"
+    }, {
+      "id" : "e5559396-9d7a-37ab-435e-fc6c136a80bf",
+      "name" : "image_field",
+      "label" : "Image",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "media_section.select_media.media_type",
+        "controlling_value_regex" : "image",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "responsive" : true,
+      "resizable" : true,
+      "show_loading" : false,
+      "display_width" : null,
+      "type" : "image",
+      "default" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Container-Jan-20-2026-09-20-51-1893-AM.svg",
+        "alt" : "Container-Jan-20-2026-09-20-51-1893-AM",
+        "loading" : "lazy",
+        "width" : 290,
+        "height" : 413,
+        "max_width" : 290,
+        "max_height" : 413
+      }
+    }, {
+      "picker" : "video",
+      "id" : "8f23282f-8936-f3da-fa12-bff53d29454d",
+      "name" : "video_file",
+      "label" : "Video",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "media_section.select_media.media_type",
+        "controlling_value_regex" : "video",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display_width" : null,
+      "type" : "file",
+      "default" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Sequence%2001_4.mp4"
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "display_width" : null,
+    "type" : "group",
+    "default" : [ {
+      "media_type" : "image",
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Container-Jan-20-2026-09-20-51-1893-AM.svg",
+        "alt" : "Container-Jan-20-2026-09-20-51-1893-AM",
+        "loading" : "lazy",
+        "width" : 290,
+        "height" : 413,
+        "max_width" : 290,
+        "max_height" : 413
+      },
+      "video_file" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Sequence%2001_4.mp4"
+    }, {
+      "media_type" : "image",
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Container-Jan-20-2026-09-20-51-1893-AM.svg",
+        "alt" : "Container-Jan-20-2026-09-20-51-1893-AM",
+        "loading" : "lazy",
+        "width" : 290,
+        "height" : 413,
+        "max_width" : 290,
+        "max_height" : 413
+      },
+      "video_file" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Sequence%2001_4.mp4"
+    } ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "display_width" : null,
+  "type" : "group",
+  "default" : {
+    "select_media" : [ {
+      "media_type" : "image",
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Container-Jan-20-2026-09-20-51-1893-AM.svg",
+        "alt" : "Container-Jan-20-2026-09-20-51-1893-AM",
+        "loading" : "lazy",
+        "width" : 290,
+        "height" : 413,
+        "max_width" : 290,
+        "max_height" : 413
+      },
+      "video_file" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Sequence%2001_4.mp4"
+    }, {
+      "media_type" : "image",
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Container-Jan-20-2026-09-20-51-1893-AM.svg",
+        "alt" : "Container-Jan-20-2026-09-20-51-1893-AM",
+        "loading" : "lazy",
+        "width" : 290,
+        "height" : 413,
+        "max_width" : 290,
+        "max_height" : 413
+      },
+      "video_file" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Sequence%2001_4.mp4"
+    } ]
+  }
+}, {
+  "id" : "e1f81ee4-8cc7-3067-f6c0-29d2e68ad4c5",
+  "name" : "button_enable",
+  "label" : "Enable",
+  "required" : false,
+  "locked" : false,
+  "display" : "toggle",
+  "display_width" : null,
+  "type" : "boolean",
+  "default" : true
+}, {
+  "id" : "button_repeater",
+  "name" : "button_repeater",
+  "label" : "Button List",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : 5,
+    "sorting_label_field" : null,
+    "default" : 1
+  },
+  "children" : [ {
+    "id" : "button_repeater.button_text",
+    "name" : "button_text",
+    "label" : "Button Label",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_repeater.keep_only_icon",
+      "controlling_value_regex" : "false",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "display_width" : null,
+    "type" : "text",
+    "default" : "Get Started"
+  }, {
+    "id" : "button_repeater.link",
+    "name" : "link",
+    "label" : "Button Link",
+    "required" : false,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG" ],
+    "show_advanced_rel_options" : false,
+    "display_width" : null,
+    "type" : "link",
+    "default" : {
+      "url" : {
+        "type" : "EXTERNAL",
+        "href" : "https://www.google.com"
+      }
+    }
+  }, {
+    "id" : "button_repeater.button_type",
+    "name" : "button_type",
+    "label" : "Button Variant",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_repeater.keep_only_icon",
+      "controlling_value_regex" : "false",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "primary", "Primary Button" ], [ "secondary", "Secondary Button" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "display_width" : null,
+    "type" : "choice",
+    "default" : "primary"
+  }, {
+    "id" : "button_repeater.turn_on_button_icon",
+    "name" : "turn_on_button_icon",
+    "label" : "Turn on Button Icon",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "display_width" : null,
+    "type" : "boolean",
+    "default" : false
+  }, {
+    "id" : "button_repeater.button_icon_type",
+    "name" : "button_icon_type",
+    "label" : "Button Icon Type",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_repeater.turn_on_button_icon",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "svg", "SVG Icon" ], [ "custom", "Custom Icon" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "display_width" : null,
+    "type" : "choice",
+    "default" : "svg"
+  }, {
+    "id" : "button_repeater.svg_icon",
+    "name" : "svg_icon",
+    "label" : "SVG Icon",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.turn_on_button_icon",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.button_icon_type",
+        "controlling_value_regex" : "svg",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "allow_new_line" : false,
+    "display_width" : null,
+    "type" : "text",
+    "default" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\">  <path d=\"M13.4804 19.9083C13.4956 19.9235 13.9597 20.0399 14.5117 20.1668C15.0639 20.2937 15.5216 20.3781 15.5289 20.3545C15.5362 20.3309 15.5933 19.9477 15.6558 19.5029C15.7813 18.6098 16.0851 17.567 16.4097 16.9148C17.4217 14.8823 19.2372 13.5364 21.4393 13.1866L22 13.0975L22 12.1997L22 11.3017L21.4918 11.2164C18.162 10.6578 15.9912 8.16812 15.5851 4.44229C15.5586 4.199 15.5269 4 15.5147 4C15.4024 4 13.5416 4.44845 13.5064 4.48397C13.481 4.50966 13.4999 4.73774 13.5486 4.99073C14.087 7.79214 15.6287 10.0717 17.6294 11.0249L18.1094 11.2535L8.24046 11.2714L2 11.2828L2 13.1L8.25651 13.1113L18.1021 13.1293L17.4963 13.4363C15.9244 14.2326 14.68 15.7947 13.9472 17.8914C13.7383 18.4888 13.4232 19.8506 13.4804 19.9083Z\" fill=\"#101000\"/></svg>"
+  }, {
+    "id" : "button_repeater.custom_icon",
+    "name" : "custom_icon",
+    "label" : "Custom Icon",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.turn_on_button_icon",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.button_icon_type",
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "icon_set" : "fontawesome-5.0.10",
+    "display_width" : null,
+    "type" : "icon",
+    "default" : {
+      "name" : "Alternate Long Arrow Right",
+      "unicode" : "f30b",
+      "type" : "SOLID"
+    }
+  }, {
+    "id" : "button_repeater.keep_only_icon",
+    "name" : "keep_only_icon",
+    "label" : "Keep Only Icon",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_repeater.turn_on_button_icon",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "display_width" : null,
+    "type" : "boolean",
+    "default" : false
+  }, {
+    "id" : "button_repeater.override_styles",
+    "name" : "override_styles",
+    "label" : "Override Styles",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "display_width" : null,
+    "type" : "boolean",
+    "default" : false
+  }, {
+    "id" : "button_repeater.hide_show_color_settings",
+    "name" : "hide_show_color_settings",
+    "label" : "Show/Hide Color Settings",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_repeater.override_styles",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "display_width" : null,
+    "type" : "boolean",
+    "default" : false
+  }, {
+    "id" : "button_repeater.custom_text_color",
+    "name" : "custom_text_color",
+    "label" : "Text Color",
+    "help_text" : "Leave empty to use theme default",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.hide_show_color_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "display_width" : null,
+    "type" : "color",
+    "default" : {
+      "color" : null,
+      "opacity" : null,
+      "rgba" : null,
+      "rgb" : null,
+      "hex" : null
+    }
+  }, {
+    "id" : "button_repeater.custom_bg_color",
+    "name" : "custom_bg_color",
+    "label" : "Background Color",
+    "help_text" : "Leave empty to use theme default",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.hide_show_color_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "display_width" : null,
+    "type" : "color",
+    "default" : {
+      "color" : null,
+      "opacity" : null,
+      "rgba" : null,
+      "rgb" : null,
+      "hex" : null
+    }
+  }, {
+    "id" : "button_repeater.hide_show_hover_settings",
+    "name" : "hide_show_hover_settings",
+    "label" : "Show/Hide Hover Settings",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_repeater.override_styles",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "display_width" : null,
+    "type" : "boolean",
+    "default" : false
+  }, {
+    "id" : "button_repeater.hover_bg_color",
+    "name" : "hover_bg_color",
+    "label" : "Hover Background Color",
+    "help_text" : "Leave empty to use theme default",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.hide_show_hover_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "display_width" : null,
+    "type" : "color",
+    "default" : {
+      "color" : null,
+      "opacity" : null,
+      "rgba" : null,
+      "rgb" : null,
+      "hex" : null
+    }
+  }, {
+    "id" : "button_repeater.hover_text_color",
+    "name" : "hover_text_color",
+    "label" : "Hover Text Color",
+    "help_text" : "Leave empty to use theme default",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.hide_show_hover_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "display_width" : null,
+    "type" : "color",
+    "default" : {
+      "color" : null,
+      "opacity" : null,
+      "rgba" : null,
+      "rgb" : null,
+      "hex" : null
+    }
+  }, {
+    "id" : "button_repeater.hide_show_border_settings",
+    "name" : "hide_show_border_settings",
+    "label" : "Show/Hide Border Settings",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_repeater.override_styles",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "display_width" : null,
+    "type" : "boolean",
+    "default" : false
+  }, {
+    "id" : "button_repeater.custom_border_radius",
+    "name" : "custom_border_radius",
+    "label" : "Border Radius",
+    "help_text" : "In pixels - Leave empty to use theme default",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.hide_show_border_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "display" : "slider",
+    "step" : 1,
+    "suffix" : "px",
+    "display_width" : null,
+    "type" : "number"
+  }, {
+    "id" : "button_repeater.hover_border_color",
+    "name" : "hover_border_color",
+    "label" : "Hover Border Color",
+    "help_text" : "Leave empty to use theme default",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.hide_show_border_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "display_width" : null,
+    "type" : "color",
+    "default" : {
+      "color" : null,
+      "opacity" : null,
+      "rgba" : null,
+      "rgb" : null,
+      "hex" : null
+    }
+  }, {
+    "id" : "button_repeater.hover_border_width",
+    "name" : "hover_border_width",
+    "label" : "Hover Border Width",
+    "help_text" : "In pixels - Leave empty to use theme default (2px)",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.hide_show_border_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "display" : "text",
+    "step" : 1,
+    "suffix" : "px",
+    "display_width" : null,
+    "type" : "number"
+  }, {
+    "id" : "button_repeater.hide_show_font_settings",
+    "name" : "hide_show_font_settings",
+    "label" : "Show/Hide Font Settings",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_repeater.override_styles",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "display_width" : null,
+    "type" : "boolean",
+    "default" : false
+  }, {
+    "id" : "button_repeater.button_font",
+    "name" : "button_font",
+    "label" : "Font Settings",
+    "help_text" : "Leave empty to use theme default",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.hide_show_font_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "load_external_fonts" : true,
+    "display_width" : null,
+    "type" : "font",
+    "default" : {
+      "font" : null,
+      "font_set" : "DEFAULT",
+      "styles" : null,
+      "size" : null,
+      "size_unit" : null,
+      "color" : null,
+      "variant" : null,
+      "fallback" : null,
+      "style" : null
+    }
+  }, {
+    "id" : "button_repeater.hide_show_padding_settings",
+    "name" : "hide_show_padding_settings",
+    "label" : "Show/Hide Padding Settings",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "button_repeater.override_styles",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "display_width" : null,
+    "type" : "boolean",
+    "default" : false
+  }, {
+    "id" : "button_repeater.padding_vertical",
+    "name" : "padding_vertical",
+    "label" : "Vertical Padding",
+    "help_text" : "In pixels - Leave empty to use theme default",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.hide_show_padding_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "display" : "text",
+    "step" : 1,
+    "suffix" : "px",
+    "display_width" : null,
+    "type" : "number"
+  }, {
+    "id" : "button_repeater.padding_horizontal",
+    "name" : "padding_horizontal",
+    "label" : "Horizontal Padding",
+    "help_text" : "In pixels - Leave empty to use theme default",
+    "required" : false,
+    "locked" : false,
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "AND",
+      "criteria" : [ {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.override_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      }, {
+        "controlling_field" : null,
+        "controlling_field_path" : "button_repeater.hide_show_padding_settings",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      } ],
+      "children" : [ ]
+    },
+    "display" : "text",
+    "step" : 1,
+    "suffix" : "px",
+    "display_width" : null,
+    "type" : "number"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "display_width" : null,
+  "type" : "group",
+  "default" : [ {
+    "button_text" : "Get Started",
+    "link" : {
+      "url" : {
+        "type" : "EXTERNAL",
+        "href" : "https://www.google.com"
+      }
+    },
+    "button_type" : "primary",
+    "turn_on_button_icon" : true,
+    "button_icon_type" : "svg",
+    "svg_icon" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\">  <path d=\"M13.4804 19.9083C13.4956 19.9235 13.9597 20.0399 14.5117 20.1668C15.0639 20.2937 15.5216 20.3781 15.5289 20.3545C15.5362 20.3309 15.5933 19.9477 15.6558 19.5029C15.7813 18.6098 16.0851 17.567 16.4097 16.9148C17.4217 14.8823 19.2372 13.5364 21.4393 13.1866L22 13.0975L22 12.1997L22 11.3017L21.4918 11.2164C18.162 10.6578 15.9912 8.16812 15.5851 4.44229C15.5586 4.199 15.5269 4 15.5147 4C15.4024 4 13.5416 4.44845 13.5064 4.48397C13.481 4.50966 13.4999 4.73774 13.5486 4.99073C14.087 7.79214 15.6287 10.0717 17.6294 11.0249L18.1094 11.2535L8.24046 11.2714L2 11.2828L2 13.1L8.25651 13.1113L18.1021 13.1293L17.4963 13.4363C15.9244 14.2326 14.68 15.7947 13.9472 17.8914C13.7383 18.4888 13.4232 19.8506 13.4804 19.9083Z\" fill=\"#101000\"/></svg>",
+    "custom_icon" : {
+      "name" : "Alternate Long Arrow Right",
+      "unicode" : "f30b",
+      "type" : "SOLID"
+    },
+    "keep_only_icon" : false,
+    "override_styles" : false
+  } ]
+}, {
+  "id" : "45c5e982-acc4-fc92-2cb5-0ea81bbe634e",
+  "name" : "layout_alignment",
+  "label" : "Layout",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "d96ff584-8f43-03ee-4abd-30b62836dc43",
+    "name" : "column_reverse_enable",
+    "label" : "Reverse Enable",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "display_width" : null,
+    "type" : "boolean",
+    "default" : false
+  }, {
+    "id" : "03cb86e2-af5f-84f9-6770-65abbaeedf51",
+    "name" : "section_max_width",
+    "label" : "Section Max Width",
+    "required" : false,
+    "locked" : false,
+    "display" : "text",
+    "step" : 1,
+    "suffix" : "px",
+    "display_width" : null,
+    "type" : "number",
+    "default" : 1280
+  }, {
+    "id" : "f7f8a7aa-1a2f-34c1-167e-c48043056e13",
+    "name" : "content_max_width",
+    "label" : "Content Max Width",
+    "required" : false,
+    "locked" : false,
+    "display" : "text",
+    "step" : 1,
+    "suffix" : "px",
+    "display_width" : null,
+    "type" : "number",
+    "default" : 620
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "display_width" : null,
+  "type" : "group",
+  "default" : {
+    "column_reverse_enable" : false,
+    "section_max_width" : 1280,
+    "content_max_width" : 620
+  }
+} ]

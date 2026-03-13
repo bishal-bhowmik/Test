@@ -1,0 +1,140 @@
+{% import '../../macros/button-macros.html' as button_macros %}
+{% set anim = module.style.animation %}
+
+<section class="section bg-primary-accent-2 ">
+  <div class="container {% if anim.enable_section_animation %}reveal-card{% endif %}">
+    <div class="section-wrapper gap-40">
+      <div class="media-details gap-40 {% if anim.enable_section_animation %}reveal-left{% endif %}">
+        {% for item in module.media_section.select_media %}
+        <div class="media">
+          {% if item.media_type == "image" %} 
+          {% if item.image_field.src %}
+          <img src="{{ item.image_field.src|escape_url }}" alt="{{ item.image_field.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+          {% endif %}
+          {% elif item.media_type == "video" %} 
+          <div class="video-wrapper">
+            <video id="myVideo-{{ unique_id }}-{{ loop.index0 }}" src="{{ item.video_file }}" autoplay muted loop playsinline></video>
+          </div>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="content-details {% if anim.enable_section_animation %}reveal-right{% endif %}">
+        <div class="content-wrapper rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+          {{ module.content.richtext_field }}
+        </div>
+       {% if module.button_enable %}
+        <div class="button-group mt-40">
+          {% for item in module.button_repeater %} {{
+          button_macros.render_button(item, theme) }} {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% require_css %}
+<style>
+  {% scope_css %}
+  .section{
+   {% if module.style.background.backgroud_type == "image" %}
+    background-image: url('{{ module.style.background.background_image.src|escape_url }}');
+      background-size: cover;
+      background-position: center;
+       {% if module.style.background.background_image_position  == "center" %}
+      background-position: center;
+       {% elif module.style.background.background_image_position  == "top" %}
+       background-position: top;
+      {% elif module.style.background.background_image_position  == "bottom" %}
+       background-position: bottom;
+      {% endif %}
+    {% elif module.style.background.backgroud_type == "solid_color" %} 
+    background: {{ module.style.background.solid_color.css }};
+    {% elif module.style.background.backgroud_type == "gradient" %}
+    background: {{ module.style.background.gradient_field.css }};
+    {% endif %}
+   
+  }
+  .section-wrapper {
+    display: flex;
+    {% if module.layout_alignment.column_reverse_enable %}
+    flex-direction:row-reverse;
+    {% endif %}
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  .container{
+    max-width:{{ module.layout_alignment.section_max_width }}px;
+    
+  }
+  .media-details {
+    display: flex;
+    flex: 1;
+    gap: 20px;
+    min-width: 300px;
+  }
+
+  .media {
+    flex: 1;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 3 / 4; 
+  }
+
+  .video-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .media video,
+  .media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .content-details {
+    {# flex: 1; #}
+    max-width:{{ module.layout_alignment.content_max_width }}px;
+  }
+
+  .content-wrapper h2 {
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    .section-wrapper {
+      flex-direction: column; 
+      align-items: center;
+      gap: 30px;
+    }
+
+    .media-details {
+      flex-direction: column;
+      width: 100%;
+      min-width: unset;
+    } 
+.btn-primary ,.btn-secondary {
+width:100%;
+}
+    .content-details {
+      width: 100%;
+      min-width: unset;
+      text-align: center;
+    }
+
+    .media {
+      max-height: 100%; 
+    }
+  }
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}

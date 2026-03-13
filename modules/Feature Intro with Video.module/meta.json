@@ -1,0 +1,14 @@
+{
+  "global" : false,
+  "content_types" : [ "KNOWLEDGE_BASE", "LANDING_PAGE", "SITE_PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 374326573257,
+  "css_assets" : [ {
+    "autoload" : true,
+    "path" : "../../css/main.css",
+    "name" : "main.css"
+  } ],
+  "label" : "Feature Intro with Video",
+  "icon" : "fontawesome-5.14.0:Accusoft",
+  "is_available_for_new_content" : true
+}

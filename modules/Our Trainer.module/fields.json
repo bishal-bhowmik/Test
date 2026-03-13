@@ -1,0 +1,1036 @@
+[ {
+  "id" : "58c43f69-6c65-4c97-2c72-8b873caedb53",
+  "name" : "content",
+  "label" : "Content",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "3b20587c-2ead-7d16-3890-d1b160cb6253",
+    "name" : "section_title",
+    "label" : "Section Title",
+    "required" : false,
+    "locked" : false,
+    "display_width" : null,
+    "type" : "richtext",
+    "default" : "<h2><span>OTHER SIMILAR CLASSES</span></h2>"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "display_width" : null,
+  "type" : "group",
+  "default" : {
+    "section_title" : "<h2><span>OTHER SIMILAR CLASSES</span></h2>"
+  }
+}, {
+  "id" : "ae8327a8-382f-a6de-247c-eedd3b249ae9",
+  "name" : "style",
+  "label" : "Style",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "style.background",
+    "name" : "background",
+    "label" : "Background",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "style.background.enable",
+      "name" : "enable",
+      "label" : "Enable",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "display_width" : null,
+      "type" : "boolean",
+      "default" : false
+    }, {
+      "id" : "style.background.background_type",
+      "name" : "background_type",
+      "label" : "Background Type",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.background.enable",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "image", "Image" ], [ "gradient", "Gradient" ], [ "solid_color", "Solid Color" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "display_width" : null,
+      "type" : "choice",
+      "default" : "image"
+    }, {
+      "id" : "style.background.background_image_position",
+      "name" : "background_image_position",
+      "label" : "Background Image Position",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_type",
+          "controlling_value_regex" : "image",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.enable",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "display" : "select",
+      "choices" : [ [ "top", "Top" ], [ "center", "Center" ], [ "bottom", "Bottom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "display_width" : null,
+      "type" : "choice",
+      "default" : "center"
+    }, {
+      "id" : "style.background.background_overlay",
+      "name" : "background_overlay",
+      "label" : "Background Overlay",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_type",
+          "controlling_value_regex" : "image",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.enable",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "display" : "toggle",
+      "display_width" : null,
+      "type" : "boolean",
+      "default" : false
+    }, {
+      "id" : "style.background.gradient_field",
+      "name" : "gradient_field",
+      "label" : "Gradient",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_type",
+          "controlling_value_regex" : "gradient",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.enable",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "display_width" : null,
+      "type" : "gradient",
+      "default" : {
+        "side_or_corner" : {
+          "horizontalSide" : "RIGHT",
+          "verticalSide" : null
+        },
+        "colors" : [ {
+          "color" : {
+            "r" : 25,
+            "g" : 35,
+            "b" : 23,
+            "a" : 1
+          }
+        }, {
+          "color" : {
+            "r" : 218,
+            "g" : 252,
+            "b" : 0,
+            "a" : 1
+          }
+        } ]
+      }
+    }, {
+      "id" : "style.background.overlay_color",
+      "name" : "overlay_color",
+      "label" : "Overlay Color",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_type",
+          "controlling_value_regex" : "image",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.enable",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_overlay",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "display_width" : null,
+      "type" : "gradient",
+      "default" : {
+        "side_or_corner" : {
+          "horizontalSide" : "LEFT",
+          "verticalSide" : null
+        },
+        "colors" : [ {
+          "color" : {
+            "r" : 16,
+            "g" : 16,
+            "b" : 0,
+            "a" : 0.8
+          }
+        }, {
+          "color" : {
+            "r" : 255,
+            "g" : 255,
+            "b" : 255,
+            "a" : 0
+          }
+        } ]
+      }
+    }, {
+      "id" : "style.background.solid_color",
+      "name" : "solid_color",
+      "label" : "Solid Color",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_type",
+          "controlling_value_regex" : "solid_color",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.enable",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "display_width" : null,
+      "type" : "color",
+      "default" : {
+        "color" : "#17270B",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "style.background.background_image",
+      "name" : "background_image",
+      "label" : "Background Image",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.background_type",
+          "controlling_value_regex" : "image",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.background.enable",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "responsive" : false,
+      "resizable" : false,
+      "show_loading" : false,
+      "display_width" : null,
+      "type" : "image",
+      "default" : {
+        "size_type" : "auto_custom_max",
+        "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/Main%20Content.png",
+        "alt" : "Main Content",
+        "loading" : "lazy"
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "display_width" : null,
+    "type" : "group"
+  }, {
+    "id" : "style.animation",
+    "name" : "animation",
+    "label" : "Animation",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "style.animation.enable_heading_animation",
+      "name" : "enable_heading_animation",
+      "label" : "Enable Heading Animation",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "display_width" : null,
+      "type" : "boolean",
+      "default" : false
+    }, {
+      "id" : "style.animation.enable_body_text_animation",
+      "name" : "enable_body_text_animation",
+      "label" : "Enable Body Text Animation",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "display_width" : null,
+      "type" : "boolean",
+      "default" : false
+    }, {
+      "id" : "style.animation.enable_section_animation",
+      "name" : "enable_section_animation",
+      "label" : "Enable Section Animation",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "display_width" : null,
+      "type" : "boolean",
+      "default" : false
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "display_width" : null,
+    "type" : "group"
+  }, {
+    "id" : "5a3663f0-337e-b8db-93b1-3ede464b8a22",
+    "name" : "card_styles",
+    "label" : "Card Styles",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "125086c4-306e-7faf-5b0a-621986ad91e1",
+      "name" : "override_card_text_styles",
+      "label" : "Override Card Text Styles",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "display_width" : null,
+      "type" : "boolean",
+      "default" : false
+    }, {
+      "id" : "title_color_id",
+      "name" : "card_title_color",
+      "label" : "Card Title Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.card_styles.override_card_text_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display_width" : null,
+      "type" : "color",
+      "default" : {
+        "color" : "#101000"
+      }
+    }, {
+      "id" : "desc_color_id",
+      "name" : "card_desc_color",
+      "label" : "Card Description Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.card_styles.override_card_text_styles",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display_width" : null,
+      "type" : "color",
+      "default" : {
+        "color" : "#101000"
+      }
+    }, {
+      "id" : "df786f8f-a6cd-c38d-2374-e63715828ffd",
+      "name" : "overwrite_overlay_color",
+      "label" : "Overwrite Primary Overlay Color",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "display_width" : null,
+      "type" : "boolean",
+      "default" : false
+    }, {
+      "id" : "8be2c4ec-10ec-2678-aa08-6a89e0a9807a",
+      "name" : "primary_overlay_color",
+      "label" : "Primary Overlay Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.card_styles.overwrite_overlay_color",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display_width" : null,
+      "type" : "color",
+      "default" : {
+        "color" : "#000000",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "57746ccf-6f6a-a94a-85f6-7f09ee296663",
+      "name" : "enable_hover_overlay",
+      "label" : "Enable Hover Overlay",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "display_width" : null,
+      "type" : "boolean",
+      "default" : false
+    }, {
+      "id" : "dd1f581c-c88c-b997-093d-9b27bd538505",
+      "name" : "hover_overlay_color",
+      "label" : "On Hover Overlay Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "style.card_styles.enable_hover_overlay",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display_width" : null,
+      "type" : "color",
+      "default" : {
+        "color" : "#DAFC00",
+        "opacity" : 100
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "display_width" : null,
+    "type" : "group",
+    "default" : {
+      "background" : {
+        "color" : "#F6F6F2",
+        "opacity" : 100
+      },
+      "overwrite_overlay_color" : false,
+      "primary_overlay_color" : {
+        "color" : "#000000",
+        "opacity" : 100
+      },
+      "enable_hover_overlay" : false,
+      "hover_overlay_color" : {
+        "color" : "#DAFC00",
+        "opacity" : 100
+      }
+    }
+  }, {
+    "id" : "3f0718d9-4031-2f6d-d430-70236f86566e",
+    "name" : "number_of_column",
+    "label" : "Number Of Column",
+    "help_text" : "",
+    "required" : false,
+    "locked" : false,
+    "display" : "slider",
+    "max" : 3,
+    "step" : 1,
+    "display_width" : null,
+    "type" : "number",
+    "default" : 2
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "display_width" : null,
+  "type" : "group",
+  "default" : {
+    "card_styles" : {
+      "background" : {
+        "color" : "#F6F6F2",
+        "opacity" : 100
+      },
+      "overwrite_overlay_color" : false,
+      "primary_overlay_color" : {
+        "color" : "#000000",
+        "opacity" : 100
+      },
+      "enable_hover_overlay" : false,
+      "hover_overlay_color" : {
+        "color" : "#DAFC00",
+        "opacity" : 100
+      }
+    },
+    "number_of_column" : 2
+  }
+}, {
+  "id" : "09579810-5e0b-8dfe-0b5c-dd40502b1e0a",
+  "name" : "card",
+  "label" : "Card",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "e0f2e261-cc0f-66d6-5474-a33620c1260c",
+    "name" : "trainers",
+    "label" : "Trainers",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : null,
+      "sorting_label_field" : null,
+      "default" : 1
+    },
+    "children" : [ {
+      "id" : "034edf42-9db8-978e-ddd6-4c6fdd302f73",
+      "name" : "trainer_title",
+      "label" : "Trainer Title",
+      "required" : false,
+      "locked" : false,
+      "display_width" : null,
+      "type" : "richtext",
+      "default" : "<h4><span>Male Trainer</span></h4>"
+    }, {
+      "id" : "421539d4-68e6-bbc7-1f66-fd36572823d0",
+      "name" : "trainer_description",
+      "label" : "Trainer Description",
+      "required" : false,
+      "locked" : false,
+      "display_width" : null,
+      "type" : "richtext",
+      "default" : "<p><span>Our team of professional male trainers is ready to guide you with effective and personalized training program.</span></p>"
+    }, {
+      "id" : "995fe7a8-7824-1ac3-559d-cbae95630f58",
+      "name" : "banner_image",
+      "label" : "Image",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "c5934f45-2aad-c439-4e15-c53a83f7c3b3",
+        "name" : "image",
+        "label" : "Image",
+        "required" : false,
+        "locked" : false,
+        "responsive" : true,
+        "resizable" : false,
+        "show_loading" : false,
+        "display_width" : null,
+        "type" : "image",
+        "default" : {
+          "size_type" : "auto",
+          "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/ae36f4259070f6f7a567890d473767c7d1a54e8b%20(1).png",
+          "alt" : "ae36f4259070f6f7a567890d473767c7d1a54e8b (1)",
+          "loading" : "lazy",
+          "width" : 1024,
+          "height" : 1024,
+          "max_width" : 1024,
+          "max_height" : 1024
+        }
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "display_width" : null,
+      "type" : "group",
+      "default" : {
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/ae36f4259070f6f7a567890d473767c7d1a54e8b%20(1).png",
+          "alt" : "ae36f4259070f6f7a567890d473767c7d1a54e8b (1)",
+          "loading" : "lazy",
+          "width" : 1024,
+          "height" : 1024,
+          "max_width" : 1024,
+          "max_height" : 1024
+        }
+      }
+    }, {
+      "id" : "9af09d1b-4bc3-ae36-bd53-972a7934b516",
+      "name" : "card_link",
+      "label" : "Card Link",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "35b91b67-ad14-02fb-bd64-b3b2a23af908",
+        "name" : "link_field",
+        "label" : "Link",
+        "required" : false,
+        "locked" : false,
+        "supported_types" : [ "EXTERNAL", "FILE", "CONTENT", "BLOG", "CALL_TO_ACTION", "PAYMENT", "EMAIL_ADDRESS", "PHONE_NUMBER", "WHATSAPP_NUMBER" ],
+        "show_advanced_rel_options" : false,
+        "display_width" : null,
+        "type" : "link",
+        "default" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://hubspot.com",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "display_width" : null,
+      "type" : "group",
+      "default" : {
+        "link_field" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://hubspot.com",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }
+    }, {
+      "id" : "a00e34ad-2440-df7a-707b-b8bb03b408ee",
+      "name" : "icon",
+      "label" : "Icon",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "58b0d4ce-1e1b-537d-c777-84a57f878806",
+        "name" : "hide_hover_icon",
+        "label" : "Hide Hover Icon",
+        "required" : false,
+        "locked" : false,
+        "display" : "toggle",
+        "display_width" : null,
+        "type" : "boolean",
+        "default" : false
+      }, {
+        "id" : "da690b81-dff4-6763-6d57-274e1d670031",
+        "name" : "background_color",
+        "label" : "Background Color",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "card.trainers.icon.hide_hover_icon",
+          "controlling_value_regex" : "false",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display_width" : null,
+        "type" : "color",
+        "default" : {
+          "color" : "#DAFC00",
+          "opacity" : 100
+        }
+      }, {
+        "id" : "519b8729-5731-df17-61f9-e9a2a2530eb2",
+        "name" : "icon_type",
+        "label" : "Icon Type",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "card.trainers.icon.hide_hover_icon",
+          "controlling_value_regex" : "false",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display" : "select",
+        "choices" : [ [ "image", "Image" ], [ "svg", "SVG Code" ], [ "custom", "Custom" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "display_width" : null,
+        "type" : "choice",
+        "default" : "image"
+      }, {
+        "id" : "709a697c-c2d5-91f5-29a7-fc6bcfd930b2",
+        "name" : "icon_image_file",
+        "label" : "Icon Image File",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "card.trainers.icon.hide_hover_icon",
+            "controlling_value_regex" : "false",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "card.trainers.icon.icon_type",
+            "controlling_value_regex" : "image",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "responsive" : false,
+        "resizable" : false,
+        "show_loading" : false,
+        "display_width" : null,
+        "type" : "image",
+        "default" : {
+          "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/7.svg",
+          "alt" : "7",
+          "width" : 36,
+          "height" : 36
+        }
+      }, {
+        "id" : "3a70ca2c-072e-9091-819a-de566ff817a8",
+        "name" : "icon_svg_code",
+        "label" : "Icon SVG Code",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "card.trainers.icon.hide_hover_icon",
+            "controlling_value_regex" : "false",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "card.trainers.icon.icon_type",
+            "controlling_value_regex" : "svg",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "allow_new_line" : false,
+        "display_width" : null,
+        "type" : "text",
+        "default" : "<svg width=\"36\" height=\"36\" viewBox=\"0 0 36 36\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z\" fill=\"#101000\"/></svg>"
+      }, {
+        "id" : "09f09810-996a-53d1-11dd-7b4e438f24c9",
+        "name" : "icon_custom",
+        "label" : "Icon",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "card.trainers.icon.hide_hover_icon",
+            "controlling_value_regex" : "false",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "card.trainers.icon.icon_type",
+            "controlling_value_regex" : "custom",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "icon_set" : "fontawesome-5.14.0",
+        "display_width" : null,
+        "type" : "icon",
+        "default" : {
+          "name" : "long-arrow-alt-right",
+          "unicode" : "f30b",
+          "type" : "SOLID"
+        }
+      }, {
+        "id" : "a7869c14-c43e-6785-9670-0774401782e0",
+        "name" : "overwrite_svg_styles",
+        "label" : "Overwrite SVG Styles",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "card.trainers.icon.hide_hover_icon",
+            "controlling_value_regex" : "false",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "card.trainers.icon.icon_type",
+            "controlling_value_regex" : "svg|custom",
+            "property" : null,
+            "operator" : "MATCHES_REGEX",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "display" : "toggle",
+        "display_width" : null,
+        "type" : "boolean",
+        "default" : false
+      }, {
+        "id" : "f77053e9-9542-e25f-89aa-ff8c1136d14c",
+        "name" : "svg_fill_color",
+        "label" : "SVG Fill Color",
+        "required" : false,
+        "locked" : false,
+        "visibility_rules" : "ADVANCED",
+        "advanced_visibility" : {
+          "boolean_operator" : "AND",
+          "criteria" : [ {
+            "controlling_field" : null,
+            "controlling_field_path" : "card.trainers.icon.hide_hover_icon",
+            "controlling_value_regex" : "false",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "card.trainers.icon.overwrite_svg_styles",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          }, {
+            "controlling_field" : null,
+            "controlling_field_path" : "card.trainers.icon.icon_type",
+            "controlling_value_regex" : "svg|custom",
+            "property" : null,
+            "operator" : "MATCHES_REGEX",
+            "access" : null
+          } ],
+          "children" : [ ]
+        },
+        "display_width" : null,
+        "type" : "color",
+        "default" : {
+          "color" : "#101000",
+          "opacity" : 100
+        }
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "display_width" : null,
+      "type" : "group"
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "display_width" : null,
+    "type" : "group",
+    "default" : [ {
+      "trainer_title" : "<h4><span>Male Trainer</span></h4>",
+      "trainer_description" : "<p><span>Our team of professional male trainers is ready to guide you with effective and personalized training program.</span></p>",
+      "banner_image" : {
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/ae36f4259070f6f7a567890d473767c7d1a54e8b%20(1).png",
+          "alt" : "ae36f4259070f6f7a567890d473767c7d1a54e8b (1)",
+          "loading" : "lazy",
+          "width" : 1024,
+          "height" : 1024,
+          "max_width" : 1024,
+          "max_height" : 1024
+        }
+      },
+      "card_link" : {
+        "link_field" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://hubspot.com",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      },
+      "icon" : {
+        "hide_hover_icon" : false,
+        "background_color" : {
+          "color" : "#DAFC00",
+          "opacity" : 100
+        },
+        "icon_type" : "image",
+        "icon_image_file" : {
+          "size_type" : "auto_custom_max",
+          "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/7.svg",
+          "alt" : "7",
+          "loading" : "lazy",
+          "width" : 36,
+          "height" : 36,
+          "max_width" : 36,
+          "max_height" : 36
+        },
+        "icon_svg_code" : "<svg width=\"36\" height=\"36\" viewBox=\"0 0 36 36\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z\" fill=\"#101000\"/></svg>",
+        "overwrite_svg_styles" : false,
+        "svg_fill_color" : {
+          "color" : "#101000",
+          "opacity" : 100
+        },
+        "icon_field" : {
+          "name" : "Alternate Long Arrow Right",
+          "unicode" : "f30b",
+          "type" : "SOLID"
+        }
+      }
+    } ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "display_width" : null,
+  "type" : "group",
+  "default" : {
+    "trainers" : [ {
+      "trainer_title" : "<h4><span>Male Trainer</span></h4>",
+      "trainer_description" : "<p><span>Our team of professional male trainers is ready to guide you with effective and personalized training program.</span></p>",
+      "banner_image" : {
+        "image" : {
+          "size_type" : "auto",
+          "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/ae36f4259070f6f7a567890d473767c7d1a54e8b%20(1).png",
+          "alt" : "ae36f4259070f6f7a567890d473767c7d1a54e8b (1)",
+          "loading" : "lazy",
+          "width" : 1024,
+          "height" : 1024,
+          "max_width" : 1024,
+          "max_height" : 1024
+        }
+      },
+      "card_link" : {
+        "link_field" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://hubspot.com",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      },
+      "icon" : {
+        "hide_hover_icon" : false,
+        "background_color" : {
+          "color" : "#DAFC00",
+          "opacity" : 100
+        },
+        "icon_type" : "image",
+        "icon_image_file" : {
+          "size_type" : "auto_custom_max",
+          "src" : "https://26291308.fs1.hubspotusercontent-eu1.net/hubfs/26291308/7.svg",
+          "alt" : "7",
+          "loading" : "lazy",
+          "width" : 36,
+          "height" : 36,
+          "max_width" : 36,
+          "max_height" : 36
+        },
+        "icon_svg_code" : "<svg width=\"36\" height=\"36\" viewBox=\"0 0 36 36\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M26.3595 23.8766C26.3853 23.8767 26.8778 23.5815 27.4539 23.2208C28.0301 22.86 28.4901 22.5432 28.4763 22.517C28.4625 22.4907 28.1858 22.1171 27.8614 21.6867C27.21 20.8224 26.583 19.6797 26.305 18.8509C25.439 16.2676 25.8376 13.585 27.4093 11.4197L27.8095 10.8683L27.0476 10.1065L26.2857 9.34453L25.782 9.70342C22.4826 12.0548 18.5281 11.7843 15.022 8.96737C14.7931 8.78341 14.5973 8.64144 14.587 8.65179C14.4917 8.74709 13.2933 10.7065 13.2936 10.7665C13.2938 10.8099 13.5034 10.9874 13.7593 11.1608C16.5933 13.081 19.8358 13.707 22.3422 12.8182L22.9434 12.605L14.5846 20.9942L9.29904 26.299L10.841 27.841L16.1594 22.5418L24.529 14.2027L24.2754 14.9773C23.6173 16.9868 23.8869 19.3682 25.0442 21.7692C25.3738 22.4532 26.262 23.8761 26.3595 23.8766Z\" fill=\"#101000\"/></svg>",
+        "overwrite_svg_styles" : false,
+        "svg_fill_color" : {
+          "color" : "#101000",
+          "opacity" : 100
+        },
+        "icon_field" : {
+          "name" : "Alternate Long Arrow Right",
+          "unicode" : "f30b",
+          "type" : "SOLID"
+        }
+      }
+    } ]
+  }
+}, {
+  "id" : "layout_alignment",
+  "name" : "layout_alignment",
+  "label" : "Layout",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "layout_alignment.section_max_width",
+    "name" : "section_max_width",
+    "label" : "Section Max Width",
+    "required" : false,
+    "locked" : false,
+    "display" : "text",
+    "step" : 1,
+    "suffix" : "px",
+    "display_width" : null,
+    "type" : "number",
+    "default" : 1280
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "display_width" : null,
+  "type" : "group"
+} ]

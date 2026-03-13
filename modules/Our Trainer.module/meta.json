@@ -1,0 +1,13 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE" ],
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 374335468749,
+  "css_assets" : [ {
+    "autoload" : true,
+    "path" : "../../css/elements/_global.css",
+    "name" : "_global.css"
+  } ],
+  "label" : "covered for everyone",
+  "is_available_for_new_content" : true
+}

@@ -1,0 +1,369 @@
+{% import '../../macros/button-macros.html' as button_macros %}
+  {% import '../../macros/global-macros.html' as global_macros %} 
+  {{ global_macros.module_css(module, name) }}
+{% set anim = module.style.animation %}
+<section class="section bg-primary" id="{{name}} {% if anim.enable_section_animation %}reveal-card{% endif %}">
+  <div class="container">
+    <div class="header-section {% if anim.enable_section_animation %}reveal-left{% endif %}">
+      <div class="section-label rich-text-anim-wrapper"{% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>{{ module.content.section_label }}</div>
+      <div class="description-details">
+        <div class="description rich-text-anim-wrapper"{% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>{{ module.content.section_subtitle }}</div>
+        <div class="button-group">
+          {% for item in module.button_repeater %} {{
+          button_macros.render_button(item, theme) }} {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="section-wrapper rounded {% if anim.enable_section_animation %}reveal-right{% endif %}">
+      <div class="card">
+        {% if module.media_section.media_type == "image" %} {% if
+        module.media_section.background_image.src %}
+        <img
+          class="card-image"
+          src="{{ module.media_section.background_image.src|escape_url }}"
+          alt="{{ module.media_section.background_image.alt|escape_attr }}"
+          {{
+          loadingAttr
+          }}
+          {{
+          sizeAttrs
+          }}
+        />
+        {% endif %} {% endif %} {% if module.media_section.media_type == "video"
+        %}
+        <div class="video-wrapper">
+          {% if module.media_section.video.player_id %} {% video_player
+          "embed_player" player_id={{ module.media_section.video.player_id }}
+          type={{ module.media_section.video.player_type || 'scriptV4' }}
+          full_width={{ module.media_section.video.size_type ==
+          'auto_full_width' }}, conversion_asset={{
+          module.media_section.video.conversion_asset|tojson|safe }} autoplay={{
+          module.media_section.video.autoplay }} hidden_controls={{
+          module.media_section.video.hide_controls }} loop={{
+          module.media_section.video.loop_video }} muted={{
+          module.media_section.video.mute_by_default }} %} {% endif %}
+        </div>
+        {% elif module.media_section.media_type == "embed" %}
+        {% if module.media_section.embed_code.source_type == "oembed" %}
+  {% set oembedResponse = module.media_section.embed_code.oembed_response  %}
+  <div class="oembed_container {% if module.media_section.embed_code.size_type == 'auto_full_width' %} oembed_container--full-size{% endif %}" id="oembed_container-{{name|escape_attr}}">
+    <div class="iframe_wrapper"
+      data-embed-response-html="{{ oembedResponse.html|escape_attr }}"
+      data-embed-response-width="{{ oembedResponse.width|escape_attr }}"
+      data-embed-response-height="{{ oembedResponse.height|escape_attr }}"
+      data-embed-url="{{ module.media_section.embed_code.oembed_url|escape_attr }}"
+      {% unless module.media_section.embed_code.size_type == "auto_full_width" || module.media_section.embed_code.size_type == "exact" %}
+      data-max-height="{% if module.media_section.embed_code.size_type == "auto_custom_max" %}{{ module.media_section.embed_code.max_height|escape_attr }}{% endif %}"
+      data-max-width="{% if module.media_section.embed_code.size_type == "auto_custom_max" %}{{ module.media_section.embed_code.max_width|escape_attr }}{% endif %}"
+      {% endunless %}
+      {% if module.media_section.embed_code.size_type == "exact" %}
+      data-height="{{ module.media_section.embed_code.height|escape_attr }}"
+      data-width="{{ module.media_section.embed_code.width|escape_attr }}"
+      {% endif %}
+      >
+    </div>
+  </div>
+  {% require_css %}
+    <style>
+      .oembed_container {
+        display: inline-block;
+        height: 100%;
+        position: relative;
+        width: 100%;
+      }
+
+      .oembed_container .iframe_wrapper > * {
+        height: 100%;
+        left: 0;
+        margin: 0 auto;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+      }
+
+      .iframe_wrapper {
+        height: 0;
+        padding-bottom: 56.25%;
+        padding-top: 25px;
+        position: relative;
+      }
+    </style>
+  {% end_require_css %}
+  {% require_js %}
+    <script>
+      function loadEmbedField(oembedContainer) {
+        const iframeWrapper = oembedContainer.querySelector('.iframe_wrapper');
+        if (!iframeWrapper) {
+          return;
+        }
+        const url = iframeWrapper.dataset.embedUrl;
+        if (!url) {
+          return;
+        }
+        
+
+        function setIframe(data) {
+          let {
+            maxHeight,
+            maxWidth,
+            height,
+            width,
+          } = iframeWrapper.dataset;
+          maxHeight = maxHeight !== undefined && !maxHeight ? data.height : maxHeight;
+          maxWidth = maxWidth !== undefined && !maxWidth ? data.width : maxWidth;
+          height = height !== undefined && !height ? data.height : height;
+          width = width !== undefined && !width ? data.width : width;
+
+          const el = document.createElement('div');
+          el.innerHTML = data.html;
+          const iframe = el.firstChild;
+          iframeWrapper.appendChild(iframe);
+
+          if (maxHeight) {
+            const maxHeightStr = maxHeight.toString(10) + "px";
+            oembedContainer.style.maxHeight = maxHeightStr;
+            iframe.style.maxHeight = maxHeightStr;
+          }
+
+          if (maxWidth) {
+            const maxWidthStr = maxWidth.toString(10) + "px";
+            oembedContainer.style.maxWidth = maxWidthStr;
+            iframe.style.maxWidth = maxWidthStr;
+          }
+
+          if (height) {
+            const heightStr = height.toString(10) + "px";
+            oembedContainer.style.height = heightStr;
+            iframe.style.height = heightStr;
+          }
+
+          if (width) {
+            const widthStr = width.toString(10) + "px";
+            oembedContainer.style.width = widthStr;
+            iframe.style.width = widthStr;
+          }
+        }
+
+        const embedResponse = {
+          html: iframeWrapper.dataset.embedResponseHtml,
+          width: iframeWrapper.dataset.embedResponseWidth,
+          height: iframeWrapper.dataset.embedResponseHeight
+        };
+
+        if (embedResponse.html) {
+          setIframe(embedResponse);
+          return;
+        }
+
+        const request = new XMLHttpRequest();
+        const requestUrl = "/_hcms/oembed?url=" + encodeURIComponent(url) + "&autoplay=0";
+        request.open('GET', requestUrl, true);
+        request.onload = function() {
+          if (request.status >= 200 && request.status < 400) {
+            const data = JSON.parse(request.responseText);
+            setIframe(data);
+          } else {
+            console.error('Server reached, error retrieving results.');
+          }
+        };
+        request.onerror = function() {
+          console.error('Could not reach the server.');
+        };
+        request.send();
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var oEmbedContainers = document.getElementsByClassName('oembed_container');
+        Array.prototype.forEach.call(oEmbedContainers, loadEmbedField)
+      });
+    </script>
+  {% end_require_js %}
+{% else %}
+  <div id="embed_container" class="embed_container">
+    <div class="iframe_wrapper">
+      {{ module.media_section.embed_code.embed_html }}
+    </div>
+  </div>
+  {% require_css %}
+    <style>
+      .iframe_wrapper {
+        height: 0;
+        padding-bottom: 35.25%;
+        padding-top: 25px;
+        position: relative;
+      }
+
+      .embed_container {
+        display: inline-block;
+        height: 100%;
+        position: relative;
+        width: 100%;
+      }
+
+      .embed_container iframe {
+        left: 0;
+        max-height: 100%;
+        max-width: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    </style>
+  {% end_require_css %}
+{% endif %}
+
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% require_css %}
+<style>
+  {% scope_css %}
+  .section {
+      padding-bottom:0;
+       {% if module.style.padding.enable %}
+      --padding-top: clamp({{ module.style.padding.mobile.top_padding|default(48) }}px, 4vw , {{ module.style.padding.desktop.top_padding|default(80) }}px);
+      --padding-left: clamp({{ module.style.padding.mobile.left_padding|default(16) }}px, 4vw , {{ module.style.padding.desktop.left_padding|default(80) }}px);
+      --padding-right: clamp({{ module.style.padding.mobile.right_padding|default(16) }}px, 4vw , {{ module.style.padding.desktop.right_padding|default(80) }}px);
+      --padding-bottom: clamp({{ module.style.padding.mobile.bottom_padding|default(48) }}px, 4vw , {{ module.style.padding.desktop.bottom_padding|default(0) }}px);
+      padding-top: var(--padding-top);
+      padding-bottom: var(--padding-bottom);
+      padding-left: var(--padding-left);
+      padding-right: var(--padding-right);
+    {% endif %}
+            
+ }
+
+
+
+  .header-section {
+    display: flex;
+    justify-content: space-between;
+    {% if module.layout_alignment.layout_type == 'reverse' %}
+      flex-direction: row-reverse;
+    {% endif %}
+    {% if module.layout_alignment.layout_type == 'column' %}
+      flex-direction: column;
+    
+    {% endif %}
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: 50px;
+  }
+
+  .section-label {
+    flex: 0 0 45%;
+  }
+
+  .section-label h2{
+    color:var(--color-text-primary);
+    text-transform: uppercase;
+  }
+
+  .description-details {
+    flex: 1;
+    max-width: 45%;
+    display: flex;
+    flex-direction: column;
+     justify-content: center;
+    {% if module.layout_alignment.layout_type == 'column' %}
+      max-width: 100%;
+      width:100%;
+      flex-direction: row;
+      align-items:center;
+     justify-content: space-between;
+      gap:40px;
+    {% endif %}
+   
+  }
+  .button-group{
+  {% if module.layout_alignment.layout_type == 'column' %}
+     height: fit-content;
+    {% endif %}
+  }
+
+  .description {
+    padding-bottom:40px;
+    {% if module.layout_alignment.layout_type == 'column' %}
+      max-width: 730px;
+      width:100%;
+    {% endif %}
+  }
+
+  .description p{
+    color: var(--color-text-secondary);
+  }
+
+  .section-wrapper.rounded {
+    border-radius: 30px 30px 0 0;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .card {
+    width: 100%;
+    line-height: 0;
+  }
+
+
+  .card-image {
+    width: 100%;
+    height: 521px;
+    max-height: 521px;
+    object-fit: cover;
+    display: block;
+    object-position:top;
+  }
+
+
+  .video-wrapper video {
+    width: 100%;
+    height: 521px;
+    max-height: 521px;
+    object-fit: cover;
+    display: block;
+  }
+
+  @media (max-width: 992px) {
+    .header-section {
+      flex-direction: column;
+      gap: 16px;
+      text-align:center;
+      align-items: center;
+    }
+
+    .section-label {
+      max-width: 100%;
+    }
+
+    .section-label h1,
+    .section-label h2 {
+      font-size: 3rem;
+    }
+
+    .description-details {
+      max-width: 100%;
+      flex-direction:column;
+      gap:24px;
+    }
+.description{
+padding-bottom:0;
+
+    /* Adjusted for mobile balance */
+    .card-image,
+    .video-wrapper video {
+      height: 350px;
+      min-height: 350px;
+      max-height: 350px;
+    }
+  }
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
