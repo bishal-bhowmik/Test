@@ -12,6 +12,12 @@
       {{ module.content.title }}
     </div>
   <div class="container-wrapper gap-40">
+
+    <div class="title  rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
+     {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>
+      {{ module.content.title }}
+    </div>
+  <div class="container-wrapper gap-40">
    
   <div class="details-container p-30 rounded {% if anim.enable_section_animation %}reveal-left{% endif %}">
   <div class="left-container rich-text-anim-wrapper" {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
