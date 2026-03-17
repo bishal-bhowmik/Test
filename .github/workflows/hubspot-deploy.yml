@@ -6,11 +6,10 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to HubSpot CMS
     runs-on: ubuntu-latest
     steps:
       # Step 1: Check out the code from the main branch
-      - name: Checkout Code
+      - name: Checkout
         uses: actions/checkout@v4
 
       # Step 2: Run the official HubSpot deploy action
@@ -23,5 +22,5 @@ jobs:
           # The exact name of the folder inside HubSpot's Design Manager where this should go
           dest_dir: Publishable_Theme/FitMax-Free-Theme 
           
-          account_id: ${{ secrets.HUBSPOT_ACCOUNT_ID }}
+          account_id: ${{vars.HUBSPOT_ACCOUNT_ID || secrets.HUBSPOT_ACCOUNT_ID }}
           personal_access_key: ${{ secrets.HUBSPOT_PERSONAL_ACCESS_KEY }}
