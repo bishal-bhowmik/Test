@@ -1,17 +1,27 @@
+# This triggers the action whenever code is pushed or merged into the main branch
 on:
   push:
     branches:
       - main
+
 jobs:
   deploy:
+    name: Deploy to HubSpot CMS
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      # Step 1: Check out the code from the main branch
+      - name: Checkout Code
         uses: actions/checkout@v4
+
+      # Step 2: Run the official HubSpot deploy action
       - name: HubSpot Deploy Action
         uses: HubSpot/hubspot-cms-deploy-action@v2.0.1
         with:
-          src_dir: .
-          dest_dir: /Publishable_Theme/FitMax-All-Theme/FitMax
-          account_id: ${{ vars.hubspot_account_id || secrets.hubspot_portal_id }}
-          personal_access_key: ${{ secrets.hubspot_personal_access_key }}
+          # The folder in your GitHub repo containing your theme files
+          src_dir: . 
+          
+          # The exact name of the folder inside HubSpot's Design Manager where this should go
+          dest_dir: /Publishable_Theme/FitMax-Free-Theme 
+          
+          account_id: ${{ secrets.HUBSPOT_ACCOUNT_ID }}
+          personal_access_key: ${{ secrets.HUBSPOT_PERSONAL_ACCESS_KEY }}
