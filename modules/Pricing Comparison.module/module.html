@@ -6,7 +6,7 @@
   {% scope_css %}
 
   section{
-    background: var(--color-bg-gradient);
+    background: var(--color-bg-secondary-accent);
    {% if module.style.background.background_type == "color" %}
    background: {{ module.style.background.background_color.css }}
    {% elif module.style.background.background_type == "gradient" %}
@@ -25,7 +25,7 @@
 
   .badge{
   
-    background: var(--color-bg-gradient);
+    background: var(--color-bg-secondary-accent);
 
   }
 
@@ -178,19 +178,9 @@ margin-top:4px;
       {{ module.content.header}}
     </div>
 
-    <!-- Plan Name Buttons -->
-    <div class="plan-buttons flex gap-10">
-      {% for item in module.pricing_plans %}
-      <button
-        class="plan-name rounded-half p-20 {% if loop.first %}active{% endif %}"
-        data-plan-index="{{ loop.index0 }}">
-       {{ item.plan_name }}
-      </button>
-      {% endfor %}
-    </div>
 
     <!-- Pricing Cards Container -->
-    <div class="pricing-wrapper  {% if anim.enable_section_animation %}reveal-left{% endif %}">
+    <div class="pricing-wrapper {% if anim.enable_section_animation %}reveal-left{% endif %}">
       {% for item in module.pricing_plans %}
       <div
         class="pricing-cards {% if loop.first %}active{% endif %}"
@@ -334,34 +324,3 @@ margin-top:4px;
   </div>
 </section>
 
-{% require_js %}
-<script>
-  (function () {
-    const planButtons = document.querySelectorAll(".plan-name");
-    const pricingCards = document.querySelectorAll(".pricing-cards");
-
-    planButtons.forEach((button) => {
-      button.addEventListener("click", function () {
-        const planIndex = this.getAttribute("data-plan-index");
-
-        // Remove active class from all buttons
-        planButtons.forEach((btn) => btn.classList.remove("active"));
-
-        // Add active class to clicked button
-        this.classList.add("active");
-
-        // Hide all pricing cards
-        pricingCards.forEach((cards) => cards.classList.remove("active"));
-
-        // Show selected pricing cards
-        const selectedCards = document.querySelector(
-          `.pricing-cards[data-plan-index="${planIndex}"]`
-        );
-        if (selectedCards) {
-          selectedCards.classList.add("active");
-        }
-      });
-    });
-  })();
-</script>
-{% end_require_js %}

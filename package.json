@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "node fields-watcher.js",
-    "watch:hs": "hs watch . /Fitmax-Theme-New",
+    "watch:hs": "hs watch . /Fitmax-Free",
     "dev": "concurrently -n fields,hubspot -c cyan,magenta \"npm run build\" \"npm run watch:hs\""
   },
   "keywords": [],
