@@ -308,34 +308,6 @@
             "type": "image"
           }
         ]
-      },
-      {
-        "label": "Animation",
-        "name": "animation",
-        "type": "group",
-        "children": [
-          {
-            "label": "Enable Heading Animation",
-            "name": "enable_heading_animation",
-            "default": false,
-            "display": "toggle",
-            "type": "boolean"
-          },
-          {
-            "label": "Enable Body Text Animation",
-            "name": "enable_body_text_animation",
-            "default": false,
-            "display": "toggle",
-            "type": "boolean"
-          },
-          {
-            "label": "Enable Section Animation",
-            "name": "enable_section_animation",
-            "default": false,
-            "display": "toggle",
-            "type": "boolean"
-          }
-        ]
       }
     ]
   },

@@ -3,23 +3,20 @@
 
 {{ global_macros.module_css(module, name) }}
 
-{% set anim = module.style.animation %}
 
 
-<section class="faq-section section bg-primary" id="{{name}}">
-  <div class="container {% if anim.enable_section_animation %}reveal-card{% endif %}">
+<section class="faq-section section bg-primary" >
+  <div class="container ">
     {% if module.layout_alignment.layout_type == "border_full" or
 !module.faq.category_enable %}
-    <div class="section-label pb-40  rich-text-anim-wrapper " {% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
-         {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>{{ module.content.section_title }}</div>
+    <div class="section-label pb-40 " >{{ module.content.section_title }}</div>
     {% endif %}
     <div class="faq-wrapper">
-      <div class="faq-content {% if anim.enable_section_animation %}reveal-right{% endif %}">
+      <div class="faq-content ">
         {% for item in module.faq.questions.question_items %}
         <div class="faq-accordion-item">
           <button class="faq-question p-30" type="button">
-            <span class="question-text rich-text-anim-wrapper"{% if anim.enable_heading_animation %}data-heading-anim="char-stagger"{% endif %}
-                  {% if anim.enable_body_text_animation %}data-text-anim="masked-lines"{% endif %}>{{ item.question_text }}</span>
+            <span class="question-text ">{{ item.question_text }}</span>
             <span class="chevron">
               <svg
                    width="20"
@@ -136,18 +133,16 @@
 
 
   .section-label h2 { 
-   
     text-transform: uppercase;
   }
+
   .section-labels h2 {  text-transform: uppercase; }
 
   .faq-wrapper {
     display: grid;
-
     grid-template-columns: 1fr;
     max-width: {{ module.layout_alignment.content }}px;
     margin: 0 auto;
-
     gap: 40px;
     align-items: start;
   }

@@ -224,25 +224,7 @@ export function sectionSettings(extraStyleFields = [], extraLayoutFields = []) {
         // ----------------------------------------
         // NEW ANIMATION GROUP
         // ----------------------------------------
-        group(
-          "Animation",
-          "animation",
-          {},
-          [
-            fi.boolean("Enable Heading Animation", "enable_heading_animation", {
-              default: false,
-              display: "toggle",
-            }),
-            fi.boolean("Enable Body Text Animation", "enable_body_text_animation", {
-              default: false,
-              display: "toggle",
-            }),
-            fi.boolean("Enable Section Animation", "enable_section_animation", {
-              default: false,
-              display: "toggle",
-            }),
-          ]
-        ),
+      
 
         ...extraStyleFields,
       ]
