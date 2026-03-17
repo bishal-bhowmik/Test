@@ -14,7 +14,7 @@
           }
         },
         "default": {
-          "color": "#DAFC00",
+          "color": "#F83735",
           "opacity": 100
         },
         "help_text": "Primary Color will be used for Headings."
@@ -30,7 +30,7 @@
           }
         },
         "default": {
-          "color": "#101000",
+          "color": "#0F1115",
           "opacity": 100
         },
         "help_text": "Secondary Color will be used for Buttons, Icons, Link Hover and tagline."
@@ -59,7 +59,7 @@
         "type": "color",
 
         "default": {
-          "color": "#101000",
+          "color": "#0F1115",
           "opacity": 100
         },
         "help_text": "High contrast section background."
@@ -70,7 +70,7 @@
         "type": "color",
 
         "default": {
-          "color": "#F6F6F2",
+          "color": "#FAFAFA",
           "opacity": 100
         },
         "help_text": "Light contrast section/Card background on the primary background."
@@ -81,7 +81,7 @@
         "type": "color",
 
         "default": {
-          "color": "#E7EBEE",
+          "color": "#FFF7F7",
           "opacity": 100
         },
         "help_text": "Light contrast section/Card background on the primary background."
@@ -92,41 +92,41 @@
         "type": "color",
 
         "default": {
-          "color": "#2B2B2B",
+          "color": "#2B303B",
           "opacity": 100
         },
         "help_text": "Dark contrast section/Card background on the secondary background."
       },
+{
+  "label": "Gradient",
+  "name": "gradient",
+  "type": "gradient",
+  "default": {
+    "side_or_corner": {
+      "verticalSide": "TOP",
+      "horizontalSide": null
+    },
+    "colors": [
       {
-        "label": "Gradient",
-        "name": "gradient",
-        "type": "gradient",
-        "default": {
-          "side_or_corner": {
-            "verticalSide": "TOP",
-            "horizontalSide": null
-          },
-          "colors": [
-            {
-              "color": {
-                "r": 25,
-                "g": 35,
-                "b": 23,
-                "a": 1
-              }
-            },
-            {
-              "color": {
-                "r": 23,
-                "g": 39,
-                "b": 11,
-                "a": 1
-              }
-            }
-          ]
-        },
-        "help_text": "Full theme default background."
+        "color": {
+          "r": 248,
+          "g": 55,
+          "b": 53,
+          "a": 1
+        }
+      },
+      {
+        "color": {
+          "r": 248,
+          "g": 55,
+          "b": 53,
+          "a": 0
+        }
       }
+    ]
+  },
+  "help_text": "Full theme default background."
+}
     ]
   },
   {
@@ -249,7 +249,7 @@
               }
             },
             "default": {
-              "color": "#101000",
+              "color": "#2C0202",
               "opacity": 100
             },
             "help_text": "Primary Color will be used for Headings."
@@ -260,7 +260,7 @@
             "type": "color",
 
             "default": {
-              "color": "#4C4C40",
+              "color": "#2B303B",
               "opacity": 100
             },
             "help_text": "Secondary Color will be used for Body."
@@ -1300,7 +1300,7 @@
               }
             },
             "default": {
-              "color": "#E7E8E3"
+              "color": "#F1EAEA"
             }
           },
           {
