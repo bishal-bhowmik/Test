@@ -17,10 +17,10 @@ jobs:
         uses: HubSpot/hubspot-cms-deploy-action@v2.0.1
         with:
           # The folder in your GitHub repo containing your theme files
-          src_dir: FitmaxLight
+          src_dir: . 
           
           # The exact name of the folder inside HubSpot's Design Manager where this should go
           dest_dir: Publishable_Theme/FitMax-Free-Theme 
           
-          account_id: ${{ secrets.HUBSPOT_ACCOUNT_ID }}
+          account_id: ${{secrets.HUBSPOT_ACCOUNT_ID }}
           personal_access_key: ${{ secrets.HUBSPOT_PERSONAL_ACCESS_KEY }}
