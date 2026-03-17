@@ -20,7 +20,7 @@ jobs:
           src_dir: . 
           
           # The exact name of the folder inside HubSpot's Design Manager where this should go
-          dest_dir: Publishable_Theme/FitMax-Free-Theme 
+          dest_dir: /Publishable_Theme/FitMax-Free-Theme 
           
           account_id: ${{secrets.HUBSPOT_ACCOUNT_ID }}
           personal_access_key: ${{ secrets.HUBSPOT_PERSONAL_ACCESS_KEY }}
